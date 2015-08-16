@@ -21,11 +21,11 @@ struct ContactCallback
 	 *	@brief	コンストラクタ
 	 */
 	ContactCallback()
+		: onContactBegin(		[]( const cocos2d::Node* ) { } )
+		, onContactPreSolve(	[]( const cocos2d::Node* ) { } )
+		, onContactSeperate(	[]( const cocos2d::Node* ) { } )
 	{
 		// 空のラムダ式で初期化する。
-		onContactBegin		= []( const cocos2d::Node* ) { };
-		onContactPreSolve	= []( const cocos2d::Node* ) { };
-		onContactSeperate	= []( const cocos2d::Node* ) { };
 	}
 };
 
