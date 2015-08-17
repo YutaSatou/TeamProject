@@ -58,10 +58,10 @@ public:
 	
 private:
 	
-	BrushBody			mBrushBody;				//=>	ブラシ用物理構造
-	cocos2d::Sprite*	mDummySprite;			//=>	Debug用
-	cocos2d::Vec2		mPreviousTouchPoint;	//=>	前回のタッチ座標
-	cocos2d::Vec2		mShapeOffset;			//=>	シェイプの座標オフセット
+	BrushBody			mBrushBody;				//=> ブラシ用物理構造
+	cocos2d::Vec2		mPreviousTouchPoint;	//=> 前回のタッチ座標
+	cocos2d::Vec2		mShapeOffset;			//=> シェイプの座標オフセット
+	cocos2d::Sprite*	mDummySprite;			//=> Debug用
 };
 
 #endif

@@ -5,9 +5,9 @@ using namespace cocos2d;
 // コンストラクタ
 BrushTrail::BrushTrail()
 	: mBrushBody( BrushBody() )
-	, mDummySprite( nullptr )
 	, mPreviousTouchPoint( Vec2::ZERO )
 	, mShapeOffset( Vec2::ZERO )
+	, mDummySprite( nullptr )
 {
 	
 }

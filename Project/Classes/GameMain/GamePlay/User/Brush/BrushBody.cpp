@@ -36,7 +36,7 @@ void BrushBody::pushShape( const Vec2& start, const Vec2& end, float lineSize )
 void BrushBody::clear()
 {
 	// 各要素の参照カウンタを減算する。
-	each( []( PhysicsShape* shape ) { CC_SAFE_RELEASE_NULL( shape ); } );
+	each( []( PhysicsShape* shape ) { CC_SAFE_RELEASE( shape ); } );
 	
 	// コンテナをクリアする。
 	mShapeContainer.clear();
