@@ -65,8 +65,8 @@ private:
 	
 	friend class Singleton< ContactManager >;
 	
-	CallbackContainer	mCallbackContainer;	//=>	コールバックコンテナ
-	ContactSender		mContactSender;		//=>	接触通知者
+	CallbackContainer	mCallbackContainer;	//=> コールバックコンテナ
+	ContactSender		mContactSender;		//=> 接触通知者
 };
 
 #endif

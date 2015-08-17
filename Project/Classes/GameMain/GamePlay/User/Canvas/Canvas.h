@@ -68,7 +68,7 @@ public:
 	
 private:
 	
-	cocos2d::RenderTexture* mRenderTexture;	//=> レンダテクスチャ
+	cocos2d::RenderTexture* mRenderTexture; //=> レンダテクスチャ
 };
 
 #endif

@@ -55,7 +55,7 @@ private:
 	
 private:
 	
-	CallbackContainer& mCallbackContainer;	//=>	コールバックコンテナ
+	CallbackContainer& mCallbackContainer;	//=> コールバックコンテナ
 };
 
 #endif
