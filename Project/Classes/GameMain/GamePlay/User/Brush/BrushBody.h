@@ -62,7 +62,7 @@ private:
 	
 	using ShapeContainer = std::vector< cocos2d::PhysicsShape* >;
 	
-	ShapeContainer mShapeContainer;	//=>	シェイプコンテナ
+	ShapeContainer mShapeContainer;	//=> シェイプコンテナ
 };
 
 #endif
