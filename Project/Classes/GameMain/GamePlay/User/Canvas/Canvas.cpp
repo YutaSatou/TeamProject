@@ -75,5 +75,21 @@ void Canvas::addRenderingTarget( Node* object )
 // イメージの生成
 Image* Canvas::createImage()
 {
-	return mRenderTexture->newImage();
+	Image* image = mRenderTexture->newImage();
+	
+	image->autorelease();
+	
+	return image;
+}
+
+// テクスチャの生成
+Texture2D* Canvas::createTexture()
+{
+	Texture2D*	texture	= new Texture2D();
+	Image*		image	= createImage();
+	
+	texture->autorelease();
+	texture->initWithImage( image );
+	
+	return texture;
 }

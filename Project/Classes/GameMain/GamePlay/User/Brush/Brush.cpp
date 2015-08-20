@@ -80,7 +80,7 @@ void Brush::initTouchListener()
 	listener->onTouchEnded		= std::bind( &Brush::onTouchEnded, this, _1, _2 );
 	listener->onTouchCancelled	= std::bind( &Brush::onTouchEnded, this, _1, _2 );
 	
-	// 下位のレイヤまで貫通しないようにする。
+	// 下位のレイヤまでイベントが貫通しないようにする。
 	listener->setSwallowTouches( true );
 	
 	// リスナを登録する。

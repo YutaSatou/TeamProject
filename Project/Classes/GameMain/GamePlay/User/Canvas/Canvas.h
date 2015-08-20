@@ -62,9 +62,16 @@ public:
 	 *	@brief	イメージの生成
 	 *			キャンバスに描画されているオブジェクトを
 	 *			テクスチャ1つにまとめてイメージとして返却する。
-	 *	@return	Image	イメージ( 自動解放ではないので注意。 )
+	 *	@return	Image	イメージ
 	 */
 	cocos2d::Image* createImage();
+	
+	/**
+	 *	@brief	テクスチャの生成
+	 *			イメージからテクスチャを生成して返却する。
+	 *	@return	Texture2D	テクスチャ
+	 */
+	cocos2d::Texture2D* createTexture();
 	
 private:
 	
