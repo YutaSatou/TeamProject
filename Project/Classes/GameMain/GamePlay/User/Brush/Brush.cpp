@@ -47,7 +47,6 @@ Brush* Brush::create()
 bool Brush::onTouchBegan( Touch* touch, Event* event )
 {
 	mBrushTrail->writeBegin( touch );
-	setPosition( touch->getLocation() );
 	
 	return true;
 }
@@ -56,14 +55,12 @@ bool Brush::onTouchBegan( Touch* touch, Event* event )
 void Brush::onTouchMoved( Touch* touch, Event* event )
 {
 	mBrushTrail->writeMove( touch );
-	setPosition( touch->getLocation() );
 }
 
 // タッチ終了時のコールバック関数
 void Brush::onTouchEnded( Touch* touch, Event* event )
 {
 	mBrushTrail->writeEnd( touch );
-	setPosition( touch->getLocation() );
 }
 
 // タッチリスナの初期化
