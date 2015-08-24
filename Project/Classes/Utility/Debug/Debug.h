@@ -9,6 +9,8 @@
 #ifndef __Sub_Debug_h
 #define __Sub_Debug_h
 
+#include <stdio.h>
+
 namespace Utility{
     namespace Debug{
         /**
