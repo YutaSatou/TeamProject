@@ -3,13 +3,6 @@
 
 #include "ContactFuncTag.h"
 #include "ContactCallback.h"
-#include <string>
-#include <map>
-
-namespace cocos2d
-{
-	class PhysicsContact;
-}
 
 /*------------------------------------------------------------*/
 //	@class		：	ContactSender

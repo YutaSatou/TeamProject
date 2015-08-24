@@ -5,15 +5,6 @@
 #include "ContactFuncTag.h"
 #include "ContactCallback.h"
 #include "ContactSender.h"
-#include <string>
-#include <map>
-#include <functional>
-
-namespace cocos2d
-{
-	class Node;
-	class PhysicsContact;
-}
 
 /*------------------------------------------------------------*/
 //	@class		：	ContactManager
