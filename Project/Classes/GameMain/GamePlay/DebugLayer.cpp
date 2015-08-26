@@ -1,4 +1,5 @@
 #include "DebugLayer.h"
+#include "Object/Collision/ContactListener.h"
 #include "Object/Wall/Wall.h"
 #include "Object/Ball/Ball.h"
 #include "User/Brush/Brush.h"
@@ -14,10 +15,12 @@ bool DebugLayer::init()
 	
 	scheduleUpdate();
 	
-	Wall*	wall	= Wall::create();
-	Ball*	ball	= Ball::create( Vec2( 600.0f, 600.0f ) );
-	Brush*	brush	= Brush::create();
+	ContactListener*	contactListener	= ContactListener::create();
+	Wall*				wall			= Wall::create();
+	Ball*				ball			= Ball::create( Vec2( 600.0f, 600.0f ) );
+	Brush*				brush			= Brush::create();
 	
+	addChild( contactListener );
 	addChild( wall );
 	addChild( ball );
 	addChild( brush );
