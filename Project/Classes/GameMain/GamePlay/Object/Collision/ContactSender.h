@@ -25,6 +25,16 @@ public:
 	ContactSender( CallbackContainer& callbackContainer );
 	
 	/**
+	 *	コピーコンストラクタ( 封印 )
+	 */
+	ContactSender( const ContactSender& ) = delete;
+	
+	/**
+	 *	代入演算子( 封印 )
+	 */
+	ContactSender& operator = ( const ContactSender& )	= delete;
+	
+	/**
 	 *	@brief	デストラクタ
 	 */
 	~ContactSender() = default;

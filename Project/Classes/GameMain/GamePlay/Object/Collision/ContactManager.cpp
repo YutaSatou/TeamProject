@@ -4,9 +4,9 @@ using namespace cocos2d;
 
 // コンストラクタ
 ContactManager::ContactManager()
-	: mContactSender( ContactSender( mCallbackContainer ) )
+	: mContactSender( mCallbackContainer )
 {
-	mCallbackContainer.clear();
+	
 }
 
 // デストラクタ

@@ -6,8 +6,9 @@
  */
 enum ContactCategory : int
 {
-	WALL			= 1 << 0,	// 0x00000001
-	ALL_CATEGORY	= 0xFFFF,	// 0xFFFFFFFF
+	WALL			= 1 << 0,
+	BALL			= 1 << 1,
+	ALL_CATEGORY	= INT_MAX,
 };
 
 #endif
