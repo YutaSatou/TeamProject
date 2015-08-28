@@ -1,4 +1,5 @@
 #include "Wall.h"
+#include "../Collision/ContactSettlor.h"
 
 using namespace cocos2d;
 
@@ -10,7 +11,9 @@ bool Wall::init()
 		return false;
 	}
 	
-	// 座標を設定する。
+	// 各パラメータを設定する。
+	setName( "Wall" );
+	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setPosition( Vec2::ZERO );
 	
 	// 物理構造の初期化を行う。
@@ -46,13 +49,26 @@ void Wall::initPhysics()
 	body->setDynamic( false );
 	
 	// ボディに対してシェイプを装着する。
-	attachShape( body, Vec2( screenMin.x, screenMax.y ), Vec2( screenMax.x, screenMax.y ) );
-	attachShape( body, Vec2( screenMin.x, screenMin.y ), Vec2( screenMax.x, screenMin.y ) );
-	attachShape( body, Vec2( screenMin.x, screenMax.y ), Vec2( screenMin.x, screenMin.y ) );
-	attachShape( body, Vec2( screenMax.x, screenMax.y ), Vec2( screenMax.x, screenMin.y ) );
+	attachShape( body, { screenMin.x, screenMax.y }, { screenMax.x, screenMax.y } );
+	attachShape( body, { screenMin.x, screenMin.y }, { screenMax.x, screenMin.y } );
+	attachShape( body, { screenMin.x, screenMax.y }, { screenMin.x, screenMin.y } );
+	attachShape( body, { screenMax.x, screenMax.y }, { screenMax.x, screenMin.y } );
+	
+	// ボディの設定をする。
+	setupPhysicsBody( body );
 	
 	// 自身にボディを設定する。
 	setPhysicsBody( body );
+}
+
+// ボディの設定
+void Wall::setupPhysicsBody( PhysicsBody* body )
+{
+	// カテゴリの設定、衝突の有効化、接触の有効化を行う。
+	ContactSettlor contactSettlor( body, true );
+	contactSettlor.setupCategory( ContactCategory::WALL );
+	contactSettlor.enableCollision();
+	contactSettlor.enableContact();
 }
 
 // シェイプの装着

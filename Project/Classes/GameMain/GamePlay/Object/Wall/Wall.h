@@ -45,6 +45,12 @@ private:
 	void initPhysics();
 	
 	/**
+	 *	@brief	ボディの設定
+	 *	@param	body	設定するボディ
+	 */
+	void setupPhysicsBody( cocos2d::PhysicsBody* body );
+	
+	/**
 	 *	@brief	シェイプの装着
 	 *	@param	body	シェイプを装着するボディ
 	 *	@param	start	線の開始座標

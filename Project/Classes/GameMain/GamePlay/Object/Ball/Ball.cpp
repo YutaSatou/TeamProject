@@ -1,4 +1,5 @@
 #include "Ball.h"
+#include "../Collision/ContactSettlor.h"
 
 using namespace cocos2d;
 
@@ -9,6 +10,8 @@ bool Ball::init( const Vec2& position )
 		return false;
 	}
 	
+	setName( "Ball" );
+	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setPosition( position );
 	
 	initPhysics();
@@ -39,6 +42,11 @@ void Ball::initPhysics()
 	
 	PhysicsBody* body = PhysicsBody::createCircle( 32.0f, material );
 	body->setDynamic( true );
+	
+	ContactSettlor contactSettlor( body );
+	contactSettlor.setupCategory( ContactCategory::BALL );
+	contactSettlor.enableCollision();
+	contactSettlor.enableContact();
 	
 	setPhysicsBody( body );
 }
