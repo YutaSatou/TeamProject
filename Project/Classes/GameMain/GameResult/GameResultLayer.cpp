@@ -11,6 +11,11 @@ bool GameResultLayer::init()
 	
 	scheduleUpdate();
 	
+	Label* sceneNameLabel = Label::createWithTTF( "GameResult", "Font/Arial.ttf", 32 );
+	sceneNameLabel->setColor( Color3B::WHITE );
+	sceneNameLabel->setPosition( Vec2( 300, 400 ) );
+	addChild( sceneNameLabel );
+	
 	return true;
 }
 
