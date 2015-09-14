@@ -14,9 +14,6 @@
 
 #include "TouchListener.h"
 
-#include "../../Debug/Debug.h"
-
-using namespace Utility::Debug;
 using namespace cocos2d;
 
 namespace Utility{
@@ -46,7 +43,6 @@ void TouchLinstener::TouchOneByOne(TouchEvent::SingleTouch::TouchBegan began ,
 
 void TouchLinstener::TouchOneByOne(SingleTouchEventDesc& desc, Node* obj){
     if(!obj){
-        ASSERT("NotInstantiate_obj");
         return;
     }
     
@@ -98,7 +94,6 @@ void TouchLinstener::TouchAllAtOnce(TouchEvent::MultiTouch::TouchesBegan began,
 
 void TouchLinstener::TouchAllAtOnce(MultiTouchEventDesc& desc, Node* obj){
     if(!obj){
-        ASSERT("NotInstantiate_obj");
         return;
     }
     

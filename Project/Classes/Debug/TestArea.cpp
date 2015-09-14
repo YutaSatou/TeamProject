@@ -1,6 +1,5 @@
 #include "TestArea.h"
 #include "Utility/Network/Storage/WebStorage.h"
-#include "Utility/Debug/Debug.h"
 
 using namespace cocos2d;
 
