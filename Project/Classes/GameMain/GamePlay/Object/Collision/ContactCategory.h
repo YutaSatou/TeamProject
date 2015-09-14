@@ -1,6 +1,8 @@
 #ifndef _CONTACT_CATEGORY_H_
 #define _CONTACT_CATEGORY_H_
 
+#include <limits.h>
+
 /**
  *	@brief	接触判定用カテゴリ
  */
