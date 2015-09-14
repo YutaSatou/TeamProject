@@ -1,66 +1,65 @@
-#ifndef _ADX2_MANAGER_H_
-#define _ADX2_MANAGER_H_
+//
+//  ADX2Manager.h
+//  TeamProject
+//
+//  Created by Satou yuta on 2015/08/06.
+//
+//
+
+#ifndef __TeamProject__ADX2Manager__
+#define __TeamProject__ADX2Manager__
 
 #include "cocos2d.h"
 #include "cri_adx2le.h"
-#include "../Template/Singleton.h"
 
-/*------------------------------------------------------------*/
-//	@class		：	ADX2Manager
-//	@brief		：	ADX2管理者
-//	@author		：	利川聖太
-/*------------------------------------------------------------*/
-class ADX2Manager : public Singleton< ADX2Manager >
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#include <AudioToolbox/AudioSession.h>
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#include "platform/android/jni/JniHelper.h"
+#endif
+
+class ADX2Manager : public cocos2d::Ref
 {
-	
+    
+protected:
+    
+    /**
+     *	@brief	コンストラクタ
+     */
+    ADX2Manager();
+    
+    /**
+     *	@brief	デストラクタ
+     */
+    ~ADX2Manager();
+    
 public:
-	
-	/**
-	 *	@brief	デストラクタ
-	 */
-	~ADX2Manager();
-	
-	/**
-	 *	@brief	初期化
-	 *	@param	acf		ACFファイルのパス
-	 *	@return	bool	初期化に成功したか否か
-	 */
-	bool init( const std::string& acf );
-	
-	/**
-	 *	@brief	更新
-	 *			ライブラリの内部更新を行うため
-	 *			シーン内で毎フレーム呼び出す必要がある。
-	 */
-	void update();
-	
-	/**
-	 *	@brief	アプリ中断時のコールバック関数
-	 */
-	void pauseApp();
-	
-	/**
-	 *	@brief	アプリ再開時のコールバック関数
-	 */
-	void resumeApp();
-	
-private:
-	
-	/**
-	 *	@brief	コンストラクタ
-	 */
-	ADX2Manager();
-	
-	/**
-	 *	@brief	プラットフォーム別の初期化
-	 */
-	void initPlatformSetting();
-	
-private:
-	
-	friend class Singleton< ADX2Manager >;	//=>	シングルトンクラスからはコンストラクトを許可
-	
-	CriAtomDbasId mDbasID;	//=>	D-BAS管理用ID
+    
+    /**
+     *	@brief	インスタンスの生成
+     */
+    static ADX2Manager* create();
+    
+    /**
+     *	@brief	更新
+     */
+    static void update();
+    
+    /**
+     *	@brief	初期化
+     */
+    void init( const std::string& acf );
+    
+    /**
+     *	@brief	アプリ中断
+     */
+    void pauseApp();
+    
+    /**
+     *	@brief	アプリ再開
+     */
+    void resumeApp();
+    
 };
 
-#endif
+#endif /* defined(__TeamProject__ADX2Manager__) */
