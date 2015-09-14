@@ -17,7 +17,7 @@ SoundTest::SoundTest(){
 }
 
 SoundTest::~SoundTest(){
-    CC_SAFE_RELEASE(ply);
+    ply->release();
 }
 
 Scene* SoundTest::createScene(){
@@ -30,20 +30,16 @@ Scene* SoundTest::createScene(){
 bool SoundTest::init(){
     
     if (!Layer::init()){
+        
         return false;
     }
-    scheduleUpdate();
-    log("StartSoundScene");
-    /*Label* soundTestLabel = Label::createWithTTF("SoundTestScene", "Arial.ttf", 64);
-    soundTestLabel->setPosition(Vec2(VISIBLESIZE.width / 2 + ORIGINSIZE.x, VISIBLESIZE.height / 2 + ORIGINSIZE.y));
-    this->addChild(soundTestLabel, 1);*/
     
     ply = ADX2Player::create("Basic.acb", "Basic.awb");
-    ply->play(2);
-    CC_SAFE_RETAIN(ply);
+    ply->play(0);
+    ply->retain();
+    
     return true;
 }
 
 void SoundTest::update(float dt){
-    ADX2Manager::getInstance().update();
 }
