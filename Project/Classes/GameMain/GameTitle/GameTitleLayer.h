@@ -19,6 +19,10 @@ protected:
 public:
 	
 	static GameTitleLayer* create();
+    
+    //タッチ
+    void touchListener();
+    
 };
 
 #endif
