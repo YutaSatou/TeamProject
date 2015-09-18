@@ -89,11 +89,11 @@ void BrushTrail::writeEnd( Touch* touch, Node* parentNode )
 	// タッチ開始座標を取得する。
 	Point touchStartPoint = touch->getStartLocation();
 	
-	// 軌跡描画用のスプライト、ボディを生成する。
+	// 空のスプライトを用意してボディを装着する。
 	Sprite*			drawer	= Sprite::create();
 	PhysicsBody*	body	= mBrushBody.createBody();
 	
-	// 親に追加する。
+	// 各パラメータを設定して親ノードに追加する。
 	drawer->setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	drawer->setPosition( touchStartPoint );
 	drawer->setPhysicsBody( body );
@@ -114,7 +114,7 @@ void BrushTrail::drawTrail( Touch* touch, float distance )
 		{
 			Sprite* trail = Sprite::create();
 			trail->setTextureRect( Rect( 0.0f, 0.0f, 6.0f, 6.0f ) );
-			trail->setColor( Color3B::WHITE );
+			trail->setColor( Color3B::GREEN );
 			trail->setPosition( delta * i / distance + touchPoint );
 			
 			mCanvas->addRenderingTarget( trail );
