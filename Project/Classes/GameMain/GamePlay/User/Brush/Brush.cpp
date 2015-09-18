@@ -60,7 +60,7 @@ void Brush::onTouchMoved( Touch* touch, Event* event )
 // タッチ終了時のコールバック関数
 void Brush::onTouchEnded( Touch* touch, Event* event )
 {
-	mBrushTrail->writeEnd( touch );
+	mBrushTrail->writeEnd( touch, this );
 }
 
 // タッチリスナの初期化

@@ -7,7 +7,6 @@ BrushTrail::BrushTrail()
 	: mBrushBody( BrushBody() )
 	, mPreviousTouchPoint( Vec2::ZERO )
 	, mShapeOffset( Vec2::ZERO )
-	, mDummySprite( nullptr )
 {
 	
 }
@@ -44,15 +43,9 @@ void BrushTrail::writeBegin( Touch* touch )
 	// コンテナを解放する。
 	mBrushBody.clear();
 	
-	// メンバ変数を初期化する。
+	// 各座標を初期化する。
 	mPreviousTouchPoint	= touch->getLocation();
 	mShapeOffset		= Vec2::ZERO;
-	
-	// Debug.
-	mDummySprite = Sprite::create();
-	mDummySprite->setAnchorPoint( Vec2::ANCHOR_MIDDLE );
-	mDummySprite->setPosition( mPreviousTouchPoint );
-	addChild( mDummySprite );
 }
 
 // ブラシ描き途中
@@ -83,9 +76,18 @@ void BrushTrail::writeMove( Touch* touch )
 }
 
 // ブラシ描き終わり
-void BrushTrail::writeEnd( Touch* touch )
+void BrushTrail::writeEnd( Touch* touch, Node* parentNode )
 {
-	// Debug.
-	PhysicsBody* body = mBrushBody.createBody();
-	mDummySprite->setPhysicsBody( body );
+	// タッチ開始座標を取得する。
+	Point touchStartPoint = touch->getStartLocation();
+	
+	// 軌跡描画用のスプライト、ボディを生成する。
+	Sprite*			drawer	= Sprite::create();
+	PhysicsBody*	body	= mBrushBody.createBody();
+	
+	// 親に追加する。
+	drawer->setAnchorPoint( Vec2::ANCHOR_MIDDLE );
+	drawer->setPosition( touchStartPoint );
+	drawer->setPhysicsBody( body );
+	parentNode->addChild( drawer );
 }

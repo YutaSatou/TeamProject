@@ -52,16 +52,16 @@ public:
 	
 	/**
 	 *	@brief	ブラシ描き終わり
-	 *	@param	touch	タッチ情報
+	 *	@param	touch		タッチ情報
+	 *	@param	parentNode	親ノード
 	 */
-	void writeEnd( cocos2d::Touch* touch );
+	void writeEnd( cocos2d::Touch* touch, cocos2d::Node* parentNode );
 	
 private:
 	
 	BrushBody			mBrushBody;				//=> ブラシ用物理構造
 	cocos2d::Vec2		mPreviousTouchPoint;	//=> 前回のタッチ座標
 	cocos2d::Vec2		mShapeOffset;			//=> シェイプの座標オフセット
-	cocos2d::Sprite*	mDummySprite;			//=> Debug用
 };
 
 #endif
