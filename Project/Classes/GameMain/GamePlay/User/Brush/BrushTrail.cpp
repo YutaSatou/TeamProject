@@ -1,4 +1,5 @@
 #include "BrushTrail.h"
+#include "../Canvas/Canvas.h"
 
 using namespace cocos2d;
 
@@ -7,6 +8,7 @@ BrushTrail::BrushTrail()
 	: mBrushBody( BrushBody() )
 	, mPreviousTouchPoint( Vec2::ZERO )
 	, mShapeOffset( Vec2::ZERO )
+	, mCanvas( nullptr )
 {
 	
 }
@@ -18,6 +20,9 @@ bool BrushTrail::init()
 	{
 		return false;
 	}
+	
+	mCanvas = Canvas::create();
+	addChild( mCanvas );
 	
 	return true;
 }
@@ -65,7 +70,10 @@ void BrushTrail::writeMove( Touch* touch )
 		Vec2	end		= delta + mShapeOffset;
 		
 		// 線のシェイプを追加する。
-		mBrushBody.pushShape( start, end, 4 );
+		mBrushBody.pushShape( start, end, 4.0f );
+		
+		// 軌跡の描画
+		drawTrail( touch, distance );
 		
 		// 前回のタッチ座標を現在のタッチ座標で更新する。
 		mPreviousTouchPoint = touchPoint;
@@ -90,4 +98,27 @@ void BrushTrail::writeEnd( Touch* touch, Node* parentNode )
 	drawer->setPosition( touchStartPoint );
 	drawer->setPhysicsBody( body );
 	parentNode->addChild( drawer );
+}
+
+// 軌跡の描画
+void BrushTrail::drawTrail( Touch* touch, float distance )
+{
+	// 後でシェーダに変更します。
+	// 「良い子は真似しちゃダメ」なソースコードが含まれています。
+	mCanvas->renderingBegin();
+	{
+		Vec2	touchPoint	= touch->getLocation();
+		Vec2	delta		= mPreviousTouchPoint - touchPoint;
+		
+		for ( float i = 0.0f; i < distance; i += 1.0f )
+		{
+			Sprite* trail = Sprite::create();
+			trail->setTextureRect( Rect( 0.0f, 0.0f, 6.0f, 6.0f ) );
+			trail->setColor( Color3B::WHITE );
+			trail->setPosition( delta * i / distance + touchPoint );
+			
+			mCanvas->addRenderingTarget( trail );
+		}
+	}
+	mCanvas->renderingEnd();
 }

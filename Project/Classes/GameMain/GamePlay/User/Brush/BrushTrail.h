@@ -4,6 +4,8 @@
 #include "cocos2d.h"
 #include "BrushBody.h"
 
+class Canvas;
+
 /*------------------------------------------------------------*/
 //	@class		：	BrushTrail
 //	@brief		：	ブラシの軌跡
@@ -59,9 +61,19 @@ public:
 	
 private:
 	
+	/**
+	 *	@brief	軌跡の描画
+	 *	@param	touch		タッチ情報
+	 *	@param	distance	2点間の距離
+	 */
+	void drawTrail( cocos2d::Touch* touch, float distance );
+	
+private:
+	
 	BrushBody			mBrushBody;				//=> ブラシ用物理構造
 	cocos2d::Vec2		mPreviousTouchPoint;	//=> 前回のタッチ座標
 	cocos2d::Vec2		mShapeOffset;			//=> シェイプの座標オフセット
+	Canvas*				mCanvas;				//=> キャンバス
 };
 
 #endif
