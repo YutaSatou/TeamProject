@@ -1,8 +1,8 @@
-#include "StageSelectLayer.h"
+#include "GameStageSelectLayer.h"
 
 using namespace cocos2d;
 
-bool StageSelectLayer::init()
+bool GameStageSelectLayer::init()
 {
 	if ( !LayerColor::initWithColor( Color4B::BLACK ) )
 	{
@@ -19,14 +19,14 @@ bool StageSelectLayer::init()
 	return true;
 }
 
-void StageSelectLayer::update( float deltaTime )
+void GameStageSelectLayer::update( float deltaTime )
 {
 	
 }
 
-StageSelectLayer* StageSelectLayer::create()
+GameStageSelectLayer* GameStageSelectLayer::create()
 {
-	StageSelectLayer* inst = new StageSelectLayer();
+	GameStageSelectLayer* inst = new GameStageSelectLayer();
 	
 	if ( inst && inst->init() )
 	{

@@ -1,5 +1,5 @@
 #include "GameTitleLayer.h"
-#include "../GameStageSelect/StageSelectLayer.h"
+#include "../GameStageSelect/GameStageSelectLayer.h"
 #include "../../Utility/Assistant/SceneCreator.h"
 #include "TitleSpriteRenderer.h"
 
@@ -79,7 +79,7 @@ void GameTitleLayer::touchListener(){
     
     //タッチ終了
     listener->onTouchEnded = [](Touch* touch, Event* event){
-        Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SceneCreator::createScene( StageSelectLayer::create() ), Color3B::WHITE));
+        Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SceneCreator::createScene( GameStageSelectLayer::create() ), Color3B::WHITE));
         log("TouchEnded");
     };
     
