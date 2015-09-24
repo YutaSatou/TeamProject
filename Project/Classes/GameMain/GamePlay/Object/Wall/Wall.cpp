@@ -81,7 +81,7 @@ void Wall::attachShape( PhysicsBody* body, const Vec2& start, const Vec2& end )
 	material.friction		= 0.3f;
 	
 	// 線のシェイプを生成する。
-	PhysicsShapeEdgeSegment* edgeSegment = PhysicsShapeEdgeSegment::create( start, end, material );
+	PhysicsShape* edgeSegment = PhysicsShapeEdgeSegment::create( start, end, material );
 	
 	// ボディに追加する。
 	body->addShape( edgeSegment );

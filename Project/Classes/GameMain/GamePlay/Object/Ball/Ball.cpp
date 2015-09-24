@@ -5,7 +5,7 @@ using namespace cocos2d;
 
 bool Ball::init( const Vec2& position )
 {
-	if ( !Sprite::init() )
+	if ( !Sprite::initWithFile( "Texture/Debug/Circle.png" ) )
 	{
 		return false;
 	}

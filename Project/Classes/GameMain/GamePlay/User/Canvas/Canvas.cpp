@@ -42,7 +42,7 @@ Canvas* Canvas::create()
 void Canvas::resetCanvas()
 {
 	// レンダテクスチャを子ノードから削除する。
-	removeChild( mRenderTexture, true );
+	removeChild( mRenderTexture );
 	
 	// 画面サイズを取得する。
 	const Size	winSize		= Director::getInstance()->getWinSize();

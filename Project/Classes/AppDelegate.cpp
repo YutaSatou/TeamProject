@@ -35,7 +35,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 #ifdef DEBUG_HOSHI
 	scene = SceneCreator::createPhysicsScene( TestArea::create(), Vect( 0, -9.8f ), true, 3.0f );
 #elif DEBUG_TOSHIKAWA
-	scene = SceneCreator::createPhysicsScene( DebugLayer::create(), Vect( 0, -9.8f ), true, 6.0f );
+	scene = SceneCreator::createPhysicsScene( DebugLayer::create(), Vect( 0, -6.0f ), false, 6.0f );
 #elif DEBUG_SATOU
 	// 佐藤はここに自分のシーンの生成を記述する。
 #else

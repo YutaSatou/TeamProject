@@ -1,5 +1,5 @@
-#ifndef _GAME_STAGE_SELECT_LAYER_H_
-#define _GAME_STAGE_SELECT_LAYER_H_
+#ifndef _GAMESTAGE_SELECT_LAYER_H_
+#define _GAMESTAGE_SELECT_LAYER_H_
 
 #include "cocos2d.h"
 
