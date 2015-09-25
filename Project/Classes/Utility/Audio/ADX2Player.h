@@ -2,7 +2,7 @@
 //  ADX2Player.h
 //  TeamProject
 //
-//  Created by Satou yuta on 2015/08/15.
+//  Created by Satou yuta on 2015/08/22.
 //
 //
 
@@ -11,90 +11,94 @@
 
 #include "cocos2d.h"
 #include "cri_adx2le.h"
+#include "SoundType.h"
 
 class ADX2CueSheet;
 
-class ADX2Player : public cocos2d::Node
-{
+class ADX2Player : public cocos2d::Node{
     
 protected:
     
-    /**
-     *	@brief	コンストラクタ
-     */
+    //コンストラクタ
     ADX2Player();
     
-    /**
-     *	@brief	デストラクタ
-     */
+    //デストラクタ
     ~ADX2Player();
+    
+    //初期化
+    bool init( const std::string& acb, const std::string& awb );
     
 public:
     
     /**
      *	@brief	インスタンスの生成
+     *	@param	acb				ACBファイルのパス
+     *	@return	ADX2Player		インスタンス
      */
     static ADX2Player* create( const std::string& acb );
     
     /**
      *	@brief	インスタンスの生成
+     *	@param	acb				ACBファイルのパス
+     *	@param	awb				AWBファイルのパス
+     *	@return	ADX2Player		インスタンス
      */
     static ADX2Player* create( const std::string& acb, const std::string& awb );
     
     /**
-     *	@brief	初期化
+     *	@brief	音の再生
+     *	@param	cueID				キューID
+     *	@return	CriAtomExPlaybackId	プレイバックID
      */
-    bool init( const std::string& acb, const std::string& awb );
+    CriAtomExPlaybackId play( CriAtomExCueId cueID, SoundType type );
     
     /**
      *	@brief	音の再生
+     *	@param	cueID				キューID
+      *	@param	volume				音量
+     *	@return	CriAtomExPlaybackId	プレイバックID
      */
-    CriAtomExPlaybackId play( CriAtomExCueId cueID );
+    CriAtomExPlaybackId play( CriAtomExCueId cueID, SoundType type, float volume );
+	
+	CriAtomExPlaybackId BGMPlay( CriAtomExCueId cueID, SoundType type, float fade);
     
     /**
      *	@brief	音の停止
+     *	@param	playbackID	プレイバックID
      */
     void stop( CriAtomExPlaybackId playbackID );
     
-    /**
-     *	@brief	プレーヤの停止
-     */
+    //プレーヤの停止
     void stopPlayer();
     
-    /**
-     *	@brief	キューの数の取得
-     */
-    CriSint32 getNumCues() const;
-    
-    /**
-     *	@brief	再生開始後の経過時間の取得
-     */
+    //再生してからの経過時間の取得
     CriSint64 getTime( CriAtomExPlaybackId playbackID ) const;
     
-    /**
-     *	@brief	キューの名前の取得
-     */
+    //キューの数の取得
+    CriSint32 getNumCues() const;
+    
+    //キューの名前の取得
     std::string getCueName( CriAtomExCueId cueID ) const;
     
-    /**
-     *	@brief　音のボリューム設定
-     */
-    void setVolumeAll( float volume );
-    
-    
 private:
     
-    /**
-     *	@brief	ハンドルの解放
-     */
+    //ハンドルの解放
     void releaseHandle();
+
+private:
     
 private:
     
-    // メンバ変数の宣言
+    //キューシート
     ADX2CueSheet*			mCueSheet;
+    
+    //プレーヤハンドル
     CriAtomExPlayerHn		mPlayerHandle;
+    
+    //ボイスプールハンドル
     CriAtomExVoicePoolHn	mVoicePoolHandle;
+    
+    //ボイスプールハンドル
     CriAtomExVoicePoolHn	mHcaMxVoicePoolHandle;
 };
 

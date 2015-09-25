@@ -2,7 +2,7 @@
 //  ADX2CueSheet.h
 //  TeamProject
 //
-//  Created by Satou yuta on 2015/08/14.
+//  Created by Satou yuta on 2015/08/22.
 //
 //
 
@@ -16,39 +16,29 @@ class ADX2CueSheet : public cocos2d::Ref{
     
 protected:
     
-    /**
-     *	@brief	コンストラクタ
-     */
+    //コンストラクタ
     ADX2CueSheet();
     
-    /**
-     *	@brief	デストラクタ
-     */
+    //デストラクタ
     ~ADX2CueSheet();
     
 public:
     
-    /**
-     *	@brief	インスタンスの生成
-     */
+    //インスタンスの生成
     static ADX2CueSheet* create( const std::string& acb, const std::string& awb );
     
-    /**
-     *	@brief	キューシート情報を管理するハンドルの取得
-     */
+    //ACBハンドルの取得
     CriAtomExAcbHn getAcbHandle();
     
 private:
     
-    /**
-     *	@brief	ACBファイルの読み込み
-     */
+    //ACBファイルの読み込み
     bool loadAcb( const std::string& acb, const std::string& awb );
-    
+
 private:
     
-    // メンバ変数の宣言
-    CriAtomExAcbHn	mAcbHandle;
+    //ACBハンドル
+    CriAtomExAcbHn mAcbHandle;
 };
 
 #endif /* defined(__TeamProject__ADX2CueSheet__) */

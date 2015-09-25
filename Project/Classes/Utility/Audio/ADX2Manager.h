@@ -2,7 +2,7 @@
 //  ADX2Manager.h
 //  TeamProject
 //
-//  Created by Satou yuta on 2015/08/06.
+//  Created by Satou yuta on 2015/08/22.
 //
 //
 
@@ -11,55 +11,47 @@
 
 #include "cocos2d.h"
 #include "cri_adx2le.h"
+#include "../Template/Singleton.h"
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#if ( CC_TARGET_PLATFORM == CC_PLATFORM_IOS )
 #include <AudioToolbox/AudioSession.h>
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#elif ( CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID )
 #include "platform/android/jni/JniHelper.h"
 #endif
 
-class ADX2Manager : public cocos2d::Ref
-{
-    
-protected:
-    
-    /**
-     *	@brief	コンストラクタ
-     */
-    ADX2Manager();
-    
-    /**
-     *	@brief	デストラクタ
-     */
-    ~ADX2Manager();
+class ADX2Manager : public Singleton< ADX2Manager >{
     
 public:
     
-    /**
-     *	@brief	インスタンスの生成
-     */
-    static ADX2Manager* create();
+    //デストラクタ
+    ~ADX2Manager();
     
-    /**
-     *	@brief	更新
-     */
+    //初期化
+    bool init( const std::string& acf );
+    
+    //更新
     static void update();
     
-    /**
-     *	@brief	初期化
-     */
-    void init( const std::string& acf );
-    
-    /**
-     *	@brief	アプリ中断
-     */
+    //アプリがバックグランドになった時のコールバック関数
     void pauseApp();
     
-    /**
-     *	@brief	アプリ再開
-     */
+    //アプリがバックグラウンドから戻った時のコールバック関数
     void resumeApp();
     
+private:
+    
+    //コンストラクタ
+    ADX2Manager();
+	
+	//プラットフォームごとの初期化
+	void PlattformSetting();
+    
+private:
+    
+    friend class Singleton< ADX2Manager >;
+    
+    //D-BASのID
+    CriAtomDbasId mDbasID;
 };
 
 #endif /* defined(__TeamProject__ADX2Manager__) */
