@@ -1,7 +1,6 @@
 #include "DebugLayer.h"
 #include "Object/Collision/ContactListener.h"
 #include "Object/Wall/Wall.h"
-#include "Object/Ball/Ball.h"
 #include "User/Brush/Brush.h"
 
 using namespace cocos2d;
@@ -17,12 +16,10 @@ bool DebugLayer::init()
 	
 	ContactListener*	contactListener	= ContactListener::create();
 	Wall*				wall			= Wall::create();
-	Ball*				ball			= Ball::create( Vec2( 600.0f, 600.0f ) );
 	Brush*				brush			= Brush::create();
 	
 	addChild( contactListener );
 	addChild( wall );
-	addChild( ball );
 	addChild( brush );
 	
 	return true;
