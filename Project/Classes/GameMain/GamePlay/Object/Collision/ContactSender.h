@@ -32,7 +32,7 @@ public:
 	/**
 	 *	代入演算子( 封印 )
 	 */
-	ContactSender& operator = ( const ContactSender& )	= delete;
+	ContactSender& operator = ( const ContactSender& ) = delete;
 	
 	/**
 	 *	@brief	デストラクタ

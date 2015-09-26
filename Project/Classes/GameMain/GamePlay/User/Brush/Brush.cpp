@@ -66,16 +66,14 @@ void Brush::onTouchEnded( Touch* touch, Event* event )
 // タッチリスナの初期化
 void Brush::initTouchListener()
 {
-	using namespace std::placeholders;
-	
 	// タッチリスナを生成する。
 	EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
 	
 	// 各関数をコールバックとして設定する。
-	listener->onTouchBegan		= std::bind( &Brush::onTouchBegan, this, _1, _2 );
-	listener->onTouchMoved		= std::bind( &Brush::onTouchMoved, this, _1, _2 );
-	listener->onTouchEnded		= std::bind( &Brush::onTouchEnded, this, _1, _2 );
-	listener->onTouchCancelled	= std::bind( &Brush::onTouchEnded, this, _1, _2 );
+	listener->onTouchBegan		= CC_CALLBACK_2( Brush::onTouchBegan, this );
+	listener->onTouchMoved		= CC_CALLBACK_2( Brush::onTouchMoved, this );
+	listener->onTouchEnded		= CC_CALLBACK_2( Brush::onTouchEnded, this );
+	listener->onTouchCancelled	= CC_CALLBACK_2( Brush::onTouchEnded, this );
 	
 	// 下位のレイヤまでイベントが貫通しないようにする。
 	listener->setSwallowTouches( true );

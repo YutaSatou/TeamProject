@@ -89,7 +89,7 @@ void BrushTrail::writeEnd( Touch* touch, Node* parentNode )
 	// タッチ開始座標を取得する。
 	Point touchStartPoint = touch->getStartLocation();
 	
-	// 空のスプライトを用意してボディを装着する。
+	// 空のスプライトとボディを用意する。
 	Sprite*			drawer	= Sprite::create();
 	PhysicsBody*	body	= mBrushBody.createBody();
 	

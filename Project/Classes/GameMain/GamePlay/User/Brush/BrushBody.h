@@ -1,8 +1,8 @@
 #ifndef _BRUSH_BODY_H_
 #define _BRUSH_BODY_H_
 
-#include <functional>
 #include <vector>
+#include <functional>
 
 namespace cocos2d
 {
