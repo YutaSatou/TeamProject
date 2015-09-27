@@ -5,20 +5,26 @@
 
 class GameStageSelectLayer : public cocos2d::LayerColor
 {
-	
+    
 protected:
-	
-	GameStageSelectLayer() = default;
-	
-	~GameStageSelectLayer() = default;
-	
-	virtual bool init() override;
-	
-	virtual void update( float deltaTime ) override;
-	
+    
+    GameStageSelectLayer();
+    
+    ~GameStageSelectLayer();
+    
+    virtual bool init() override;
+    
+    virtual void update( float deltaTime ) override;
+    
 public:
-	
-	static GameStageSelectLayer* create();
+    
+    static GameStageSelectLayer* create();
+    
+private:
+    
+    void drawBackGraund();
+    
+    void drawStageSelectLogo();
 };
 
 #endif

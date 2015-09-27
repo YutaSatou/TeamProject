@@ -6,8 +6,8 @@
 //
 //
 
-#ifndef __TeamProject__TitleSpriteRenderer__
-#define __TeamProject__TitleSpriteRenderer__
+#ifndef _TITLESPRITERENDERER_H_
+#define _TITLESPRITERENDERER_H_
 
 #include <cocos2d.h>
 
@@ -20,7 +20,7 @@ public:
      *	@param	spriteName	画像の名前
      *	@param	spritePos   画像の座標
      */
-    static cocos2d::Sprite* createSprite( std::string spriteName, const cocos2d::Vec2& spritePos );
+    static cocos2d::Sprite* createSprite(const std::string spriteName, const cocos2d::Vec2 spritePos );
 };
 
 #endif /* defined(__TeamProject__TitleSpriteRenderer__) */
