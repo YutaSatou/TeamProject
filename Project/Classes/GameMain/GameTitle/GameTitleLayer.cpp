@@ -1,9 +1,17 @@
 #include "GameTitleLayer.h"
 #include "../GameStageSelect/GameStageSelectLayer.h"
-#include "../../Utility/Assistant/SceneCreator.h"
+#include "../../Utility/Assistant/SceneSwitcher.h"
 #include "TitleSpriteRenderer.h"
 
 using namespace cocos2d;
+
+GameTitleLayer::GameTitleLayer(){
+}
+
+GameTitleLayer::~GameTitleLayer(){
+    
+    //mPlayer->release();
+}
 
 bool GameTitleLayer::init()
 {
@@ -12,20 +20,23 @@ bool GameTitleLayer::init()
 		return false;
 	}
     
+    //mPlayer = ADX2Player::create( "Basic.acb", "Basic.awb" );
+    //mPlayer->play( 0, SoundType::BGM);
+    //mPlayer->retain();
+    
     touchListener();
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
     //背景
-    Sprite* backGraund = TitleSpriteRenderer::createSprite( "Title/BG.png", Vec2( visibleSize.width / 2.0f + origin.x,
-                                                                                          visibleSize.height / 2.0f + origin.y ) );
+    Sprite* backGraund = TitleSpriteRenderer::createSprite( "Texture/Debug/backgraund.png", Vec2( visibleSize.width / 2.0f + origin.x, visibleSize.height / 2.0f + origin.y ) );
     //タイトルロゴ
-    Sprite* titleLogo = TitleSpriteRenderer::createSprite( "Title/sprite_menu.png" , Vec2( visibleSize.width / 2.0f + origin.x,
-                                                                                           visibleSize.height / 1.5f + origin.y ) );
+    Sprite* titleLogo = TitleSpriteRenderer::createSprite( "Texture/Debug/sprite_menu.png" , Vec2( visibleSize.width / 2.0f + origin.x,
+                                                                                           visibleSize.height / 1.2f + origin.y ) );
     
     //TouchStartロゴ
-    Sprite* touchLogo = TitleSpriteRenderer::createSprite( "Title/image_menu_normal.png", Vec2( visibleSize.width / 2.0f + origin.x,
+    Sprite* touchLogo = TitleSpriteRenderer::createSprite( "Texture/Debug/image_menu_normal.png", Vec2( visibleSize.width / 2.0f + origin.x,
                                                                                                visibleSize.height / 3.0f + origin.y ) );
     
     addChild(backGraund);
@@ -33,11 +44,6 @@ bool GameTitleLayer::init()
     addChild(touchLogo);
 	
 	scheduleUpdate();
-	
-	Label* sceneNameLabel = Label::createWithTTF( "GameTitle", "Font/Arial.ttf", 32 );
-	sceneNameLabel->setColor( Color3B::WHITE );
-	sceneNameLabel->setPosition( Vec2( 300, 400 ) );
-	addChild( sceneNameLabel );
 	
 	return true;
 }
@@ -79,7 +85,8 @@ void GameTitleLayer::touchListener(){
     
     //タッチ終了
     listener->onTouchEnded = [](Touch* touch, Event* event){
-        Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SceneCreator::createScene( GameStageSelectLayer::create() ), Color3B::WHITE));
+        
+        SceneSwitcher::change( SceneType::STAGE_SELECT );
         log("TouchEnded");
     };
     
