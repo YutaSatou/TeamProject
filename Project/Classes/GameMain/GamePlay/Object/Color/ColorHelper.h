@@ -1,7 +1,6 @@
 #ifndef _COLOR_HELPER_H_
 #define _COLOR_HELPER_H_
 
-#include "cocos2d.h"
 #include "BlendColor.h"
 
 /*------------------------------------------------------------*/

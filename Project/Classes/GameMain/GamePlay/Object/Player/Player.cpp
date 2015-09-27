@@ -49,7 +49,7 @@ Player* Player::create( ObjectData::Ptr objectData )
 }
 
 // 接触時に呼ばれるコールバック関数
-void Player::onContactBegin( const Node* contactNode )
+void Player::onContactBegin( Node* contactNode )
 {
 	
 }

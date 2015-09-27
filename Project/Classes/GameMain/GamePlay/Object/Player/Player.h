@@ -44,7 +44,7 @@ public:
 	 *	@brief	接触時に呼ばれるコールバック関数
 	 *	@param	contactNode	接触したノード
 	 */
-	void onContactBegin( const cocos2d::Node* contactNode );
+	void onContactBegin( cocos2d::Node* contactNode );
 	
 private:
 	

@@ -49,7 +49,7 @@ Slime* Slime::create( ObjectData::Ptr objectData, const std::string& nodeName )
 }
 
 // 接触時に呼ばれるコールバック関数
-void Slime::onContactBegin( const Node* contactNode )
+void Slime::onContactBegin( Node* contactNode )
 {
 	// 物理構造を無効にするアクション。
 	CallFunc* disableAction = CallFunc::create( [ this ]() { getPhysicsBody()->setEnable( false ); } );

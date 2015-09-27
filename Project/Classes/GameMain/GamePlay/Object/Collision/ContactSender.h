@@ -54,7 +54,7 @@ private:
 	 *	@param	nodeName	通知するオブジェクトの名前
 	 *	@param	contactNode	接触したノードの情報
 	 */
-	void sendContactObject( ContactFuncTag funcTag, const std::string& nodeName, const cocos2d::Node* contactNode );
+	void sendContactObject( ContactFuncTag funcTag, const std::string& nodeName, cocos2d::Node* contactNode );
 	
 private:
 	
