@@ -6,7 +6,7 @@
 /**
  *	@brief	合成色の種類
  */
-enum BlendColorType : int
+enum class BlendColorType : int
 {
 	COLORLESS	= 0,	// 無
 	RED			= 1,	// 赤
