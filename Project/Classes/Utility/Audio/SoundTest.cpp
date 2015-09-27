@@ -8,38 +8,47 @@
 #include "Utility/Audio/SoundTest.h"
 #include "Utility/Audio/ADX2Manager.h"
 
-#define VISIBLESIZE Director::getInstance()->getVisibleSize()
-#define ORIGINSIZE Director::getInstance()->getVisibleOrigin()
-
 using namespace cocos2d;
+
+
+#include "Utility/Audio/SoundTest.h"
+#include "Utility/Audio/ADX2Manager.h"
 
 SoundTest::SoundTest(){
 }
 
 SoundTest::~SoundTest(){
-    ply->release();
+	ply->release();
 }
 
-Scene* SoundTest::createScene(){
-    Scene* scene = Scene::create();
-    Layer* layer = SoundTest::create();
-    scene->addChild(layer);
-    return scene;
+SoundTest* SoundTest::createScene(){
+    
+    SoundTest* inst = new SoundTest();
+    
+    if ( inst && inst->init() )
+    {
+        inst->autorelease();
+        return inst;
+    }
+    
+    CC_SAFE_DELETE( inst );
+    return nullptr;
 }
 
 bool SoundTest::init(){
     
     if (!Layer::init()){
-        
         return false;
     }
+	
+	scheduleUpdate();
     
     ply = ADX2Player::create("Basic.acb", "Basic.awb");
-    ply->play(0);
-    ply->retain();
-    
+    ply->play(2, SE, 1.0f);
+	ply->retain();
     return true;
 }
 
 void SoundTest::update(float dt){
+    ADX2Manager::getInstance().update();
 }

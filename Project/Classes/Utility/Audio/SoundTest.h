@@ -18,13 +18,17 @@ class SoundTest : public cocos2d::Layer{
 protected:
     
     SoundTest();
+    
     ~SoundTest();
-    bool init();
-    virtual void update(float dt);
+    
+    virtual bool init() override;
+    
+    virtual void update( float deltaTime ) override;
+
     
 public:
     
-    static cocos2d::Scene* createScene();
+    static SoundTest* createScene();
     
     ADX2Player* ply;
     
