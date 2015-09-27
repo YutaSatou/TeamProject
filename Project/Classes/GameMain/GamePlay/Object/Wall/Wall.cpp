@@ -45,12 +45,11 @@ void Wall::initPhysics()
 	const Vec2	screenMax	= Director::getInstance()->getWinSize();
 	
 	// 静的なボディを用意する。
-	PhysicsBody* body = PhysicsBody::create();
+	PhysicsBody* body = PhysicsBody::createEdgeSegment( { screenMin.x, screenMin.y }, { screenMax.x, screenMin.y } );
 	body->setDynamic( false );
 	
 	// ボディに対してシェイプを装着する。
 	attachShape( body, { screenMin.x, screenMax.y }, { screenMax.x, screenMax.y } );
-	attachShape( body, { screenMin.x, screenMin.y }, { screenMax.x, screenMin.y } );
 	attachShape( body, { screenMin.x, screenMax.y }, { screenMin.x, screenMin.y } );
 	attachShape( body, { screenMax.x, screenMax.y }, { screenMax.x, screenMin.y } );
 	
@@ -65,10 +64,10 @@ void Wall::initPhysics()
 void Wall::setupPhysicsBody( PhysicsBody* body )
 {
 	// カテゴリの設定、衝突の有効化、接触の有効化を行う。
-	ContactSettlor contactSettlor( body, true );
+	ContactSettlor contactSettlor( body );
 	contactSettlor.setupCategory( ContactCategory::WALL );
 	contactSettlor.enableCollision();
-	contactSettlor.enableContact();
+	contactSettlor.enableCustomContact( { ContactCategory::PLAYER } );
 }
 
 // シェイプの装着
