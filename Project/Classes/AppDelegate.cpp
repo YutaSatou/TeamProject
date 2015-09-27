@@ -57,10 +57,14 @@ bool AppDelegate::applicationDidFinishLaunching()
 void AppDelegate::applicationDidEnterBackground()
 {
 	Director::getInstance()->stopAnimation();
+	
+	ADX2Manager::getInstance().pauseApp();
 }
 
 // アプリケーションがアクティブ状態になった時に呼ばれるコールバック関数
 void AppDelegate::applicationWillEnterForeground()
 {
 	Director::getInstance()->startAnimation();
+	
+	ADX2Manager::getInstance().resumeApp();
 }
