@@ -1,7 +1,9 @@
 #include "AppDelegate.h"
+#include "Utility/Audio/ADX2Manager.h"
 #include "Utility/Assistant/SceneCreator.h"
-#include "GameMain/GamePlay/DebugLayer.h"
 #include "Debug/TestArea.h"
+#include "GameMain/GamePlay/DebugLayer.h"
+#include "GameMain/GameTitle/GameTitleLayer.h"
 
 using namespace cocos2d;
 
@@ -28,18 +30,22 @@ bool AppDelegate::applicationDidFinishLaunching()
 	director->setDisplayStats( true );
 	director->setAnimationInterval( 1.0f / 60.0f );
 	
-	glView->setDesignResolutionSize( 1280.0f, 720.0f, ResolutionPolicy::SHOW_ALL );
+	glView->setDesignResolutionSize( 720.0f, 1280.0f, ResolutionPolicy::SHOW_ALL );
 	
 	Scene* scene = nullptr;
 	
+// iOS Simulator.
 #ifdef DEBUG_HOSHI
-	scene = SceneCreator::createPhysicsScene( TestArea::create(), Vect( 0, -9.8f ), true, 3.0f );
+	scene = SceneCreator::createScene( TestArea::create() );
 #elif DEBUG_TOSHIKAWA
 	scene = SceneCreator::createPhysicsScene( DebugLayer::create(), Vect( 0, -6.0f ), false, 6.0f );
 #elif DEBUG_SATOU
-	// 佐藤はここに自分のシーンの生成を記述する。
-#else
-	// ReleaseMode
+	scene = SceneCreator::createScene( GameTitleLayer::create() );
+#endif
+	
+// Android.
+#if ( CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID )
+	scene = SceneCreator::createScene( GameTitleLayer::create() );
 #endif
 	
 	director->runWithScene( scene );
