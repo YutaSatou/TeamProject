@@ -19,7 +19,7 @@ public:
 	 *	@param	contactNode		接触したノード
 	 *	@return	BlendColorType	合成色
 	 */
-	BlendColorType getBlendColorType( cocos2d::Node* node, const cocos2d::Node* contactNode ) const;
+	BlendColorType getBlendColorType( cocos2d::Node* node, cocos2d::Node* contactNode ) const;
 	
 private:
 	
@@ -28,7 +28,7 @@ private:
 	 *	@param	node		ユーザオブジェクトが設定されているノード
 	 *	@return	BlendColor	ユーザオブジェクトから抽出した合成色
 	 */
-	const BlendColor* extractBlendColor( const cocos2d::Node* node ) const;
+	BlendColor* extractBlendColor( cocos2d::Node* node ) const;
 };
 
 #endif

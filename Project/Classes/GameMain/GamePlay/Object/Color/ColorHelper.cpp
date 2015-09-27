@@ -3,7 +3,7 @@
 using namespace cocos2d;
 
 // 合成色の取得
-BlendColorType ColorHelper::getBlendColorType( Node* node, const Node* contactNode ) const
+BlendColorType ColorHelper::getBlendColorType( Node* node, Node* contactNode ) const
 {
 	// ユーザオブジェクトから合成色を抽出する。
 	const BlendColor* blendColor		= extractBlendColor( node );
@@ -23,7 +23,7 @@ BlendColorType ColorHelper::getBlendColorType( Node* node, const Node* contactNo
 }
 
 // 合成色の抽出
-const BlendColor* ColorHelper::extractBlendColor( const Node* node ) const
+BlendColor* ColorHelper::extractBlendColor( Node* node ) const
 {
-	return static_cast< const BlendColor* >( node->getUserObject() );
+	return static_cast< BlendColor* >( node->getUserObject() );
 }
