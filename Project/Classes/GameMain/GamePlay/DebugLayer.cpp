@@ -43,7 +43,7 @@ bool DebugLayer::init()
 	resetButton->setTitleText( "Reset" );
 	resetButton->setTitleColor( Color3B::GREEN );
 	resetButton->setTitleFontSize( 64.0f );
-	resetButton->setPosition( Vec2( 200.0f, 1000.0f ) );
+	resetButton->setPosition( Vec2( 100.0f, 1100.0f ) );
 	resetButton->addTouchEventListener( []( Ref*, Widget::TouchEventType type )
 	{
 		if ( type == Widget::TouchEventType::ENDED )

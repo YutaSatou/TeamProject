@@ -86,6 +86,12 @@ void BrushTrail::writeMove( Touch* touch )
 // ブラシ描き終わり
 void BrushTrail::writeEnd( Touch* touch, Node* parentNode )
 {
+	if ( mBrushBody.isEmpty() )
+	{
+		// コンテナが空の場合は終了する。
+		return;
+	}
+	
 	// タッチ開始座標を取得する。
 	Point touchStartPoint = touch->getStartLocation();
 	

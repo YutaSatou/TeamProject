@@ -45,6 +45,12 @@ public:
 	void clear();
 	
 	/**
+	 *	@brief	コンテナが空か否か
+	 *	@return	コンテナが空か否か
+	 */
+	bool isEmpty() const;
+	
+	/**
 	 *	@brief	ボディの生成
 	 *	@return	PhysicsBody	ボディ
 	 */
