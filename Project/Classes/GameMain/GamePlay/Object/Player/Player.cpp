@@ -13,7 +13,7 @@ Player::Player()
 // 初期化
 bool Player::init( ObjectData::Ptr objectData )
 {
-	if ( !Sprite::initWithFile( "Texture/Debug/Circle_White.png" ) )
+	if ( !Sprite::initWithFile( objectData->textureName ) )
 	{
 		return false;
 	}

@@ -20,9 +20,10 @@ bool DebugLayer::init()
 	auto playerData = std::make_shared< ObjectData >
 	(
 		BlendColorType::COLORLESS,
+		"Texture/Debug/Circle_White.png",
 		Vec2( 600.0f, 600.0f ),
 		PhysicsMaterial( 0.6f, 0.9f, 0.6f )
-	 );
+	);
 	
 	Wall*	wall	= Wall::create();
 	Player*	player	= Player::create( playerData );
