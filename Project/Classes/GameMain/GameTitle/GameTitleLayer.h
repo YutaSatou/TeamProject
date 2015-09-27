@@ -2,15 +2,16 @@
 #define _GAMETITLE_LAYER_
 
 #include "cocos2d.h"
+#include "../../Utility/Audio/ADX2Player.h"
 
 class GameTitleLayer : public cocos2d::LayerColor
 {
 	
 protected:
 	
-	GameTitleLayer() = default;
+	GameTitleLayer();
 	
-	~GameTitleLayer() = default;
+	~GameTitleLayer();
 	
 	virtual bool init() override;
 	
@@ -22,6 +23,8 @@ public:
     
     //タッチ
     void touchListener();
+    
+    ADX2Player* mPlayer;
     
 };
 
