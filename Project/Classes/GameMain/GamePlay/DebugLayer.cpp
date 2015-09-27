@@ -22,26 +22,35 @@ bool DebugLayer::init()
 	(
 		BlendColorType::COLORLESS,
 		"Texture/Debug/Circle_White.png",
-		Vec2( 600.0f, 600.0f ),
-		PhysicsMaterial( 0.6f, 0.6f, 0.6f )
+		Vec2( 480.0f, 1200.0f ),
+		PhysicsMaterial( 0.6f, 0.1f, 0.8f )
 	);
 	auto slimeData1 = std::make_shared< ObjectData >
 	(
 		BlendColorType::RED,
 		"Texture/Debug/Circle_Red.png",
-		Vec2( 100.0f, 100.0f ),
+		Vec2( 200.0f, 200.0f ),
+		PhysicsMaterial( 0.6f, 0.4f, 0.6f )
+	);
+	auto slimeData2 = std::make_shared< ObjectData >
+	(
+		BlendColorType::BLUE,
+		"Texture/Debug/Circle_Blue.png",
+		Vec2( 310.0f, 390.0f ),
 		PhysicsMaterial( 0.6f, 0.4f, 0.6f )
 	);
 	
 	Wall*	wall	= Wall::create();
 	Player*	player	= Player::create( playerData );
 	Slime*	slime1	= Slime::create( slimeData1, "Slime1" );
+	Slime*	slime2	= Slime::create( slimeData2, "Slime2" );
 	Brush*	brush	= Brush::create();
 	
 	addChild( contactListener );
 	addChild( wall );
 	addChild( player );
 	addChild( slime1 );
+	addChild( slime2 );
 	addChild( brush );
 	
 	return true;
