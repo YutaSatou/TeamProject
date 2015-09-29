@@ -44,7 +44,7 @@ bool SoundTest::init(){
 	scheduleUpdate();
     
     ply = ADX2Player::create("Basic.acb", "Basic.awb");
-    ply->play(2, SE, 1.0f);
+    ply->play(2, SoundType::SE, 1.0f);
 	ply->retain();
     return true;
 }

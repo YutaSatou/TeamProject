@@ -6,8 +6,8 @@
 //
 //
 
-#ifndef __TeamProject__ADX2FileConverter__
-#define __TeamProject__ADX2FileConverter__
+#ifndef _ADX2FILECONVERTER_H_
+#define _ADX2FILECONVERTER_H_
 
 #include <string>
 

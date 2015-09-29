@@ -6,10 +6,10 @@
 //
 //
 
-#ifndef __TeamProject__SoundType__
-#define __TeamProject__SoundType__
+#ifndef _SOUNDTYPE_H_
+#define _SOUNDTYPE_H_
 
-enum SoundType{
+enum class SoundType : int {
     
     BGM,
     SE,

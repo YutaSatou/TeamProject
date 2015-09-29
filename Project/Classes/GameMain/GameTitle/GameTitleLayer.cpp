@@ -2,8 +2,16 @@
 #include "../GameStageSelect/GameStageSelectLayer.h"
 #include "../../Utility/Assistant/SceneSwitcher.h"
 #include "TitleSpriteRenderer.h"
+#include "../../Utility/Particle/EffectManager.h"
 
 using namespace cocos2d;
+
+namespace  {
+    
+    Size SCREEN_SIZE;
+    Vec2 ORIGIN_SIZE;
+}
+
 
 GameTitleLayer::GameTitleLayer(){
 }
@@ -20,28 +28,31 @@ bool GameTitleLayer::init()
 		return false;
 	}
     
+    SCREEN_SIZE = Director::getInstance()->getWinSize();
+    ORIGIN_SIZE = Director::getInstance()->getVisibleOrigin();
+    
     //mPlayer = ADX2Player::create( "Basic.acb", "Basic.awb" );
     //mPlayer->play( 0, SoundType::BGM);
     //mPlayer->retain();
     
     touchListener();
     
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
-    
     //背景
-    Sprite* backGraund = TitleSpriteRenderer::createSprite( "Texture/Debug/backgraund.png", Vec2( visibleSize.width / 2.0f + origin.x, visibleSize.height / 2.0f + origin.y ) );
+    Sprite* backGraund = TitleSpriteRenderer::createSprite( "Texture/Debug/backgraund.png", Vec2( SCREEN_SIZE.width / 2.0f /*+ ORIGIN_SIZE.x*/,
+                                                                                                  SCREEN_SIZE.height / 2.0f /*+ ORIGIN_SIZE.y */) );
+    
     //タイトルロゴ
-    Sprite* titleLogo = TitleSpriteRenderer::createSprite( "Texture/Debug/sprite_menu.png" , Vec2( visibleSize.width / 2.0f + origin.x,
-                                                                                           visibleSize.height / 1.2f + origin.y ) );
+    Sprite* titleLogo = TitleSpriteRenderer::createSprite( "Texture/Debug/title.png", Vec2( SCREEN_SIZE.width / 2.0f /*+ ORIGIN_SIZE.x*/,
+                                                                                                   SCREEN_SIZE.height / 2.0f /*+ ORIGIN_SIZE.y*/ ) );
     
     //TouchStartロゴ
-    Sprite* touchLogo = TitleSpriteRenderer::createSprite( "Texture/Debug/image_menu_normal.png", Vec2( visibleSize.width / 2.0f + origin.x,
-                                                                                               visibleSize.height / 3.0f + origin.y ) );
+    /*Sprite* touchLogo = TitleSpriteRenderer::createSprite( "Texture/Debug/image_menu_normal.png", Vec2( SCREEN_SIZE.width / 2.0f + ORIGIN_SIZE.x,
+                                                                                                        SCREEN_SIZE.height / 3.0f + ORIGIN_SIZE.y ) );*/
+
     
     addChild(backGraund);
     addChild(titleLogo);
-    addChild(touchLogo);
+    //addChild(touchLogo);
 	
 	scheduleUpdate();
 	
@@ -50,7 +61,7 @@ bool GameTitleLayer::init()
 
 void GameTitleLayer::update( float deltaTime )
 {
-	
+    
 }
 
 GameTitleLayer* GameTitleLayer::create()
@@ -73,23 +84,21 @@ void GameTitleLayer::touchListener(){
     EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
     
     //タッチ開始
-    listener->onTouchBegan = [](Touch* touch, Event* event){
-        log("TouchBegan");
+    listener->onTouchBegan = [&](Touch* touch, Event* event){
         return true;
     };
     
     //タッチ中
     listener->onTouchMoved = [](Touch* touch, Event* event){
-        log("TouchMoved");
+        
     };
     
     //タッチ終了
     listener->onTouchEnded = [](Touch* touch, Event* event){
         
         SceneSwitcher::change( SceneType::STAGE_SELECT );
-        log("TouchEnded");
     };
     
     //イベントリスナーを登録
-    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority( listener, this );
 }

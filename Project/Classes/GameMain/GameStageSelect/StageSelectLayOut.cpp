@@ -13,8 +13,11 @@
 using namespace cocos2d;
 using namespace ui;
 
-#define VISIBLESIZE Director::getInstance()->getVisibleSize()
-#define ORIGINSIZE Director::getInstance()->getVisibleOrigin()
+namespace  {
+    
+    Size SCREEN_SIZE;
+    Vec2 ORIGIN_SIZE;
+}
 
 StageSelectLayOut::StageSelectLayOut(){
     
@@ -25,7 +28,7 @@ StageSelectLayOut::~StageSelectLayOut(){
 }
 
 bool StageSelectLayOut::init(){
-    
+
     return true;
 }
 
@@ -60,10 +63,10 @@ Button* StageSelectLayOut::createButton( const std::string& offButton, const std
     
     button->setPosition( Vec2::ZERO );
     
-    button->addTouchEventListener( [=]( Ref* sender, Widget::TouchEventType type ){
+    button->addTouchEventListener( [ = ]( Ref* sender, Widget::TouchEventType type ){
         if ( type == Widget::TouchEventType::ENDED ){
             
-            CCLOG( "%i", stageTag );
+            //CCLOG( "%i", stageTag );
             button->setEnabled( true );
             SceneSwitcher::change( SceneType::PLAY );
         }
@@ -76,9 +79,12 @@ Button* StageSelectLayOut::createButton( const std::string& offButton, const std
 
 PageView* StageSelectLayOut::createPage( int pageNum ){
     
+    SCREEN_SIZE = Director::getInstance()->getVisibleSize();
+    ORIGIN_SIZE = Director::getInstance()->getVisibleOrigin();
+    
     PageView* page = PageView::create();
-    page->setContentSize( Size( VISIBLESIZE.width / 1.5f , VISIBLESIZE.height ) );
-    page->setPosition( ( VISIBLESIZE - page->getContentSize() ) / 2.0f );
+    page->setContentSize( Size( SCREEN_SIZE.width / 1.5f , SCREEN_SIZE.height ) );
+    page->setPosition( ( SCREEN_SIZE - page->getContentSize() ) / 2.0f );
     
     Layout* layout = nullptr;
     
@@ -96,16 +102,16 @@ PageView* StageSelectLayOut::createPage( int pageNum ){
         
         std::string nomalFilePath[] = {
             
-            "Texture/Debug/image_menu_normal.png", "Texture/Debug/image_menu_normal.png", "Texture/Debug/image_menu_normal.png",
-            "Texture/Debug/image_menu_normal.png", "Texture/Debug/image_menu_normal.png", "Texture/Debug/image_menu_normal.png",
-            "Texture/Debug/image_menu_normal.png", "Texture/Debug/image_menu_normal.png", "Texture/Debug/image_menu_normal.png",
+            "Texture/Debug/button.png", "Texture/Debug/button.png", "Texture/Debug/button.png",
+            "Texture/Debug/button.png", "Texture/Debug/button.png", "Texture/Debug/button.png",
+            "Texture/Debug/button.png", "Texture/Debug/button.png", "Texture/Debug/button.png",
         };
         
         std::string pressedFilePath [] = {
             
-            "Texture/Debug/image_menu_select.png", "Texture/Debug/image_menu_select.png", "Texture/Debug/image_menu_select.png",
-            "Texture/Debug/image_menu_select.png", "Texture/Debug/image_menu_select.png", "Texture/Debug/image_menu_select.png",
-            "Texture/Debug/image_menu_select.png", "Texture/Debug/image_menu_select.png", "Texture/Debug/image_menu_select.png",
+            "Texture/Debug/button.png", "Texture/Debug/button.png", "Texture/Debug/button.png",
+            "Texture/Debug/button.png", "Texture/Debug/button.png", "Texture/Debug/button.png",
+            "Texture/Debug/button.png", "Texture/Debug/button.png", "Texture/Debug/button.png",
         };
         
         Vec2 poses[] = {
