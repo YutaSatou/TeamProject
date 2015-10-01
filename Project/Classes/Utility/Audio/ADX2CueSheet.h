@@ -6,8 +6,8 @@
 //
 //
 
-#ifndef __TeamProject__ADX2CueSheet__
-#define __TeamProject__ADX2CueSheet__
+#ifndef _ADX2CUESHEET_H_
+#define _ADX2CUESHEET_H_
 
 #include "cocos2d.h"
 #include "cri_adx2le.h"

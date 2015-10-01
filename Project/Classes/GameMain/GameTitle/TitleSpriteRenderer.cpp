@@ -10,7 +10,7 @@
 
 using namespace cocos2d;
 
-Sprite* TitleSpriteRenderer::createSprite(const std::string spriteName, const Vec2 spritePos ){
+Sprite* TitleSpriteRenderer::createSprite(const std::string& spriteName, const Vec2& spritePos ){
     
     Sprite* sprite = Sprite::create( spriteName );
     
