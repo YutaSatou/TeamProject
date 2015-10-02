@@ -11,6 +11,7 @@
 
 #include <cocos2d.h>
 #include "ui/CocosGUI.h"
+#include "../../Utility/Audio/ADX2Player.h"
 
 class StageSelectLayOut : public cocos2d::Layer{
     
@@ -41,6 +42,10 @@ public:
      *	@param	pageNum   作成するページ数
      */
     static cocos2d::ui::PageView* createPage( int pageNum );
+    
+private:
+    
+    //ADX2Player* mPlayer;
 };
 
 #endif /* defined(__TeamProject__StageSelectLayOut__) */

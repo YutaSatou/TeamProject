@@ -14,11 +14,12 @@ namespace  {
 
 
 GameTitleLayer::GameTitleLayer(){
+    
 }
 
 GameTitleLayer::~GameTitleLayer(){
     
-    //mPlayer->release();
+    mPlayer->release();
 }
 
 bool GameTitleLayer::init()
@@ -31,9 +32,9 @@ bool GameTitleLayer::init()
     SCREEN_SIZE = Director::getInstance()->getWinSize();
     ORIGIN_SIZE = Director::getInstance()->getVisibleOrigin();
     
-    //mPlayer = ADX2Player::create( "Basic.acb", "Basic.awb" );
-    //mPlayer->play( 0, SoundType::BGM);
-    //mPlayer->retain();
+    mPlayer = ADX2Player::create( "Basic.acb", "Basic.awb" );
+    mPlayer->play( 0, SoundType::BGM);
+    mPlayer->retain();
     
     touchListener();
     

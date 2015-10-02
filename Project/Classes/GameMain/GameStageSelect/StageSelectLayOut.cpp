@@ -17,6 +17,8 @@ namespace  {
     
     Size SCREEN_SIZE;
     Vec2 ORIGIN_SIZE;
+    
+    //ADX2Player* mPlayer;
 }
 
 StageSelectLayOut::StageSelectLayOut(){
@@ -25,10 +27,10 @@ StageSelectLayOut::StageSelectLayOut(){
 
 StageSelectLayOut::~StageSelectLayOut(){
     
+    //mPlayer->release();
 }
 
 bool StageSelectLayOut::init(){
-
     return true;
 }
 
@@ -63,11 +65,13 @@ Button* StageSelectLayOut::createButton( const std::string& offButton, const std
     
     button->setPosition( Vec2::ZERO );
     
-    button->addTouchEventListener( [ = ]( Ref* sender, Widget::TouchEventType type ){
+    button->addTouchEventListener( [ & ]( Ref* sender, Widget::TouchEventType type ){
         if ( type == Widget::TouchEventType::ENDED ){
-            
             //CCLOG( "%i", stageTag );
-            button->setEnabled( true );
+            //button->setEnabled( true );
+            /*mPlayer = ADX2Player::create( "Basic.acb", "Basic.awb" );
+            mPlayer->play( 4, SoundType::BGM);
+            mPlayer->retain();*/
             SceneSwitcher::change( SceneType::PLAY );
         }
     });

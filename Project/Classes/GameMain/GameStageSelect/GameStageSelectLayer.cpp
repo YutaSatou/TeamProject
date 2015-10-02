@@ -13,9 +13,12 @@ namespace  {
 }
 
 GameStageSelectLayer::GameStageSelectLayer(){
+    
 }
 
 GameStageSelectLayer::~GameStageSelectLayer(){
+    
+    mPlayer->release();
 }
 
 bool GameStageSelectLayer::init()
@@ -25,8 +28,22 @@ bool GameStageSelectLayer::init()
         return false;
     }
     
+    
     SCREEN_SIZE = Director::getInstance()->getVisibleSize();
     ORIGIN_SIZE = Director::getInstance()->getVisibleOrigin();
+    
+    //仮
+    auto a  =CallFunc::create( [this](){
+    
+        mPlayer = ADX2Player::create( "Basic.acb", "Basic.awb" );
+        mPlayer->play( 3, SoundType::BGM);
+        mPlayer->retain();
+    } );
+    auto b = DelayTime::create( 1.0f );
+    auto s = Sequence::create( b, a, nullptr );
+    
+    runAction( s );
+    //ここまで
     
     drawBackGraund();
     drawStageSelectLogo();
