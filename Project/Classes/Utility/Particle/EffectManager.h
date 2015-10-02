@@ -11,7 +11,7 @@
 
 #include "cocos2d.h"
 
-class EffectManagaer : public cocos2d::ParticleBatchNode{
+class EffectManagaer {
     
 protected:
     
@@ -23,13 +23,14 @@ public:
     
     /**
      *	@brief	インスタンス作成
-     *	@param	effectTex	パーティクルのテクスチャの名前
-     *	@param	plist       パーティクルのプロパティーリストの名前
-     *	@param	direction   パーティクルの生存時間
-     *	@param	effectPos   パーティクルを生成する座標
+     *	@param	particleNode ノード
+     *	@param	effectTex	 パーティクルのテクスチャの名前
+     *	@param	plist        パーティクルのプロパティーリストの名前
+     *	@param	effectPos    パーティクルを生成する座標
+     *  @memo フォルダー参照、.plist無しで再生できます。
      */
-    static cocos2d::ParticleBatchNode* createParticle( const std::string effectTex, const std::string plist, float direction, cocos2d::Vec2 effectPos );
+    static void createParticle( cocos2d::Node* particleNode, const std::string& plist, const cocos2d::Vec2& effectPos );
 
 };
 
-#endif /* defined(__TeamProject__EffectManager__) */
+#endif
