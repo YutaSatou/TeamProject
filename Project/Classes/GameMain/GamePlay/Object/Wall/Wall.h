@@ -2,6 +2,7 @@
 #define _WALL_H_
 
 #include "cocos2d.h"
+#include "../Collision/ContactCategory.h"
 
 /*------------------------------------------------------------*/
 //	@class		：	Wall
@@ -25,24 +26,32 @@ protected:
 	
 	/**
 	 *	@brief	初期化
-	 *	@return	bool	初期化が完了したか否か
+	 *	@param	category	設定するカテゴリ
+	 *	@param	start		線の開始座標
+	 *	@param	end			線の終了座標
+	 *	@return	bool		初期化が完了したか否か
 	 */
-	virtual bool init() override;
+	bool init( const ContactCategory& category, const cocos2d::Vec2& start, const cocos2d::Vec2& end );
 	
 public:
 	
 	/**
 	 *	@brief	インスタンスの生成
-	 *	@return	Wall	インスタンス
+	 *	@param	category	設定するカテゴリ
+	 *	@param	start		線の開始座標
+	 *	@param	end			線の終了座標
+	 *	@return	Wall		インスタンス
 	 */
-	static Wall* create();
+	static Wall* create( const ContactCategory& category, const cocos2d::Vec2& start, const cocos2d::Vec2& end );
 	
 private:
 	
 	/**
 	 *	@brief	物理構造の初期化
+	 *	@param	start	線の開始座標
+	 *	@param	end		線の終了座標
 	 */
-	void initPhysics();
+	void initPhysics( const cocos2d::Vec2& start, const cocos2d::Vec2& end );
 	
 	/**
 	 *	@brief	ボディの設定
@@ -50,13 +59,9 @@ private:
 	 */
 	void setupPhysicsBody( cocos2d::PhysicsBody* body );
 	
-	/**
-	 *	@brief	シェイプの装着
-	 *	@param	body	シェイプを装着するボディ
-	 *	@param	start	線の開始座標
-	 *	@param	end		線の終了座標
-	 */
-	void attachShape( cocos2d::PhysicsBody* body, const cocos2d::Vec2& start, const cocos2d::Vec2& end );
+private:
+	
+	ContactCategory	mCategory;	//=> カテゴリ
 };
 
 #endif

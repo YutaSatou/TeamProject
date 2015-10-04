@@ -14,14 +14,16 @@ ContactSettlor::ContactSettlor( PhysicsBody* targetBody, bool isSetupShape )
 // カテゴリの設定
 void ContactSettlor::setupCategory( ContactCategory category )
 {
-	mTargetBody->setCategoryBitmask( category );
-	eachShapeVector( [ &category ]( PhysicsShape* shape ) { shape->setCategoryBitmask( category ); } );
+	int bitMask = intCast( category );
+	
+	mTargetBody->setCategoryBitmask( bitMask );
+	eachShapeVector( [ &bitMask ]( PhysicsShape* shape ) { shape->setCategoryBitmask( bitMask ); } );
 }
 
 // 衝突の有効化
 void ContactSettlor::enableCollision()
 {
-	int bitmask = ContactCategory::ALL_CATEGORY;
+	int bitmask = intCast( ContactCategory::ALL_CATEGORY );
 	
 	mTargetBody->setCollisionBitmask( bitmask );
 	eachShapeVector( [ &bitmask ]( PhysicsShape* shape ) { shape->setCollisionBitmask( bitmask ); } );
@@ -39,7 +41,7 @@ void ContactSettlor::enableCustomCollision( OtherCategory otherCategory )
 // 接触の有効化
 void ContactSettlor::enableContact()
 {
-	int bitmask = ContactCategory::ALL_CATEGORY;
+	int bitmask = intCast( ContactCategory::ALL_CATEGORY );
 	
 	mTargetBody->setContactTestBitmask( bitmask );
 	eachShapeVector( [ &bitmask ]( PhysicsShape* shape ) { shape->setContactTestBitmask( bitmask ); } );
@@ -93,11 +95,17 @@ int ContactSettlor::getBitmask( OtherCategory otherCategory )
 {
 	int bitmask = 0;
 	
-	for ( int bit : otherCategory )
+	for ( ContactCategory bit : otherCategory )
 	{
 		// 全ての要素とOR演算する。
-		bitmask = bitmask | bit;
+		bitmask = bitmask | intCast( bit );
 	}
 	
 	return bitmask;
+}
+
+// カテゴリからint型への変換
+int ContactSettlor::intCast( ContactCategory category )
+{
+	return static_cast< int >( category );
 }

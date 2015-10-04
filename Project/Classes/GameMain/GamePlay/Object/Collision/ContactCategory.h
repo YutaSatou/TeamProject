@@ -6,11 +6,14 @@
 /**
  *	@brief	接触判定用カテゴリ
  */
-enum ContactCategory : int
+enum class ContactCategory : int
 {
-	WALL			= 1 << 0,
-	PLAYER			= 1 << 1,
-	SLIME			= 1 << 2,
+	WALL_UP			= 1 << 0,
+	WALL_DOWN		= 1 << 1,
+	WALL_LEFT		= 1 << 2,
+	WALL_RIGHT		= 1 << 3,
+	PLAYER			= 1 << 4,
+	SLIME			= 1 << 5,
 	ALL_CATEGORY	= INT_MAX,
 };
 

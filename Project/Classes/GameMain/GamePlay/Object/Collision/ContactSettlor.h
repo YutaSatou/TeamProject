@@ -92,6 +92,14 @@ private:
 	 */
 	int getBitmask( OtherCategory otherCategory );
 	
+	/**
+	 *	@brief	カテゴリからint型への変換
+	 *			C++11仕様のenumは暗黙的に変換してくれない為。
+	 *	@param	category	変換するカテゴリ
+	 *	@return	int			変換した値
+	 */
+	int intCast( ContactCategory category );
+	
 private:
 	
 	cocos2d::PhysicsBody*	mTargetBody;	//=> 設定するボディ

@@ -30,14 +30,16 @@ void ContactSender::send( ContactFuncTag funcTag, PhysicsContact& contact )
 // オブジェクトへの接触通知
 void ContactSender::sendContactObject( ContactFuncTag funcTag, const std::string& nodeName, Node* contactNode )
 {
-	// 変換用連想配列を用意する。
-	static std::unordered_map< int, std::function< void( const std::string&, Node* ) > > sendFuncMap =
+	using SendFunc		= std::function< void( const std::string&, Node* ) >;
+	using SendFuncMap	= std::unordered_map< int, SendFunc >;
+	
+	static SendFuncMap sendFuncMap =
 	{
-		{ ContactFuncTag::BEGIN,	[ this ]( const std::string& nodeName, Node* contactNode )
+		{ ContactFuncTag::CONTACT_FUNC_BEGIN,		[ this ]( const std::string& nodeName, Node* contactNode )
 			{ mCallbackContainer[ nodeName ]->onContactBegin( contactNode );	} },
-		{ ContactFuncTag::PRESOLVE,	[ this ]( const std::string& nodeName, Node* contactNode )
+		{ ContactFuncTag::CONTACT_FUNC_PRESOLVE,	[ this ]( const std::string& nodeName, Node* contactNode )
 			{ mCallbackContainer[ nodeName ]->onContactPreSolve( contactNode );	} },
-		{ ContactFuncTag::SEPERATE,	[ this ]( const std::string& nodeName, Node* contactNode )
+		{ ContactFuncTag::CONTACT_FUNC_SEPERATE,	[ this ]( const std::string& nodeName, Node* contactNode )
 			{ mCallbackContainer[ nodeName ]->onContactSeperate( contactNode );	} },
 	};
 	

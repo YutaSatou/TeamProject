@@ -6,10 +6,9 @@
  */
 enum ContactFuncTag : int
 {
-	BEGIN		= 0,
-	PRESOLVE	= 1,
-	SEPERATE	= 2,
-	LENGTH
+	CONTACT_FUNC_BEGIN		= 0,
+	CONTACT_FUNC_PRESOLVE	= 1,
+	CONTACT_FUNC_SEPERATE	= 2,
 };
 
 #endif

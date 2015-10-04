@@ -46,7 +46,7 @@ public:
 	
 	/**
 	 *	@brief	コンテナが空か否か
-	 *	@return	コンテナが空か否か
+	 *	@return	bool	コンテナが空か否か
 	 */
 	bool isEmpty() const;
 	

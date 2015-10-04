@@ -2,7 +2,7 @@
 #include "ui/CocosGUI.h"
 #include "Utility/Assistant/SceneSwitcher.h"
 #include "Object/Collision/ContactListener.h"
-#include "Object/Wall/Wall.h"
+#include "Object/Wall/WallManager.h"
 #include "Object/Player/Player.h"
 #include "Object/Enemy/Slime.h"
 #include "User/Brush/Brush.h"
@@ -25,14 +25,14 @@ bool DebugLayer::init()
 	auto slimeData1	= std::make_shared< ObjectData >( BlendColorType::RED,			"Texture/Debug/Circle_Red.png",		Vec2( 200.0f,  200.0f ), PhysicsMaterial( 0.6f, 0.4f, 0.6f ) );
 	auto slimeData2	= std::make_shared< ObjectData >( BlendColorType::BLUE,			"Texture/Debug/Circle_Blue.png",	Vec2( 310.0f,  390.0f ), PhysicsMaterial( 0.6f, 0.4f, 0.6f ) );
 	
-	Wall*	wall	= Wall::create();
-	Player*	player	= Player::create( playerData );
-	Slime*	slime1	= Slime::create( slimeData1, "Slime1" );
-	Slime*	slime2	= Slime::create( slimeData2, "Slime2" );
-	Brush*	brush	= Brush::create();
+	WallManager*	wallManager	= WallManager::create();
+	Player*			player		= Player::create( playerData );
+	Slime*			slime1		= Slime::create( slimeData1, "Slime1" );
+	Slime*			slime2		= Slime::create( slimeData2, "Slime2" );
+	Brush*			brush		= Brush::create();
 	
 	addChild( contactListener );
-	addChild( wall );
+	addChild( wallManager );
 	addChild( player );
 	addChild( slime1 );
 	addChild( slime2 );

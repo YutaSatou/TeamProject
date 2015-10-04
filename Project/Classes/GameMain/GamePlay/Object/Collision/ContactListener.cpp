@@ -40,21 +40,21 @@ void ContactListener::initListener()
 	// オブジェクトが接触した時に呼ばれる。
 	listener->onContactBegin = [ &manager ]( PhysicsContact& contact )
 	{
-		manager.onContactEvent( ContactFuncTag::BEGIN, contact );
+		manager.onContactEvent( ContactFuncTag::CONTACT_FUNC_BEGIN, contact );
 		return true;
 	};
 	
 	// オブジェクトが接触している時に呼ばれる。
 	listener->onContactPreSolve = [ &manager ]( PhysicsContact& contact, PhysicsContactPreSolve& solve )
 	{
-		manager.onContactEvent( ContactFuncTag::PRESOLVE, contact );
+		manager.onContactEvent( ContactFuncTag::CONTACT_FUNC_PRESOLVE, contact );
 		return true;
 	};
 	
 	// オブジェクトが離れた時に呼ばれる。
 	listener->onContactSeperate = [ &manager ]( PhysicsContact& contact )
 	{
-		manager.onContactEvent( ContactFuncTag::SEPERATE, contact );
+		manager.onContactEvent( ContactFuncTag::CONTACT_FUNC_SEPERATE, contact );
 	};
 	
 	getEventDispatcher()->addEventListenerWithSceneGraphPriority( listener, this );

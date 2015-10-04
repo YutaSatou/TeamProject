@@ -4,12 +4,15 @@
 using namespace cocos2d;
 
 // 初期化
-bool Wall::init()
+bool Wall::init( const ContactCategory& category, const Vec2& start, const Vec2& end )
 {
 	if ( !Node::init() )
 	{
 		return false;
 	}
+	
+	// カテゴリを登録する。
+	mCategory = category;
 	
 	// 各パラメータを設定する。
 	setName( "Wall" );
@@ -17,17 +20,17 @@ bool Wall::init()
 	setPosition( Vec2::ZERO );
 	
 	// 物理構造の初期化を行う。
-	initPhysics();
+	initPhysics( start, end );
 	
 	return true;
 }
 
 // インスタンスの生成
-Wall* Wall::create()
+Wall* Wall::create( const ContactCategory& category, const Vec2& start, const Vec2& end )
 {
 	Wall* inst = new Wall();
 	
-	if ( inst && inst->init() )
+	if ( inst && inst->init( category, start, end ) )
 	{
 		inst->autorelease();
 		return inst;
@@ -38,25 +41,21 @@ Wall* Wall::create()
 }
 
 // 物理構造の初期化
-void Wall::initPhysics()
+void Wall::initPhysics( const Vec2& start, const Vec2& end )
 {
-	// 画面サイズを取得する。
-	const Vec2	screenMin	= Vec2::ZERO;
-	const Vec2	screenMax	= Director::getInstance()->getWinSize();
+	// 物理特性( 密度, 反発係数, 摩擦係数 )を用意する。
+	PhysicsMaterial material;
+	material.density		= 0.5f;
+	material.restitution	= 0.5f;
+	material.friction		= 0.3f;
 	
-	// 静的なボディを用意する。
-	PhysicsBody* body = PhysicsBody::createEdgeSegment( { screenMin.x, screenMin.y }, { screenMax.x, screenMin.y } );
-	body->setDynamic( false );
-	
-	// ボディに対してシェイプを装着する。
-	attachShape( body, { screenMin.x, screenMax.y }, { screenMax.x, screenMax.y } );
-	attachShape( body, { screenMin.x, screenMax.y }, { screenMin.x, screenMin.y } );
-	attachShape( body, { screenMax.x, screenMax.y }, { screenMax.x, screenMin.y } );
+	// ボディを生成する。
+	PhysicsBody* body = PhysicsBody::createEdgeSegment( start, end, material );
 	
 	// ボディの設定をする。
 	setupPhysicsBody( body );
 	
-	// 自身にボディを設定する。
+	// ボディに追加する。
 	setPhysicsBody( body );
 }
 
@@ -65,23 +64,7 @@ void Wall::setupPhysicsBody( PhysicsBody* body )
 {
 	// カテゴリの設定、衝突の有効化、接触の有効化を行う。
 	ContactSettlor contactSettlor( body );
-	contactSettlor.setupCategory( ContactCategory::WALL );
+	contactSettlor.setupCategory( mCategory );
 	contactSettlor.enableCollision();
 	contactSettlor.enableCustomContact( { ContactCategory::PLAYER } );
-}
-
-// シェイプの装着
-void Wall::attachShape( PhysicsBody* body, const Vec2& start, const Vec2& end )
-{
-	// 物理特性( 密度, 反発係数, 摩擦係数 )を用意する。
-	PhysicsMaterial material;
-	material.density		= 0.5f;
-	material.restitution	= 0.5f;
-	material.friction		= 0.3f;
-	
-	// 線のシェイプを生成する。
-	PhysicsShape* edgeSegment = PhysicsShapeEdgeSegment::create( start, end, material );
-	
-	// ボディに追加する。
-	body->addShape( edgeSegment );
 }
