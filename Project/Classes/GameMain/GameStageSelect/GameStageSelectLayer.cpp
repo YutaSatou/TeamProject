@@ -6,8 +6,11 @@
 using namespace cocos2d;
 using namespace ui;
 
-#define VISIBLESIZE Director::getInstance()->getVisibleSize()
-#define ORIGINSIZE Director::getInstance()->getVisibleOrigin()
+namespace  {
+    
+    Size SCREEN_SIZE = Director::getInstance()->getVisibleSize();
+    Vec2 ORIGIN_SIZE = Director::getInstance()->getVisibleOrigin();
+}
 
 GameStageSelectLayer::GameStageSelectLayer(){
 }
@@ -21,6 +24,9 @@ bool GameStageSelectLayer::init()
     {
         return false;
     }
+    
+    SCREEN_SIZE = Director::getInstance()->getVisibleSize();
+    ORIGIN_SIZE = Director::getInstance()->getVisibleOrigin();
     
     drawBackGraund();
     drawStageSelectLogo();
@@ -57,7 +63,7 @@ void GameStageSelectLayer::drawBackGraund(){
     
     //背景
     Sprite* sprite = Sprite::create( "Texture/Debug/backgraund.png" );
-    sprite->setPosition( Vec2( VISIBLESIZE.width / 2.0f, VISIBLESIZE.height / 2.0f ) );
+    sprite->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 2.0f ) );
     sprite->setScale( 2.0f, 2.0f );
     addChild( sprite );
 }
@@ -65,8 +71,8 @@ void GameStageSelectLayer::drawBackGraund(){
 void GameStageSelectLayer::drawStageSelectLogo(){
     
     //Logo
-    Sprite* stageimage = Sprite::create( "Texture/Debug/image_menu_normal.png" );
-    stageimage->setPosition( Vec2( VISIBLESIZE.width / 2.0f, VISIBLESIZE.height / 1.1f ) );
+    Sprite* stageimage = Sprite::create( "Texture/Debug/stageselectlogo.png" );
+    stageimage->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 1.1f ) );
     stageimage->setScale( 2.0f, 2.0f );
     addChild( stageimage );
 }

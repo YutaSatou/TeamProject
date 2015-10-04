@@ -6,8 +6,8 @@
 //
 //
 
-#ifndef __TeamProject__SoundTest__
-#define __TeamProject__SoundTest__
+#ifndef _SOUNDTEST_H_
+#define _SOUNDTEST_H_
 
 #include <stdio.h>
 #include "cocos2d.h"

@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "../../Utility/Audio/ADX2Player.h"
+#include "../../Utility/Particle/EffectManager.h"
 
 class GameTitleLayer : public cocos2d::LayerColor
 {

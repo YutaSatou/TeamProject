@@ -6,14 +6,16 @@
 //
 //
 
-#ifndef __TeamProject__ADX2Player__
-#define __TeamProject__ADX2Player__
+#ifndef _ADX2PLAYER_H_
+#define _ADX2PLAYER_H_
 
 #include "cocos2d.h"
 #include "cri_adx2le.h"
 #include "SoundType.h"
 
 class ADX2CueSheet;
+
+enum class SoundType;
 
 class ADX2Player : public cocos2d::Node{
     

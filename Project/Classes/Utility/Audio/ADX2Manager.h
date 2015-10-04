@@ -6,8 +6,8 @@
 //
 //
 
-#ifndef __TeamProject__ADX2Manager__
-#define __TeamProject__ADX2Manager__
+#ifndef _ADX2MANAGER_H_
+#define _ADX2MANAGER_H_
 
 #include "cocos2d.h"
 #include "cri_adx2le.h"
