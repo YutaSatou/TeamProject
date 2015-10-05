@@ -22,7 +22,7 @@ struct ObjectData
 	 *	@brief	コンストラクタ
 	 */
 	ObjectData()
-		: blendColor( BlendColor::create( BlendColorType::COLORLESS ) )
+		: blendColor( BlendColor::create( cocos2d::Color3B::WHITE ) )
 		, textureName( "" )
 		, position( cocos2d::Vec2::ZERO )
 		, material()
@@ -32,19 +32,19 @@ struct ObjectData
 	
 	/**
 	 *	@brief	コンストラクタ
-	 *	@param	_type			合成色
+	 *	@param	_color			合成色
 	 *	@param	_textureName	テクスチャの名前
 	 *	@param	_position		座標
 	 *	@param	_material		物理特性
 	 */
 	ObjectData
 	(
-		const BlendColorType&			_type,
+		const cocos2d::Color3B&			_color,
 		const std::string&				_textureName,
 		const cocos2d::Vec2&			_position,
 		const cocos2d::PhysicsMaterial&	_material
 	)
-		: blendColor( BlendColor::create( _type ) )
+		: blendColor( BlendColor::create( _color ) )
 		, textureName( _textureName )
 		, position( _position )
 		, material( _material )

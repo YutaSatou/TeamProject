@@ -3,6 +3,13 @@
 
 using namespace cocos2d;
 
+// コンストラクタ
+Wall::Wall()
+	: mCategory( ContactCategory::WALL_UP )
+{
+	
+}
+
 // 初期化
 bool Wall::init( const ContactCategory& category, const Vec2& start, const Vec2& end )
 {

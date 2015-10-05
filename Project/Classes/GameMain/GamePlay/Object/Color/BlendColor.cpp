@@ -1,16 +1,18 @@
 #include "BlendColor.h"
 
+using namespace cocos2d;
+
 // コンストラクタ
-BlendColor::BlendColor( BlendColorType _type )
-	: type( _type )
+BlendColor::BlendColor( const Color3B& _color )
+	: color( _color )
 {
 	
 }
 
 // インスタンスの生成
-BlendColor* BlendColor::create( BlendColorType _type )
+BlendColor* BlendColor::create( const Color3B& _color )
 {
-	BlendColor* inst = new BlendColor( _type );
+	BlendColor* inst = new BlendColor( _color );
 	inst->autorelease();
 	return inst;
 }

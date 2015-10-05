@@ -10,7 +10,6 @@ enum SceneType : int
 	STAGE_SELECT	= 1,
 	PLAY			= 2,
 	RESULT			= 3,
-	LENGTH			= 4,
 };
 
 /*------------------------------------------------------------*/

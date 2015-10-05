@@ -5,6 +5,11 @@
 
 enum class ContactCategory : int;
 
+/*------------------------------------------------------------*/
+//	@class		：	WallManager
+//	@brief		：	壁管理者
+//	@author		：	利川聖太
+/*------------------------------------------------------------*/
 class WallManager : public cocos2d::Node
 {
 	

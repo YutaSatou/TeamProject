@@ -31,8 +31,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 	director->setAnimationInterval( 1.0f / 60.0f );
 	
 	glView->setDesignResolutionSize( 720.0f, 1280.0f, ResolutionPolicy::SHOW_ALL );
-    
-    ADX2Manager::getInstance().init( "ADX2_samples.acf" );
+	
+	ADX2Manager::getInstance().init( "ADX2_samples.acf" );
 	
 	Scene* scene = nullptr;
 	

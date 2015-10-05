@@ -17,7 +17,7 @@ protected:
 	/**
 	 *	@brief	コンストラクタ
 	 */
-	Wall() = default;
+	Wall();
 	
 	/**
 	 *	@brief	デストラクタ

@@ -3,33 +3,21 @@
 
 #include "cocos2d.h"
 
-/**
- *	@brief	合成色の種類
- */
-enum class BlendColorType : int
-{
-	COLORLESS	= 0,	// 無
-	RED			= 1,	// 赤
-	BLUE		= 2,	// 青
-	PURPLE		= 3,	// 紫
-	LENGTH,
-};
-
 /*------------------------------------------------------------*/
-//	@struct		：	BlendColor
+//	@class		：	BlendColor
 //	@brief		：	合成色
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/
-struct BlendColor : public cocos2d::Ref
+class BlendColor : public cocos2d::Ref
 {
 	
 protected:
 	
 	/**
 	 *	@brief	コンストラクタ
-	 *	@param	_type	合成色
+	 *	@param	_color	合成色
 	 */
-	BlendColor( BlendColorType _type );
+	BlendColor( const cocos2d::Color3B& _color );
 	
 	/**
 	 *	@brief	デストラクタ
@@ -40,14 +28,14 @@ public:
 	
 	/**
 	 *	@brief	インスタンスの生成
-	 *	@param	_type		合成色
+	 *	@param	_color		合成色
 	 *	@return	BlendColor	インスタンス
 	 */
-	static BlendColor* create( BlendColorType _type );
+	static BlendColor* create( const cocos2d::Color3B& _color );
 	
 public:
 	
-	BlendColorType	type;	//=> 合成色
+	cocos2d::Color3B	color;	//=> 合成色
 };
 
 #endif

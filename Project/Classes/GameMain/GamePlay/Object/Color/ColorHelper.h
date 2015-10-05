@@ -1,6 +1,7 @@
 #ifndef _COLOR_HELPER_H_
 #define _COLOR_HELPER_H_
 
+#include "cocos2d.h"
 #include "BlendColor.h"
 
 /*------------------------------------------------------------*/
@@ -17,9 +18,9 @@ public:
 	 *	@brief	合成色の取得
 	 *	@param	node			ノード
 	 *	@param	contactNode		接触したノード
-	 *	@return	BlendColorType	合成色
+	 *	@return	Color3B			合成色
 	 */
-	BlendColorType getBlendColorType( cocos2d::Node* node, cocos2d::Node* contactNode ) const;
+	cocos2d::Color3B getBlendColor( cocos2d::Node* node, cocos2d::Node* contactNode ) const;
 	
 private:
 	
