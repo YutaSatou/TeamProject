@@ -8,8 +8,8 @@ using namespace ui;
 
 namespace  {
     
-    Size SCREEN_SIZE = Director::getInstance()->getVisibleSize();
-    Vec2 ORIGIN_SIZE = Director::getInstance()->getVisibleOrigin();
+    Size SCREEN_SIZE;
+    Vec2 ORIGIN_SIZE;
 }
 
 GameStageSelectLayer::GameStageSelectLayer(){
@@ -48,7 +48,7 @@ bool GameStageSelectLayer::init()
     drawBackGraund();
     drawStageSelectLogo();
     
-    PageView* page = StageSelectLayOut::createPage( 3 );
+    PageView* page = StageSelectLayOut::createPage( 2 );
     addChild( page );
     
     

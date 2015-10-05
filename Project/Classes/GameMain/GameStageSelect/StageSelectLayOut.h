@@ -35,7 +35,9 @@ public:
      *	@param	onButton    ボタンが押された時のテクスチャ
       *	@param  stageTag    ステージの番号
      */
-    static cocos2d::ui::Button* createButton( const std::string& offButton, const std::string& onButton, int stageTag);
+    static cocos2d::ui::Button* createButton( const std::string& offButton, const std::string& onButton, const std::string& disButton, int stageTag);
+    
+    static cocos2d::Label* createLabel( std::string number,const std::string& font, float fontSize,const cocos2d::Vec2& fontPos );
     
     /**
      *	@brief	ページ作成
