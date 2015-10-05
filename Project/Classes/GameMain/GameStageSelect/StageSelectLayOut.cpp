@@ -17,6 +17,8 @@ namespace  {
     
     Size SCREEN_SIZE;
     Vec2 ORIGIN_SIZE;
+    
+    //ADX2Player* mPlayer;
 }
 
 StageSelectLayOut::StageSelectLayOut(){
@@ -25,10 +27,10 @@ StageSelectLayOut::StageSelectLayOut(){
 
 StageSelectLayOut::~StageSelectLayOut(){
     
+    //mPlayer->release();
 }
 
 bool StageSelectLayOut::init(){
-
     return true;
 }
 
@@ -52,29 +54,42 @@ void StageSelectLayOut::update(float deltaTime){
 }
 
 //スイッチ作成用の関数//
-Button* StageSelectLayOut::createButton( const std::string& offButton, const std::string& onButton, int stageTag  ){
+Button* StageSelectLayOut::createButton( const std::string& offButton, const std::string& onButton, const std::string& disButton, int stageTag  ){
     
     Button* button = nullptr;
     
     button = Button::create();
     button->loadTextureNormal( offButton );
     button->loadTexturePressed( onButton );
-    button->loadTextureDisabled( onButton );
+    button->loadTextureDisabled( disButton );
     
     button->setPosition( Vec2::ZERO );
     
     button->addTouchEventListener( [ = ]( Ref* sender, Widget::TouchEventType type ){
         if ( type == Widget::TouchEventType::ENDED ){
-            
-            //CCLOG( "%i", stageTag );
-            button->setEnabled( true );
-            SceneSwitcher::change( SceneType::PLAY );
+            CCLOG( "%i", stageTag );
+            //button->setEnabled( false );
+            button->setTouchEnabled( false );
+            button->setBright( false );
+            /*mPlayer = ADX2Player::create( "Basic.acb", "Basic.awb" );
+            mPlayer->play( 4, SoundType::BGM);
+            mPlayer->retain();*/
+            //SceneSwitcher::change( SceneType::PLAY );
         }
     });
     
     button->setPressedActionEnabled( true );
     
     return button;
+}
+
+//ラベル
+Label* StageSelectLayOut::createLabel( std::string number, const std::string& font, float fontSize, const Vec2& fontPos ){
+    
+    Label* numLabel = Label::createWithSystemFont( number, font, fontSize );
+    numLabel->setPosition( fontPos );
+    
+    return numLabel;
 }
 
 PageView* StageSelectLayOut::createPage( int pageNum ){
@@ -85,11 +100,41 @@ PageView* StageSelectLayOut::createPage( int pageNum ){
     PageView* page = PageView::create();
     page->setContentSize( Size( SCREEN_SIZE.width / 1.5f , SCREEN_SIZE.height ) );
     page->setPosition( ( SCREEN_SIZE - page->getContentSize() ) / 2.0f );
+    //スクロールをできなくする
+    //page->setEnabled( false );
     
     Layout* layout = nullptr;
+    std::string nomalFilePath[] = {
+        
+        "Texture/Debug/button.png", "Texture/Debug/button.png", "Texture/Debug/button.png",
+        "Texture/Debug/button.png", "Texture/Debug/button.png", "Texture/Debug/button.png",
+        "Texture/Debug/button.png", "Texture/Debug/button.png", "Texture/Debug/button.png",
+    };
+    
+    std::string pressedFilePath [] = {
+        
+        "Texture/Debug/Circle_Purple.png", "Texture/Debug/Circle_Purple.png", "Texture/Debug/Circle_Purple.png",
+        "Texture/Debug/Circle_Purple.png", "Texture/Debug/Circle_Purple.png", "Texture/Debug/Circle_Purple.png",
+        "Texture/Debug/Circle_Purple.png", "Texture/Debug/Circle_Purple.png", "Texture/Debug/Circle_Purple.png",
+    };
+    
+    std::string disFilePath [] = {
+        
+        "Texture/Debug/Circle_Blue.png", "Texture/Debug/Circle_Blue.png", "Texture/Debug/Circle_Blue.png",
+        "Texture/Debug/Circle_Blue.png", "Texture/Debug/Circle_Blue.png", "Texture/Debug/Circle_Blue.png",
+        "Texture/Debug/Circle_Blue.png", "Texture/Debug/Circle_Blue.png", "Texture/Debug/Circle_Blue.png",
+    };
+    
+    Vec2 poses[] = {
+        Vec2( 100, 950 ), Vec2( 250, 950 ), Vec2( 400, 950 ),
+        Vec2( 100, 800 ), Vec2( 250, 800 ), Vec2( 400, 800 ),
+        Vec2( 100, 650 ), Vec2( 250, 650 ), Vec2( 400, 650 ),
+        
+    };
+    
+    int stageNum = 1;
     
     for ( int i = 0; i < pageNum; ++i ){
-        
         //レイアウト作成
         layout = Layout::create();
         layout->setContentSize( page->getContentSize() );
@@ -100,38 +145,17 @@ PageView* StageSelectLayOut::createPage( int pageNum ){
         layout->addChild( image );
         page->insertPage( layout, i );
         
-        std::string nomalFilePath[] = {
+        for ( int j = 0; j < 9; ++j ){
             
-            "Texture/Debug/button.png", "Texture/Debug/button.png", "Texture/Debug/button.png",
-            "Texture/Debug/button.png", "Texture/Debug/button.png", "Texture/Debug/button.png",
-            "Texture/Debug/button.png", "Texture/Debug/button.png", "Texture/Debug/button.png",
-        };
-        
-        std::string pressedFilePath [] = {
-            
-            "Texture/Debug/button.png", "Texture/Debug/button.png", "Texture/Debug/button.png",
-            "Texture/Debug/button.png", "Texture/Debug/button.png", "Texture/Debug/button.png",
-            "Texture/Debug/button.png", "Texture/Debug/button.png", "Texture/Debug/button.png",
-        };
-        
-        Vec2 poses[] = {
-            Vec2( 100, 950 ), Vec2( 250, 950 ), Vec2( 400, 950 ),
-            Vec2( 100, 800 ), Vec2( 250, 800 ), Vec2( 400, 800 ),
-            Vec2( 100, 650 ), Vec2( 250, 650 ), Vec2( 400, 650 ),
-            
-        };
-        
-        for (int i = 0; i < 9; ++i){
-            
-            Button* button = createButton( nomalFilePath[i] , pressedFilePath[i], i);
-            button->setPosition( poses[i] );
-            //button->setEnabled( false );
+            Button* button = createButton( nomalFilePath[j] , pressedFilePath[j], disFilePath[j],stageNum );
+            Label* label = createLabel( StringUtils::toString( stageNum ), "Font/arial.ttf", 32, button->getPosition() + ( button->getContentSize() / 2 ) );
+            stageNum++;
+            button->setPosition( poses[j] );
+            button->addChild( label );
             layout->addChild( button );
+            
         }
-
     }
-    
-    
     
     return page;
 }
