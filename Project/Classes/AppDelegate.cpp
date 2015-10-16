@@ -1,7 +1,6 @@
 #include "AppDelegate.h"
 #include "Utility/Audio/ADX2Manager.h"
-#include "Utility/Assistant/SceneCreator.h"
-#include "Debug/TestArea.h"
+#include "Utility/Assistant/SceneSwitcher.h"
 #include "GameMain/GamePlay/DebugLayer.h"
 #include "GameMain/GameTitle/GameTitleLayer.h"
 
@@ -34,23 +33,19 @@ bool AppDelegate::applicationDidFinishLaunching()
 	
 	ADX2Manager::getInstance().init( "ADX2_samples.acf" );
 	
-	Scene* scene = nullptr;
-	
 // iOS Simulator.
 #ifdef DEBUG_HOSHI
-	scene = SceneCreator::createScene( TestArea::create() );
+	SceneSwitcher::change( SceneType::PLAY );
 #elif DEBUG_TOSHIKAWA
-	scene = SceneCreator::createPhysicsScene( DebugLayer::create(), Vect( 0, -6.0f ), false, 6.0f );
+	SceneSwitcher::change( SceneType::PLAY );
 #elif DEBUG_SATOU
-	scene = SceneCreator::createScene( GameTitleLayer::create() );
+	SceneSwitcher::change( SceneType::TITLE );
 #endif
 	
 // Android.
 #if ( CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID )
-	scene = SceneCreator::createScene( GameTitleLayer::create() );
+	SceneSwitcher::change( SceneType::TITLE );
 #endif
-	
-	director->runWithScene( scene );
 	
 	return true;
 }
