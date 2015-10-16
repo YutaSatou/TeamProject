@@ -62,7 +62,7 @@ void Wall::initPhysics( const Vec2& start, const Vec2& end )
 	// ボディの設定をする。
 	setupPhysicsBody( body );
 	
-	// ボディに追加する。
+	// 自身にボディを設定する。
 	setPhysicsBody( body );
 }
 

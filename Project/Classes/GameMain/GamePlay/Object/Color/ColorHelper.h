@@ -1,8 +1,12 @@
 #ifndef _COLOR_HELPER_H_
 #define _COLOR_HELPER_H_
 
-#include "cocos2d.h"
-#include "BlendColor.h"
+#include "ColorCMY.h"
+
+namespace cocos2d
+{
+	class Node;
+}
 
 /*------------------------------------------------------------*/
 //	@class		：	ColorHelper
@@ -15,21 +19,31 @@ class ColorHelper
 public:
 	
 	/**
+	 *	@brief	コンストラクタ
+	 */
+	ColorHelper() = default;
+	
+	/**
+	 *	@brief	デストラクタ
+	 */
+	~ColorHelper() = default;
+	
+	/**
 	 *	@brief	合成色の取得
 	 *	@param	node			ノード
 	 *	@param	contactNode		接触したノード
-	 *	@return	Color3B			合成色
+	 *	@return	ColorCMY		合成色
 	 */
-	cocos2d::Color3B getBlendColor( cocos2d::Node* node, cocos2d::Node* contactNode ) const;
+	ColorCMY getBlendColor( cocos2d::Node* node, cocos2d::Node* contactNode ) const;
 	
 private:
 	
 	/**
 	 *	@brief	合成色の抽出
-	 *	@param	node		ユーザオブジェクトが設定されているノード
-	 *	@return	BlendColor	ユーザオブジェクトから抽出した合成色
+	 *	@param	node		ユーザデータが設定されているノード
+	 *	@return	ColorCMY	ユーザデータから抽出した合成色
 	 */
-	BlendColor* extractBlendColor( cocos2d::Node* node ) const;
+	ColorCMY* extractBlendColor( cocos2d::Node* node ) const;
 };
 
 #endif

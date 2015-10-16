@@ -4,6 +4,9 @@
 #include "cocos2d.h"
 #include "../Data/ObjectData.h"
 
+class ColorCMY;
+class ColorMixer;
+
 /*------------------------------------------------------------*/
 //	@class		：	Player
 //	@brief		：	プレイヤ
@@ -53,9 +56,18 @@ private:
 	 */
 	void initPhysics();
 	
+	/**
+	 *	@brief	色の更新
+	 *	@param	blendColor	合成色
+	 */
+	void updateColor( const ColorCMY& blendColor );
+	
 private:
 	
+	using ColorMixerPtr = std::shared_ptr< ColorMixer >;
+	
 	ObjectData::Ptr	mObjectData;	//=> オブジェクトデータ
+	ColorMixerPtr	mColorMixer;	//=> 色合成者
 };
 
 #endif

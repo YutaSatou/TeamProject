@@ -21,9 +21,11 @@ bool DebugLayer::init()
 	
 	ContactListener* contactListener = ContactListener::create();
 	
-	auto playerData	= std::make_shared< ObjectData >( Color3B::WHITE,	"Texture/Debug/Circle_White.png",	Vec2( 480.0f, 1200.0f ), PhysicsMaterial( 0.6f, 0.2f, 0.7f ) );
-	auto slimeData1	= std::make_shared< ObjectData >( Color3B::RED,		"Texture/Debug/Circle_Red.png",		Vec2( 200.0f,  200.0f ), PhysicsMaterial( 0.6f, 0.4f, 0.6f ) );
-	auto slimeData2	= std::make_shared< ObjectData >( Color3B::BLUE,	"Texture/Debug/Circle_Blue.png",	Vec2( 310.0f,  390.0f ), PhysicsMaterial( 0.6f, 0.4f, 0.6f ) );
+	const auto texName = "Texture/Debug/Circle_White.png";
+	
+	auto playerData	= std::make_shared< ObjectData >( texName, Color3B::WHITE,	Vec2( 480.0f, 1200.0f ), PhysicsMaterial( 0.6f, 0.2f, 0.7f ) );
+	auto slimeData1	= std::make_shared< ObjectData >( texName, Color3B::BLUE,	Vec2( 480.0f,  200.0f ), PhysicsMaterial( 0.6f, 0.4f, 0.6f ) );
+	auto slimeData2	= std::make_shared< ObjectData >( texName, Color3B::RED,	Vec2( 480.0f,  390.0f ), PhysicsMaterial( 0.6f, 0.4f, 0.6f ) );
 	
 	WallManager*	wallManager	= WallManager::create();
 	Player*			player		= Player::create( playerData );

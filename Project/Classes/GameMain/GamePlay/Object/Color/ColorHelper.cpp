@@ -1,29 +1,30 @@
 #include "ColorHelper.h"
+#include "cocos2d.h"
 
 using namespace cocos2d;
 
 // 合成色の取得
-Color3B ColorHelper::getBlendColor( Node* node, Node* contactNode ) const
+ColorCMY ColorHelper::getBlendColor( Node* node, Node* contactNode ) const
 {
 	// ユーザオブジェクトから合成色を抽出する。
-	const BlendColor* blendColor		= extractBlendColor( node );
-	const BlendColor* contactBlendColor	= extractBlendColor( contactNode );
+	ColorCMY* blendColor		= extractBlendColor( node );
+	ColorCMY* contactBlendColor	= extractBlendColor( contactNode );
 	
-	if ( !contactBlendColor )
+	if ( !blendColor )
 	{
 		// 両方のノードに合成色が設定されていない場合は即死する。
-		assert( blendColor && "両方のオブジェクトで合成色が設定されていません。" );
+		assert( contactBlendColor && "両方のオブジェクトで合成色が設定されていません。" );
 		
-		// 接触したノードに合成色が設定されていない場合は、ノードの合成色を使用する。
-		contactBlendColor = blendColor;
+		// ノードに合成色が設定されていない場合は、接触したノードの合成色を使用する。
+		return *contactBlendColor;
 	}
 	
 	// 合成色を返却する。
-	return contactBlendColor->color;
+	return *blendColor;
 }
 
 // 合成色の抽出
-BlendColor* ColorHelper::extractBlendColor( Node* node ) const
+ColorCMY* ColorHelper::extractBlendColor( Node* node ) const
 {
-	return static_cast< BlendColor* >( node->getUserObject() );
+	return static_cast< ColorCMY* >( node->getUserData() );
 }

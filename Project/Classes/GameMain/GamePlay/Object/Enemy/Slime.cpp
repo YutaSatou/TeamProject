@@ -3,6 +3,14 @@
 
 using namespace cocos2d;
 
+namespace
+{
+	ContactSettlor::OtherCategory otherCategory =
+	{
+		ContactCategory::WALL_UP, ContactCategory::WALL_DOWN, ContactCategory::WALL_LEFT, ContactCategory::WALL_RIGHT
+	};
+}
+
 // コンストラクタ
 Slime::Slime()
 	: mObjectData( nullptr )
@@ -20,10 +28,11 @@ bool Slime::init( ObjectData::Ptr objectData, const std::string& nodeName )
 	
 	// オブジェクトデータを登録する。
 	mObjectData = objectData;
-	setUserObject( mObjectData->blendColor );
+	setUserData( &mObjectData->blendColor );
 	
 	// 各パラメータを設定する。
 	setName( nodeName );
+	setColor( mObjectData->textureColor );
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setPosition( objectData->position );
 	
@@ -79,7 +88,7 @@ void Slime::initPhysics()
 	// カテゴリの設定、衝突の有効化、接触の有効化、コールバックの登録を行う。
 	ContactSettlor contactSettlor( body );
 	contactSettlor.setupCategory( ContactCategory::SLIME );
-	contactSettlor.enableCustomCollision( { ContactCategory::WALL_UP, ContactCategory::WALL_DOWN, ContactCategory::WALL_LEFT, ContactCategory::WALL_RIGHT } );
+	contactSettlor.enableCustomCollision( otherCategory );
 	contactSettlor.enableCustomContact( { ContactCategory::PLAYER } );
 	contactSettlor.enableContactCallback( getName(), callback );
 	

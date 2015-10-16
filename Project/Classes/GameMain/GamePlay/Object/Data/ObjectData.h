@@ -2,7 +2,7 @@
 #define _OBJECT_DATA_H_
 
 #include "cocos2d.h"
-#include "../Color/BlendColor.h"
+#include "../Color/ColorCMY.h"
 
 /*------------------------------------------------------------*/
 //	@struct		：	ObjectData
@@ -13,8 +13,9 @@ struct ObjectData
 {
 	using Ptr = std::shared_ptr< ObjectData >;
 	
-	BlendColor*					blendColor;		//=> 合成色
+	ColorCMY					blendColor;		//=> 合成色
 	std::string					textureName;	//=> テクスチャの名前
+	cocos2d::Color3B			textureColor;	//=> テクスチャの色
 	cocos2d::Vec2				position;		//=> 座標
 	cocos2d::PhysicsMaterial	material;		//=> 物理特性
 	
@@ -22,30 +23,32 @@ struct ObjectData
 	 *	@brief	コンストラクタ
 	 */
 	ObjectData()
-		: blendColor( BlendColor::create( cocos2d::Color3B::WHITE ) )
+		: blendColor( ColorCMY::WHITE )
 		, textureName( "" )
+		, textureColor( cocos2d::Color3B::WHITE )
 		, position( cocos2d::Vec2::ZERO )
-		, material()
+		, material( cocos2d::PHYSICSBODY_MATERIAL_DEFAULT )
 	{
 		
 	}
 	
 	/**
 	 *	@brief	コンストラクタ
-	 *	@param	_color			合成色
 	 *	@param	_textureName	テクスチャの名前
+	 *	@param	_textureColor	テクスチャの色
 	 *	@param	_position		座標
 	 *	@param	_material		物理特性
 	 */
 	ObjectData
 	(
-		const cocos2d::Color3B&			_color,
 		const std::string&				_textureName,
+		const cocos2d::Color3B&			_textureColor,
 		const cocos2d::Vec2&			_position,
 		const cocos2d::PhysicsMaterial&	_material
 	)
-		: blendColor( BlendColor::create( _color ) )
+		: blendColor( ColorCMY::convertToCMY( _textureColor ) )
 		, textureName( _textureName )
+		, textureColor( _textureColor )
 		, position( _position )
 		, material( _material )
 	{

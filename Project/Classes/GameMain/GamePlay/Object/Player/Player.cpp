@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "../Color/ColorMixer.h"
 #include "../Collision/ContactSettlor.h"
 
 using namespace cocos2d;
@@ -6,6 +7,7 @@ using namespace cocos2d;
 // コンストラクタ
 Player::Player()
 	: mObjectData( nullptr )
+	, mColorMixer( std::make_shared< ColorMixer >() )
 {
 	
 }
@@ -20,7 +22,7 @@ bool Player::init( ObjectData::Ptr objectData )
 	
 	// オブジェクトデータを登録する。
 	mObjectData = objectData;
-	setUserObject( mObjectData->blendColor );
+	setUserData( &mObjectData->blendColor );
 	
 	// 各パラメータを設定する。
 	setName( "Player" );
@@ -51,7 +53,9 @@ Player* Player::create( ObjectData::Ptr objectData )
 // 接触時に呼ばれるコールバック関数
 void Player::onContactBegin( Node* contactNode )
 {
+	ColorCMY blendColor = mColorMixer->blend( this, contactNode, 1.4f );
 	
+	updateColor( blendColor );
 }
 
 // 物理構造の初期化
@@ -77,4 +81,15 @@ void Player::initPhysics()
 	
 	// 自身にボディを設定する。
 	setPhysicsBody( body );
+}
+
+// 色の更新
+void Player::updateColor( const ColorCMY& blendColor )
+{
+	// 色情報を更新する。
+	mObjectData->blendColor		= blendColor;
+	mObjectData->textureColor	= ColorCMY::convertToRGB( blendColor );
+	
+	// テクスチャの色を変更する。
+	setColor( mObjectData->textureColor );
 }
