@@ -18,7 +18,7 @@ GameStageSelectLayer::GameStageSelectLayer(){
 
 GameStageSelectLayer::~GameStageSelectLayer(){
     
-    mPlayer->release();
+    //CC_SAFE_RELEASE( mPlayer );
 }
 
 bool GameStageSelectLayer::init()
@@ -35,9 +35,9 @@ bool GameStageSelectLayer::init()
     //仮
     auto a  =CallFunc::create( [this](){
     
-        mPlayer = ADX2Player::create( "Basic.acb", "Basic.awb" );
-        mPlayer->play( 3, SoundType::BGM);
-        mPlayer->retain();
+        //mPlayer = ADX2Player::create( "Audio/StageSelect.acb" );
+        //mPlayer->play( 0, SoundType::BGM);
+        //CC_SAFE_RETAIN( mPlayer );
     } );
     auto b = DelayTime::create( 1.0f );
     auto s = Sequence::create( b, a, nullptr );
@@ -48,9 +48,9 @@ bool GameStageSelectLayer::init()
     drawBackGraund();
     drawStageSelectLogo();
     
-    PageView* page = StageSelectLayOut::createPage( 2 );
-    addChild( page );
+    StageSelectLayOut* stage = StageSelectLayOut::create();
     
+    addChild( stage );
     
     scheduleUpdate();
     
