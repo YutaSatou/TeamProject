@@ -15,6 +15,10 @@
 
 class StageSelectLayOut : public cocos2d::Layer{
     
+private:
+    
+    ADX2Player* mPlayer;
+    
 protected:
     
     StageSelectLayOut();
@@ -25,29 +29,28 @@ protected:
     
     bool init();
     
-public:
-    
-    static StageSelectLayOut* create();
+private:
     
     /**
      *	@brief	ボタン作成
      *	@param	offButton   ボタンのテクスチャ
      *	@param	onButton    ボタンが押された時のテクスチャ
-      *	@param  stageTag    ステージの番号
+     *	@param  stageTag    ステージの番号
      */
-    static cocos2d::ui::Button* createButton( const std::string& offButton, const std::string& onButton, const std::string& disButton, int stageTag);
+    cocos2d::ui::Button* createButton( const std::string& offButton, const std::string& onButton, const std::string& disButton, int stageTag);
     
-    static cocos2d::Label* createLabel( std::string number,const std::string& font, float fontSize,const cocos2d::Vec2& fontPos );
+    cocos2d::Label* createLabel( std::string number,const std::string& font, float fontSize,const cocos2d::Vec2& fontPos );
+    
+public:
+    
+    static StageSelectLayOut* create();
     
     /**
      *	@brief	ページ作成
      *	@param	pageNum   作成するページ数
      */
-    static cocos2d::ui::PageView* createPage( int pageNum );
+    void createPage(cocos2d::Node* node, int pageNum );
     
-private:
-    
-    //ADX2Player* mPlayer;
 };
 
 #endif /* defined(__TeamProject__StageSelectLayOut__) */
