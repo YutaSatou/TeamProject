@@ -40,9 +40,7 @@ ColorCMY::ColorCMY( const Color3B& colorRGB )
 Color3B ColorCMY::convertToRGB( const ColorCMY& colorCMY )
 {
 	float r, g, b;
-	
 	std::tie( r, g, b ) = convertColor( colorCMY.c, colorCMY.m, colorCMY.y );
-	
 	return Color3B( r, g, b );
 }
 
@@ -50,9 +48,7 @@ Color3B ColorCMY::convertToRGB( const ColorCMY& colorCMY )
 ColorCMY ColorCMY::convertToCMY( const Color3B& colorRGB )
 {
 	float c, m, y;
-	
 	std::tie( c, m, y ) = convertColor( colorRGB.r, colorRGB.g, colorRGB.b );
-	
 	return ColorCMY( c, m, y );
 }
 

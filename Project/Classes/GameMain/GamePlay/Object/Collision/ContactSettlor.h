@@ -1,6 +1,7 @@
 #ifndef _CONTACT_SETTLOR_H_
 #define _CONTACT_SETTLOR_H_
 
+#include "Utility/Template/SmartPtr.h"
 #include "ContactCategory.h"
 #include "ContactCallback.h"
 
@@ -38,23 +39,11 @@ public:
 	
 	/**
 	 *	@brief	衝突の有効化
-	 *			全てのカテゴリと衝突が有効になる。
-	 */
-	void enableCollision();
-	
-	/**
-	 *	@brief	衝突の有効化
 	 *			引数のベクタに追加したカテゴリのみ、衝突が有効になる。
 	 *			追加していないカテゴリとの衝突は無効となり、すり抜ける。
 	 *	@param	otherCategory	衝突するカテゴリ
 	 */
-	void enableCustomCollision( OtherCategory otherCategory );
-	
-	/**
-	 *	@brief	接触の有効化
-	 *			全てのカテゴリと接触が有効になる。
-	 */
-	void enableContact();
+	void enableCollision( OtherCategory otherCategory = { ContactCategory::ALL_CATEGORY } );
 	
 	/**
 	 *	@brief	接触の有効化
@@ -62,14 +51,14 @@ public:
 	 *			追加していないカテゴリとの接触は無効となり、コールバックは発信されない。
 	 *	@param	otherCategory	接触するカテゴリ
 	 */
-	void enableCustomContact( OtherCategory otherCategory );
+	void enableContact( OtherCategory otherCategory = { ContactCategory::ALL_CATEGORY } );
 	
 	/**
 	 *	@brief	接触コールバックの有効化
 	 *	@param	nodeName	ノードの名前
 	 *	@param	callback	コールバック
 	 */
-	void enableContactCallback( const std::string& nodeName, ContactCallback::Ptr callback );
+	void enableContactCallback( const std::string& nodeName, SharedPtr< ContactCallback > callback );
 	
 	/**
 	 *	@brief	接触コールバックの無効化
@@ -94,7 +83,6 @@ private:
 	
 	/**
 	 *	@brief	カテゴリからint型への変換
-	 *			C++11仕様のenumは暗黙的に変換してくれない為。
 	 *	@param	category	変換するカテゴリ
 	 *	@return	int			変換した値
 	 */

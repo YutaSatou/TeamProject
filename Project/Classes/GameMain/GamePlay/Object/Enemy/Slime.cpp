@@ -89,8 +89,8 @@ void Slime::initPhysics()
 	// カテゴリの設定、衝突の有効化、接触の有効化、コールバックの登録を行う。
 	ContactSettlor contactSettlor( body );
 	contactSettlor.setupCategory( ContactCategory::SLIME );
-	contactSettlor.enableCustomCollision( otherCategory );
-	contactSettlor.enableCustomContact( { ContactCategory::PLAYER } );
+	contactSettlor.enableCollision( otherCategory );
+	contactSettlor.enableContact( { ContactCategory::PLAYER } );
 	contactSettlor.enableContactCallback( getName(), callback );
 	
 	// 自身にボディを設定する。

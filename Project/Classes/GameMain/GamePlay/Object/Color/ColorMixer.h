@@ -1,8 +1,8 @@
 #ifndef _COLOR_MIXER_H_
 #define _COLOR_MIXER_H_
 
+#include "Utility/Template/SmartPtr.h"
 #include "ColorCMY.h"
-#include <memory>
 
 namespace cocos2d
 {
@@ -60,9 +60,7 @@ private:
 	
 private:
 	
-	using ColorHelperPtr = std::shared_ptr< ColorHelper >;
-	
-	ColorHelperPtr mColorHelper; //=> 合成色の補助
+	SharedPtr< ColorHelper > mColorHelper;	//=> 合成色の補助
 };
 
 #endif

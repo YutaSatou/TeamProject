@@ -1,8 +1,10 @@
 #ifndef _CONTACT_SENDER_H_
 #define _CONTACT_SENDER_H_
 
+#include "Utility/Template/SmartPtr.h"
 #include "ContactFuncTag.h"
-#include "ContactCallback.h"
+
+class ContactCallback;
 
 /*------------------------------------------------------------*/
 //	@class		：	ContactSender
@@ -14,7 +16,7 @@ class ContactSender
 	
 private:
 	
-	using CallbackContainer = std::map< std::string, ContactCallback::Ptr >;
+	using CallbackContainer = std::map< std::string, SharedPtr< ContactCallback > >;
 	
 public:
 	

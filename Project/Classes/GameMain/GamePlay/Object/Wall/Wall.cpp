@@ -73,5 +73,5 @@ void Wall::setupPhysicsBody( PhysicsBody* body )
 	ContactSettlor contactSettlor( body );
 	contactSettlor.setupCategory( mCategory );
 	contactSettlor.enableCollision();
-	contactSettlor.enableCustomContact( { ContactCategory::PLAYER } );
+	contactSettlor.enableContact( { ContactCategory::PLAYER } );
 }

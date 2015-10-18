@@ -1,4 +1,5 @@
 #include "ContactSender.h"
+#include "ContactCallback.h"
 
 using namespace cocos2d;
 

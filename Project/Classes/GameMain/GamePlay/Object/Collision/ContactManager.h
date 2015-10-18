@@ -2,9 +2,11 @@
 #define _CONTACT_MANAGER_H_
 
 #include "Utility/Template/Singleton.h"
+#include "Utility/Template/SmartPtr.h"
 #include "ContactFuncTag.h"
-#include "ContactCallback.h"
 #include "ContactSender.h"
+
+class ContactCallback;
 
 /*------------------------------------------------------------*/
 //	@class		：	ContactManager
@@ -16,7 +18,7 @@ class ContactManager : public Singleton< ContactManager >
 	
 private:
 	
-	using CallbackContainer = std::map< std::string, ContactCallback::Ptr >;
+	using CallbackContainer = std::map< std::string, SharedPtr< ContactCallback > >;
 	
 public:
 	
@@ -37,7 +39,7 @@ public:
 	 *	@param	nodeName	ノードの名前
 	 *	@param	callback	追加するコールバック
 	 */
-	void addCallback( const std::string& nodeName, ContactCallback::Ptr callback );
+	void addCallback( const std::string& nodeName, SharedPtr< ContactCallback > callback );
 	
 	/**
 	 *	@brief	コールバックの削除

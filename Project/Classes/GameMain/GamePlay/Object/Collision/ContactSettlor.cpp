@@ -21,16 +21,7 @@ void ContactSettlor::setupCategory( ContactCategory category )
 }
 
 // 衝突の有効化
-void ContactSettlor::enableCollision()
-{
-	int bitmask = intCast( ContactCategory::ALL_CATEGORY );
-	
-	mTargetBody->setCollisionBitmask( bitmask );
-	eachShapeVector( [ &bitmask ]( PhysicsShape* shape ) { shape->setCollisionBitmask( bitmask ); } );
-}
-
-// 衝突の有効化
-void ContactSettlor::enableCustomCollision( OtherCategory otherCategory )
+void ContactSettlor::enableCollision( OtherCategory otherCategory )
 {
 	int bitmask = getBitmask( otherCategory );
 	
@@ -39,16 +30,7 @@ void ContactSettlor::enableCustomCollision( OtherCategory otherCategory )
 }
 
 // 接触の有効化
-void ContactSettlor::enableContact()
-{
-	int bitmask = intCast( ContactCategory::ALL_CATEGORY );
-	
-	mTargetBody->setContactTestBitmask( bitmask );
-	eachShapeVector( [ &bitmask ]( PhysicsShape* shape ) { shape->setContactTestBitmask( bitmask ); } );
-}
-
-// 接触の有効化
-void ContactSettlor::enableCustomContact( OtherCategory otherCategory )
+void ContactSettlor::enableContact( OtherCategory otherCategory )
 {
 	int bitmask = getBitmask( otherCategory );
 	
@@ -57,7 +39,7 @@ void ContactSettlor::enableCustomContact( OtherCategory otherCategory )
 }
 
 // 接触コールバックの有効化
-void ContactSettlor::enableContactCallback( const std::string& nodeName, ContactCallback::Ptr callback )
+void ContactSettlor::enableContactCallback( const std::string& nodeName, SharedPtr< ContactCallback > callback )
 {
 	auto isNotEmpty	= !nodeName.empty();
 	auto errMessage	= "ノードに名前が設定されていません。接触用コールバックを受け取りたい場合は、ノードに名前を設定する必要があります。";

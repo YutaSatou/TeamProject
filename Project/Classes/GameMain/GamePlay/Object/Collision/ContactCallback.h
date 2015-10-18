@@ -10,8 +10,7 @@
 /*------------------------------------------------------------*/
 struct ContactCallback
 {
-	using Ptr				= std::shared_ptr< ContactCallback >;
-	using CallbackFunction	= std::function< void( cocos2d::Node* ) >;
+	using CallbackFunction = std::function< void( cocos2d::Node* ) >;
 	
 	CallbackFunction	onContactBegin;		//=> 接触時に呼ばれるコールバック関数
 	CallbackFunction	onContactPreSolve;	//=> 接触中に呼ばれるコールバック関数

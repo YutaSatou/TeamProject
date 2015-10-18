@@ -1,4 +1,5 @@
 #include "ContactManager.h"
+#include "ContactCallback.h"
 
 using namespace cocos2d;
 
@@ -22,7 +23,7 @@ void ContactManager::onContactEvent( ContactFuncTag funcTag, PhysicsContact& con
 }
 
 // コールバックの追加
-void ContactManager::addCallback( const std::string& nodeName, ContactCallback::Ptr callback )
+void ContactManager::addCallback( const std::string& nodeName, SharedPtr< ContactCallback > callback )
 {
 	mCallbackContainer[ nodeName ] = callback;
 }
