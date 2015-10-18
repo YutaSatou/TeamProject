@@ -20,9 +20,9 @@ void BrushBody::pushShape( const Vec2& start, const Vec2& end, float lineSize )
 {
 	// 物理特性( 密度, 反発係数, 摩擦係数 )を用意する。
 	PhysicsMaterial material;
-	material.density		= 0.3f;
-	material.restitution	= 0.8f;
-	material.friction		= 0.6f;
+	material.density		= 0.2f;
+	material.restitution	= 0.2f;
+	material.friction		= 0.8f;
 	
 	// 線のシェイプを生成する。
 	PhysicsShape* edgeSegment = PhysicsShapeEdgeSegment::create( start, end, material, lineSize );

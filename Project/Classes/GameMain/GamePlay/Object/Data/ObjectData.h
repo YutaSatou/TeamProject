@@ -11,8 +11,6 @@
 /*------------------------------------------------------------*/
 struct ObjectData
 {
-	using Ptr = std::shared_ptr< ObjectData >;
-	
 	ColorCMY					blendColor;		//=> 合成色
 	std::string					textureName;	//=> テクスチャの名前
 	cocos2d::Color3B			textureColor;	//=> テクスチャの色

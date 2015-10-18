@@ -52,9 +52,9 @@ void Wall::initPhysics( const Vec2& start, const Vec2& end )
 {
 	// 物理特性( 密度, 反発係数, 摩擦係数 )を用意する。
 	PhysicsMaterial material;
-	material.density		= 0.5f;
-	material.restitution	= 0.5f;
-	material.friction		= 0.3f;
+	material.density		= 0.2f;
+	material.restitution	= 0.2f;
+	material.friction		= 1.0f;
 	
 	// ボディを生成する。
 	PhysicsBody* body = PhysicsBody::createEdgeSegment( start, end, material );

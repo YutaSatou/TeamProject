@@ -2,7 +2,9 @@
 #define _SLIME_H_
 
 #include "cocos2d.h"
-#include "../Data/ObjectData.h"
+#include "Utility/Template/SmartPtr.h"
+
+class ObjectData;
 
 /*------------------------------------------------------------*/
 //	@class		：	Slime
@@ -30,7 +32,7 @@ protected:
 	 *	@param	nodeName	ノードに設定する名前
 	 *	@return	bool		初期化が完了したか否か
 	 */
-	bool init( ObjectData::Ptr objectData, const std::string& nodeName );
+	bool init( SharedPtr< ObjectData > objectData, const std::string& nodeName );
 	
 public:
 	
@@ -40,7 +42,7 @@ public:
 	 *	@param	nodeName	ノードに設定する名前
 	 *	@return	Slime		インスタンス
 	 */
-	static Slime* create( ObjectData::Ptr objectData, const std::string& nodeName );
+	static Slime* create( SharedPtr< ObjectData > objectData, const std::string& nodeName );
 	
 	/**
 	 *	@brief	接触時に呼ばれるコールバック関数
@@ -57,7 +59,7 @@ private:
 	
 private:
 	
-	ObjectData::Ptr	mObjectData;	//=> オブジェクトデータ
+	SharedPtr< ObjectData > mObjectData;	//=> オブジェクトデータ
 };
 
 #endif

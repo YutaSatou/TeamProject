@@ -61,7 +61,7 @@ private:
 	
 private:
 	
-	ContactCategory	mCategory;	//=> カテゴリ
+	ContactCategory mCategory;	//=> カテゴリ
 };
 
 #endif

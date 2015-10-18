@@ -1,7 +1,9 @@
 #include "DebugLayer.h"
 #include "ui/CocosGUI.h"
+#include "Utility/Template/SmartPtr.h"
 #include "Utility/Assistant/SceneSwitcher.h"
 #include "Object/Collision/ContactListener.h"
+#include "Object/Data/ObjectData.h"
 #include "Object/Wall/WallManager.h"
 #include "Object/Player/Player.h"
 #include "Object/Enemy/Slime.h"
@@ -23,9 +25,9 @@ bool DebugLayer::init()
 	
 	const auto texName = "Texture/Debug/Circle_White.png";
 	
-	auto playerData	= std::make_shared< ObjectData >( texName, Color3B::WHITE,	Vec2( 480.0f, 1200.0f ), PhysicsMaterial( 0.6f, 0.2f, 0.7f ) );
-	auto slimeData1	= std::make_shared< ObjectData >( texName, Color3B::BLUE,	Vec2( 480.0f,  200.0f ), PhysicsMaterial( 0.6f, 0.4f, 0.6f ) );
-	auto slimeData2	= std::make_shared< ObjectData >( texName, Color3B::RED,	Vec2( 480.0f,  390.0f ), PhysicsMaterial( 0.6f, 0.4f, 0.6f ) );
+	auto playerData	= makeShared< ObjectData >( texName, Color3B::WHITE,	Vec2( 480.0f, 1200.0f ), PhysicsMaterial( 0.6f, 0.2f, 0.7f ) );
+	auto slimeData1	= makeShared< ObjectData >( texName, Color3B::BLUE,		Vec2( 480.0f,  200.0f ), PhysicsMaterial( 0.6f, 0.4f, 0.6f ) );
+	auto slimeData2	= makeShared< ObjectData >( texName, Color3B::RED,		Vec2( 480.0f,  390.0f ), PhysicsMaterial( 0.6f, 0.4f, 0.6f ) );
 	
 	WallManager*	wallManager	= WallManager::create();
 	Player*			player		= Player::create( playerData );

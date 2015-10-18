@@ -70,7 +70,7 @@ private:
 	
 private:
 	
-	BrushTrail*	mBrushTrail;	//=> ブラシの軌跡
+	BrushTrail* mBrushTrail;	//=> ブラシの軌跡
 };
 
 #endif

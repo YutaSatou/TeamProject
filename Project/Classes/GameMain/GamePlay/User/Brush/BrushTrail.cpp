@@ -5,7 +5,7 @@ using namespace cocos2d;
 
 // コンストラクタ
 BrushTrail::BrushTrail()
-	: mBrushBody( BrushBody() )
+	: mBrushBody()
 	, mPreviousTouchPoint( Vec2::ZERO )
 	, mShapeOffset( Vec2::ZERO )
 	, mCanvas( nullptr )
@@ -75,11 +75,9 @@ void BrushTrail::writeMove( Touch* touch )
 		// 軌跡の描画
 		drawTrail( touch, distance );
 		
-		// 前回のタッチ座標を現在のタッチ座標で更新する。
-		mPreviousTouchPoint = touchPoint;
-		
-		// オフセットに移動量を加算する。
-		mShapeOffset += delta;
+		// 各座標を更新する。
+		mPreviousTouchPoint	 = touchPoint;
+		mShapeOffset		+= delta;
 	}
 }
 

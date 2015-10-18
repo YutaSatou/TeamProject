@@ -1,5 +1,4 @@
 #include "WallManager.h"
-#include "../Collision/ContactCategory.h"
 #include "Wall.h"
 
 using namespace cocos2d;

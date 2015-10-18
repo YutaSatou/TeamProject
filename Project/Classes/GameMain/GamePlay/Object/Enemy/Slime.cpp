@@ -1,4 +1,5 @@
 #include "Slime.h"
+#include "../Data/ObjectData.h"
 #include "../Collision/ContactSettlor.h"
 
 using namespace cocos2d;
@@ -19,7 +20,7 @@ Slime::Slime()
 }
 
 // 初期化
-bool Slime::init( ObjectData::Ptr objectData, const std::string& nodeName )
+bool Slime::init( SharedPtr< ObjectData > objectData, const std::string& nodeName )
 {
 	if ( !Sprite::initWithFile( objectData->textureName ) )
 	{
@@ -43,7 +44,7 @@ bool Slime::init( ObjectData::Ptr objectData, const std::string& nodeName )
 }
 
 // インスタンスの生成
-Slime* Slime::create( ObjectData::Ptr objectData, const std::string& nodeName )
+Slime* Slime::create( SharedPtr< ObjectData > objectData, const std::string& nodeName )
 {
 	Slime* inst = new Slime();
 	
@@ -62,7 +63,7 @@ void Slime::onContactBegin( Node* contactNode )
 {
 	// 物理構造を無効にするアクション。
 	CallFunc* disableAction = CallFunc::create( [ this ]() { getPhysicsBody()->setEnable( false ); } );
-
+	
 	// オブジェクト死亡時のアクション。
 	ActionInterval* deadAction = Sequence::create( disableAction, Blink::create( 0.5f, 7 ), RemoveSelf::create(), nullptr );
 	
@@ -74,15 +75,15 @@ void Slime::onContactBegin( Node* contactNode )
 void Slime::initPhysics()
 {
 	// ボディの大きさを定義する。
-	const float bodySize = getContentSize().width / 2;
+	const float bodySize = getContentSize().width / 2.0f;
 	
-	// 動的なボディを生成する。( α版仕様で重力の影響を受けない。 )
+	// 動的なボディを生成する。
 	PhysicsBody* body = PhysicsBody::createCircle( bodySize, mObjectData->material );
 	body->setDynamic( true );
 	body->setGravityEnable( false );
 	
 	// 接触コールバックを設定する。
-	ContactCallback::Ptr callback = std::make_shared< ContactCallback >();
+	SharedPtr< ContactCallback > callback = makeShared< ContactCallback >();
 	callback->onContactBegin = CC_CALLBACK_1( Slime::onContactBegin, this );
 	
 	// カテゴリの設定、衝突の有効化、接触の有効化、コールバックの登録を行う。

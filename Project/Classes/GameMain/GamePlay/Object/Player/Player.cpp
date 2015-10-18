@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "../Data/ObjectData.h"
 #include "../Color/ColorMixer.h"
 #include "../Collision/ContactSettlor.h"
 
@@ -7,13 +8,13 @@ using namespace cocos2d;
 // コンストラクタ
 Player::Player()
 	: mObjectData( nullptr )
-	, mColorMixer( std::make_shared< ColorMixer >() )
+	, mColorMixer( makeShared< ColorMixer >() )
 {
 	
 }
 
 // 初期化
-bool Player::init( ObjectData::Ptr objectData )
+bool Player::init( SharedPtr< ObjectData > objectData )
 {
 	if ( !Sprite::initWithFile( objectData->textureName ) )
 	{
@@ -36,7 +37,7 @@ bool Player::init( ObjectData::Ptr objectData )
 }
 
 // インスタンスの生成
-Player* Player::create( ObjectData::Ptr objectData )
+Player* Player::create( SharedPtr< ObjectData > objectData )
 {
 	Player* inst = new Player();
 	
@@ -53,8 +54,10 @@ Player* Player::create( ObjectData::Ptr objectData )
 // 接触時に呼ばれるコールバック関数
 void Player::onContactBegin( Node* contactNode )
 {
+	// 自分と敵の色を合成する。
 	ColorCMY blendColor = mColorMixer->blend( this, contactNode, 1.4f );
 	
+	// 色を更新する。
 	updateColor( blendColor );
 }
 
@@ -62,14 +65,14 @@ void Player::onContactBegin( Node* contactNode )
 void Player::initPhysics()
 {
 	// ボディの大きさを定義する。
-	const float bodySize = getContentSize().width / 2;
+	const float bodySize = getContentSize().width / 2.0f;
 	
 	// 動的なボディを生成する。
 	PhysicsBody* body = PhysicsBody::createCircle( bodySize, mObjectData->material );
 	body->setDynamic( true );
 	
 	// 接触コールバックを設定する。
-	ContactCallback::Ptr callback = std::make_shared< ContactCallback >();
+	SharedPtr< ContactCallback > callback = makeShared< ContactCallback >();
 	callback->onContactBegin = CC_CALLBACK_1( Player::onContactBegin, this );
 	
 	// カテゴリの設定、衝突の有効化、接触の有効化、コールバックの登録を行う。

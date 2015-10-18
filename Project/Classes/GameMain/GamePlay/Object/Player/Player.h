@@ -2,8 +2,9 @@
 #define _PLAYER_H_
 
 #include "cocos2d.h"
-#include "../Data/ObjectData.h"
+#include "Utility/Template/SmartPtr.h"
 
+class ObjectData;
 class ColorCMY;
 class ColorMixer;
 
@@ -32,7 +33,7 @@ protected:
 	 *	@param	objectData	オブジェクトデータ
 	 *	@return	bool		初期化が完了したか否か
 	 */
-	bool init( ObjectData::Ptr objectData );
+	bool init( SharedPtr< ObjectData > objectData );
 	
 public:
 	
@@ -41,7 +42,7 @@ public:
 	 *	@param	objectData	オブジェクトデータ
 	 *	@return	Player		インスタンス
 	 */
-	static Player* create( ObjectData::Ptr objectData );
+	static Player* create( SharedPtr< ObjectData > objectData );
 	
 	/**
 	 *	@brief	接触時に呼ばれるコールバック関数
@@ -64,10 +65,8 @@ private:
 	
 private:
 	
-	using ColorMixerPtr = std::shared_ptr< ColorMixer >;
-	
-	ObjectData::Ptr	mObjectData;	//=> オブジェクトデータ
-	ColorMixerPtr	mColorMixer;	//=> 色合成者
+	SharedPtr< ObjectData >	mObjectData;	//=> オブジェクトデータ
+	SharedPtr< ColorMixer >	mColorMixer;	//=> 色合成者
 };
 
 #endif
