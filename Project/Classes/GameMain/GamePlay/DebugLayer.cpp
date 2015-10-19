@@ -23,7 +23,7 @@ bool DebugLayer::init()
 	
 	ContactListener* contactListener = ContactListener::create();
 	
-	const auto texName = "Texture/Debug/Circle_White.png";
+	const auto texName = "Texture/Debug/Player.png";
 	
 	auto playerData	= makeShared< ObjectData >( texName, Color3B::WHITE,	Vec2( 480.0f, 1200.0f ), PhysicsMaterial( 0.6f, 0.2f, 0.7f ) );
 	auto slimeData1	= makeShared< ObjectData >( texName, Color3B::BLUE,		Vec2( 480.0f,  200.0f ), PhysicsMaterial( 0.6f, 0.4f, 0.6f ) );

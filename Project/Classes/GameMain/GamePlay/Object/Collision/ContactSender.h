@@ -3,6 +3,14 @@
 
 #include "Utility/Template/SmartPtr.h"
 #include "ContactFuncTag.h"
+#include <map>
+#include <string>
+
+namespace cocos2d
+{
+	class Node;
+	class PhysicsContact;
+}
 
 class ContactCallback;
 
