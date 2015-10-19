@@ -18,7 +18,7 @@ GameStageSelectLayer::GameStageSelectLayer(){
 
 GameStageSelectLayer::~GameStageSelectLayer(){
     
-    //CC_SAFE_RELEASE( mPlayer );
+    CC_SAFE_RELEASE( mPlayer );
 }
 
 bool GameStageSelectLayer::init()
@@ -32,7 +32,13 @@ bool GameStageSelectLayer::init()
     SCREEN_SIZE = Director::getInstance()->getVisibleSize();
     ORIGIN_SIZE = Director::getInstance()->getVisibleOrigin();
     
+    /*
     //仮
+    mPlayer = ADX2Player::create( "Audio/StageSelect.acb" );
+    mPlayer->play( 0, SoundType::BGM);
+    //mPlayer = ADX2Player::create( "Audio/StageSelect.acb" );
+    //mPlayer->play( 0, SoundType::BGM);
+    //CC_SAFE_RETAIN( mPlayer );CC_SAFE_RETAIN( mPlayer );
     auto a  =CallFunc::create( [this](){
     
         //mPlayer = ADX2Player::create( "Audio/StageSelect.acb" );
@@ -41,8 +47,9 @@ bool GameStageSelectLayer::init()
     } );
     auto b = DelayTime::create( 1.0f );
     auto s = Sequence::create( b, a, nullptr );
+     */
     
-    runAction( s );
+    //runAction( s );
     //ここまで
     
     drawBackGraund();
@@ -55,6 +62,14 @@ bool GameStageSelectLayer::init()
     scheduleUpdate();
     
     return true;
+}
+
+void GameStageSelectLayer::onEnter()
+{
+    Layer::onEnter();
+    mPlayer = ADX2Player::create( "Audio/StageSelect.acb" );
+    mPlayer->play( 0, SoundType::BGM);
+    CC_SAFE_RETAIN( mPlayer );
 }
 
 void GameStageSelectLayer::update( float deltaTime )

@@ -8,6 +8,7 @@
 
 #include "StageSelectLayOut.h"
 #include "../../Utility/Assistant/SceneSwitcher.h"
+#include "../../Utility/FileO/StageData.h"
 
 using namespace cocos2d;
 using namespace ui;
@@ -23,7 +24,7 @@ StageSelectLayOut::StageSelectLayOut(){
 
 StageSelectLayOut::~StageSelectLayOut(){
     
-    CC_SAFE_RELEASE( mPlayer );
+    //CC_SAFE_RELEASE( mPlayer );
 }
 
 bool StageSelectLayOut::init(){
@@ -40,8 +41,8 @@ bool StageSelectLayOut::init(){
     //ボタンをした時の音
     auto a  =CallFunc::create( [this](){
         
-        mPlayer = ADX2Player::create("Audio/StageSelect.acb");
-        CC_SAFE_RETAIN( mPlayer );
+        //mPlayer = ADX2Player::create("Audio/StageSelect.acb");
+        //CC_SAFE_RETAIN( mPlayer );
 
     } );
     
@@ -106,8 +107,17 @@ void StageSelectLayOut::createPage( Node* node, int pageNum ){
     
     //ページビュー作成
     PageView* page = PageView::create();
-    page->setContentSize( Size( SCREEN_SIZE.width / 1.5f , SCREEN_SIZE.height ) );
+    page->setContentSize( Size( SCREEN_SIZE.width , SCREEN_SIZE.height ) );
     page->setPosition( ( SCREEN_SIZE - page->getContentSize() ) / 2.0f );
+    
+    //カーソル
+    /*ImageView* cursorImage = ImageView::create( "Texture/Debug/RightCursor.png" );
+    //cursorImage->setPosition( Vec2( 50, 800 ) );
+    cursorImage->setPosition( Vec2( 650, 800 ) );
+    ScaleTo* startScale = ScaleTo::create( 0.2f, 1.0f );
+    ScaleTo* endScale = ScaleTo::create( 0.2f, 0.5f );
+    cursorImage->runAction( RepeatForever::create( Sequence::create( startScale, endScale, NULL ) ) );
+    page->addChild( cursorImage );*/
     
     //通常時のボタンテクスチャのパス
     std::string nomalFilePath[] = {
@@ -133,9 +143,9 @@ void StageSelectLayOut::createPage( Node* node, int pageNum ){
     //ボタンの座標
     Vec2 poses[] = {
         
-        Vec2( 100, 950 ), Vec2( 250, 950 ), Vec2( 400, 950 ),
-        Vec2( 100, 800 ), Vec2( 250, 800 ), Vec2( 400, 800 ),
-        Vec2( 100, 650 ), Vec2( 250, 650 ), Vec2( 400, 650 ),
+        Vec2( 200, 950 ), Vec2( 350, 950 ), Vec2( 500, 950 ),
+        Vec2( 200, 800 ), Vec2( 350, 800 ), Vec2( 500, 800 ),
+        Vec2( 200, 650 ), Vec2( 350, 650 ), Vec2( 500, 650 ),
     };
     
     //ステージの番号
@@ -178,20 +188,33 @@ void StageSelectLayOut::createPage( Node* node, int pageNum ){
                     if ( pageType == Widget::TouchEventType::MOVED ){
                         
                         isMoved = true;
+                        
                     }
                     
                     //ページが動いていなかったら処理する
                     if ( buttonType == Widget::TouchEventType::ENDED && !isMoved ){
+                        //StageData sd;
+                        //auto a = sd.read( "Stage" + StringUtils::toString( stageNum - 1 ) + ".plist" );
                         //button->setEnabled( false );
                         //button->setTouchEnabled( false );
                         //button->setBright( false );
-                        mPlayer->play( 1, SoundType::SE );
+                        //mPlayer->play( 1, SoundType::SE );
                         SceneSwitcher::change( SceneType::PLAY );
                     }
                 });
             });
+            
+            page->addEventListenerPageView( this, pagevieweventselector( StageSelectLayOut::PageListener ) );
         }
         page->addPage(layout);
     }
     node->addChild( page );
+}
+
+void StageSelectLayOut::PageListener( Ref* sender, PageViewEventType type ){
+
+    if( type == PAGEVIEW_EVENT_TURNING ){
+        
+        CCLOG( "HASHIGOISIS" );
+    }
 }

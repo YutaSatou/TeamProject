@@ -3,6 +3,7 @@
 #include "../../Utility/Assistant/SceneSwitcher.h"
 #include "TitleSpriteRenderer.h"
 #include "../../Utility/Particle/EffectManager.h"
+#include "../../Utility/FileO/StageData.h"
 
 using namespace cocos2d;
 
@@ -18,7 +19,6 @@ GameTitleLayer::GameTitleLayer(){
 }
 
 GameTitleLayer::~GameTitleLayer(){
-    
     CC_SAFE_RELEASE( mPlayer );
 }
 
@@ -32,24 +32,19 @@ bool GameTitleLayer::init()
     SCREEN_SIZE = Director::getInstance()->getWinSize();
     ORIGIN_SIZE = Director::getInstance()->getVisibleOrigin();
     
-    mPlayer = ADX2Player::create( "Audio/Title.acb" );
-    mPlayer->play( 0, SoundType::BGM);
-    CC_SAFE_RETAIN( mPlayer );
-    
     touchListener();
     
     //背景
     Sprite* backGraund = TitleSpriteRenderer::createSprite( "Texture/Debug/backgraund.png", Vec2( SCREEN_SIZE.width / 2.0f /*+ ORIGIN_SIZE.x*/,
-                                                                                                  SCREEN_SIZE.height / 2.0f /*+ ORIGIN_SIZE.y */) );
+                                                                                                 SCREEN_SIZE.height / 2.0f /*+ ORIGIN_SIZE.y */) );
     
     //タイトルロゴ
     Sprite* titleLogo = TitleSpriteRenderer::createSprite( "Texture/Debug/title.png", Vec2( SCREEN_SIZE.width / 2.0f /*+ ORIGIN_SIZE.x*/,
-                                                                                                   SCREEN_SIZE.height / 2.0f /*+ ORIGIN_SIZE.y*/ ) );
+                                                                                           SCREEN_SIZE.height / 2.0f /*+ ORIGIN_SIZE.y*/ ) );
     
     //TouchStartロゴ
     /*Sprite* touchLogo = TitleSpriteRenderer::createSprite( "Texture/Debug/image_menu_normal.png", Vec2( SCREEN_SIZE.width / 2.0f + ORIGIN_SIZE.x,
                                                                                                         SCREEN_SIZE.height / 3.0f + ORIGIN_SIZE.y ) );*/
-
     
     addChild(backGraund);
     addChild(titleLogo);
@@ -63,6 +58,15 @@ bool GameTitleLayer::init()
 void GameTitleLayer::update( float deltaTime )
 {
     
+}
+
+void GameTitleLayer::onEnter()
+{
+    Layer::onEnter();
+    
+    mPlayer = ADX2Player::create( "Audio/Title.acb" );
+    mPlayer->play( 0, SoundType::BGM);
+    CC_SAFE_RETAIN( mPlayer );
 }
 
 GameTitleLayer* GameTitleLayer::create()

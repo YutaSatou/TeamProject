@@ -16,6 +16,8 @@ protected:
 	virtual bool init() override;
 	
 	virtual void update( float deltaTime ) override;
+    
+    virtual void onEnter() override;
 	
 public:
 	

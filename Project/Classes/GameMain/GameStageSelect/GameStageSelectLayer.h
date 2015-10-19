@@ -17,6 +17,8 @@ protected:
     
     virtual void update( float deltaTime ) override;
     
+    virtual void onEnter() override;
+    
 public:
     
     static GameStageSelectLayer* create();
