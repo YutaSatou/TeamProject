@@ -19,7 +19,7 @@ GameTitleLayer::GameTitleLayer(){
 
 GameTitleLayer::~GameTitleLayer(){
     
-    mPlayer->release();
+    CC_SAFE_RELEASE( mPlayer );
 }
 
 bool GameTitleLayer::init()
@@ -32,9 +32,9 @@ bool GameTitleLayer::init()
     SCREEN_SIZE = Director::getInstance()->getWinSize();
     ORIGIN_SIZE = Director::getInstance()->getVisibleOrigin();
     
-    mPlayer = ADX2Player::create( "Basic.acb", "Basic.awb" );
+    mPlayer = ADX2Player::create( "Audio/Title.acb" );
     mPlayer->play( 0, SoundType::BGM);
-    mPlayer->retain();
+    CC_SAFE_RETAIN( mPlayer );
     
     touchListener();
     
@@ -85,7 +85,8 @@ void GameTitleLayer::touchListener(){
     EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
     
     //タッチ開始
-    listener->onTouchBegan = [&](Touch* touch, Event* event){
+    listener->onTouchBegan = [ = ](Touch* touch, Event* event){
+        mPlayer->play( 1, SoundType::SE);
         return true;
     };
     
@@ -95,7 +96,7 @@ void GameTitleLayer::touchListener(){
     };
     
     //タッチ終了
-    listener->onTouchEnded = [](Touch* touch, Event* event){
+    listener->onTouchEnded = [ = ](Touch* touch, Event* event){
         
         SceneSwitcher::change( SceneType::STAGE_SELECT );
     };
