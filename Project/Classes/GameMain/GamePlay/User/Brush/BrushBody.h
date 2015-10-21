@@ -6,9 +6,9 @@
 
 namespace cocos2d
 {
+	class Vec2;
 	class PhysicsBody;
 	class PhysicsShape;
-	class Vec2;
 }
 
 /*------------------------------------------------------------*/

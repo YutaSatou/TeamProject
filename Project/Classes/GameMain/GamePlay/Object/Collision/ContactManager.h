@@ -5,8 +5,8 @@
 #include "Utility/Template/SmartPtr.h"
 #include "ContactFuncTag.h"
 #include "ContactSender.h"
-#include <map>
 #include <string>
+#include <map>
 
 namespace cocos2d
 {
