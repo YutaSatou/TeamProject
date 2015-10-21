@@ -40,15 +40,23 @@ bool GameTitleLayer::init()
     
     //タイトルロゴ
     Sprite* titleLogo = TitleSpriteRenderer::createSprite( "Texture/Debug/title.png", Vec2( SCREEN_SIZE.width / 2.0f /*+ ORIGIN_SIZE.x*/,
-                                                                                           SCREEN_SIZE.height / 2.0f /*+ ORIGIN_SIZE.y*/ ) );
+                                                                                           SCREEN_SIZE.height / 1.2f /*+ ORIGIN_SIZE.y*/ ) );
     
     //TouchStartロゴ
-    /*Sprite* touchLogo = TitleSpriteRenderer::createSprite( "Texture/Debug/image_menu_normal.png", Vec2( SCREEN_SIZE.width / 2.0f + ORIGIN_SIZE.x,
-                                                                                                        SCREEN_SIZE.height / 3.0f + ORIGIN_SIZE.y ) );*/
+    Sprite* touchLogo = Sprite::create( "Texture/Debug/TocuhStart.png" );
+    touchLogo->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 4.0f ) );
+    
+    ScaleTo* startScale = ScaleTo::create( 0.5f, 1.0f );
+    ScaleTo* endScale = ScaleTo::create( 0.5f, 0.5f );
+    titleLogo->runAction( RepeatForever::create( Sequence::create( startScale, endScale, NULL ) ) );
+    
+    ScaleTo* startTScale = ScaleTo::create( 1.0f, 1.0f );
+    ScaleTo* endTScale = ScaleTo::create( 1.0f, 0.5f );
+    touchLogo->runAction( RepeatForever::create( Sequence::create( startTScale, endTScale, NULL ) ) );
     
     addChild(backGraund);
     addChild(titleLogo);
-    //addChild(touchLogo);
+    addChild(touchLogo);
 	
 	scheduleUpdate();
 	

@@ -110,15 +110,6 @@ void StageSelectLayOut::createPage( Node* node, int pageNum ){
     page->setContentSize( Size( SCREEN_SIZE.width , SCREEN_SIZE.height ) );
     page->setPosition( ( SCREEN_SIZE - page->getContentSize() ) / 2.0f );
     
-    //カーソル
-    /*ImageView* cursorImage = ImageView::create( "Texture/Debug/RightCursor.png" );
-    //cursorImage->setPosition( Vec2( 50, 800 ) );
-    cursorImage->setPosition( Vec2( 650, 800 ) );
-    ScaleTo* startScale = ScaleTo::create( 0.2f, 1.0f );
-    ScaleTo* endScale = ScaleTo::create( 0.2f, 0.5f );
-    cursorImage->runAction( RepeatForever::create( Sequence::create( startScale, endScale, NULL ) ) );
-    page->addChild( cursorImage );*/
-    
     //通常時のボタンテクスチャのパス
     std::string nomalFilePath[] = {
         
@@ -208,13 +199,29 @@ void StageSelectLayOut::createPage( Node* node, int pageNum ){
         }
         page->addPage(layout);
     }
+    
+    //カーソル
+    ImageView* RightCursor = ImageView::create( "Texture/Debug/RightCursor.png" );
+    RightCursor->setPosition( Vec2( 650, 800 ) );
+    ScaleTo* startRScale = ScaleTo::create( 1.0f, 1.0f );
+    ScaleTo* endRScale = ScaleTo::create( 1.0f, 0.5f );
+    RightCursor->runAction( RepeatForever::create( Sequence::create( startRScale, endRScale, NULL ) ) );
+    page->addChild( RightCursor );
+    
+    //カーソル
+    ImageView* LeftCursor = ImageView::create( "Texture/Debug/LeftCursor.png" );
+    LeftCursor->setPosition( Vec2( 50, 800 ) );
+    ScaleTo* startLScale = ScaleTo::create( 1.0f, 1.0f );
+    ScaleTo* endLScale = ScaleTo::create( 1.0f, 0.5f );
+    LeftCursor->runAction( RepeatForever::create( Sequence::create( startLScale, endLScale, NULL ) ) );
+    page->addChild( LeftCursor );
+
+    
     node->addChild( page );
 }
 
 void StageSelectLayOut::PageListener( Ref* sender, PageViewEventType type ){
 
     if( type == PAGEVIEW_EVENT_TURNING ){
-        
-        CCLOG( "HASHIGOISIS" );
     }
 }
