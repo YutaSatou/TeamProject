@@ -10,7 +10,6 @@
 #define _PLISTREADER_H_
 
 #include <cocos2d.h>
-#include "../../GameMain/GamePlay/Object/Data/ObjectData.h"
 
 class PlistReader{
     

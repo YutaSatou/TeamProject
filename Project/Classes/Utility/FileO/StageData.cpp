@@ -42,19 +42,12 @@ StageData::StageDataVector StageData::read( const std::string& fileName )
         stageData.push_back( data );
         
         // デバック出力
-        //debugLog( data );
+        //CCLOG( "テクスチャの名前 : %s", data->textureName.c_str() );
+        //CCLOG( "カラーR : %i",  (int)data->textureColor.r );
+        //CCLOG( "カラーG : %i",  (int)data->textureColor.g );
+        //CCLOG( "カラーB : %i",  (int)data->textureColor.b );
+        //CCLOG( "座標 : %f, %f", data->position.x , data->position.y );
     }
     
     return stageData;
-}
-
-// デバッグ出力
-void StageData::debugLog( const ObjectData& data )
-{
-    CCLOG( "テクスチャの名前 : %s", data.textureName.c_str() );
-    CCLOG( "カラーR : %i",  (int)data.textureColor.r );
-    CCLOG( "カラーG : %i",  (int)data.textureColor.g );
-    CCLOG( "カラーB : %i",  (int)data.textureColor.b );
-    CCLOG( "座標 : %f, %f", data.position.x , data.position.y );
-    
 }

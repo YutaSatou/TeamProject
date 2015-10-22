@@ -6,8 +6,8 @@
 //
 //
 
-#ifndef __TeamProject__StageData__
-#define __TeamProject__StageData__
+#ifndef STAGEDATA_H_
+#define STAGEDATA_H_
 
 #include <cocos2d.h>
 
@@ -32,13 +32,6 @@ public:
      */
     StageDataVector read( const std::string& fileName );
     
-private:
-    
-    /**
-     @brief	デバッグ出力
-     @param	data	出力するパラメータ
-     */
-    void debugLog( const ObjectData& data );
 };
 
 #endif

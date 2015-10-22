@@ -23,6 +23,14 @@ public:
 	
 	static GameTitleLayer* create();
     
+private:
+    
+    void drawBackGraund();
+    
+    void drawTitle();
+    
+    void drawTouch();
+    
     //タッチ
     void touchListener();
     

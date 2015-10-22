@@ -1,9 +1,6 @@
 #include "GameTitleLayer.h"
-#include "../GameStageSelect/GameStageSelectLayer.h"
 #include "../../Utility/Assistant/SceneSwitcher.h"
-#include "TitleSpriteRenderer.h"
 #include "../../Utility/Particle/EffectManager.h"
-#include "../../Utility/FileO/StageData.h"
 
 using namespace cocos2d;
 
@@ -32,31 +29,11 @@ bool GameTitleLayer::init()
     SCREEN_SIZE = Director::getInstance()->getWinSize();
     ORIGIN_SIZE = Director::getInstance()->getVisibleOrigin();
     
+    drawBackGraund();
+    drawTitle();
+    drawTouch();
+    
     touchListener();
-    
-    //背景
-    Sprite* backGraund = TitleSpriteRenderer::createSprite( "Texture/Debug/backgraund.png", Vec2( SCREEN_SIZE.width / 2.0f /*+ ORIGIN_SIZE.x*/,
-                                                                                                 SCREEN_SIZE.height / 2.0f /*+ ORIGIN_SIZE.y */) );
-    
-    //タイトルロゴ
-    Sprite* titleLogo = TitleSpriteRenderer::createSprite( "Texture/Debug/title.png", Vec2( SCREEN_SIZE.width / 2.0f /*+ ORIGIN_SIZE.x*/,
-                                                                                           SCREEN_SIZE.height / 1.2f /*+ ORIGIN_SIZE.y*/ ) );
-    
-    //TouchStartロゴ
-    Sprite* touchLogo = Sprite::create( "Texture/Debug/TocuhStart.png" );
-    touchLogo->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 4.0f ) );
-    
-    ScaleTo* startScale = ScaleTo::create( 0.5f, 1.0f );
-    ScaleTo* endScale = ScaleTo::create( 0.5f, 0.5f );
-    titleLogo->runAction( RepeatForever::create( Sequence::create( startScale, endScale, NULL ) ) );
-    
-    ScaleTo* startTScale = ScaleTo::create( 1.0f, 1.0f );
-    ScaleTo* endTScale = ScaleTo::create( 1.0f, 0.5f );
-    touchLogo->runAction( RepeatForever::create( Sequence::create( startTScale, endTScale, NULL ) ) );
-    
-    addChild(backGraund);
-    addChild(titleLogo);
-    addChild(touchLogo);
 	
 	scheduleUpdate();
 	
@@ -91,6 +68,38 @@ GameTitleLayer* GameTitleLayer::create()
 	return nullptr;
 }
 
+void GameTitleLayer::drawBackGraund(){
+
+    //背景
+    Sprite* backGraund = Sprite::create( "Texture/Debug/backgraund.png" );
+    backGraund->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 2.0f ) );
+
+    addChild(backGraund);
+}
+
+void GameTitleLayer::drawTitle(){
+
+    //タイトルロゴ
+    Sprite* titleLogo = Sprite::create( "Texture/Debug/title.png" );
+    titleLogo->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 1.2f ) );
+    
+    addChild(titleLogo);
+}
+
+void GameTitleLayer::drawTouch(){
+
+    //TouchStartロゴ
+    Sprite* touchLogo = Sprite::create( "Texture/Debug/TocuhStart.png" );
+    touchLogo->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 4.0f ) );
+    
+    //TouchStartアニメーション
+    FadeIn* startTScale = FadeIn::create( 1.0f );
+    FadeOut* endTScale = FadeOut::create( 1.0f );
+    touchLogo->runAction( RepeatForever::create( Sequence::create( endTScale, startTScale, NULL ) ) );
+    
+    addChild(touchLogo);
+}
+
 void GameTitleLayer::touchListener(){
     
     //イベントリスナーを作成
@@ -98,18 +107,12 @@ void GameTitleLayer::touchListener(){
     
     //タッチ開始
     listener->onTouchBegan = [ = ](Touch* touch, Event* event){
-        mPlayer->play( 1, SoundType::SE);
         return true;
-    };
-    
-    //タッチ中
-    listener->onTouchMoved = [](Touch* touch, Event* event){
-        
     };
     
     //タッチ終了
     listener->onTouchEnded = [ = ](Touch* touch, Event* event){
-        
+        mPlayer->play( 1, SoundType::SE);
         SceneSwitcher::change( SceneType::STAGE_SELECT );
     };
     

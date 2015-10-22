@@ -24,7 +24,7 @@ StageSelectLayOut::StageSelectLayOut(){
 
 StageSelectLayOut::~StageSelectLayOut(){
     
-    //CC_SAFE_RELEASE( mPlayer );
+    CC_SAFE_RELEASE( mPlayer );
 }
 
 bool StageSelectLayOut::init(){
@@ -41,8 +41,8 @@ bool StageSelectLayOut::init(){
     //ボタンをした時の音
     auto a  =CallFunc::create( [this](){
         
-        //mPlayer = ADX2Player::create("Audio/StageSelect.acb");
-        //CC_SAFE_RETAIN( mPlayer );
+        mPlayer = ADX2Player::create("Audio/Title.acb");
+        CC_SAFE_RETAIN( mPlayer );
 
     } );
     
@@ -140,7 +140,7 @@ void StageSelectLayOut::createPage( Node* node, int pageNum ){
     };
     
     //ステージの番号
-    int stageNum = 1;
+    int stageNum = 0;
     
     //ページ数作成
     for ( int i = 0; i < pageNum; ++i ){
@@ -157,7 +157,7 @@ void StageSelectLayOut::createPage( Node* node, int pageNum ){
             Button* button = createButton( nomalFilePath[j] , pressedFilePath[j], disFilePath[j],stageNum );
             
             //ラベル作成
-            Label* label = createLabel( StringUtils::toString( stageNum ), "Font/arial.ttf", 32, button->getPosition() + ( button->getContentSize() / 2 ) );
+            Label* label = createLabel( StringUtils::toString( stageNum + 1 ), "Font/arial.ttf", 32, button->getPosition() + ( button->getContentSize() / 2 ) );
             
             //ステージの番号を足す
             stageNum++;
@@ -184,18 +184,17 @@ void StageSelectLayOut::createPage( Node* node, int pageNum ){
                     
                     //ページが動いていなかったら処理する
                     if ( buttonType == Widget::TouchEventType::ENDED && !isMoved ){
-                        //StageData sd;
-                        //auto a = sd.read( "Stage" + StringUtils::toString( stageNum - 1 ) + ".plist" );
+                        StageData sd;
+                        auto a = sd.read( "Stage" + StringUtils::toString( stageNum ) + ".plist" );
+                        CCLOG( "Stage : %i", stageNum );
                         //button->setEnabled( false );
                         //button->setTouchEnabled( false );
                         //button->setBright( false );
-                        //mPlayer->play( 1, SoundType::SE );
+                        mPlayer->play( 1, SoundType::SE );
                         SceneSwitcher::change( SceneType::PLAY );
                     }
                 });
             });
-            
-            page->addEventListenerPageView( this, pagevieweventselector( StageSelectLayOut::PageListener ) );
         }
         page->addPage(layout);
     }
@@ -216,12 +215,5 @@ void StageSelectLayOut::createPage( Node* node, int pageNum ){
     LeftCursor->runAction( RepeatForever::create( Sequence::create( startLScale, endLScale, NULL ) ) );
     page->addChild( LeftCursor );
 
-    
     node->addChild( page );
-}
-
-void StageSelectLayOut::PageListener( Ref* sender, PageViewEventType type ){
-
-    if( type == PAGEVIEW_EVENT_TURNING ){
-    }
 }

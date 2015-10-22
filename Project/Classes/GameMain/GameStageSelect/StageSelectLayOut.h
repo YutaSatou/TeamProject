@@ -41,8 +41,6 @@ private:
     
     cocos2d::Label* createLabel( std::string number, const std::string& font, float fontSize, const cocos2d::Vec2& fontPos );
     
-    void PageListener( Ref* sender, cocos2d::ui::PageViewEventType type );
-    
 public:
     
     static StageSelectLayOut* create();
