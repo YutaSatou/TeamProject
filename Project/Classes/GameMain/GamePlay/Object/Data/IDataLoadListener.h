@@ -1,5 +1,5 @@
-#ifndef _IDATA_LOADER_H_
-#define _IDATA_LOADER_H_
+#ifndef _IDATA_LOAD_LISTENER_H_
+#define _IDATA_LOAD_LISTENER_H_
 
 #include "Utility/Template/SmartPtr.h"
 #include <vector>
@@ -7,11 +7,11 @@
 class ObjectData;
 
 /*------------------------------------------------------------*/
-//	@class		：	IDataLoader
-//	@brief		：	データ読み込みインタフェイス
+//	@class		：	IDataLoadListener
+//	@brief		：	データ読み込みリスナインタフェイス
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/
-class IDataLoader
+class IDataLoadListener
 {
 	
 public:
@@ -23,7 +23,7 @@ public:
 	/**
 	 *	@brief	デストラクタ
 	 */
-	virtual ~IDataLoader() = default;
+	virtual ~IDataLoadListener() = default;
 	
 	/**
 	 *	@brief	データ読み込み時のコールバック関数

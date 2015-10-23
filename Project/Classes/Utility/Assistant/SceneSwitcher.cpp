@@ -3,7 +3,7 @@
 #include "SceneCreator.h"
 #include "GameMain/GameTitle/GameTitleLayer.h"
 #include "GameMain/GameStageSelect/GameStageSelectLayer.h"
-#include "GameMain/GamePlay/DebugLayer.h"
+#include "GameMain/GamePlay/GamePlayLayer.h"
 #include "GameMain/GameResult/GameResultLayer.h"
 
 using namespace cocos2d;
@@ -21,7 +21,7 @@ void SceneSwitcher::change( SceneType type )
 		{ SceneType::STAGE_SELECT,	[ & ]()
 			{ return SceneCreator::createScene( GameStageSelectLayer::create() ); } },
 		{ SceneType::PLAY,			[ & ]()
-			{ return SceneCreator::createPhysicsScene( DebugLayer::create(), Vec2( 0.0f, -6.0f ), false, 6.0f ); } },
+			{ return SceneCreator::createPhysicsScene( GamePlayLayer::create(), Vec2( 0.0f, -6.0f ), false, 6.0f ); } },
 		{ SceneType::RESULT,		[ & ]()
 			{ return SceneCreator::createScene( GameResultLayer::create() ); } },
 	};
