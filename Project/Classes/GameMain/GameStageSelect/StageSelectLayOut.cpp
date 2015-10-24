@@ -8,6 +8,7 @@
 
 #include "StageSelectLayOut.h"
 #include "../../Utility/Assistant/SceneSwitcher.h"
+#include "../../Utility/FileO/StageData.h"
 
 using namespace cocos2d;
 using namespace ui;
@@ -40,7 +41,7 @@ bool StageSelectLayOut::init(){
     //ボタンをした時の音
     auto a  =CallFunc::create( [this](){
         
-        mPlayer = ADX2Player::create("Audio/StageSelect.acb");
+        mPlayer = ADX2Player::create("Audio/Title.acb");
         CC_SAFE_RETAIN( mPlayer );
 
     } );
@@ -106,7 +107,7 @@ void StageSelectLayOut::createPage( Node* node, int pageNum ){
     
     //ページビュー作成
     PageView* page = PageView::create();
-    page->setContentSize( Size( SCREEN_SIZE.width / 1.5f , SCREEN_SIZE.height ) );
+    page->setContentSize( Size( SCREEN_SIZE.width , SCREEN_SIZE.height ) );
     page->setPosition( ( SCREEN_SIZE - page->getContentSize() ) / 2.0f );
     
     //通常時のボタンテクスチャのパス
@@ -133,13 +134,13 @@ void StageSelectLayOut::createPage( Node* node, int pageNum ){
     //ボタンの座標
     Vec2 poses[] = {
         
-        Vec2( 100, 950 ), Vec2( 250, 950 ), Vec2( 400, 950 ),
-        Vec2( 100, 800 ), Vec2( 250, 800 ), Vec2( 400, 800 ),
-        Vec2( 100, 650 ), Vec2( 250, 650 ), Vec2( 400, 650 ),
+        Vec2( 200, 950 ), Vec2( 350, 950 ), Vec2( 500, 950 ),
+        Vec2( 200, 800 ), Vec2( 350, 800 ), Vec2( 500, 800 ),
+        Vec2( 200, 650 ), Vec2( 350, 650 ), Vec2( 500, 650 ),
     };
     
     //ステージの番号
-    int stageNum = 1;
+    int stageNum = 0;
     
     //ページ数作成
     for ( int i = 0; i < pageNum; ++i ){
@@ -156,7 +157,7 @@ void StageSelectLayOut::createPage( Node* node, int pageNum ){
             Button* button = createButton( nomalFilePath[j] , pressedFilePath[j], disFilePath[j],stageNum );
             
             //ラベル作成
-            Label* label = createLabel( StringUtils::toString( stageNum ), "Font/arial.ttf", 32, button->getPosition() + ( button->getContentSize() / 2 ) );
+            Label* label = createLabel( StringUtils::toString( stageNum + 1 ), "Font/arial.ttf", 32, button->getPosition() + ( button->getContentSize() / 2 ) );
             
             //ステージの番号を足す
             stageNum++;
@@ -178,10 +179,14 @@ void StageSelectLayOut::createPage( Node* node, int pageNum ){
                     if ( pageType == Widget::TouchEventType::MOVED ){
                         
                         isMoved = true;
+                        
                     }
                     
                     //ページが動いていなかったら処理する
                     if ( buttonType == Widget::TouchEventType::ENDED && !isMoved ){
+                        StageData sd;
+                        auto a = sd.read( "Stage" + StringUtils::toString( stageNum ) + ".plist" );
+                        CCLOG( "Stage : %i", stageNum );
                         //button->setEnabled( false );
                         //button->setTouchEnabled( false );
                         //button->setBright( false );
@@ -193,5 +198,22 @@ void StageSelectLayOut::createPage( Node* node, int pageNum ){
         }
         page->addPage(layout);
     }
+    
+    //カーソル
+    ImageView* RightCursor = ImageView::create( "Texture/Debug/RightCursor.png" );
+    RightCursor->setPosition( Vec2( 650, 800 ) );
+    ScaleTo* startRScale = ScaleTo::create( 1.0f, 1.0f );
+    ScaleTo* endRScale = ScaleTo::create( 1.0f, 0.5f );
+    RightCursor->runAction( RepeatForever::create( Sequence::create( startRScale, endRScale, NULL ) ) );
+    page->addChild( RightCursor );
+    
+    //カーソル
+    ImageView* LeftCursor = ImageView::create( "Texture/Debug/LeftCursor.png" );
+    LeftCursor->setPosition( Vec2( 50, 800 ) );
+    ScaleTo* startLScale = ScaleTo::create( 1.0f, 1.0f );
+    ScaleTo* endLScale = ScaleTo::create( 1.0f, 0.5f );
+    LeftCursor->runAction( RepeatForever::create( Sequence::create( startLScale, endLScale, NULL ) ) );
+    page->addChild( LeftCursor );
+
     node->addChild( page );
 }

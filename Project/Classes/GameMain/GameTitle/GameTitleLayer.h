@@ -16,10 +16,20 @@ protected:
 	virtual bool init() override;
 	
 	virtual void update( float deltaTime ) override;
+    
+    virtual void onEnter() override;
 	
 public:
 	
 	static GameTitleLayer* create();
+    
+private:
+    
+    void drawBackGraund();
+    
+    void drawTitle();
+    
+    void drawTouch();
     
     //タッチ
     void touchListener();

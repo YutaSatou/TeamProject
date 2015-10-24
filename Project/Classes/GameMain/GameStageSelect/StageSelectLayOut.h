@@ -39,7 +39,7 @@ private:
      */
     cocos2d::ui::Button* createButton( const std::string& offButton, const std::string& onButton, const std::string& disButton, int stageTag);
     
-    cocos2d::Label* createLabel( std::string number,const std::string& font, float fontSize,const cocos2d::Vec2& fontPos );
+    cocos2d::Label* createLabel( std::string number, const std::string& font, float fontSize, const cocos2d::Vec2& fontPos );
     
 public:
     
