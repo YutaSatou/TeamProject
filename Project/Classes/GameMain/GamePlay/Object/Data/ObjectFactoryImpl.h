@@ -38,11 +38,11 @@ std::string ObjectFactory< InstanceType, Param... >::extractFileName( const std:
 	std::string	str = filePath;
 	
 	// 階層を削除する。
-	size_t hierarchy = str.find_last_of( "/" ) + 1;
+	std::size_t hierarchy = str.find_last_of( "/" ) + 1;
 	str.erase( 0, hierarchy );
 	
 	// 拡張子を削除する。
-	size_t extension = str.find_last_of( "." );
+	std::size_t extension = str.find_last_of( "." );
 	str.erase( extension );
 	
 	return str;

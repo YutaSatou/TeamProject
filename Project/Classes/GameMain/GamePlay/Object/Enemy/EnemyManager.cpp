@@ -31,7 +31,7 @@ void EnemyManager::onDataLoaded( IDataLoadListener::ObjectDataContainer& objectD
 {
 	std::string		key		= "";
 	std::string		name	= "";
-	unsigned int	number	= 0;
+	int				number	= 0;
 	
 	std::for_each( objectDataContainer.begin(), objectDataContainer.end(), [ this, &key, &name, &number ]( SharedPtr< ObjectData > objectData )
 	{
@@ -40,8 +40,8 @@ void EnemyManager::onDataLoaded( IDataLoadListener::ObjectDataContainer& objectD
 		
 		if ( !mEnemyFactory->isEmptyElement( key ) )
 		{
-			// オブジェクトの名前に識別用の数字を割り当てる。
-			name += std::to_string( number );
+			// テクスチャの名前と識別用の数字をオブジェクトの名前として使用する。
+			name = key + StringUtils::toString( number );
 			
 			// 敵を生成して自身の子ノードとして追加する。
 			Node* enemy = mEnemyFactory->createObject( key, objectData, name );
