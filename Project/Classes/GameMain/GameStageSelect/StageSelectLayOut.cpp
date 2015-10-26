@@ -24,7 +24,6 @@ StageSelectLayout::StageSelectLayout(){
 
 StageSelectLayout::~StageSelectLayout(){
     
-    //CC_SAFE_RELEASE( mPlayer );
 }
 
 bool StageSelectLayout::init(){
@@ -37,19 +36,6 @@ bool StageSelectLayout::init(){
     //画面サイズの定義
     SCREEN_SIZE = Director::getInstance()->getVisibleSize();
     ORIGIN_SIZE = Director::getInstance()->getVisibleOrigin();
-    
-    //ボタンをした時の音
-    auto a  =CallFunc::create( [this](){
-        
-        //mPlayer = ADX2Player::create("Audio/Title.acb");
-        //CC_SAFE_RETAIN( mPlayer );
-
-    } );
-    
-    auto b = DelayTime::create( 1.0f );
-    auto s = Sequence::create( b, a, nullptr );
-    
-    runAction( s );
 
     createPage( this, 3 );
     
@@ -188,7 +174,6 @@ void StageSelectLayout::createPage( Node* node, int pageNum ){
                         //StageData sd;
                         //auto a = sd.read( "Stage" + StringUtils::toString( stageNum ) + ".plist" );
                         //CCLOG( "Stage : %i", stageNum );
-                        //mPlayer->play( 1, SoundType::SE );
                         SceneSwitcher::change( SceneType::PLAY );
                     }
                 });

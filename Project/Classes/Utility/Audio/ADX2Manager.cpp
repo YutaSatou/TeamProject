@@ -8,7 +8,6 @@
 
 #include "ADX2Manager.h"
 #include "ADX2FileConverter.h"
-//#include "ADX2PlatformSetting.h"
 
 using namespace cocos2d;
 

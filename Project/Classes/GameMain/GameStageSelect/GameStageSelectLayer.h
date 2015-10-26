@@ -29,9 +29,9 @@ private:
     
     void drawStageSelectLogo();
     
-public:
+private:
     
-    ADX2Player* mPlayer;
+    int mBgm;
 };
 
 #endif

@@ -17,8 +17,7 @@ GameStageSelectLayer::GameStageSelectLayer(){
 }
 
 GameStageSelectLayer::~GameStageSelectLayer(){
-    
-    CC_SAFE_RELEASE( mPlayer );
+    ADX2Player::getInstance().play( mBgm );
 }
 
 bool GameStageSelectLayer::init()
@@ -34,6 +33,8 @@ bool GameStageSelectLayer::init()
     
     drawBackGraund();
     drawStageSelectLogo();
+    
+    mBgm = ADX2Player::getInstance().play( 3 );
     
     StageSelectLayout* stage = StageSelectLayout::create();
     
@@ -66,9 +67,6 @@ bool GameStageSelectLayer::init()
 void GameStageSelectLayer::onEnter()
 {
     Layer::onEnter();
-    mPlayer = ADX2Player::create( "Audio/StageSelect.acb" );
-    mPlayer->play( 0, SoundType::BGM);
-    CC_SAFE_RETAIN( mPlayer );
 }
 
 void GameStageSelectLayer::update( float deltaTime )
