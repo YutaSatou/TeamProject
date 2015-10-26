@@ -71,7 +71,7 @@ GameTitleLayer* GameTitleLayer::create()
 void GameTitleLayer::drawBackGraund(){
 
     //背景
-    Sprite* backGraund = Sprite::create( "Texture/Debug/backgraund.png" );
+    Sprite* backGraund = Sprite::create( "Texture/Debug/BackGraund.png" );
     backGraund->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 2.0f ) );
 
     addChild(backGraund);
@@ -80,7 +80,7 @@ void GameTitleLayer::drawBackGraund(){
 void GameTitleLayer::drawTitle(){
 
     //タイトルロゴ
-    Sprite* titleLogo = Sprite::create( "Texture/Debug/title.png" );
+    Sprite* titleLogo = Sprite::create( "Texture/Debug/Title.png" );
     titleLogo->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 1.2f ) );
     
     addChild(titleLogo);

@@ -1,5 +1,5 @@
 #include "GameStageSelectLayer.h"
-#include "StageSelectLayOut.h"
+#include "StageSelectLayout.h"
 #include "../../Utility/Audio/ADX2Player.h"
 #include "ui/CocosGUI.h"
 
@@ -35,9 +35,28 @@ bool GameStageSelectLayer::init()
     drawBackGraund();
     drawStageSelectLogo();
     
-    StageSelectLayOut* stage = StageSelectLayOut::create();
+    StageSelectLayout* stage = StageSelectLayout::create();
     
     addChild( stage );
+    
+    Slider* cursor = Slider::create();
+    //スライダーの背景
+    cursor->loadBarTexture( "Texture/Debug/SliderBackGraund.png" );
+    //スライダーのつまみ
+    cursor->loadSlidBallTextures( "Texture/Debug/SliderBall.png" );
+    //スライダー進歩状況
+    cursor->loadProgressBarTexture( "Texture/Debug/SliderBar.png" );
+    cursor->setPosition( Vec2( SCREEN_SIZE.width / 2, SCREEN_SIZE.height / 5.0f ) );
+    
+    cursor->addEventListener( [ ]( Ref* ref,Slider::EventType type ){
+        
+        // スライダーのキャスト変換
+        //auto s = static_cast<Slider*>( ref );
+        
+        // 数値をログ表示
+        //log( "数値 %d", s->getPercent() );
+    });
+    addChild( cursor );
     
     scheduleUpdate();
     
@@ -74,7 +93,7 @@ GameStageSelectLayer* GameStageSelectLayer::create()
 void GameStageSelectLayer::drawBackGraund(){
     
     //背景
-    Sprite* sprite = Sprite::create( "Texture/Debug/backgraund.png" );
+    Sprite* sprite = Sprite::create( "Texture/Debug/BackGraund.png" );
     sprite->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 2.0f ) );
     sprite->setScale( 2.0f, 2.0f );
     addChild( sprite );
@@ -83,7 +102,7 @@ void GameStageSelectLayer::drawBackGraund(){
 void GameStageSelectLayer::drawStageSelectLogo(){
     
     //Logo
-    Sprite* stageimage = Sprite::create( "Texture/Debug/stageselectlogo.png" );
+    Sprite* stageimage = Sprite::create( "Texture/Debug/StageSelect.png" );
     stageimage->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 1.1f ) );
     stageimage->setScale( 2.0f, 2.0f );
     addChild( stageimage );
