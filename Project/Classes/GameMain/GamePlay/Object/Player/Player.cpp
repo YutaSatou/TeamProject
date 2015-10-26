@@ -55,7 +55,7 @@ Player* Player::create( SharedPtr< ObjectData > objectData )
 void Player::onContactBegin( Node* contactNode )
 {
 	// 自分と敵の色を合成する。
-	ColorCMY blendColor = mColorMixer->blend( this, contactNode, 1.4f );
+	ColorCMY blendColor = mColorMixer->blend( this, contactNode, 1.3f );
 	
 	// 色を更新する。
 	updateColor( blendColor );

@@ -38,7 +38,7 @@ ObjectDataReader::ObjectDataContainer ObjectDataReader::read( const std::string&
 	
 	container.resize( valueMapContainer.size() );
 	
-	for ( auto valueMap : valueMapContainer )
+	for ( auto& valueMap : valueMapContainer )
 	{
 		SharedPtr< ObjectData > data = makeShared< ObjectData >();
 		

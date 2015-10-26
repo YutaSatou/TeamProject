@@ -1,12 +1,13 @@
 #include "EnemyManager.h"
-#include "EnemyFactory.h"
 #include "../Data/ObjectData.h"
+#include "EnemyFactory.h"
 
 using namespace cocos2d;
 
 // コンストラクタ
 EnemyManager::EnemyManager()
 	: mEnemyFactory( makeShared< EnemyFactory >() )
+	, mObjectManageCount( 0 )
 {
 	
 }
@@ -27,27 +28,20 @@ EnemyManager* EnemyManager::create()
 }
 
 // データ読み込み時のコールバック関数
-void EnemyManager::onDataLoaded( IDataLoadListener::ObjectDataContainer& objectDataContainer )
+void EnemyManager::onDataLoaded( SharedPtr< ObjectData > objectData )
 {
-	std::string		key		= "";
-	std::string		name	= "";
-	int				number	= 0;
+	// テクスチャの名前をキーとして使用する。
+	std::string key = mEnemyFactory->extractFileName( objectData->textureName );
 	
-	std::for_each( objectDataContainer.begin(), objectDataContainer.end(), [ this, &key, &name, &number ]( SharedPtr< ObjectData > objectData )
+	if ( !mEnemyFactory->isEmptyElement( key ) )
 	{
-		// テクスチャの名前をキーとして使用する。
-		key = mEnemyFactory->extractFileName( objectData->textureName );
+		// テクスチャの名前とオブジェクト管理用数値をオブジェクトの名前として使用する。
+		std::string name = key + StringUtils::toString( mObjectManageCount );
 		
-		if ( !mEnemyFactory->isEmptyElement( key ) )
-		{
-			// テクスチャの名前と識別用の数字をオブジェクトの名前として使用する。
-			name = key + StringUtils::toString( number );
-			
-			// 敵を生成して自身の子ノードとして追加する。
-			Node* enemy = mEnemyFactory->createObject( key, objectData, name );
-			addChild( enemy );
-			
-			++number;
-		}
-	} );
+		// 敵を生成して自身の子ノードとして追加する。
+		Node* enemy = mEnemyFactory->createObject( key, objectData, name );
+		addChild( enemy );
+		
+		++mObjectManageCount;
+	}
 }

@@ -1,8 +1,6 @@
 #include "AppDelegate.h"
 #include "Utility/Audio/ADX2Manager.h"
 #include "Utility/Assistant/SceneSwitcher.h"
-#include "GameMain/GamePlay/DebugLayer.h"
-#include "GameMain/GameTitle/GameTitleLayer.h"
 
 using namespace cocos2d;
 
