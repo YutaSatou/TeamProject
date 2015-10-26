@@ -70,7 +70,7 @@ GameTitleLayer* GameTitleLayer::create()
 void GameTitleLayer::drawBackGraund(){
 
     //背景
-    Sprite* backGraund = Sprite::create( "Texture/Debug/BackGraund.png" );
+    Sprite* backGraund = Sprite::create( "Texture/Debug/BackGround.png" );
     backGraund->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 2.0f ) );
 
     addChild(backGraund);
@@ -88,7 +88,7 @@ void GameTitleLayer::drawTitle(){
 void GameTitleLayer::drawTouch(){
 
     //TouchStartロゴ
-    Sprite* touchLogo = Sprite::create( "Texture/Debug/TocuhStart.png" );
+    Sprite* touchLogo = Sprite::create( "Texture/Debug/TouchStart.png" );
     touchLogo->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 4.0f ) );
     
     //TouchStartアニメーション

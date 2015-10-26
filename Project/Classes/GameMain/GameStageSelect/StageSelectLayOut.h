@@ -19,8 +19,6 @@ class StageSelectLayout : public cocos2d::Layer{
     
 private:
     
-    ADX2Player* mPlayer;
-    
 protected:
     
     StageSelectLayout();

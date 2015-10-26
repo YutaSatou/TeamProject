@@ -91,7 +91,7 @@ GameStageSelectLayer* GameStageSelectLayer::create()
 void GameStageSelectLayer::drawBackGraund(){
     
     //背景
-    Sprite* sprite = Sprite::create( "Texture/Debug/BackGraund.png" );
+    Sprite* sprite = Sprite::create( "Texture/Debug/BackGround.png" );
     sprite->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 2.0f ) );
     sprite->setScale( 2.0f, 2.0f );
     addChild( sprite );
