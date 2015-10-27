@@ -36,8 +36,6 @@ ObjectDataReader::ObjectDataContainer ObjectDataReader::read( const std::string&
 	
 	auto valueMapContainer = reader.read( plistFilePath );
 	
-	container.resize( valueMapContainer.size() );
-	
 	for ( auto& valueMap : valueMapContainer )
 	{
 		SharedPtr< ObjectData > data = makeShared< ObjectData >();
