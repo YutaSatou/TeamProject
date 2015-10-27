@@ -1,7 +1,7 @@
 #include "ObjectDataReader.h"
 #include "ObjectData.h"
 #include "cocos2d.h"
-#include "Utility/FileO/PlistReader.h"
+#include "Utility/FileIO/PlistReader.h"
 
 using namespace cocos2d;
 
