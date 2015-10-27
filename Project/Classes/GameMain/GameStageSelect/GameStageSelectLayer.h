@@ -31,7 +31,7 @@ private:
     
 private:
     
-    ADX2Player* mPlayer;
+    int mBgm;
 };
 
 #endif

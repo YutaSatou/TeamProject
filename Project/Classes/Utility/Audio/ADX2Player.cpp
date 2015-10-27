@@ -55,29 +55,38 @@ bool ADX2Player::init( const std::string& acb, const std::string& awb ){
     return true;
 }
 
-//インスタンスの生成
-ADX2Player* ADX2Player::create( const std::string& acb ){
+// 初期化
+bool ADX2Player::init( const std::string& acb ){
     
-    return ADX2Player::create( acb, "" );
-}
-
-//インスタンスの生成
-ADX2Player* ADX2Player::create( const std::string& acb, const std::string& awb ){
+    mCueSheet = ADX2CueSheet::create( acb, "" );
+    CC_SAFE_RETAIN( mCueSheet );
     
-    ADX2Player* inst = new ADX2Player();
+    // 各コンフィグを用意する。
+    CriAtomExPlayerConfig				playerConfig;
+    CriAtomExStandardVoicePoolConfig	voicePoolConfig;
+    CriAtomExHcaMxVoicePoolConfig		hcaMxVoicePoolConfig;
     
-    if ( inst && inst->init( acb, awb ) )
-    {
-        inst->autorelease();
-        return inst;
-    }
+    // デフォルト値で初期化する。
+    criAtomExPlayer_SetDefaultConfig( &playerConfig );
+    criAtomExVoicePool_SetDefaultConfigForStandardVoicePool( &voicePoolConfig );
+    criAtomExVoicePool_SetDefaultConfigForHcaMxVoicePool( &hcaMxVoicePoolConfig );
     
-    CC_SAFE_DELETE( inst );
-    return nullptr;
+    // 各パラメータを設定する。
+    voicePoolConfig.player_config.streaming_flag			= true;
+    voicePoolConfig.player_config.max_sampling_rate			= 96000;
+    hcaMxVoicePoolConfig.player_config.streaming_flag		= true;
+    hcaMxVoicePoolConfig.player_config.max_sampling_rate	= 96000;
+    
+    // 各インスタンスを生成する。
+    mPlayerHandle			= criAtomExPlayer_Create( &playerConfig, nullptr, 0 );
+    mVoicePoolHandle		= criAtomExVoicePool_AllocateStandardVoicePool( &voicePoolConfig, nullptr, 0 );
+    mHcaMxVoicePoolHandle	= criAtomExVoicePool_AllocateHcaMxVoicePool( &hcaMxVoicePoolConfig, nullptr, 0 );
+    
+    return true;
 }
 
 //音の再生
-CriAtomExPlaybackId ADX2Player::play( CriAtomExCueId cueID, SoundType type ){
+CriAtomExPlaybackId ADX2Player::play( CriAtomExCueId cueID ){
 	
     criAtomExPlayer_SetCueId( mPlayerHandle, mCueSheet->getAcbHandle(), cueID );
     auto playbackID = criAtomExPlayer_Start( mPlayerHandle );
@@ -85,7 +94,7 @@ CriAtomExPlaybackId ADX2Player::play( CriAtomExCueId cueID, SoundType type ){
 }
 
 //音の再生
-CriAtomExPlaybackId ADX2Player::play( CriAtomExCueId cueID, SoundType type, float volume ){
+CriAtomExPlaybackId ADX2Player::play( CriAtomExCueId cueID, float volume ){
 	
 	criAtomExPlayer_SetCueId( mPlayerHandle, mCueSheet->getAcbHandle(), cueID );
 	criAtomExPlayer_SetVolume( mPlayerHandle, volume );

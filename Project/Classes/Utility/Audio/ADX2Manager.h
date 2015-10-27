@@ -54,4 +54,4 @@ private:
     CriAtomDbasId mDbasID;
 };
 
-#endif /* defined(__TeamProject__ADX2Manager__) */
+#endif

@@ -13,17 +13,17 @@
 #include "ui/CocosGUI.h"
 #include "../../Utility/Audio/ADX2Player.h"
 
-class StageSelectLayOut : public cocos2d::Layer{
+class PageCurSor;
+
+class StageSelectLayout : public cocos2d::Layer{
     
 private:
     
-    ADX2Player* mPlayer;
-    
 protected:
     
-    StageSelectLayOut();
+    StageSelectLayout();
     
-    ~StageSelectLayOut();
+    ~StageSelectLayout();
     
     void update( float deltaTime );
     
@@ -43,7 +43,7 @@ private:
     
 public:
     
-    static StageSelectLayOut* create();
+    static StageSelectLayout* create();
     
     /**
      *	@brief	ページ作成
@@ -53,4 +53,4 @@ public:
     
 };
 
-#endif /* defined(__TeamProject__StageSelectLayOut__) */
+#endif
