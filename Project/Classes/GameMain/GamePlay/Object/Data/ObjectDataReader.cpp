@@ -14,17 +14,17 @@ namespace
 	
 	Color3B readColor( const ValueMap& valueMap )
 	{
-		return Color3B { valueMap.at( "ColorR" ).asByte(), valueMap.at( "ColorG" ).asByte(), valueMap.at( "ColorB" ).asByte() };
+		return { valueMap.at( "ColorR" ).asByte(), valueMap.at( "ColorG" ).asByte(), valueMap.at( "ColorB" ).asByte() };
 	}
 	
 	Vec2 readPosition( const ValueMap& valueMap )
 	{
-		return Vec2 { valueMap.at( "PositionX" ).asFloat(), valueMap.at( "PositionY" ).asFloat() };
+		return { valueMap.at( "PositionX" ).asFloat(), valueMap.at( "PositionY" ).asFloat() };
 	}
 	
 	PhysicsMaterial readMaterial( const ValueMap& valueMap )
 	{
-		return PhysicsMaterial { valueMap.at( "Density" ).asFloat(), valueMap.at( "Restitution" ).asFloat(), valueMap.at( "Friction" ).asFloat() };
+		return { valueMap.at( "Density" ).asFloat(), valueMap.at( "Restitution" ).asFloat(), valueMap.at( "Friction" ).asFloat() };
 	}
 }
 

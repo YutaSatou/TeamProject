@@ -1,7 +1,6 @@
 #include "StageCreator.h"
 #include "../Data/ObjectData.h"
 #include "../Data/ObjectDataReader.h"
-#include <algorithm>
 
 // コンストラクタ
 StageCreator::StageCreator()
@@ -16,7 +15,7 @@ void StageCreator::addListener( DataLoadListener listener )
 	// リスナを保管する。
 	const DataLoadListener& prev = mListener;
 	
-	// 前回のリスナと今回のリスナを合成する。
+	// リスナを合成する。
 	mListener = [ = ]( SharedPtr< ObjectData > objectData ) { prev( objectData ); listener( objectData ); };
 }
 
