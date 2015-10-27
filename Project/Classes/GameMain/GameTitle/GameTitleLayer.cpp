@@ -16,7 +16,8 @@ GameTitleLayer::GameTitleLayer(){
 }
 
 GameTitleLayer::~GameTitleLayer(){
-    CC_SAFE_RELEASE( mPlayer );
+    
+    ADX2Player::getInstance().stop( mBgm );
 }
 
 bool GameTitleLayer::init()
@@ -32,6 +33,8 @@ bool GameTitleLayer::init()
     drawBackGraund();
     drawTitle();
     drawTouch();
+
+    mBgm = ADX2Player::getInstance().play( 4 );
     
     touchListener();
 	
@@ -48,10 +51,6 @@ void GameTitleLayer::update( float deltaTime )
 void GameTitleLayer::onEnter()
 {
     Layer::onEnter();
-    
-    mPlayer = ADX2Player::create( "Audio/Title.acb" );
-    mPlayer->play( 0, SoundType::BGM);
-    CC_SAFE_RETAIN( mPlayer );
 }
 
 GameTitleLayer* GameTitleLayer::create()
@@ -71,7 +70,7 @@ GameTitleLayer* GameTitleLayer::create()
 void GameTitleLayer::drawBackGraund(){
 
     //背景
-    Sprite* backGraund = Sprite::create( "Texture/Debug/backgraund.png" );
+    Sprite* backGraund = Sprite::create( "Texture/Debug/BackGround.png" );
     backGraund->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 2.0f ) );
 
     addChild(backGraund);
@@ -80,7 +79,7 @@ void GameTitleLayer::drawBackGraund(){
 void GameTitleLayer::drawTitle(){
 
     //タイトルロゴ
-    Sprite* titleLogo = Sprite::create( "Texture/Debug/title.png" );
+    Sprite* titleLogo = Sprite::create( "Texture/Debug/Title.png" );
     titleLogo->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 1.2f ) );
     
     addChild(titleLogo);
@@ -89,7 +88,7 @@ void GameTitleLayer::drawTitle(){
 void GameTitleLayer::drawTouch(){
 
     //TouchStartロゴ
-    Sprite* touchLogo = Sprite::create( "Texture/Debug/TocuhStart.png" );
+    Sprite* touchLogo = Sprite::create( "Texture/Debug/TouchStart.png" );
     touchLogo->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 4.0f ) );
     
     //TouchStartアニメーション
@@ -112,7 +111,7 @@ void GameTitleLayer::touchListener(){
     
     //タッチ終了
     listener->onTouchEnded = [ = ](Touch* touch, Event* event){
-        mPlayer->play( 1, SoundType::SE);
+        ADX2Player::getInstance().play( 1 );
         SceneSwitcher::change( SceneType::STAGE_SELECT );
     };
     

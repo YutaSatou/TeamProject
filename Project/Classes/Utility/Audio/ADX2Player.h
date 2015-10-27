@@ -10,19 +10,21 @@
 #define _ADX2PLAYER_H_
 
 #include "cocos2d.h"
+#include "../Template/Singleton.h"
 #include "cri_adx2le.h"
-#include "SoundType.h"
 
 class ADX2CueSheet;
 
 enum class SoundType;
 
-class ADX2Player : public cocos2d::Node{
+class ADX2Player : public Singleton< ADX2Player >{
     
 protected:
     
     //コンストラクタ
     ADX2Player();
+    
+public:
     
     //デストラクタ
     ~ADX2Player();
@@ -30,29 +32,15 @@ protected:
     //初期化
     bool init( const std::string& acb, const std::string& awb );
     
-public:
-    
-    /**
-     *	@brief	インスタンスの生成
-     *	@param	acb				ACBファイルのパス
-     *	@return	ADX2Player		インスタンス
-     */
-    static ADX2Player* create( const std::string& acb );
-    
-    /**
-     *	@brief	インスタンスの生成
-     *	@param	acb				ACBファイルのパス
-     *	@param	awb				AWBファイルのパス
-     *	@return	ADX2Player		インスタンス
-     */
-    static ADX2Player* create( const std::string& acb, const std::string& awb );
+    //初期化
+    bool init( const std::string& acb );
     
     /**
      *	@brief	音の再生
      *	@param	cueID				キューID
      *	@return	CriAtomExPlaybackId	プレイバックID
      */
-    CriAtomExPlaybackId play( CriAtomExCueId cueID, SoundType type );
+    CriAtomExPlaybackId play( CriAtomExCueId cueID );
     
     /**
      *	@brief	音の再生
@@ -60,10 +48,8 @@ public:
       *	@param	volume				音量
      *	@return	CriAtomExPlaybackId	プレイバックID
      */
-    CriAtomExPlaybackId play( CriAtomExCueId cueID, SoundType type, float volume );
+    CriAtomExPlaybackId play( CriAtomExCueId cueID, float volume );
 	
-	CriAtomExPlaybackId BGMPlay( CriAtomExCueId cueID, SoundType type, float fade);
-    
     /**
      *	@brief	音の停止
      *	@param	playbackID	プレイバックID
@@ -90,6 +76,8 @@ private:
 private:
     
 private:
+    
+    friend class Singleton< ADX2Player >;
     
     //キューシート
     ADX2CueSheet*			mCueSheet;
