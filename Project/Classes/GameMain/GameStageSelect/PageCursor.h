@@ -12,13 +12,13 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 
-class PageCurSor : public cocos2d::Layer{
+class PageCursor : public cocos2d::Layer{
 
 protected:
     
-    PageCurSor() = default;
+    PageCursor() = default;
     
-    ~PageCurSor() = default;
+    ~PageCursor() = default;
     
     virtual bool init() override;
     
@@ -26,7 +26,7 @@ protected:
     
 public:
     
-    PageCurSor* create();
+    PageCursor* create();
     
 private:
 
