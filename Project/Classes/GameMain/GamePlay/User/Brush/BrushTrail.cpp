@@ -82,12 +82,12 @@ void BrushTrail::writeMove( Touch* touch )
 }
 
 // ブラシ描き終わり
-void BrushTrail::writeEnd( Touch* touch, Node* parentNode )
+bool BrushTrail::writeEnd( Touch* touch, Node* parentNode )
 {
 	if ( mBrushBody.isEmpty() )
 	{
 		// コンテナが空の場合は終了する。
-		return;
+		return false;
 	}
 	
 	// タッチ開始座標を取得する。
@@ -102,6 +102,8 @@ void BrushTrail::writeEnd( Touch* touch, Node* parentNode )
 	drawer->setPosition( touchStartPoint );
 	drawer->setPhysicsBody( body );
 	parentNode->addChild( drawer );
+	
+	return true;
 }
 
 // 軌跡の描画

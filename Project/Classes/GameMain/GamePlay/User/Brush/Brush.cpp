@@ -1,11 +1,18 @@
 #include "Brush.h"
 #include "BrushTrail.h"
+#include "../../Control/GameControlMediator.h"
 
 using namespace cocos2d;
 
+namespace
+{
+	bool isFirstWrite = false;	//=> 初めて書くか否か
+}
+
 // コンストラクタ
-Brush::Brush()
+Brush::Brush( GameControlMediator& mediator )
 	: mBrushTrail( nullptr )
+	, mMediator( mediator )
 {
 	
 }
@@ -29,9 +36,9 @@ bool Brush::init()
 }
 
 // インスタンスの生成
-Brush* Brush::create()
+Brush* Brush::create( GameControlMediator& mediator )
 {
-	Brush* inst = new Brush();
+	Brush* inst = new Brush( mediator );
 	
 	if ( inst && inst->init() )
 	{
@@ -60,7 +67,17 @@ void Brush::onTouchMoved( Touch* touch, Event* event )
 // タッチ終了時のコールバック関数
 void Brush::onTouchEnded( Touch* touch, Event* event )
 {
-	mBrushTrail->writeEnd( touch, this );
+	if ( mBrushTrail->writeEnd( touch, this ) )
+	{
+		if ( !isFirstWrite )
+		{
+			return;
+		}
+		
+		// 初めて書いた時にゲームを開始する。
+		mMediator.gameStart();
+		isFirstWrite = true;
+	}
 }
 
 // タッチリスナの初期化

@@ -12,11 +12,6 @@ class GameControlMediator
 public:
 	
 	/**
-	 *	@brief	デストラクタ
-	 */
-	virtual ~GameControlMediator() = default;
-	
-	/**
 	 *	@brief	ゲーム開始
 	 */
 	virtual void gameStart() = 0;
@@ -37,6 +32,11 @@ protected:
 	 *	@brief	コンストラクタ
 	 */
 	GameControlMediator() = default;
+	
+	/**
+	 *	@brief	デストラクタ
+	 */
+	virtual ~GameControlMediator() = default;
 };
 
 #endif

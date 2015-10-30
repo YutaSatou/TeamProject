@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 
 class BrushTrail;
+class GameControlMediator;
 
 /*------------------------------------------------------------*/
 //	@class		：	Brush
@@ -17,8 +18,9 @@ protected:
 	
 	/**
 	 *	@brief	コンストラクタ
+	 *	@param	mediator	ゲーム制御仲介者
 	 */
-	Brush();
+	Brush( GameControlMediator& mediator );
 	
 	/**
 	 *	@brief	デストラクタ
@@ -35,9 +37,10 @@ public:
 	
 	/**
 	 *	@brief	インスタンスの生成
-	 *	@return	Brush	インスタンス
+	 *	@param	mediator	ゲーム制御仲介者
+	 *	@return	Brush		インスタンス
 	 */
-	static Brush* create();
+	static Brush* create( GameControlMediator& mediator );
 	
 	/**
 	 *	@brief	タッチ開始時のコールバック関数
@@ -70,7 +73,8 @@ private:
 	
 private:
 	
-	BrushTrail* mBrushTrail;	//=> ブラシの軌跡
+	BrushTrail*				mBrushTrail;	//=> ブラシの軌跡
+	GameControlMediator&	mMediator;		//=> ゲーム制御仲介者
 };
 
 #endif

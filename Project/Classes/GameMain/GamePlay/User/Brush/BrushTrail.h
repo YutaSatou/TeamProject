@@ -56,8 +56,9 @@ public:
 	 *	@brief	ブラシ描き終わり
 	 *	@param	touch		タッチ情報
 	 *	@param	parentNode	親ノード
+	 *	@return	bool		描くことに成功したか否か
 	 */
-	void writeEnd( cocos2d::Touch* touch, cocos2d::Node* parentNode );
+	bool writeEnd( cocos2d::Touch* touch, cocos2d::Node* parentNode );
 	
 private:
 	

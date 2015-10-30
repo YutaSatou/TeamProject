@@ -33,14 +33,14 @@ bool DebugLayer::init()
 	Player*			player		= Player::create( playerData );
 	Slime*			slime1		= Slime::create( slimeData1, "Slime1" );
 	Slime*			slime2		= Slime::create( slimeData2, "Slime2" );
-	Brush*			brush		= Brush::create();
+	// Brush*			brush		= Brush::create();
 	
 	addChild( contactListener );
 	addChild( wallManager );
 	addChild( player );
 	addChild( slime1 );
 	addChild( slime2 );
-	addChild( brush );
+	// addChild( brush );
 	
 	auto resetButton = Button::create();
 	
