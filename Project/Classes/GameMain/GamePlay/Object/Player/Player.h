@@ -50,6 +50,11 @@ public:
 	 */
 	void onContactBegin( cocos2d::Node* contactNode );
 	
+	/**
+	 *	@brief	重力の有効化
+	 */
+	void enableGravity();
+	
 private:
 	
 	/**

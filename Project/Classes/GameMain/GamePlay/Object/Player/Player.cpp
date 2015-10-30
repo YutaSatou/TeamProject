@@ -61,6 +61,12 @@ void Player::onContactBegin( Node* contactNode )
 	updateColor( blendColor );
 }
 
+// 重力の有効化
+void Player::enableGravity()
+{
+	getPhysicsBody()->setGravityEnable( true );
+}
+
 // 物理構造の初期化
 void Player::initPhysics()
 {
@@ -70,6 +76,7 @@ void Player::initPhysics()
 	// 動的なボディを生成する。
 	PhysicsBody* body = PhysicsBody::createCircle( bodySize, mObjectData->material );
 	body->setDynamic( true );
+	body->setGravityEnable( false );
 	
 	// 接触コールバックを設定する。
 	SharedPtr< ContactCallback > callback = makeShared< ContactCallback >();

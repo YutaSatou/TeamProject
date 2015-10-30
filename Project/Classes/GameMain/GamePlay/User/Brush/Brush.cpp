@@ -6,7 +6,7 @@ using namespace cocos2d;
 
 namespace
 {
-	bool isFirstWrite = false;	//=> 初めて書くか否か
+	bool isFirstWrite = true;	//=> 初めて書くか否か
 }
 
 // コンストラクタ
@@ -76,7 +76,7 @@ void Brush::onTouchEnded( Touch* touch, Event* event )
 		
 		// 初めて書いた時にゲームを開始する。
 		mMediator.gameStart();
-		isFirstWrite = true;
+		isFirstWrite = false;
 	}
 }
 
