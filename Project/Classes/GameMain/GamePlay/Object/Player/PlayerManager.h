@@ -49,7 +49,7 @@ public:
 private:
 	
 	Player*	mPlayer;			// プレイヤ
-	bool	mIsPlayerCreated;	// プレイヤの生成に成功したか否か
+	bool	mIsPlayerCreated;	// プレイヤを生成したか否か
 };
 
 #endif

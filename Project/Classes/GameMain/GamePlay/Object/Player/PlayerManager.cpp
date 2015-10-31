@@ -37,7 +37,6 @@ void PlayerManager::onDataLoaded( SharedPtr< ObjectData > objectData )
 {
 	if ( mIsPlayerCreated )
 	{
-		// 現状の仕様では、1体生成したら終了する。
 		return;
 	}
 	

@@ -27,6 +27,7 @@ bool Player::init( SharedPtr< ObjectData > objectData )
 	
 	// 各パラメータを設定する。
 	setName( "Player" );
+	setColor( mObjectData->textureColor );
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setPosition( objectData->position );
 	

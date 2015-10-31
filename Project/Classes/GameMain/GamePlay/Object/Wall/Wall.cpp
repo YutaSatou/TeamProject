@@ -22,7 +22,6 @@ bool Wall::init( const ContactCategory& category, const Vec2& start, const Vec2&
 	mCategory = category;
 	
 	// 各パラメータを設定する。
-	setName( "Wall" );
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setPosition( Vec2::ZERO );
 	
