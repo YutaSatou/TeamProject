@@ -1,4 +1,6 @@
 #include "GamePlayLayer.h"
+#include "Object/Collision/ContactListener.h"
+#include "Control/GameLayer.h"
 
 using namespace cocos2d;
 
@@ -9,6 +11,9 @@ bool GamePlayLayer::init()
 	{
 		return false;
 	}
+	
+	addChild( ContactListener::create() );
+	addChild( GameLayer::create( "Plist/StageData/StageData_01.plist" ) );
 	
 	return true;
 }

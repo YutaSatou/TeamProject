@@ -4,6 +4,11 @@
 #include "cocos2d.h"
 #include "GameControlMediator.h"
 
+class WallManager;
+class PlayerManager;
+class EnemyManager;
+class Brush;
+
 /*------------------------------------------------------------*/
 //	@class		：	GameLayer
 //	@brief		：	ゲームレイヤ
@@ -17,7 +22,7 @@ protected:
 	/**
 	 *	@brief	コンストラクタ
 	 */
-	GameLayer() = default;
+	GameLayer();
 	
 	/**
 	 *	@brief	デストラクタ
@@ -34,9 +39,10 @@ public:
 	
 	/**
 	 *	@brief	インスタンスの生成
-	 *	@return	GameLayer	インスタンス
+	 *	@param	plistFilePath	プロパティリストファイルのパス
+	 *	@return	GameLayer		インスタンス
 	 */
-	static GameLayer* create();
+	static GameLayer* create( const std::string& plistFilePath );
 	
 	/**
 	 *	@brief	ゲーム開始
@@ -52,6 +58,21 @@ public:
 	 *	@brief	ゲーム終了
 	 */
 	virtual void gameEnd() override;
+	
+private:
+	
+	/**
+	 *	@brief	ステージの初期化
+	 *	@param	plistFilePath	プロパティリストファイルのパス
+	 */
+	void initStage( const std::string& plistFilePath );
+	
+private:
+	
+	WallManager*	mWallManager;	// 壁管理者
+	PlayerManager*	mPlayerManager;	// プレイヤ管理者
+	EnemyManager*	mEnemyManager;	// 敵管理者
+	Brush*			mUserBrush;		// ユーザブラシ
 };
 
 #endif
