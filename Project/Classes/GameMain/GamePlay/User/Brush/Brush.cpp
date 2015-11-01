@@ -13,6 +13,7 @@ namespace
 Brush::Brush( GameControlMediator& mediator )
 	: mBrushTrail( nullptr )
 	, mMediator( mediator )
+	, mIsWrite( false )
 {
 	
 }
@@ -53,7 +54,14 @@ Brush* Brush::create( GameControlMediator& mediator )
 // タッチ開始時のコールバック関数
 bool Brush::onTouchBegan( Touch* touch, Event* event )
 {
+	if ( mIsWrite )
+	{
+		// 書いている時はこれ以上書かせない。
+		return false;
+	}
+	
 	mBrushTrail->writeBegin( touch );
+	mIsWrite = true;
 	
 	return true;
 }
@@ -67,6 +75,8 @@ void Brush::onTouchMoved( Touch* touch, Event* event )
 // タッチ終了時のコールバック関数
 void Brush::onTouchEnded( Touch* touch, Event* event )
 {
+	mIsWrite = false;
+	
 	if ( mBrushTrail->writeEnd( touch, this ) )
 	{
 		if ( !isFirstWrite )
