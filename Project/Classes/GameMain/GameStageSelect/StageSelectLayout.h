@@ -13,8 +13,6 @@
 #include "ui/CocosGUI.h"
 #include "../../Utility/Audio/ADX2Player.h"
 
-class PageCurSor;
-
 class StageSelectLayout : public cocos2d::Layer{
     
 private:

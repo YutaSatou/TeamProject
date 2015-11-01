@@ -6,12 +6,12 @@
 //
 //
 
-#include "PageCurSor.h"
+#include "PageCursor.h"
 
 using namespace cocos2d;
 using namespace ui;
 
-bool PageCurSor::init(){
+bool PageCursor::init(){
 
     if ( !Layer::init() ){
         
@@ -21,9 +21,9 @@ bool PageCurSor::init(){
     return true;
 }
 
-PageCurSor* PageCurSor::create(){
+PageCursor* PageCursor::create(){
     
-    PageCurSor* inst = new PageCurSor();
+    PageCursor* inst = new PageCursor();
     
     if ( inst && inst->init() )
     {
@@ -35,5 +35,5 @@ PageCurSor* PageCurSor::create(){
     return nullptr;
 }
 
-void PageCurSor::update( float deltaTime ){
+void PageCursor::update( float deltaTime ){
 }
