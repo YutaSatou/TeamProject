@@ -33,6 +33,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 	ADX2Manager::getInstance().init( "Audio/Demo.acf" );
     ADX2Player::getInstance().init( "Audio/Demo.acb" );
 	
+	// Release.
+	SceneSwitcher::change( SceneType::TITLE );
+	
 // iOS Simulator.
 #ifdef DEBUG_HOSHI
 	SceneSwitcher::change( SceneType::PLAY );
@@ -46,9 +49,6 @@ bool AppDelegate::applicationDidFinishLaunching()
 #if ( CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID )
 	SceneSwitcher::change( SceneType::TITLE );
 #endif
-	
-	// Release.
-	SceneSwitcher::change( SceneType::TITLE );
 	
 	return true;
 }
