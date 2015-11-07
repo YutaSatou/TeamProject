@@ -1,6 +1,6 @@
 #include "AppDelegate.h"
-#include "Utility/Audio/ADX2Manager.h"
 #include "Utility/Assistant/SceneSwitcher.h"
+#include "Utility/Audio/ADX2Manager.h"
 #include "Utility/Audio/ADX2Player.h"
 
 using namespace cocos2d;
@@ -46,6 +46,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 #if ( CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID )
 	SceneSwitcher::change( SceneType::TITLE );
 #endif
+	
+	// Release.
+	SceneSwitcher::change( SceneType::TITLE );
 	
 	return true;
 }

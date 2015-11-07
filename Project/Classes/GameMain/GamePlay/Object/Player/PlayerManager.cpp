@@ -40,6 +40,11 @@ void PlayerManager::onDataLoaded( SharedPtr< ObjectData > objectData )
 		return;
 	}
 	
+	if ( objectData->textureName != PLAYER_TEXTURE_NAME )
+	{
+		return;
+	}
+	
 	// プレイヤを生成して自身の子ノードとして追加する。
 	mPlayer = Player::create( objectData );
 	addChild( mPlayer );
