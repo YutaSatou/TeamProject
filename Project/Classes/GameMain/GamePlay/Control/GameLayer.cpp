@@ -61,12 +61,6 @@ void GameLayer::gameStart()
 	mPlayerManager->onGameStart();
 }
 
-// ゲーム中断
-void GameLayer::gamePause()
-{
-	
-}
-
 // ゲーム終了
 void GameLayer::gameEnd()
 {

@@ -50,11 +50,6 @@ public:
 	virtual void gameStart() override;
 	
 	/**
-	 *	@brief	ゲーム中断
-	 */
-	virtual void gamePause() override;
-	
-	/**
 	 *	@brief	ゲーム終了
 	 */
 	virtual void gameEnd() override;

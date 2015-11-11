@@ -17,14 +17,19 @@ public:
 	virtual void gameStart() = 0;
 	
 	/**
-	 *	@brief	ゲーム中断
-	 */
-	virtual void gamePause() = 0;
-	
-	/**
 	 *	@brief	ゲーム終了
 	 */
 	virtual void gameEnd() = 0;
+	
+	/**
+	 *	@brief	ゲーム中断
+	 */
+	virtual void gamePause() { }
+	
+	/**
+	 *	@brief	ゲーム再開
+	 */
+	virtual void gameResume() { }
 	
 protected:
 	

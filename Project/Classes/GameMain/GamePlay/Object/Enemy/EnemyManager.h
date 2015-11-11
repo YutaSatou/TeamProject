@@ -43,8 +43,15 @@ public:
 	
 private:
 	
-	SharedPtr< EnemyFactory >	mEnemyFactory;		//=> 敵生成工場
-	unsigned int				mObjectManageCount;	//=> オブジェクト管理用数値
+	/**
+	 *	@brief	オブジェクト管理数の取得
+	 *	@return	size_t	管理数
+	 */
+	size_t getObjectManageCount() const;
+	
+private:
+	
+	SharedPtr< EnemyFactory > mEnemyFactory;	//=> 敵生成工場
 };
 
 #endif

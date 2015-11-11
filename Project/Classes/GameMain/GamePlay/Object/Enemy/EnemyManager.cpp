@@ -7,7 +7,6 @@ using namespace cocos2d;
 // コンストラクタ
 EnemyManager::EnemyManager()
 	: mEnemyFactory( makeShared< EnemyFactory >() )
-	, mObjectManageCount( 0 )
 {
 	
 }
@@ -35,13 +34,17 @@ void EnemyManager::onDataLoaded( SharedPtr< ObjectData > objectData )
 	
 	if ( !mEnemyFactory->isEmptyElement( key ) )
 	{
-		// テクスチャの名前とオブジェクト管理用数値をオブジェクトの名前として使用する。
-		std::string name = key + StringUtils::toString( mObjectManageCount );
+		// テクスチャの名前とオブジェクト管理数をオブジェクトの名前として使用する。
+		std::string name = key + StringUtils::toString( getObjectManageCount() );
 		
 		// 敵を生成して自身の子ノードとして追加する。
 		Node* enemy = mEnemyFactory->createObject( key, objectData, name );
 		addChild( enemy );
-		
-		++mObjectManageCount;
 	}
+}
+
+// オブジェクト管理数の取得
+size_t EnemyManager::getObjectManageCount() const
+{
+	return getChildrenCount();
 }
