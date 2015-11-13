@@ -40,9 +40,10 @@ bool AppDelegate::applicationDidFinishLaunching()
 	SceneSwitcher::change( SceneType::PLAY );
 #elif DEBUG_SATOU
 	SceneSwitcher::change( SceneType::TITLE );
+	
+// Release.
 #else
-    // Release.
-    SceneSwitcher::change( SceneType::TITLE );
+	SceneSwitcher::change( SceneType::TITLE );
 #endif
 	
 // Android.
