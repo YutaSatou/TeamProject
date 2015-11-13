@@ -1,24 +1,19 @@
 //
-//  AddEventListener.h
+//  TouchListener.h
 //  Chess
 //
 //  Created by 星共法 on 2014/11/11.
 //
 //  イベントリスナーを対象のオブジェクトと紐づけて登録するための補助関数
 
-#ifndef __Sub_AddEventListener__
-#define __Sub_AddEventListener__
+#ifndef __TouchListener__
+#define __TouchListener__
 
 #include "cocos2d.h"
 
-namespace Utility{
-typedef cocos2d::Touch Touch;
-typedef cocos2d::Event Event;
-typedef cocos2d::EventKeyboard EventKeyboard;
-typedef cocos2d::EventListenerKeyboard EventListenerKeyboard;
-typedef cocos2d::EventListenerTouchOneByOne EventListenerTouchOneByOne;
-typedef cocos2d::EventListenerTouchAllAtOnce EventListenerTouchAllAtOnce;
+using namespace cocos2d;
 
+namespace System{
 //--------------------------------------------------------
 //  @brief  タッチイベントコールバック関数の型をtypedef宣言しておく。
 //--------------------------------------------------------
@@ -87,7 +82,7 @@ public:
     }
 };
 
-class TouchLinstener{
+class TouchListener{
 public:
     /**
      *  @brief  タッチイベントをディスパッチャーに登録する
@@ -153,8 +148,8 @@ public:
                          cocos2d::Node* target);
     
 private:
-    TouchLinstener();
-    ~TouchLinstener();
+    TouchListener();
+    ~TouchListener();
 };
 }
 
