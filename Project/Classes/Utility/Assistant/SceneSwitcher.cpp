@@ -5,6 +5,7 @@
 #include "GameMain/GameStageSelect/GameStageSelectLayer.h"
 #include "GameMain/GamePlay/GamePlayLayer.h"
 #include "GameMain/GameResult/GameResultLayer.h"
+#include "Editer/EditScene.h"
 
 using namespace cocos2d;
 
@@ -24,6 +25,8 @@ void SceneSwitcher::change( SceneType type )
 			{ return SceneCreator::createPhysicsScene( GamePlayLayer::create(), Vec2( 0.0f, -6.0f ), false, 6.0f ); } },
 		{ SceneType::RESULT,		[ & ]()
 			{ return SceneCreator::createScene( GameResultLayer::create() ); } },
+        { SceneType::STAGE_EDITER,		[ & ]()
+            { return EditScene::createScene(); } },
 	};
 	
 	Scene* scene = createFunctionMap.at( type )();

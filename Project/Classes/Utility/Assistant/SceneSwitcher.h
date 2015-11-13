@@ -9,7 +9,8 @@ enum SceneType : int
 	TITLE			= 0,
 	STAGE_SELECT	= 1,
 	PLAY			= 2,
-	RESULT			= 3,
+	RESULT          = 3,
+    STAGE_EDITER    = 4
 };
 
 /*------------------------------------------------------------*/

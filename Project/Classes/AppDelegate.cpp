@@ -33,9 +33,6 @@ bool AppDelegate::applicationDidFinishLaunching()
 	ADX2Manager::getInstance().init( "Audio/Demo.acf" );
     ADX2Player::getInstance().init( "Audio/Demo.acb" );
 	
-	// Release.
-	SceneSwitcher::change( SceneType::TITLE );
-	
 // iOS Simulator.
 #ifdef DEBUG_HOSHI
 	SceneSwitcher::change( SceneType::PLAY );
@@ -43,6 +40,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 	SceneSwitcher::change( SceneType::PLAY );
 #elif DEBUG_SATOU
 	SceneSwitcher::change( SceneType::TITLE );
+#else
+    // Release.
+    SceneSwitcher::change( SceneType::TITLE );
 #endif
 	
 // Android.
