@@ -12,12 +12,12 @@
             汎用の呼び出しで片付けていいのかは悩みどころ
  */
 
-#include "TouchListener.h"
+#include "System/Input/Touch/TouchListener.h"
 
 using namespace cocos2d;
 
-namespace Utility{
-void TouchLinstener::TouchOneByOne(TouchEvent::SingleTouch::TouchBegan began ,
+namespace System{
+void TouchListener::TouchOneByOne(TouchEvent::SingleTouch::TouchBegan began ,
                                       TouchEvent::SingleTouch::TouchMoved moved ,
                                       TouchEvent::SingleTouch::TouchEnded ended ,
                                       TouchEvent::SingleTouch::TouchCancel cancelled,
@@ -41,7 +41,7 @@ void TouchLinstener::TouchOneByOne(TouchEvent::SingleTouch::TouchBegan began ,
     dispatcher->addEventListenerWithSceneGraphPriority(listener, target);
 }
 
-void TouchLinstener::TouchOneByOne(SingleTouchEventDesc& desc, Node* obj){
+void TouchListener::TouchOneByOne(SingleTouchEventDesc& desc, Node* obj){
     if(!obj){
         return;
     }
@@ -63,12 +63,12 @@ void TouchLinstener::TouchOneByOne(SingleTouchEventDesc& desc, Node* obj){
     dispatcher->addEventListenerWithSceneGraphPriority(listener, obj);
 }
 
-void TouchLinstener::TouchOneByOne(EventListenerTouchOneByOne* listener, Node* target){
+void TouchListener::TouchOneByOne(EventListenerTouchOneByOne* listener, Node* target){
     auto t_dispatcher = Director::getInstance()->getEventDispatcher();
     t_dispatcher->addEventListenerWithSceneGraphPriority(listener, target);
 }
 
-void TouchLinstener::TouchAllAtOnce(TouchEvent::MultiTouch::TouchesBegan began,
+void TouchListener::TouchAllAtOnce(TouchEvent::MultiTouch::TouchesBegan began,
                                        TouchEvent::MultiTouch::TouchesMoved moved,
                                        TouchEvent::MultiTouch::TouchesEnded ended,
                                        TouchEvent::MultiTouch::TouchesCancel cancelled,
@@ -92,7 +92,7 @@ void TouchLinstener::TouchAllAtOnce(TouchEvent::MultiTouch::TouchesBegan began,
     dispatcher->addEventListenerWithSceneGraphPriority(listener, target);
 }
 
-void TouchLinstener::TouchAllAtOnce(MultiTouchEventDesc& desc, Node* obj){
+void TouchListener::TouchAllAtOnce(MultiTouchEventDesc& desc, Node* obj){
     if(!obj){
         return;
     }
@@ -114,7 +114,7 @@ void TouchLinstener::TouchAllAtOnce(MultiTouchEventDesc& desc, Node* obj){
     dispatcher->addEventListenerWithSceneGraphPriority(listener, obj);
 }
 
-void TouchLinstener::KeyBoard(KeyInputEvent::KeyInputPressed pressed,
+void TouchListener::KeyBoard(KeyInputEvent::KeyInputPressed pressed,
                                  KeyInputEvent::KeyInputReleased released,
                                  Node* target){
     auto listener = EventListenerKeyboard::create();
