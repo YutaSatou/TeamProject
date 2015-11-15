@@ -1,6 +1,5 @@
 #include "GamePlayLayer.h"
-#include "LiquidFun/LiquidFunWorldManager.h"
-#include "LiquidFun/Debug/LiquidFunDebugDrawer.h"
+#include "LiquidFun/LiquidFunCoreAPI.h"
 #include "Control/GameLayer.h"
 
 using namespace cocos2d;
