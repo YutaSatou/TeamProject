@@ -1,5 +1,6 @@
 #include "GamePlayLayer.h"
-#include "Object/Collision/ContactListener.h"
+#include "LiquidFun/LiquidFunWorldManager.h"
+#include "LiquidFun/Debug/LiquidFunDebugDrawer.h"
 #include "Control/GameLayer.h"
 
 using namespace cocos2d;
@@ -12,10 +13,20 @@ bool GamePlayLayer::init()
 		return false;
 	}
 	
-	addChild( ContactListener::create() );
+	scheduleUpdate();
+	
+	addChild( LiquidFunDebugDrawer::create() );
 	addChild( GameLayer::create( "Plist/StageData/StageData_01.plist" ) );
 	
 	return true;
+}
+
+// 更新
+void GamePlayLayer::update( float deltaTime )
+{
+	Layer::update( deltaTime );
+	
+	LiquidFunWorldManager::getInstance().update();
 }
 
 // インスタンスの生成

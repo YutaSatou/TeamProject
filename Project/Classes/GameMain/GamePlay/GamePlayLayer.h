@@ -29,6 +29,12 @@ protected:
 	 */
 	virtual bool init() override;
 	
+	/**
+	 *	@brief	更新
+	 *	@param	deltaTime	デルタ時間
+	 */
+	virtual void update( float deltaTime ) override;
+	
 public:
 	
 	/**
