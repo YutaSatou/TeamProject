@@ -1,8 +1,6 @@
 #include "LiquidFunDebugDrawer.h"
 #include "GLESDebugDraw.h"
-#include "LiquidFunBox2D.h"
-#include "LiquidFunHelper.h"
-#include "LiquidFunWorldManager.h"
+#include "../LiquidFunCoreAPI.h"
 
 using namespace cocos2d;
 
