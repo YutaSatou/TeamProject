@@ -24,4 +24,7 @@ using LiquidFunEdgeShape	= b2EdgeShape;
 using LiquidFunPolygonShape	= b2PolygonShape;
 using LiquidFunChainShape	= b2ChainShape;
 
+using LiquidFunBodyType		= b2BodyType;
+using LiquidFunParticleType	= b2ParticleFlag;
+
 #endif
