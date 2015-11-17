@@ -3,7 +3,7 @@
 
 /*------------------------------------------------------------*/
 //	@class		：	LiquidFunMaterial
-//	@brief		：	LiquidFunのマテリアル
+//	@brief		：	LiquidFunの物質特性
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/
 struct LiquidFunMaterial

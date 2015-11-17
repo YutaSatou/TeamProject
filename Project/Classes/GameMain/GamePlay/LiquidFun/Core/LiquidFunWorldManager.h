@@ -9,7 +9,7 @@ class LiquidFunScheduler;
 
 /*------------------------------------------------------------*/
 //	@class		：	LiquidFunWorldManager
-//	@brief		：	LiquidFunの物理空間管理者
+//	@brief		：	LiquidFunのワールド管理者
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/
 class LiquidFunWorldManager : public Singleton< LiquidFunWorldManager >
@@ -30,21 +30,21 @@ public:
 	/**
 	 *	@brief	ボディの追加
 	 *	@param	bodyDef			ボディの情報
-	 *	@return	LiquidFunBody	ボディのインスタンス( 物理空間に登録済 )
+	 *	@return	LiquidFunBody	ボディのインスタンス( ワールドに登録済 )
 	 */
 	LiquidFunBody* addBody( const LiquidFunBodyDef* bodyDef );
 	
 	/**
 	 *	@brief	ジョイントの追加
 	 *	@param	jointDef		ジョイントの情報
-	 *	@return	LiquidFunJoint	ジョイントのインスタンス( 物理空間に登録済 )
+	 *	@return	LiquidFunJoint	ジョイントのインスタンス( ワールドに登録済 )
 	 */
 	LiquidFunJoint* addJoint( const LiquidFunJointDef* jointDef );
 	
 	/**
 	 *	@brief	パーティクルの追加
 	 *	@param	particleDef			パーティクルの情報
-	 *	@return	LiquidFunParticle	パーティクルのインスタンス( 物理空間に登録済 )
+	 *	@return	LiquidFunParticle	パーティクルのインスタンス( ワールドに登録済 )
 	 */
 	LiquidFunParticle* addParticle( const LiquidFunParticleDef* particleDef );
 	
@@ -90,7 +90,7 @@ private:
 	friend class Singleton< LiquidFunWorldManager >;
 	friend class LiquidFunDebugDrawer;
 	
-	LiquidFunWorld*		mWorld;		//=> 物理空間
+	LiquidFunWorld*		mWorld;		//=> ワールド
 	LiquidFunScheduler*	mScheduler;	//=> 定期実行
 	cocos2d::Vect		mGravity;	//=> 重力値
 };

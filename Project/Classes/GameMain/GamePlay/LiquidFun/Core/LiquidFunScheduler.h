@@ -1,7 +1,9 @@
 #ifndef _LIQUID_FUN_SCHEDULER_H_
 #define _LIQUID_FUN_SCHEDULER_H_
 
-class b2World; using LiquidFunWorld = b2World;
+class b2World;
+
+using LiquidFunWorld = b2World;
 
 /*------------------------------------------------------------*/
 //	@class		：	LiquidFunScheduler
@@ -15,7 +17,7 @@ public:
 	
 	/**
 	 *	@brief	コンストラクタ
-	 *	@param	world	物理空間
+	 *	@param	world	ワールド
 	 */
 	LiquidFunScheduler( LiquidFunWorld* world );
 	
@@ -37,13 +39,13 @@ private:
 	void updateBox2D();
 	
 	/**
-	 *	@brief	物理空間内のノードの更新
+	 *	@brief	ワールド内のノードの更新
 	 */
 	void updateWorldNode();
 	
 private:
 	
-	LiquidFunWorld* mWorld;	//=> 物理空間
+	LiquidFunWorld* mWorld;	//=> ワールド
 };
 
 #endif

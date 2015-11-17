@@ -34,7 +34,7 @@ void LiquidFunScheduler::updateBox2D()
 	mWorld->Step( TIME_STEP, VELOCITY_ITERATIONS, POSITION_ITERATIONS, PARTICLE_ITERATIONS );
 }
 
-// 物理空間内のノードの更新
+// ワールド内のノードの更新
 void LiquidFunScheduler::updateWorldNode()
 {
 	for ( LiquidFunBody* body = mWorld->GetBodyList(); body; body = body->GetNext() )
