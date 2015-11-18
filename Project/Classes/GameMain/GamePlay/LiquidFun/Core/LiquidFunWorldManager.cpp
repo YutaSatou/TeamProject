@@ -32,21 +32,21 @@ void LiquidFunWorldManager::update()
 }
 
 // ボディの追加
-LiquidFunBody* LiquidFunWorldManager::addBody( const LiquidFunBodyDef* bodyDef )
+LiquidFunBody* LiquidFunWorldManager::addBody( const LiquidFunBodyDesc* bodyDesc )
 {
-	return mWorld->CreateBody( bodyDef );
+	return mWorld->CreateBody( bodyDesc );
 }
 
 // ジョイントの追加
-LiquidFunJoint* LiquidFunWorldManager::addJoint( const LiquidFunJointDef* jointDef )
+LiquidFunJoint* LiquidFunWorldManager::addJoint( const LiquidFunJointDesc* jointDesc )
 {
-	return mWorld->CreateJoint( jointDef );
+	return mWorld->CreateJoint( jointDesc );
 }
 
 // パーティクルの追加
-LiquidFunParticle* LiquidFunWorldManager::addParticle( const LiquidFunParticleDef* particleDef )
+LiquidFunParticle* LiquidFunWorldManager::addParticle( const LiquidFunParticleDesc* particleDesc )
 {
-	return mWorld->CreateParticleSystem( particleDef );
+	return mWorld->CreateParticleSystem( particleDesc );
 }
 
 // ボディの削除

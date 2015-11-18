@@ -29,24 +29,24 @@ public:
 	
 	/**
 	 *	@brief	ボディの追加
-	 *	@param	bodyDef			ボディの情報
+	 *	@param	bodyDesc		ボディ設定記述子
 	 *	@return	LiquidFunBody	ボディのインスタンス( ワールドに登録済 )
 	 */
-	LiquidFunBody* addBody( const LiquidFunBodyDef* bodyDef );
+	LiquidFunBody* addBody( const LiquidFunBodyDesc* bodyDesc );
 	
 	/**
 	 *	@brief	ジョイントの追加
-	 *	@param	jointDef		ジョイントの情報
+	 *	@param	jointDesc		ジョイント設定記述子
 	 *	@return	LiquidFunJoint	ジョイントのインスタンス( ワールドに登録済 )
 	 */
-	LiquidFunJoint* addJoint( const LiquidFunJointDef* jointDef );
+	LiquidFunJoint* addJoint( const LiquidFunJointDesc* jointDesc );
 	
 	/**
 	 *	@brief	パーティクルの追加
-	 *	@param	particleDef			パーティクルの情報
+	 *	@param	particleDesc		パーティクル設定記述子
 	 *	@return	LiquidFunParticle	パーティクルのインスタンス( ワールドに登録済 )
 	 */
-	LiquidFunParticle* addParticle( const LiquidFunParticleDef* particleDef );
+	LiquidFunParticle* addParticle( const LiquidFunParticleDesc* particleDesc );
 	
 	/**
 	 *	@brief	ボディの削除

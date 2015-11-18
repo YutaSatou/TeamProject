@@ -13,10 +13,10 @@ using LiquidFunJoint		= b2Joint;
 using LiquidFunParticle		= b2ParticleSystem;
 using LiquidFunFixture		= b2Fixture;
 
-using LiquidFunBodyDef		= b2BodyDef;
-using LiquidFunJointDef		= b2JointDef;
-using LiquidFunParticleDef	= b2ParticleSystemDef;
-using LiquidFunFixtureDef	= b2FixtureDef;
+using LiquidFunBodyDesc		= b2BodyDef;
+using LiquidFunJointDesc	= b2JointDef;
+using LiquidFunParticleDesc	= b2ParticleSystemDef;
+using LiquidFunFixtureDesc	= b2FixtureDef;
 
 using LiquidFunShape		= b2Shape;
 using LiquidFunCircleShape	= b2CircleShape;
