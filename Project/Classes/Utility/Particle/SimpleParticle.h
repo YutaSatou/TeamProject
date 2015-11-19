@@ -13,9 +13,9 @@ class SimpleParticle : public cocos2d::ParticleSystemQuad{
 
 protected:
     
-    SimpleParticle() = default;
+    SimpleParticle();
     
-    ~SimpleParticle() = default;
+    ~SimpleParticle();
     
 public:
     

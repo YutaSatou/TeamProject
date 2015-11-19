@@ -13,19 +13,19 @@
 
 namespace cocos2d {
  
-    class Node;
-    class Vec2;
+    //class Node;
+    //class Vec2;
 }
 
 class SimpleParticle;
 
-class ParticleManager{
+class ParticleManager : public cocos2d::Ref{
 
 protected:
     
-    ParticleManager() = default;
+    ParticleManager();
     
-    ~ParticleManager() = default;
+    ~ParticleManager();
     
     bool init( const std::string& fileName, const size_t& instanceNum  );
     
@@ -45,20 +45,19 @@ public:
      *	@return	pos     パーティクルの座標
      *  @MEMO   パーティクルプール
      */
-    SimpleParticle* playParicle( cocos2d::Node* node, const cocos2d::Vec2& pos );
+    void playParicle( cocos2d::Node* node, const cocos2d::Vec2& pos );
     
 private:
     
     void push( SimpleParticle* particle );
     
-    void newCreateParticle();
+    SimpleParticle* mParticle;
     
-    using ParticlePool = std::vector< SimpleParticle* >;
-    ParticlePool pool;
+    /*using ParticlePool = std::vector< SimpleParticle* >;
+    ParticlePool pool;*/
+    std::vector< SimpleParticle* > pool;
     
     std::string mFileName;
-    
-    SimpleParticle* mParticle;
 };
 
 #endif

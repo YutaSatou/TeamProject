@@ -6,17 +6,27 @@
 //
 //
 
+#include "cocos2d.h"
 #include "ParticleManager.h"
 #include "SimpleParticle.h"
 
 using namespace cocos2d;
+
+ParticleManager::ParticleManager()
+: mFileName( "" ){
+    this->retain();
+}
+
+ParticleManager::~ParticleManager(){
+
+}
 
 ParticleManager* ParticleManager::createPool( const std::string& fileName, const size_t& instanceNum ){
     
     ParticleManager* inst = new ParticleManager();
     
     if ( inst && inst->init( fileName, instanceNum ) ){
-        //inst->autorelease();
+        inst->autorelease();
         return inst;
     }
     
@@ -32,7 +42,7 @@ bool ParticleManager::init( const std::string& fileName, const size_t& instanceN
         mFileName = fileName;
         particle->onFinishListener = [this]( SimpleParticle* sender ){
             //パーティクルの表示が終わったら自動的に戻す
-            push( sender );
+            this->push( sender );
             sender->release();
         };
         particle->setAutoRemoveOnFinish( true );
@@ -44,40 +54,17 @@ bool ParticleManager::init( const std::string& fileName, const size_t& instanceN
     return true;
 }
 
-void ParticleManager::newCreateParticle(){
-
-    SimpleParticle* particle = SimpleParticle::create( mFileName );
-    particle->onFinishListener = [this]( SimpleParticle* sender ){
-        //パーティクルの表示が終わったら自動的に戻す
-        push( sender );
-        sender->release();
-    };
-    particle->setAutoRemoveOnFinish( true );
-    //停止した状態で格納する
-    particle->stopSystem();
-    push( particle );
-}
-
 void ParticleManager::push( SimpleParticle* particle ){
 
     pool.push_back( particle );
 }
 
-SimpleParticle* ParticleManager::playParicle( Node* node, const Vec2& pos ){
+void ParticleManager::playParicle( Node* node, const Vec2& pos ){
 
     if ( pool.empty() ){
-        newCreateParticle();
-        SimpleParticle* particle = pool.back();
-        particle->retain();
-        pool.pop_back();
-        particle->resetSystem();
-        
-        particle->setPosition( pos );
-        node->addChild( particle );
-        
-        return particle;
+        CCLOG( "パーティクルが空です" );
     }
-    
+    CCLOG( "パーティクルがあります。" );
     SimpleParticle* particle = pool.back();
     particle->retain();
     pool.pop_back();
@@ -85,6 +72,4 @@ SimpleParticle* ParticleManager::playParicle( Node* node, const Vec2& pos ){
     
     particle->setPosition( pos );
     node->addChild( particle );
-    
-    return particle;
 }

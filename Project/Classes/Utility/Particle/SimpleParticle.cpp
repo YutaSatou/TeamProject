@@ -11,6 +11,15 @@
 
 using namespace cocos2d;
 
+SimpleParticle::SimpleParticle(){
+
+    this->retain();
+}
+
+SimpleParticle::~SimpleParticle(){
+    
+}
+
 SimpleParticle* SimpleParticle::create( const std::string& fileName ){
 
     SimpleParticle* inst = new SimpleParticle();
