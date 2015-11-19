@@ -1,7 +1,9 @@
 #include "AppDelegate.h"
 #include "Utility/Assistant/SceneSwitcher.h"
+#include "Utility/Assistant/SceneChanger.h"
 #include "Utility/Audio/ADX2Manager.h"
 #include "Utility/Audio/ADX2Player.h"
+#include "GameMain/GamePlay/GamePlayLayer.h"
 
 using namespace cocos2d;
 
@@ -37,7 +39,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 #ifdef DEBUG_HOSHI
 	SceneSwitcher::change( SceneType::PLAY );
 #elif DEBUG_TOSHIKAWA
-	SceneSwitcher::change( SceneType::PLAY );
+	SceneChanger::switchScene( GamePlayLayer::create() );
 #elif DEBUG_SATOU
 	SceneSwitcher::change( SceneType::TITLE );
 	
