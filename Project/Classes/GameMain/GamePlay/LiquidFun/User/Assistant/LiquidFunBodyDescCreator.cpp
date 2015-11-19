@@ -19,14 +19,14 @@ LiquidFunBodyDesc LiquidFunBodyDescCreator::createBodyDesc( Node* registerNode, 
 
 
 // フィクスチャ設定記述子の生成
-LiquidFunFixtureDesc LiquidFunBodyDescCreator::createFixtureDesc( const LiquidFunShape& shape, const LiquidFunMaterial& material )
+LiquidFunFixtureDesc LiquidFunBodyDescCreator::createFixtureDesc( const LiquidFunShape* shape, const LiquidFunMaterial& material )
 {
 	LiquidFunFixtureDesc fixtureDesc;
 	
-	fixtureDesc.shape		= &shape;
+	fixtureDesc.shape		= shape;
 	fixtureDesc.density		= material.density;
 	fixtureDesc.restitution	= material.restitution;
-	fixtureDesc.friction		= material.friction;
+	fixtureDesc.friction	= material.friction;
 	
 	return fixtureDesc;
 }
@@ -34,9 +34,9 @@ LiquidFunFixtureDesc LiquidFunBodyDescCreator::createFixtureDesc( const LiquidFu
 // フィクスチャ設定記述子( 円形状 )の生成
 LiquidFunFixtureDesc LiquidFunBodyDescCreator::createCircle( float radius, const LiquidFunMaterial& material )
 {
-	LiquidFunCircleShape shape;
+	LiquidFunCircleShape* shape = new LiquidFunCircleShape();
 	
-	shape.m_radius = LiquidFunHelper::toMeter( radius );
+	shape->m_radius = LiquidFunHelper::toMeter( radius );
 	
 	return createFixtureDesc( shape, material );
 }
@@ -46,9 +46,9 @@ LiquidFunFixtureDesc LiquidFunBodyDescCreator::createBox( const cocos2d::Size& s
 {
 	const LiquidFunVec2 halfSize = LiquidFunVec2( LiquidFunHelper::toMeter( size.width ), LiquidFunHelper::toMeter( size.height ) ) / 2;
 	
-	LiquidFunPolygonShape shape;
+	LiquidFunPolygonShape* shape = new LiquidFunPolygonShape();
 	
-	shape.SetAsBox( halfSize.x, halfSize.y );
+	shape->SetAsBox( halfSize.x, halfSize.y );
 	
 	return createFixtureDesc( shape, material );
 }
@@ -67,9 +67,9 @@ LiquidFunFixtureDesc LiquidFunBodyDescCreator::createSegment( const Vec2& bodyPo
 	const float centerY		= getCenter( start.y, end.y, bodyPosition.y );
 	const float angle		= std::atan2( ( start.y - end.y ), ( start.x - end.x ) );
 	
-	LiquidFunPolygonShape shape;
+	LiquidFunPolygonShape* shape = new LiquidFunPolygonShape();
 	
-	shape.SetAsBox( width, height, LiquidFunVec2( centerX, centerY ), angle );
+	shape->SetAsBox( width / 2, height / 2, LiquidFunVec2( centerX, centerY ), angle );
 	
 	return createFixtureDesc( shape, material );
 }
@@ -77,9 +77,9 @@ LiquidFunFixtureDesc LiquidFunBodyDescCreator::createSegment( const Vec2& bodyPo
 // フィクスチャ設定記述子( エッジ線形状 )の生成
 LiquidFunFixtureDesc LiquidFunBodyDescCreator::createEdgeSegment( const Vec2& start, const Vec2& end, const LiquidFunMaterial& material )
 {
-	LiquidFunEdgeShape shape;
+	LiquidFunEdgeShape* shape = new LiquidFunEdgeShape();
 	
-	shape.Set( LiquidFunHelper::toMeter( start ), LiquidFunHelper::toMeter( end ) );
+	shape->Set( LiquidFunHelper::toMeter( start ), LiquidFunHelper::toMeter( end ) );
 	
 	return createFixtureDesc( shape, material );
 }
@@ -94,9 +94,9 @@ LiquidFunFixtureDesc LiquidFunBodyDescCreator::createPolygon( const Vec2* points
 		vertices[ i ] = LiquidFunHelper::toMeter( points[ i ] );
 	}
 	
-	LiquidFunPolygonShape shape;
+	LiquidFunPolygonShape* shape = new LiquidFunPolygonShape();
 	
-	shape.Set( vertices, pointCount );
+	shape->Set( vertices, pointCount );
 	
 	CC_SAFE_DELETE( vertices );
 	

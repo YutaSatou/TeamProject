@@ -46,7 +46,7 @@ public:
 	 *	@param	material				フィクスチャに設定するマテリアル
 	 *	@return	LiquidFunFixtureDesc	フィクスチャ設定記述子
 	 */
-	LiquidFunFixtureDesc createFixtureDesc( const LiquidFunShape& shape, const LiquidFunMaterial& material );
+	LiquidFunFixtureDesc createFixtureDesc( const LiquidFunShape* shape, const LiquidFunMaterial& material );
 	
 	/**
 	 *	@brief	フィクスチャ設定記述子( 円形状 )の生成
