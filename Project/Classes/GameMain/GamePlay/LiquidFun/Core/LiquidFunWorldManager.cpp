@@ -71,18 +71,24 @@ LiquidFunParticle* LiquidFunWorldManager::addParticle( const LiquidFunParticleDe
 void LiquidFunWorldManager::deleteBody( LiquidFunBody* body )
 {
 	mWorld->DestroyBody( body );
+	
+	body = nullptr;
 }
 
 // ジョイントの削除
 void LiquidFunWorldManager::deleteJoint( LiquidFunJoint* joint )
 {
 	mWorld->DestroyJoint( joint );
+	
+	joint = nullptr;
 }
 
 // パーティクルの削除
 void LiquidFunWorldManager::deleteParticle( LiquidFunParticle* particle )
 {
 	mWorld->DestroyParticleSystem( particle );
+	
+	particle = nullptr;
 }
 
 // 重力値の取得
