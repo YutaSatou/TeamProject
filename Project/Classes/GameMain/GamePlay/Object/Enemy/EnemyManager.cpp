@@ -44,7 +44,7 @@ void EnemyManager::onDataLoaded( SharedPtr< ObjectData > objectData )
 }
 
 // オブジェクト管理数の取得
-size_t EnemyManager::getObjectManageCount() const
+std::size_t EnemyManager::getObjectManageCount() const
 {
 	return getChildrenCount();
 }

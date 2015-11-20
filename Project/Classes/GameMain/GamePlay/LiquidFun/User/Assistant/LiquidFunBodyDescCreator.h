@@ -2,10 +2,10 @@
 #define _LIQUID_FUN_BODY_DESC_CREATOR_H_
 
 #include "LiquidFunBox2D.h"
+#include "math/Vec2.h"
 
 namespace cocos2d
 {
-	class Vec2;
 	class Size;
 	class Node;
 }
@@ -52,9 +52,10 @@ public:
 	 *	@brief	フィクスチャ設定記述子( 円形状 )の生成
 	 *	@param	radius					円の半径
 	 *	@param	material				マテリアル
+	 *	@param	offset					オフセット座標
 	 *	@return	LiquidFunFixtureDesc	フィクスチャ設定記述子
 	 */
-	LiquidFunFixtureDesc createCircle( float radius, const LiquidFunMaterial& material );
+	LiquidFunFixtureDesc createCircle( float radius, const LiquidFunMaterial& material, const cocos2d::Vec2& offset = cocos2d::Vec2::ZERO );
 	
 	/**
 	 *	@brief	フィクスチャ設定記述子( 箱形状 )の生成
@@ -66,14 +67,14 @@ public:
 	
 	/**
 	 *	@brief	フィクスチャ設定記述子( 線形状 )の生成
-	 *	@param	bodyPosition			ボディの座標
 	 *	@param	start					線の開始座標
 	 *	@param	end						線の終了座標
 	 *	@param	lineWidth				線の幅
 	 *	@param	material				マテリアル
+	 *	@param	offset					オフセット座標
 	 *	@return	LiquidFunFixtureDesc	フィクスチャ設定記述子
 	 */
-	LiquidFunFixtureDesc createSegment( const cocos2d::Vec2& bodyPosition, const cocos2d::Vec2& start, const cocos2d::Vec2& end, float lineWidth, const LiquidFunMaterial& material );
+	LiquidFunFixtureDesc createSegment( const cocos2d::Vec2& start, const cocos2d::Vec2& end, float lineWidth, const LiquidFunMaterial& material, const cocos2d::Vec2& offset = cocos2d::Vec2::ZERO );
 	
 	/**
 	 *	@brief	フィクスチャ設定記述子( エッジ線形状 )の生成

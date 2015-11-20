@@ -32,11 +32,12 @@ LiquidFunFixtureDesc LiquidFunBodyDescCreator::createFixtureDesc( const LiquidFu
 }
 
 // フィクスチャ設定記述子( 円形状 )の生成
-LiquidFunFixtureDesc LiquidFunBodyDescCreator::createCircle( float radius, const LiquidFunMaterial& material )
+LiquidFunFixtureDesc LiquidFunBodyDescCreator::createCircle( float radius, const LiquidFunMaterial& material, const Vec2& offset )
 {
 	LiquidFunCircleShape* shape = new LiquidFunCircleShape();
 	
 	shape->m_radius = LiquidFunHelper::toMeter( radius );
+	shape->m_p		= LiquidFunHelper::toMeter( offset );
 	
 	return createFixtureDesc( shape, material );
 }
@@ -54,7 +55,7 @@ LiquidFunFixtureDesc LiquidFunBodyDescCreator::createBox( const cocos2d::Size& s
 }
 
 // フィクスチャ設定記述子( 線形状 )の生成
-LiquidFunFixtureDesc LiquidFunBodyDescCreator::createSegment( const Vec2& bodyPosition, const Vec2& start, const Vec2& end, float lineWidth, const LiquidFunMaterial& material )
+LiquidFunFixtureDesc LiquidFunBodyDescCreator::createSegment( const Vec2& start, const Vec2& end, float lineWidth, const LiquidFunMaterial& material, const Vec2& offset )
 {
 	static const auto getCenter = []( float start, float end, float position )
 	{
@@ -63,8 +64,8 @@ LiquidFunFixtureDesc LiquidFunBodyDescCreator::createSegment( const Vec2& bodyPo
 	
 	const float width		= LiquidFunHelper::toMeter( std::abs( start.distance( end ) ) );
 	const float height		= LiquidFunHelper::toMeter( lineWidth );
-	const float centerX		= getCenter( start.x, end.x, bodyPosition.x );
-	const float centerY		= getCenter( start.y, end.y, bodyPosition.y );
+	const float centerX		= getCenter( start.x, end.x, offset.x );
+	const float centerY		= getCenter( start.y, end.y, offset.y );
 	const float angle		= std::atan2( ( start.y - end.y ), ( start.x - end.x ) );
 	
 	LiquidFunPolygonShape* shape = new LiquidFunPolygonShape();
