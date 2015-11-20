@@ -1,9 +1,7 @@
 #ifndef _LIQUID_FUN_SCHEDULER_H_
 #define _LIQUID_FUN_SCHEDULER_H_
 
-class b2World;
-
-using LiquidFunWorld = b2World;
+#include "LiquidFunDefine.h"
 
 /*------------------------------------------------------------*/
 //	@class		：	LiquidFunScheduler

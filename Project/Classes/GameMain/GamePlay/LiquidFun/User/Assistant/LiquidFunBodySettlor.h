@@ -1,15 +1,7 @@
 #ifndef _LIQUID_FUN_BODY_SETTLOR_H_
 #define _LIQUID_FUN_BODY_SETTLOR_H_
 
-class	b2Body;
-class	b2Fixture;
-struct	b2BodyDef;
-struct	b2FixtureDef;
-
-using LiquidFunBody			= b2Body;
-using LiquidFunFixture		= b2Fixture;
-using LiquidFunBodyDesc		= b2BodyDef;
-using LiquidFunFixtureDesc	= b2FixtureDef;
+#include "../../LiquidFunDefine.h"
 
 /*------------------------------------------------------------*/
 //	@class		：	LiquidFunBodySettlor

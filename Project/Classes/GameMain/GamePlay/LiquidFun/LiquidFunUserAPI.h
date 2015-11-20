@@ -3,5 +3,6 @@
 
 #include "User/Assistant/LiquidFunMaterial.h"
 #include "User/Assistant/LiquidFunBodyDescCreator.h"
+#include "User/Assistant/LiquidFunBodySettlor.h"
 
 #endif

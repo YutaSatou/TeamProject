@@ -17,7 +17,6 @@ LiquidFunBodyDesc LiquidFunBodyDescCreator::createBodyDesc( Node* registerNode, 
 	return bodyDesc;
 }
 
-
 // フィクスチャ設定記述子の生成
 LiquidFunFixtureDesc LiquidFunBodyDescCreator::createFixtureDesc( const LiquidFunShape* shape, const LiquidFunMaterial& material )
 {
