@@ -28,3 +28,9 @@ float LiquidFunHelper::toPixsel( const float& meter )
 {
 	return ( meter * PTM_RATIO );
 }
+
+// ノードの取得
+Node* LiquidFunHelper::getNode( LiquidFunBody* body )
+{
+	return static_cast< Node* >( body->GetUserData() );
+}

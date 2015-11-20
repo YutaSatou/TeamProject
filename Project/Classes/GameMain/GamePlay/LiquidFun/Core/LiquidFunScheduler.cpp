@@ -46,7 +46,7 @@ void LiquidFunScheduler::updateWorldNode()
 		}
 		
 		// ユーザデータからノードを取り出して、Cocos2d-x用に座標、角度の変換を行う。
-		Node* node = static_cast< Node* >( body->GetUserData() );
+		Node* node = LiquidFunHelper::getNode( body );
 		node->setPosition( LiquidFunHelper::toPixsel( body->GetPosition() ) );
 		node->setRotation( CC_RADIANS_TO_DEGREES( body->GetAngle() ) * -1 );
 	}

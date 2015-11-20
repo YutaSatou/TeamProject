@@ -28,6 +28,11 @@ public:
 	void update();
 	
 	/**
+	 *	@brief	ワールドのリセット
+	 */
+	void resetWorld();
+	
+	/**
 	 *	@brief	ボディの追加
 	 *	@param	bodyDesc		ボディ設定記述子
 	 *	@return	LiquidFunBody	ボディのインスタンス( ワールドに登録済 )

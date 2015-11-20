@@ -52,6 +52,13 @@ public:
 	 */
 	static float toPixsel( const float& meter );
 	
+	/**
+	 *	@brief	ノードの取得
+	 *	@param	body	ノードを登録しているボディ
+	 *	@return	Node	ノードのインスタンス
+	 */
+	static cocos2d::Node* getNode( LiquidFunBody* body );
+	
 public:
 	
 	static const float PTM_RATIO;	//=> Box2D上の1m = Cocos2d-x上の32px
