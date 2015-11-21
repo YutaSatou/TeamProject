@@ -3,11 +3,16 @@
 
 using namespace cocos2d;
 
+namespace
+{
+	const float DISTANCE_MIN = 10.0f;	//=> 線を引いたと認識する最低距離
+}
+
 // コンストラクタ
 BrushTrail::BrushTrail()
 	: mBrushBody()
 	, mPreviousTouchPoint( Vec2::ZERO )
-	, mShapeOffset( Vec2::ZERO )
+	, mSegmentOffset( Vec2::ZERO )
 	, mCanvas( nullptr )
 {
 	
@@ -50,7 +55,7 @@ void BrushTrail::writeBegin( Touch* touch )
 	
 	// 各座標を初期化する。
 	mPreviousTouchPoint	= touch->getLocation();
-	mShapeOffset		= Vec2::ZERO;
+	mSegmentOffset		= Vec2::ZERO;
 }
 
 // ブラシ描き途中
@@ -63,21 +68,17 @@ void BrushTrail::writeMove( Touch* touch )
 	Vec2	delta		= touchPoint - mPreviousTouchPoint;
 	float	distance	= touchPoint.distance( mPreviousTouchPoint );
 	
-	if ( distance > 10.0f )
+	if ( distance > DISTANCE_MIN )
 	{
-		// 始点と終点を算出する。
-		Vec2	start	= mShapeOffset;
-		Vec2	end		= delta + mShapeOffset;
+		// 線を追加する。
+		mBrushBody.pushSegment( mSegmentOffset, delta + mSegmentOffset, 4.0f );
 		
-		// 線のシェイプを追加する。
-		mBrushBody.pushShape( start, end, 4.0f );
-		
-		// 軌跡の描画
+		// 軌跡の描画を行う。
 		drawTrail( touch, distance );
 		
 		// 各座標を更新する。
 		mPreviousTouchPoint	 = touchPoint;
-		mShapeOffset		+= delta;
+		mSegmentOffset		+= delta;
 	}
 }
 
@@ -93,14 +94,13 @@ bool BrushTrail::writeEnd( Touch* touch, Node* parentNode )
 	// タッチ開始座標を取得する。
 	Point touchStartPoint = touch->getStartLocation();
 	
-	// 空のスプライトとボディを用意する。
-	Sprite*			drawer	= Sprite::create();
-	PhysicsBody*	body	= mBrushBody.createBody();
-	
-	// 各パラメータを設定して親ノードに追加する。
+	// 空のスプライトを生成する。
+	Sprite* drawer = Sprite::create();
 	drawer->setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	drawer->setPosition( touchStartPoint );
-	drawer->setPhysicsBody( body );
+	
+	// ボディを装着して親ノードに追加する。
+	mBrushBody.attachBody( drawer );
 	parentNode->addChild( drawer );
 	
 	return true;
