@@ -20,7 +20,7 @@ bool LiquidFunContactListener::init()
 		return false;
 	}
 	
-	// 自身をリスナとして登録する。
+	// 自身を登録する。
 	LiquidFunWorldManager::getInstance().registerContactListener( this );
 	
 	return true;

@@ -24,7 +24,7 @@ public:
 	~LiquidFunBodySettlor() = delete;
 	
 	/**
-	 *	@brief	空のボディの装着
+	 *	@brief	空ボディの装着
 	 *	@param	bodyDesc		ボディ設定記述子
 	 *	@return	LiquidFunBody	ボディのインスタンス
 	 */

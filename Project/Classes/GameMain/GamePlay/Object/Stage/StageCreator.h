@@ -5,11 +5,11 @@
 #include <string>
 #include <functional>
 
-class ObjectData;
+struct ObjectData;
 
 /*------------------------------------------------------------*/
 //	@class		：	StageCreator
-//	@brief		：	ステージ制作者
+//	@brief		：	ステージ生成者
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/
 class StageCreator

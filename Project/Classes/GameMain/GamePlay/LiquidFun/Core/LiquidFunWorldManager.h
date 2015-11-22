@@ -2,6 +2,7 @@
 #define _LIQUID_FUN_WORLD_MANAGER_H_
 
 #include "Utility/Template/Singleton.h"
+#include "Utility/Template/SmartPtr.h"
 #include "cocos2d.h"
 #include "LiquidFunBox2D.h"
 
@@ -21,7 +22,7 @@ public:
 	/**
 	 *	@brief	デストラクタ
 	 */
-	~LiquidFunWorldManager();
+	~LiquidFunWorldManager() = default;
 	
 	/**
 	 *	@brief	ワールドのリセット
@@ -102,9 +103,9 @@ private:
 	friend class Singleton< LiquidFunWorldManager >;
 	friend class LiquidFunDebugDrawer;
 	
-	LiquidFunWorld*		mWorld;		//=> ワールド
-	LiquidFunScheduler*	mScheduler;	//=> 定期実行
-	cocos2d::Vect		mGravity;	//=> 重力値
+	SharedPtr< LiquidFunWorld >		mWorld;		//=> ワールド
+	SharedPtr< LiquidFunScheduler >	mScheduler;	//=> 定期実行者
+	cocos2d::Vect					mGravity;	//=> 重力値
 };
 
 #endif

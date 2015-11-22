@@ -14,7 +14,7 @@ namespace
 }
 
 // コンストラクタ
-LiquidFunScheduler::LiquidFunScheduler( LiquidFunWorld* world )
+LiquidFunScheduler::LiquidFunScheduler( SharedPtr< LiquidFunWorld > world )
 	: mWorld( world )
 {
 	

@@ -3,8 +3,8 @@
 
 namespace cocos2d
 {
-	class Scene;
 	class Layer;
+	class Scene;
 }
 
 /*------------------------------------------------------------*/

@@ -56,9 +56,9 @@ LiquidFunFixtureDesc LiquidFunBodyDescCreator::createBox( const cocos2d::Size& s
 // フィクスチャ設定記述子( 線形状 )の生成
 LiquidFunFixtureDesc LiquidFunBodyDescCreator::createSegment( const Vec2& start, const Vec2& end, float lineWidth, const LiquidFunMaterial& material, const Vec2& offset )
 {
-	static const auto getCenter = []( float start, float end, float position )
+	static const auto getCenter = []( float start, float end, float offset )
 	{
-		return LiquidFunHelper::toMeter( ( start + end ) / 2 ) - LiquidFunHelper::toMeter( position );
+		return LiquidFunHelper::toMeter( ( start + end ) / 2 ) - LiquidFunHelper::toMeter( offset );
 	};
 	
 	const float width		= LiquidFunHelper::toMeter( std::abs( start.distance( end ) ) );

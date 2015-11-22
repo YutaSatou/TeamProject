@@ -12,18 +12,11 @@ namespace
 
 // コンストラクタ
 LiquidFunWorldManager::LiquidFunWorldManager()
-	: mWorld( new LiquidFunWorld( LiquidFunVec2( DEFAULT_GRAVITY.x, DEFAULT_GRAVITY.y ) ) )
-	, mScheduler( new LiquidFunScheduler( mWorld ) )
+	: mWorld( makeShared< LiquidFunWorld >( LiquidFunVec2( DEFAULT_GRAVITY.x, DEFAULT_GRAVITY.y ) ) )
+	, mScheduler( makeShared< LiquidFunScheduler >( mWorld ) )
 	, mGravity( DEFAULT_GRAVITY )
 {
 	
-}
-
-// デストラクタ
-LiquidFunWorldManager::~LiquidFunWorldManager()
-{
-	CC_SAFE_DELETE( mWorld );
-	CC_SAFE_DELETE( mScheduler );
 }
 
 // ワールドのリセット

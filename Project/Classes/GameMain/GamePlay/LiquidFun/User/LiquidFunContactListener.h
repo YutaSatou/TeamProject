@@ -49,7 +49,7 @@ private:
 	/**
 	 *	@brief	接触中に呼ばれるコールバック関数
 	 *	@param	contact		接触したオブジェクトの情報
-	 *	@param	oldManifold	接触した箇所の情報
+	 *	@param	oldManifold	接触した箇所の詳細情報
 	 */
 	virtual void PreSolve( LiquidFunContact* contact, const LiquidFunManifold* oldManifold ) override;
 	
@@ -65,9 +65,9 @@ public:
 	using ContactPreSolve	= std::function< void( LiquidFunContact*, const LiquidFunManifold* ) >;
 	using ContactEnd		= std::function< void( LiquidFunContact* ) >;
 	
-	ContactBegin	onContactBegin;
-	ContactPreSolve	onContactPreSolve;
-	ContactEnd		onContactEnd;
+	ContactBegin	onContactBegin;		//=> ユーザが接触時に呼びたい関数
+	ContactPreSolve	onContactPreSolve;	//=> ユーザが接触中に呼びたい関数
+	ContactEnd		onContactEnd;		//=> ユーザが離脱時に呼びたい関数
 };
 
 #endif

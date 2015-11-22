@@ -12,7 +12,7 @@ namespace
 BrushTrail::BrushTrail()
 	: mBrushBody()
 	, mPreviousTouchPoint( Vec2::ZERO )
-	, mSegmentOffset( Vec2::ZERO )
+	, mTrailOffset( Vec2::ZERO )
 	, mCanvas( nullptr )
 {
 	
@@ -55,7 +55,7 @@ void BrushTrail::writeBegin( Touch* touch )
 	
 	// 各座標を初期化する。
 	mPreviousTouchPoint	= touch->getLocation();
-	mSegmentOffset		= Vec2::ZERO;
+	mTrailOffset		= Vec2::ZERO;
 }
 
 // ブラシ描き途中
@@ -70,15 +70,15 @@ void BrushTrail::writeMove( Touch* touch )
 	
 	if ( distance > DISTANCE_MIN )
 	{
-		// 線を追加する。
-		mBrushBody.pushSegment( mSegmentOffset, delta + mSegmentOffset, 4.0f );
+		// 線形状のフィクスチャ設定記述子を追加する。
+		mBrushBody.pushSegment( mTrailOffset, delta + mTrailOffset, 4.0f );
 		
 		// 軌跡の描画を行う。
 		drawTrail( touch, distance );
 		
 		// 各座標を更新する。
 		mPreviousTouchPoint	 = touchPoint;
-		mSegmentOffset		+= delta;
+		mTrailOffset		+= delta;
 	}
 }
 
@@ -87,7 +87,7 @@ bool BrushTrail::writeEnd( Touch* touch, Node* parentNode )
 {
 	if ( mBrushBody.isEmpty() )
 	{
-		// コンテナが空の場合は終了する。
+		// コンテナが空の場合は、線を引いていないので終了する。
 		return false;
 	}
 	

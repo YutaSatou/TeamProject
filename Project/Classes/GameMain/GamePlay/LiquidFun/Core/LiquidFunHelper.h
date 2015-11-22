@@ -36,7 +36,7 @@ public:
 	 *	@param	pixsel	ピクセル
 	 *	@return	float	メータ
 	 */
-	static float toMeter( const float& pixsel );
+	static float toMeter( float pixsel );
 	
 	/**
 	 *	@brief	メータからピクセルへの単位変換
@@ -50,7 +50,7 @@ public:
 	 *	@param	meter	メータ
 	 *	@return	float	ピクセル
 	 */
-	static float toPixsel( const float& meter );
+	static float toPixsel( float meter );
 	
 	/**
 	 *	@brief	ノードの取得

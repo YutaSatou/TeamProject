@@ -35,7 +35,7 @@ public:
 	~BrushBody();
 	
 	/**
-	 *	@brief	線の追加
+	 *	@brief	線形状のフィクスチャ設定記述子の追加
 	 *	@param	start		線の開始地点
 	 *	@param	end			線の終了地点
 	 *	@param	lineWidth	線の幅
@@ -71,7 +71,7 @@ private:
 	
 	using SegmentContainer = std::vector< LiquidFunFixtureDesc >;
 	
-	SegmentContainer						mSegmentContainer;	//=> 線のコンテナ
+	SegmentContainer						mSegmentContainer;	//=> 線形状のフィクスチャ設定記述子のコンテナ
 	UniquePtr< LiquidFunBodyDescCreator >	mBodyDescCreator;	//=> ボディ設定記述子生成者
 };
 

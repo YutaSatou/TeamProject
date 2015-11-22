@@ -1,6 +1,7 @@
 #include "LiquidFunDebugDrawer.h"
 #include "GLESDebugDraw.h"
-#include "../LiquidFunCoreAPI.h"
+#include "../Core/LiquidFunHelper.h"
+#include "../Core/LiquidFunWorldManager.h"
 
 using namespace cocos2d;
 
@@ -27,8 +28,10 @@ bool LiquidFunDebugDrawer::init()
 		return false;
 	}
 	
+	// レイヤを最前面に描画する。
 	setGlobalZOrder( 10.0f );
 	
+	// デバッグ描画フラグの初期化を行う。
 	initDebugDrawFlags();
 	
 	return true;
@@ -75,10 +78,10 @@ void LiquidFunDebugDrawer::initDebugDrawFlags()
 {
 	using LiquidFunDraw = b2Draw;
 	
+	// デバッグ描画用レンダラを登録する。
 	LiquidFunWorldManager::getInstance().mWorld->SetDebugDraw( mDebugRenderer );
 	
 	unsigned int flags = 0;
-	
 	flags += LiquidFunDraw::e_shapeBit;
 	flags += LiquidFunDraw::e_jointBit;
 	// flags += LiquidFunDraw::e_aabbBit;
@@ -86,6 +89,7 @@ void LiquidFunDebugDrawer::initDebugDrawFlags()
 	flags += LiquidFunDraw::e_centerOfMassBit;
 	flags += LiquidFunDraw::e_particleBit;
 	
+	// デバッグ描画を行うフラグを登録する。
 	mDebugRenderer->SetFlags( flags );
 }
 
@@ -94,12 +98,16 @@ void LiquidFunDebugDrawer::onDraw()
 {
 	Director* director = Director::getInstance();
 	
-	// 現在のモデルビュの状態を保存する。
+	// モデルビュの状態を保存する。
 	Mat4 prevModelView = director->getMatrix( MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW );
 	
-	// デバッグ描画を行う。
+	// 現在のモデルビュを読み込む。
 	director->loadMatrix( MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, mModelView );
+	
+	// デバッグ描画を行う。
 	LiquidFunWorldManager::getInstance().mWorld->DrawDebugData();
+	
+	// 保存しておいたモデルビュを読み込む。
 	director->loadMatrix( MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, prevModelView );
 	
 	// GLのエラーログを表示する。

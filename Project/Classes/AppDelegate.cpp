@@ -33,7 +33,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	glView->setDesignResolutionSize( 720.0f, 1280.0f, ResolutionPolicy::SHOW_ALL );
 	
 	ADX2Manager::getInstance().init( "Audio/Demo.acf" );
-    ADX2Player::getInstance().init( "Audio/Demo.acb" );
+	ADX2Player::getInstance().init( "Audio/Demo.acb" );
 	
 // iOS Simulator.
 #ifdef DEBUG_HOSHI
@@ -41,10 +41,6 @@ bool AppDelegate::applicationDidFinishLaunching()
 #elif DEBUG_TOSHIKAWA
 	SceneChanger::switchScene( GamePlayLayer::create() );
 #elif DEBUG_SATOU
-	SceneSwitcher::change( SceneType::TITLE );
-	
-// Release.
-#else
 	SceneSwitcher::change( SceneType::TITLE );
 #endif
 	

@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-class ObjectData;
+struct ObjectData;
 
 /*------------------------------------------------------------*/
 //	@class		：	ObjectDataReader

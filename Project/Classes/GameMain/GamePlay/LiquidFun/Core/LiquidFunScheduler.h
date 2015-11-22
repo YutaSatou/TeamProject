@@ -1,11 +1,12 @@
 #ifndef _LIQUID_FUN_SCHEDULER_H_
 #define _LIQUID_FUN_SCHEDULER_H_
 
+#include "Utility/Template/SmartPtr.h"
 #include "LiquidFunDefine.h"
 
 /*------------------------------------------------------------*/
 //	@class		：	LiquidFunScheduler
-//	@brief		：	LiquidFunの定期実行
+//	@brief		：	LiquidFunの定期実行者
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/
 class LiquidFunScheduler
@@ -17,7 +18,7 @@ public:
 	 *	@brief	コンストラクタ
 	 *	@param	world	ワールド
 	 */
-	LiquidFunScheduler( LiquidFunWorld* world );
+	LiquidFunScheduler( SharedPtr< LiquidFunWorld > world );
 	
 	/**
 	 *	@brief	デストラクタ
@@ -43,7 +44,7 @@ private:
 	
 private:
 	
-	LiquidFunWorld* mWorld;	//=> ワールド
+	SharedPtr< LiquidFunWorld > mWorld;	//=> ワールド
 };
 
 #endif
