@@ -1,7 +1,7 @@
 #ifndef _LIQUID_FUN_BODY_SETTLOR_H_
 #define _LIQUID_FUN_BODY_SETTLOR_H_
 
-#include "../../LiquidFunDefine.h"
+#include "../LiquidFunDefine.h"
 
 /*------------------------------------------------------------*/
 //	@class		：	LiquidFunBodySettlor

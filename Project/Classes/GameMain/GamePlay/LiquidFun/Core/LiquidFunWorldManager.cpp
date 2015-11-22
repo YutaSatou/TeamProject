@@ -1,5 +1,6 @@
 #include "LiquidFunWorldManager.h"
 #include "LiquidFunScheduler.h"
+#include "../User/LiquidFunContactListener.h"
 #include "LiquidFunHelper.h"
 
 using namespace cocos2d;
@@ -25,12 +26,6 @@ LiquidFunWorldManager::~LiquidFunWorldManager()
 	CC_SAFE_DELETE( mScheduler );
 }
 
-// 更新
-void LiquidFunWorldManager::update()
-{
-	mScheduler->update();
-}
-
 // ワールドのリセット
 void LiquidFunWorldManager::resetWorld()
 {
@@ -47,6 +42,18 @@ void LiquidFunWorldManager::resetWorld()
 		// ワールドからボディを削除する。
 		deleteBody( currentBody );
 	}
+}
+
+// 更新
+void LiquidFunWorldManager::update()
+{
+	mScheduler->update();
+}
+
+// コンタクトリスナの登録
+void LiquidFunWorldManager::registerContactListener( LiquidFunContactListener* contactListener )
+{
+	mWorld->SetContactListener( contactListener );
 }
 
 // ボディの追加

@@ -1,7 +1,7 @@
 #ifndef _LIQUID_FUN_BODY_DESC_CREATOR_H_
 #define _LIQUID_FUN_BODY_DESC_CREATOR_H_
 
-#include "LiquidFunBox2D.h"
+#include "../Core/LiquidFunBox2D.h"
 #include "math/Vec2.h"
 
 namespace cocos2d

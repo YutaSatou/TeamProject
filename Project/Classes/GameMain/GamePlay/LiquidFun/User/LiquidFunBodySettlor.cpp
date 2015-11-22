@@ -1,6 +1,6 @@
 #include "LiquidFunBodySettlor.h"
-#include "../../Core/LiquidFunBox2D.h"
-#include "../../Core/LiquidFunWorldManager.h"
+#include "../Core/LiquidFunBox2D.h"
+#include "../Core/LiquidFunWorldManager.h"
 
 // 空のボディの装着
 LiquidFunBody* LiquidFunBodySettlor::attachEmptyBody( const LiquidFunBodyDesc& bodyDesc )

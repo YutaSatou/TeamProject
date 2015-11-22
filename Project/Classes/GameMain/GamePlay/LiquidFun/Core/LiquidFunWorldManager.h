@@ -6,6 +6,7 @@
 #include "LiquidFunBox2D.h"
 
 class LiquidFunScheduler;
+class LiquidFunContactListener;
 
 /*------------------------------------------------------------*/
 //	@class		：	LiquidFunWorldManager
@@ -23,14 +24,20 @@ public:
 	~LiquidFunWorldManager();
 	
 	/**
+	 *	@brief	ワールドのリセット
+	 */
+	void resetWorld();
+	
+	/**
 	 *	@brief	更新
 	 */
 	void update();
 	
 	/**
-	 *	@brief	ワールドのリセット
+	 *	@brief	コンタクトリスナの登録
+	 *	@param	contactListener	コンタクトリスナ
 	 */
-	void resetWorld();
+	void registerContactListener( LiquidFunContactListener* contactListener );
 	
 	/**
 	 *	@brief	ボディの追加

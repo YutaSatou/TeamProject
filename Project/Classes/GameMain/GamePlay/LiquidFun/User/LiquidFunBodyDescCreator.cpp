@@ -1,7 +1,7 @@
 #include "LiquidFunBodyDescCreator.h"
 #include "cocos2d.h"
 #include "LiquidFunMaterial.h"
-#include "../../Core/LiquidFunHelper.h"
+#include "../Core/LiquidFunHelper.h"
 
 using namespace cocos2d;
 
