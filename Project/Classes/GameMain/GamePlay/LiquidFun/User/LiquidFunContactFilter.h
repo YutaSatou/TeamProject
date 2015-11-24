@@ -2,7 +2,7 @@
 #define _LIQUID_FUN_CONTACT_FILTER_H_
 
 /*------------------------------------------------------------*/
-//	@class		：	LiquidFunContactFilter
+//	@struct		：	LiquidFunContactFilter
 //	@brief		：	LiquidFunの接触フィルタ
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/

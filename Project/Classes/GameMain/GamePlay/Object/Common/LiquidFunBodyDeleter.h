@@ -6,7 +6,7 @@
 #include "../../LiquidFun/LiquidFunDefine.h"
 
 /*------------------------------------------------------------*/
-//	@struct		：	LiquidFunBodyDeleter
+//	@class		：	LiquidFunBodyDeleter
 //	@brief		：	ボディデストラクトラッパ
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/
