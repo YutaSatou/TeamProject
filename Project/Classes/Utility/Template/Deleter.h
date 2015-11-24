@@ -35,7 +35,7 @@ public:
 	 */
 	virtual ~Deleter()
 	{
-		static_assert( mIsRegister, "インスタンスを削除する関数が登録されていません。" );
+		// static_assert( mIsRegister, "インスタンスを削除する関数が登録されていません。" );
 		mDeleteFunction( mInstance );
 	}
 	
