@@ -20,6 +20,7 @@ struct	b2BodyDef;
 struct	b2JointDef;
 struct	b2ParticleSystemDef;
 struct	b2FixtureDef;
+struct	b2Filter;
 struct	b2Manifold;
 
 using LiquidFunVec2					= b2Vec2;
@@ -41,6 +42,7 @@ using LiquidFunBodyDesc				= b2BodyDef;
 using LiquidFunJointDesc			= b2JointDef;
 using LiquidFunParticleDesc			= b2ParticleSystemDef;
 using LiquidFunFixtureDesc			= b2FixtureDef;
+using LiquidFunFilter				= b2Filter;
 using LiquidFunManifold				= b2Manifold;
 
 #endif

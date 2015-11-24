@@ -2,6 +2,7 @@
 #define _DELETER_H_
 
 #include <functional>
+#include <type_traits>
 
 /*------------------------------------------------------------*/
 //	@class		：	Deleter
@@ -23,9 +24,10 @@ public:
 	 */
 	Deleter()
 		: mInstance( nullptr )
-		, mDeleteFunction( []( T* instance ) { if ( !instance ) { return; } delete instance; instance = nullptr; } )
+		, mDeleteFunction( []( T* instance ) { } )
+		, mIsRegister( false )
 	{
-		// インスタンスを削除する関数を登録しない場合は、通常のデリートが行われる。
+		
 	}
 	
 	/**
@@ -33,7 +35,7 @@ public:
 	 */
 	virtual ~Deleter()
 	{
-		// インスタンスを削除する。
+		static_assert( mIsRegister, "インスタンスを削除する関数が登録されていません。" );
 		mDeleteFunction( mInstance );
 	}
 	
@@ -64,13 +66,15 @@ public:
 	 */
 	void registerDeleteFunction( DeleteFunction deleteFunction )
 	{
-		mDeleteFunction = deleteFunction;
+		mDeleteFunction	= deleteFunction;
+		mIsRegister		= true;
 	}
 	
 private:
 	
 	T*				mInstance;			//=> 削除するインスタンス
 	DeleteFunction	mDeleteFunction;	//=> インスタンスを削除する関数
+	bool			mIsRegister;		//=> 登録を完了したか否か
 };
 
 #endif
