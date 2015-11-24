@@ -16,5 +16,5 @@ enum class ContactCategory : unsigned short
 	SLIME			= 1 << 4,
 	ALL_CATEGORY	= USHRT_MAX,
 };
-	
+
 #endif
