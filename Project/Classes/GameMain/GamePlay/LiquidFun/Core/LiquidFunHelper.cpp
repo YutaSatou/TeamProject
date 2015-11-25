@@ -12,7 +12,7 @@ LiquidFunVec2 LiquidFunHelper::toMeter( const Vec2& pixsel )
 }
 
 // ピクセルからメータへの単位変換
-float LiquidFunHelper::toMeter( const float& pixsel )
+float LiquidFunHelper::toMeter( float pixsel )
 {
 	return ( pixsel / PTM_RATIO );
 }
@@ -24,7 +24,13 @@ Vec2 LiquidFunHelper::toPixsel( const LiquidFunVec2& meter )
 }
 
 // メータからピクセルへの単位変換
-float LiquidFunHelper::toPixsel( const float& meter )
+float LiquidFunHelper::toPixsel( float meter )
 {
 	return ( meter * PTM_RATIO );
+}
+
+// ノードの取得
+Node* LiquidFunHelper::getNode( LiquidFunBody* body )
+{
+	return static_cast< Node* >( body->GetUserData() );
 }

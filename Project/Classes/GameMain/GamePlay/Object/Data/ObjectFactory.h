@@ -56,9 +56,9 @@ public:
 	bool isEmptyElement( const std::string& key ) const;
 	
 	/**
-	 *	@brief	ファイルのパスからファイルの名前の抽出
+	 *	@brief	ファイルパスからファイルネームの抽出
 	 *	@param	filePath	ファイルのパス
-	 *	@return	std::string	ファイルの名前
+	 *	@return	std::string	ファイルネーム
 	 */
 	std::string extractFileName( const std::string& filePath ) const;
 	

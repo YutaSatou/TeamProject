@@ -1,6 +1,5 @@
 #include "GameTitleLayer.h"
 #include "../../Utility/Assistant/SceneSwitcher.h"
-#include "../../Utility/Particle/EffectManager.h"
 
 using namespace cocos2d;
 

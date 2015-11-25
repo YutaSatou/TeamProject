@@ -31,7 +31,7 @@ bool ObjectFactory< InstanceType, Param... >::isEmptyElement( const std::string&
 	return ( mCreateFunctionContainer.count( key ) == 0 );
 }
 
-// ファイルのパスからファイルの名前の抽出
+// ファイルパスからファイルネームの抽出
 template< typename InstanceType, typename... Param >
 std::string ObjectFactory< InstanceType, Param... >::extractFileName( const std::string& filePath ) const
 {

@@ -47,7 +47,7 @@ private:
 	 *	@brief	オブジェクト管理数の取得
 	 *	@return	size_t	管理数
 	 */
-	size_t getObjectManageCount() const;
+	std::size_t getObjectManageCount() const;
 	
 private:
 	

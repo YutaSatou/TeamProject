@@ -1,15 +1,18 @@
 #ifndef _BRUSH_BODY_H_
 #define _BRUSH_BODY_H_
 
+#include "../../LiquidFun/LiquidFunDefine.h"
+#include "Utility/Template/SmartPtr.h"
 #include <vector>
 #include <functional>
 
 namespace cocos2d
 {
 	class Vec2;
-	class PhysicsBody;
-	class PhysicsShape;
+	class Node;
 }
+
+class LiquidFunBodyDescCreator;
 
 /*------------------------------------------------------------*/
 //	@class		：	BrushBody
@@ -32,12 +35,12 @@ public:
 	~BrushBody();
 	
 	/**
-	 *	@brief	シェイプの追加
+	 *	@brief	線形状のフィクスチャ設定記述子の追加
 	 *	@param	start		線の開始地点
 	 *	@param	end			線の終了地点
-	 *	@param	lineSize	線の大きさ
+	 *	@param	lineWidth	線の幅
 	 */
-	void pushShape( const cocos2d::Vec2& start, const cocos2d::Vec2& end, float lineSize );
+	void pushSegment( const cocos2d::Vec2& start, const cocos2d::Vec2& end, float lineWidth );
 	
 	/**
 	 *	@brief	コンテナの解放
@@ -51,10 +54,10 @@ public:
 	bool isEmpty() const;
 	
 	/**
-	 *	@brief	ボディの生成
-	 *	@return	PhysicsBody	ボディ
+	 *	@brief	ボディの装着
+	 *	@param	registerNode	ボディに登録するノード
 	 */
-	cocos2d::PhysicsBody* createBody();
+	void attachBody( cocos2d::Node* registerNode );
 	
 private:
 	
@@ -62,13 +65,14 @@ private:
 	 *	@brief	コンテナの巡回
 	 *	@param	func	実行する関数
 	 */
-	void each( std::function< void( cocos2d::PhysicsShape* ) > func );
+	void each( std::function< void( LiquidFunFixtureDesc& decs ) > func );
 	
 private:
 	
-	using ShapeContainer = std::vector< cocos2d::PhysicsShape* >;
+	using SegmentContainer = std::vector< LiquidFunFixtureDesc >;
 	
-	ShapeContainer mShapeContainer;	//=> シェイプコンテナ
+	SegmentContainer						mSegmentContainer;	//=> 線形状のフィクスチャ設定記述子のコンテナ
+	UniquePtr< LiquidFunBodyDescCreator >	mBodyDescCreator;	//=> ボディ設定記述子生成者
 };
 
 #endif

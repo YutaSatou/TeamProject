@@ -1,7 +1,9 @@
 #include "AppDelegate.h"
 #include "Utility/Assistant/SceneSwitcher.h"
+#include "Utility/Assistant/SceneChanger.h"
 #include "Utility/Audio/ADX2Manager.h"
 #include "Utility/Audio/ADX2Player.h"
+#include "GameMain/GamePlay/GamePlayLayer.h"
 
 using namespace cocos2d;
 
@@ -31,18 +33,14 @@ bool AppDelegate::applicationDidFinishLaunching()
 	glView->setDesignResolutionSize( 720.0f, 1280.0f, ResolutionPolicy::SHOW_ALL );
 	
 	ADX2Manager::getInstance().init( "Audio/Demo.acf" );
-    ADX2Player::getInstance().init( "Audio/Demo.acb" );
+	ADX2Player::getInstance().init( "Audio/Demo.acb" );
 	
 // iOS Simulator.
 #ifdef DEBUG_HOSHI
 	SceneSwitcher::change( SceneType::PLAY );
 #elif DEBUG_TOSHIKAWA
-	SceneSwitcher::change( SceneType::PLAY );
+	SceneChanger::switchScene( GamePlayLayer::create() );
 #elif DEBUG_SATOU
-	SceneSwitcher::change( SceneType::TITLE );
-	
-// Release.
-#else
 	SceneSwitcher::change( SceneType::TITLE );
 #endif
 	

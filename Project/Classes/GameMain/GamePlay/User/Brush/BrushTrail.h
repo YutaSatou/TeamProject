@@ -73,7 +73,7 @@ private:
 	
 	BrushBody			mBrushBody;				//=> ブラシ用物理構造
 	cocos2d::Vec2		mPreviousTouchPoint;	//=> 前回のタッチ座標
-	cocos2d::Vec2		mShapeOffset;			//=> シェイプの座標オフセット
+	cocos2d::Vec2		mTrailOffset;			//=> 軌跡の座標オフセット
 	Canvas*				mCanvas;				//=> キャンバス
 };
 

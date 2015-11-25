@@ -2,14 +2,16 @@
 #define _LIQUID_FUN_WORLD_MANAGER_H_
 
 #include "Utility/Template/Singleton.h"
+#include "Utility/Template/SmartPtr.h"
 #include "cocos2d.h"
 #include "LiquidFunBox2D.h"
 
 class LiquidFunScheduler;
+class LiquidFunContactListener;
 
 /*------------------------------------------------------------*/
 //	@class		：	LiquidFunWorldManager
-//	@brief		：	LiquidFunの物理空間管理者
+//	@brief		：	LiquidFunのワールド管理者
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/
 class LiquidFunWorldManager : public Singleton< LiquidFunWorldManager >
@@ -20,7 +22,12 @@ public:
 	/**
 	 *	@brief	デストラクタ
 	 */
-	~LiquidFunWorldManager();
+	~LiquidFunWorldManager() = default;
+	
+	/**
+	 *	@brief	ワールドのリセット
+	 */
+	void resetWorld();
 	
 	/**
 	 *	@brief	更新
@@ -28,25 +35,31 @@ public:
 	void update();
 	
 	/**
-	 *	@brief	ボディの追加
-	 *	@param	bodyDef			ボディの情報
-	 *	@return	LiquidFunBody	ボディのインスタンス( 物理空間に登録済 )
+	 *	@brief	コンタクトリスナの登録
+	 *	@param	contactListener	コンタクトリスナ
 	 */
-	LiquidFunBody* addBody( const LiquidFunBodyDef* bodyDef );
+	void registerContactListener( LiquidFunContactListener* contactListener );
+	
+	/**
+	 *	@brief	ボディの追加
+	 *	@param	bodyDesc		ボディ設定記述子
+	 *	@return	LiquidFunBody	ボディのインスタンス( ワールドに登録済 )
+	 */
+	LiquidFunBody* addBody( const LiquidFunBodyDesc* bodyDesc );
 	
 	/**
 	 *	@brief	ジョイントの追加
-	 *	@param	jointDef		ジョイントの情報
-	 *	@return	LiquidFunJoint	ジョイントのインスタンス( 物理空間に登録済 )
+	 *	@param	jointDesc		ジョイント設定記述子
+	 *	@return	LiquidFunJoint	ジョイントのインスタンス( ワールドに登録済 )
 	 */
-	LiquidFunJoint* addJoint( const LiquidFunJointDef* jointDef );
+	LiquidFunJoint* addJoint( const LiquidFunJointDesc* jointDesc );
 	
 	/**
 	 *	@brief	パーティクルの追加
-	 *	@param	particleDef			パーティクルの情報
-	 *	@return	LiquidFunParticle	パーティクルのインスタンス( 物理空間に登録済 )
+	 *	@param	particleDesc		パーティクル設定記述子
+	 *	@return	LiquidFunParticle	パーティクルのインスタンス( ワールドに登録済 )
 	 */
-	LiquidFunParticle* addParticle( const LiquidFunParticleDef* particleDef );
+	LiquidFunParticle* addParticle( const LiquidFunParticleDesc* particleDesc );
 	
 	/**
 	 *	@brief	ボディの削除
@@ -90,9 +103,9 @@ private:
 	friend class Singleton< LiquidFunWorldManager >;
 	friend class LiquidFunDebugDrawer;
 	
-	LiquidFunWorld*		mWorld;		//=> 物理空間
-	LiquidFunScheduler*	mScheduler;	//=> 定期実行
-	cocos2d::Vect		mGravity;	//=> 重力値
+	SharedPtr< LiquidFunWorld >		mWorld;		//=> ワールド
+	SharedPtr< LiquidFunScheduler >	mScheduler;	//=> 定期実行者
+	cocos2d::Vect					mGravity;	//=> 重力値
 };
 
 #endif

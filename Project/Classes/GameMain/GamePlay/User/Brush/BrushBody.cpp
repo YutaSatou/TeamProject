@@ -1,10 +1,13 @@
 #include "BrushBody.h"
 #include "cocos2d.h"
+#include "../../LiquidFun/LiquidFunUserAPI.h"
 
 using namespace cocos2d;
 
 // コンストラクタ
 BrushBody::BrushBody()
+	: mSegmentContainer()
+	, mBodyDescCreator( makeUnique< LiquidFunBodyDescCreator >() )
 {
 	
 }
@@ -15,57 +18,45 @@ BrushBody::~BrushBody()
 	clear();
 }
 
-// シェイプの追加
-void BrushBody::pushShape( const Vec2& start, const Vec2& end, float lineSize )
+// 線形状のフィクスチャ設定記述子の追加
+void BrushBody::pushSegment( const Vec2& start, const Vec2& end, float lineWidth )
 {
-	// 物理特性( 密度, 反発係数, 摩擦係数 )を用意する。
-	PhysicsMaterial material;
-	material.density		= 0.2f;
-	material.restitution	= 0.2f;
-	material.friction		= 0.8f;
+	// マテリアル( 密度, 反発係数, 摩擦係数 )を用意する。
+	LiquidFunMaterial material( 0.0f, 0.0f, 0.8f );
 	
-	// 線のシェイプを生成する。
-	PhysicsShape* edgeSegment = PhysicsShapeEdgeSegment::create( start, end, material, lineSize );
-	
-	// 解放されないように参照カウンタを加算して格納する。
-	CC_SAFE_RETAIN( edgeSegment );
-	mShapeContainer.push_back( edgeSegment );
+	// 線形状のフィクスチャ設定記述子を生成し、格納する。
+	LiquidFunFixtureDesc segment = mBodyDescCreator->createSegment( start, end, lineWidth, material );
+	mSegmentContainer.push_back( std::move( segment ) );
 }
 
 // コンテナの解放
 void BrushBody::clear()
 {
-	// 各要素の参照カウンタを減算する。
-	each( []( PhysicsShape* shape ) { CC_SAFE_RELEASE_NULL( shape ); } );
-	
-	// コンテナをクリアする。
-	mShapeContainer.clear();
+	mSegmentContainer.clear();
 }
 
 // コンテナが空か否か
 bool BrushBody::isEmpty() const
 {
-	return mShapeContainer.empty();
+	return mSegmentContainer.empty();
 }
 
-// ボディの生成
-PhysicsBody* BrushBody::createBody()
+// ボディの装着
+void BrushBody::attachBody( Node* registerNode )
 {
-	// シェイプ装着用の空ボディを用意する。
-	PhysicsBody* parentBody = PhysicsBody::create();
-	parentBody->setDynamic( false );
+	// フィクスチャ装着用の空ボディを用意する。
+	LiquidFunBodyDesc	bodyDesc	= mBodyDescCreator->createBodyDesc( registerNode, LiquidFunBodyType::b2_staticBody );
+	LiquidFunBody*		emptyBody	= LiquidFunBodySettlor::attachEmptyBody( bodyDesc );
 	
-	// コンテナを巡回してシェイプを装着する。
-	each( [ &parentBody ]( PhysicsShape* shape ) { parentBody->addShape( shape ); } );
-	
-	return parentBody;
+	// コンテナを巡回して、フィクスチャの生成と装着を行う。
+	each( [ &emptyBody ]( LiquidFunFixtureDesc& desc ) { LiquidFunBodySettlor::attachFixture( emptyBody, desc ); } );
 }
 
 // コンテナの巡回
-void BrushBody::each( std::function< void( PhysicsShape* ) > func )
+void BrushBody::each( std::function< void( LiquidFunFixtureDesc& ) > func )
 {
-	std::for_each( mShapeContainer.begin(), mShapeContainer.end(), [ & ]( PhysicsShape* shape )
+	std::for_each( mSegmentContainer.begin(), mSegmentContainer.end(), [ & ]( LiquidFunFixtureDesc& desc )
 	{
-		func( shape );
+		func( desc );
 	} );
 }
