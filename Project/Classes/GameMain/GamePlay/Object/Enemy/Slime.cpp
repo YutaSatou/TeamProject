@@ -1,15 +1,17 @@
 #include "Slime.h"
 #include "../Data/ObjectData.h"
-#include "../Collision/ContactSettlor.h"
+// #include "../Collision/ContactSettlor.h"
 
 using namespace cocos2d;
 
 namespace
 {
+	/*
 	ContactSettlor::OtherCategory otherCategory =
 	{
 		ContactCategory::WALL_UP, ContactCategory::WALL_DOWN, ContactCategory::WALL_LEFT, ContactCategory::WALL_RIGHT
 	};
+	*/
 }
 
 // コンストラクタ
@@ -74,6 +76,7 @@ void Slime::onContactBegin( Node* contactNode )
 // 物理構造の初期化
 void Slime::initPhysics()
 {
+	/*
 	// ボディの大きさを定義する。
 	const float bodySize = getContentSize().width / 2.0f;
 	
@@ -95,4 +98,5 @@ void Slime::initPhysics()
 	
 	// 自身にボディを設定する。
 	setPhysicsBody( body );
+	*/
 }

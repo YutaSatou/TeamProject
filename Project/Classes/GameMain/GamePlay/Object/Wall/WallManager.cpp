@@ -16,10 +16,10 @@ bool WallManager::init()
 	const Vec2	screenMax	= Director::getInstance()->getWinSize();
 	
 	// 上, 下, 左, 右の壁を装着する。
-	attachWall( ContactCategory::WALL_UP,		{ screenMin.x, screenMax.y }, { screenMax.x, screenMax.y } );
-	attachWall( ContactCategory::WALL_DOWN,		{ screenMin.x, screenMin.y }, { screenMax.x, screenMin.y } );
-	attachWall( ContactCategory::WALL_LEFT,		{ screenMin.x, screenMax.y }, { screenMin.x, screenMin.y } );
-	attachWall( ContactCategory::WALL_RIGHT,	{ screenMax.x, screenMax.y }, { screenMax.x, screenMin.y } );
+	attachWall( ContactCategory::WALL,	{ screenMin.x, screenMax.y }, { screenMax.x, screenMax.y } );
+	attachWall( ContactCategory::WALL,	{ screenMin.x, screenMin.y }, { screenMax.x, screenMin.y } );
+	attachWall( ContactCategory::WALL,	{ screenMin.x, screenMax.y }, { screenMin.x, screenMin.y } );
+	attachWall( ContactCategory::WALL,	{ screenMax.x, screenMax.y }, { screenMax.x, screenMin.y } );
 	
 	return true;
 }

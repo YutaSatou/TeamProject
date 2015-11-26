@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 
-enum class ContactCategory : int;
+enum class ContactCategory : unsigned short;
 
 /*------------------------------------------------------------*/
 //	@class		：	WallManager

@@ -2,7 +2,7 @@
 #define _WALL_H_
 
 #include "cocos2d.h"
-#include "../Collision/ContactCategory.h"
+#include "../Contact/ContactCategory.h"
 
 /*------------------------------------------------------------*/
 //	@class		：	Wall

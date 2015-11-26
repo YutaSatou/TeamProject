@@ -1,11 +1,11 @@
 #include "Wall.h"
-#include "../Collision/ContactSettlor.h"
+// #include "../Collision/ContactSettlor.h"
 
 using namespace cocos2d;
 
 // コンストラクタ
 Wall::Wall()
-	: mCategory( ContactCategory::WALL_UP )
+	: mCategory( ContactCategory::WALL )
 {
 	
 }
@@ -68,9 +68,11 @@ void Wall::initPhysics( const Vec2& start, const Vec2& end )
 // ボディの設定
 void Wall::setupPhysicsBody( PhysicsBody* body )
 {
+	/*
 	// カテゴリの設定、衝突の有効化、接触の有効化を行う。
 	ContactSettlor contactSettlor( body );
 	contactSettlor.setupCategory( mCategory );
 	contactSettlor.enableCollision();
 	contactSettlor.enableContact( { ContactCategory::PLAYER } );
+	*/
 }

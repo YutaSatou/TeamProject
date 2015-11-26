@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "../Data/ObjectData.h"
 #include "../Color/ColorMixer.h"
-#include "../Collision/ContactSettlor.h"
+// #include "../Collision/ContactSettlor.h"
 
 using namespace cocos2d;
 
@@ -65,12 +65,13 @@ void Player::onContactBegin( Node* contactNode )
 // 重力の有効化
 void Player::enableGravity()
 {
-	getPhysicsBody()->setGravityEnable( true );
+	// getPhysicsBody()->setGravityEnable( true );
 }
 
 // 物理構造の初期化
 void Player::initPhysics()
 {
+	/*
 	// ボディの大きさを定義する。
 	const float bodySize = getContentSize().width / 2.0f;
 	
@@ -92,6 +93,7 @@ void Player::initPhysics()
 	
 	// 自身にボディを設定する。
 	setPhysicsBody( body );
+	*/
 }
 
 // 色の更新
