@@ -1,14 +1,14 @@
-#ifndef _GAMEPLAY_LAYER_H_
-#define _GAMEPLAY_LAYER_H_
+#ifndef _UI_LAYER_H_
+#define _UI_LAYER_H_
 
 #include "cocos2d.h"
 
 /*------------------------------------------------------------*/
-//	@class		：	GamePlayLayer
-//	@brief		：	ゲームプレイレイヤ
+//	@class		：	UILayer
+//	@brief		：	ユーザインタフェイスレイヤ
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/
-class GamePlayLayer : public cocos2d::Layer
+class UILayer : public cocos2d::Layer
 {
 	
 protected:
@@ -16,12 +16,12 @@ protected:
 	/**
 	 *	@brief	コンストラクタ
 	 */
-	GamePlayLayer() = default;
+	UILayer() = default;
 	
 	/**
 	 *	@brief	デストラクタ
 	 */
-	~GamePlayLayer();
+	~UILayer() = default;
 	
 	/**
 	 *	@brief	初期化
@@ -29,19 +29,13 @@ protected:
 	 */
 	virtual bool init() override;
 	
-	/**
-	 *	@brief	更新
-	 *	@param	deltaTime	デルタ時間
-	 */
-	virtual void update( float deltaTime ) override;
-	
 public:
 	
 	/**
 	 *	@brief	インスタンスの生成
-	 *	@return	GamePlayLayer	インスタンス
+	 *	@return	UILayer	インスタンス
 	 */
-	static GamePlayLayer* create();
+	static UILayer* create();
 };
 
 #endif

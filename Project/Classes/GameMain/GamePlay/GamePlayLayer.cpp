@@ -1,8 +1,15 @@
 #include "GamePlayLayer.h"
 #include "LiquidFun/LiquidFunCoreAPI.h"
 #include "Control/GameLayer.h"
+#include "User/UI/UILayer.h"
 
 using namespace cocos2d;
+
+// デストラクタ
+GamePlayLayer::~GamePlayLayer()
+{
+	LiquidFunWorldManager::getInstance().resetWorld();
+}
 
 // 初期化
 bool GamePlayLayer::init()
@@ -16,6 +23,7 @@ bool GamePlayLayer::init()
 	
 	addChild( LiquidFunDebugDrawer::create() );
 	addChild( GameLayer::create( "Plist/StageData/StageData_01.plist" ) );
+	addChild( UILayer::create() );
 	
 	return true;
 }
