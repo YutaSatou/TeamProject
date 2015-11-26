@@ -4,8 +4,6 @@
 #include "ContactCallback.h"
 #include "ContactSender.h"
 
-using namespace cocos2d;
-
 // コンストラクタ
 ContactEventManager::ContactEventManager()
 	: mContactSender( makeUnique< ContactSender >( mCallbackContainer ) )
