@@ -1,6 +1,5 @@
 #include "ObjectDataReader.h"
 #include "ObjectData.h"
-#include "cocos2d.h"
 #include "Utility/FileIO/PlistReader.h"
 
 using namespace cocos2d;
@@ -22,7 +21,7 @@ namespace
 		return { valueMap.at( "PositionX" ).asFloat(), valueMap.at( "PositionY" ).asFloat() };
 	}
 	
-	PhysicsMaterial readMaterial( const ValueMap& valueMap )
+	LiquidFunMaterial readMaterial( const ValueMap& valueMap )
 	{
 		return { valueMap.at( "Density" ).asFloat(), valueMap.at( "Restitution" ).asFloat(), valueMap.at( "Friction" ).asFloat() };
 	}
