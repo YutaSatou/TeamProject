@@ -1,6 +1,7 @@
 #include "BrushBody.h"
 #include "cocos2d.h"
 #include "../../LiquidFun/LiquidFunUserAPI.h"
+#include "../../Object/Common/LiquidFunBodyDeleter.h"
 
 using namespace cocos2d;
 
@@ -50,6 +51,9 @@ void BrushBody::attachBody( Node* registerNode )
 	
 	// コンテナを巡回して、フィクスチャの生成と装着を行う。
 	each( [ &emptyBody ]( LiquidFunFixtureDesc& desc ) { LiquidFunBodySettlor::attachFixture( emptyBody, desc ); } );
+	
+	// ノードが削除されるタイミングでボディも削除されるように設定する。
+	registerNode->addChild( LiquidFunBodyDeleter::create( emptyBody ) );
 }
 
 // コンテナの巡回

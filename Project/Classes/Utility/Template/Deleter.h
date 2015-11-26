@@ -25,7 +25,6 @@ public:
 	Deleter()
 		: mInstance( nullptr )
 		, mDeleteFunction( []( T* instance ) { } )
-		, mIsRegister( false )
 	{
 		
 	}
@@ -35,7 +34,6 @@ public:
 	 */
 	virtual ~Deleter()
 	{
-		// static_assert( mIsRegister, "インスタンスを削除する関数が登録されていません。" );
 		mDeleteFunction( mInstance );
 	}
 	
@@ -66,15 +64,13 @@ public:
 	 */
 	void registerDeleteFunction( DeleteFunction deleteFunction )
 	{
-		mDeleteFunction	= deleteFunction;
-		mIsRegister		= true;
+		mDeleteFunction = deleteFunction;
 	}
 	
 private:
 	
 	T*				mInstance;			//=> 削除するインスタンス
 	DeleteFunction	mDeleteFunction;	//=> インスタンスを削除する関数
-	bool			mIsRegister;		//=> 登録を完了したか否か
 };
 
 #endif

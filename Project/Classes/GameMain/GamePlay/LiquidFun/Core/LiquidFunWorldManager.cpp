@@ -1,6 +1,5 @@
 #include "LiquidFunWorldManager.h"
 #include "LiquidFunScheduler.h"
-#include "../User/LiquidFunContactListener.h"
 #include "LiquidFunHelper.h"
 
 using namespace cocos2d;
@@ -44,7 +43,7 @@ void LiquidFunWorldManager::update()
 }
 
 // コンタクトリスナの登録
-void LiquidFunWorldManager::registerContactListener( LiquidFunContactListener* contactListener )
+void LiquidFunWorldManager::registerContactListener( LiquidFunBaseContactListener* contactListener )
 {
 	mWorld->SetContactListener( contactListener );
 }

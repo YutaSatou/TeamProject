@@ -1,9 +1,9 @@
 #include "ContactSender.h"
 #include "../../LiquidFun/LiquidFunUserAPI.h"
 #include "../../LiquidFun/LiquidFunCoreAPI.h"
-#include "Utility/Template/EnumHash.h"
 #include "ContactFuncTag.h"
 #include "ContactCallback.h"
+#include "Utility/Template/EnumHash.h"
 
 using namespace cocos2d;
 
@@ -41,16 +41,16 @@ void ContactSender::send( const ContactFuncTag& funcTag, LiquidFunContact* conta
 }
 
 // オブジェクトへの接触通知
-void ContactSender::sendContactObject( const ContactFuncTag& funcTag, const std::string& nodeName, Node* contactNode, LiquidFunBody* body )
+void ContactSender::sendContactObject( const ContactFuncTag& funcTag, const std::string& nodeName, Node* contactNode, LiquidFunBody* contactBody )
 {
 	static SendFuncMap sendFuncMap =
 	{
-		{ ContactFuncTag::BEGIN,	[ this ]( const std::string& nodeName, Node* contactNode, LiquidFunBody* body )
-			{ mCallbackContainer[ nodeName ]->onContactBegin( contactNode, body );		} },
-		{ ContactFuncTag::PRESOLVE,	[ this ]( const std::string& nodeName, Node* contactNode, LiquidFunBody* body )
-			{ mCallbackContainer[ nodeName ]->onContactPreSolve( contactNode, body );	} },
-		{ ContactFuncTag::END,		[ this ]( const std::string& nodeName, Node* contactNode, LiquidFunBody* body )
-			{ mCallbackContainer[ nodeName ]->onContactEnd( contactNode, body );		} },
+		{ ContactFuncTag::BEGIN,	[ this ]( const std::string& nodeName, Node* contactNode, LiquidFunBody* contactBody )
+			{ mCallbackContainer[ nodeName ]->onContactBegin( contactNode, contactBody );		} },
+		{ ContactFuncTag::PRESOLVE,	[ this ]( const std::string& nodeName, Node* contactNode, LiquidFunBody* contactBody )
+			{ mCallbackContainer[ nodeName ]->onContactPreSolve( contactNode, contactBody );	} },
+		{ ContactFuncTag::END,		[ this ]( const std::string& nodeName, Node* contactNode, LiquidFunBody* contactBody )
+			{ mCallbackContainer[ nodeName ]->onContactEnd( contactNode, contactBody );			} },
 	};
 	
 	// 要素検索用イテレータを用意する。
@@ -59,6 +59,6 @@ void ContactSender::sendContactObject( const ContactFuncTag& funcTag, const std:
 	if ( findItor != mCallbackContainer.end() )
 	{
 		// オブジェクトに接触を通知する。
-		sendFuncMap[ funcTag ]( nodeName, contactNode, body );
+		sendFuncMap[ funcTag ]( nodeName, contactNode, contactBody );
 	}
 }

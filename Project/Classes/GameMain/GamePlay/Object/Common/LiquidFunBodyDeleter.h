@@ -2,8 +2,8 @@
 #define _LIQUID_FUN_BODY_DELETER_H_
 
 #include "cocos2d.h"
-#include "Utility/Template/Deleter.h"
 #include "../../LiquidFun/LiquidFunDefine.h"
+#include "Utility/Template/Deleter.h"
 
 /*------------------------------------------------------------*/
 //	@class		：	LiquidFunBodyDeleter
