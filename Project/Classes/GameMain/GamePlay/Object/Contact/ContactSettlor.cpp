@@ -2,19 +2,6 @@
 #include "../../LiquidFun/LiquidFunUserAPI.h"
 #include "ContactEventManager.h"
 
-namespace
-{
-	/**
-	 *	@brief	キャスト
-	 *	@param	category		キャストするカテゴリ
-	 *	@return	unsigned short	キャストされたカテゴリ
-	 */
-	unsigned short cast( const ContactCategory& category )
-	{
-		return static_cast< unsigned short >( category );
-	}
-}
-
 // コンストラクタ
 ContactSettlor::ContactSettlor( LiquidFunBody* targetBody )
 	: mTargetBody( targetBody )
@@ -24,9 +11,9 @@ ContactSettlor::ContactSettlor( LiquidFunBody* targetBody )
 }
 
 // カテゴリの設定
-void ContactSettlor::setupCategory( const ContactCategory& category )
+void ContactSettlor::setupCategory( const Contact::Category& category )
 {
-	mContactFilter.categoryBitmask = cast( category );
+	mContactFilter.categoryBitmask = Contact::toUShort( category );
 	LiquidFunFilteringSettlor::setupFilter( mTargetBody, mContactFilter );
 }
 
@@ -61,7 +48,7 @@ unsigned short ContactSettlor::orCalculate( const OtherCategory& otherCategory )
 	
 	for ( auto& bit : otherCategory )
 	{
-		bitmask = bitmask | cast( bit );
+		bitmask = bitmask | Contact::toUShort( bit );
 	}
 	
 	return bitmask;

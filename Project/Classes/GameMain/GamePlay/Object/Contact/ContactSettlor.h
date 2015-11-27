@@ -16,7 +16,7 @@ class ContactSettlor
 	
 public:
 	
-	using OtherCategory = std::vector< ContactCategory >;
+	using OtherCategory = std::vector< Contact::Category >;
 	
 public:
 	
@@ -35,13 +35,13 @@ public:
 	 *	@brief	カテゴリの設定
 	 *	@param	category	ボディに設定するカテゴリ
 	 */
-	void setupCategory( const ContactCategory& category );
+	void setupCategory( const Contact::Category& category );
 	
 	/**
 	 *	@brief	衝突するカテゴリの設定
 	 *	@param	otherCategory	衝突するカテゴリベクタ
 	 */
-	void setupCollisionCategory( const OtherCategory& otherCategory = { ContactCategory::ALL_CATEGORY } );
+	void setupCollisionCategory( const OtherCategory& otherCategory = { Contact::Category::ALL_CATEGORY } );
 	
 	/**
 	 *	@brief	接触コールバックの有効化
