@@ -35,6 +35,12 @@ void ContactSender::send( const ContactFuncTag& funcTag, LiquidFunContact* conta
 		return;
 	}
 	
+	if ( !isSend( nodeA->getName(), nodeB->getName(), contact ) )
+	{
+		// 通知をしない場合は終了する。
+		return;
+	}
+	
 	// オブジェクトに接触を通知する。
 	sendContactObject( funcTag, nodeA->getName(), nodeB, bodyB );
 	sendContactObject( funcTag, nodeB->getName(), nodeA, bodyA );
@@ -61,4 +67,14 @@ void ContactSender::sendContactObject( const ContactFuncTag& funcTag, const std:
 		// オブジェクトに接触を通知する。
 		sendFuncMap[ funcTag ]( nodeName, contactNode, contactBody );
 	}
+}
+
+// 通知するか否か
+bool ContactSender::isSend( const std::string& nodeNameA, const std::string& nodeNameB, LiquidFunContact* contact )
+{
+	const auto& filterA = contact->GetFixtureA()->GetFilterData();
+	const auto& filterB = contact->GetFixtureB()->GetFilterData();
+	
+	return ( ( filterA.categoryBits & mCallbackContainer[ nodeNameB ]->contactBitmask ) != 0 &&
+			 ( filterB.categoryBits & mCallbackContainer[ nodeNameA ]->contactBitmask ) != 0 );
 }

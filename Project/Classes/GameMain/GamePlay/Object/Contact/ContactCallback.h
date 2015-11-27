@@ -16,6 +16,7 @@ struct ContactCallback
 	CallbackFunction	onContactBegin;		//=> 接触時に呼ばれるコールバック関数
 	CallbackFunction	onContactPreSolve;	//=> 接触中に呼ばれるコールバック関数
 	CallbackFunction	onContactEnd;		//=> 離脱時に呼ばれるコールバック関数
+	unsigned short		contactBitmask;		//=> 接触するオブジェクトのビットマスク
 	
 	/**
 	 *	@brief	コンストラクタ
@@ -24,8 +25,9 @@ struct ContactCallback
 		: onContactBegin(		[]( cocos2d::Node*, LiquidFunBody* ) { } )
 		, onContactPreSolve(	[]( cocos2d::Node*, LiquidFunBody* ) { } )
 		, onContactEnd(			[]( cocos2d::Node*, LiquidFunBody* ) { } )
+		, contactBitmask( 0xFFFF )
 	{
-		// 空のラムダ式で初期化する。
+		
 	}
 };
 

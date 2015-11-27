@@ -52,6 +52,15 @@ private:
 	 */
 	void sendContactObject( const ContactFuncTag& funcTag, const std::string& nodeName, cocos2d::Node* contactNode, LiquidFunBody* contactBody );
 	
+	/**
+	 *	@brief	通知するか否か
+	 *	@param	nodeNameA	フィルタ情報を引き出すノードの名前
+	 *	@param	nodeNameB	フィルタ情報を引き出すノードの名前
+	 *	@param	contact		接触したオブジェクトの情報
+	 *	@return	bool		通知するか否か
+	 */
+	bool isSend( const std::string& nodeNameA, const std::string& nodeNameB, LiquidFunContact* contact );
+	
 private:
 	
 	ContactEventManager::CallbackContainer& mCallbackContainer;	//=> コールバックコンテナ
