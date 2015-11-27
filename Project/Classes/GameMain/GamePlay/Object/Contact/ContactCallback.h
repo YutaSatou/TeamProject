@@ -25,7 +25,7 @@ struct ContactCallback
 		: onContactBegin(		[]( cocos2d::Node*, LiquidFunBody* ) { } )
 		, onContactPreSolve(	[]( cocos2d::Node*, LiquidFunBody* ) { } )
 		, onContactEnd(			[]( cocos2d::Node*, LiquidFunBody* ) { } )
-		, contactBitmask( 0xFFFF )
+		, contactBitmask( 0x0000 )
 	{
 		
 	}

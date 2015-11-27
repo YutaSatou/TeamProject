@@ -3,8 +3,6 @@
 
 #include "cocos2d.h"
 
-enum class ContactCategory : unsigned short;
-
 /*------------------------------------------------------------*/
 //	@class		：	WallManager
 //	@brief		：	壁管理者
@@ -38,16 +36,6 @@ public:
 	 *	@return	WallManager	インスタンス
 	 */
 	static WallManager* create();
-	
-private:
-	
-	/**
-	 *	@brief	壁の装着
-	 *	@param	category	設定するカテゴリ
-	 *	@param	start		線の開始座標
-	 *	@param	end			線の終了座標
-	 */
-	void attachWall( const ContactCategory& category, const cocos2d::Vec2& start, const cocos2d::Vec2& end );
 };
 
 #endif
