@@ -2,9 +2,10 @@
 #define _SLIME_H_
 
 #include "cocos2d.h"
+#include "../../LiquidFun/LiquidFunDefine.h"
 #include "Utility/Template/SmartPtr.h"
 
-class ObjectData;
+struct ObjectData;
 
 /*------------------------------------------------------------*/
 //	@class		：	Slime
@@ -47,8 +48,9 @@ public:
 	/**
 	 *	@brief	接触時に呼ばれるコールバック関数
 	 *	@param	contactNode	接触したノード
+	 *	@param	contactBody	接触したボディ
 	 */
-	void onContactBegin( cocos2d::Node* contactNode );
+	void onContactBegin( cocos2d::Node* contactNode, LiquidFunBody* contactBody );
 	
 private:
 	
@@ -59,7 +61,8 @@ private:
 	
 private:
 	
-	SharedPtr< ObjectData > mObjectData;	//=> オブジェクトデータ
+	LiquidFunBody*			mBody;			//=> ボディ
+	SharedPtr< ObjectData >	mObjectData;	//=> オブジェクトデータ
 };
 
 #endif

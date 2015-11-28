@@ -1,10 +1,11 @@
 #include "WallManager.h"
+#include "../../Control/GameControlMediator.h"
 #include "Wall.h"
 
 using namespace cocos2d;
 
 // 初期化
-bool WallManager::init()
+bool WallManager::init( GameControlMediator& mediator )
 {
 	if ( !Node::init() )
 	{
@@ -21,6 +22,9 @@ bool WallManager::init()
 	Wall* left	= Wall::create( { screenMin.x, screenMax.y }, { screenMin.x, screenMin.y } );
 	Wall* right	= Wall::create( { screenMax.x, screenMax.y }, { screenMax.x, screenMin.y } );
 	
+	// ゲーム終了イベントを有効化する。
+	down->enableGameEndEvent( mediator );
+	
 	// 自身の子ノードとして追加する。
 	addChild( up );
 	addChild( down );
@@ -31,11 +35,11 @@ bool WallManager::init()
 }
 
 // インスタンスの生成
-WallManager* WallManager::create()
+WallManager* WallManager::create( GameControlMediator& mediator )
 {
 	WallManager* inst = new WallManager();
 	
-	if ( inst && inst->init() )
+	if ( inst && inst->init( mediator ) )
 	{
 		inst->autorelease();
 		return inst;

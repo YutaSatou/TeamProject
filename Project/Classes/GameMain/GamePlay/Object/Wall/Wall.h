@@ -4,6 +4,8 @@
 #include "cocos2d.h"
 #include "../../LiquidFun/LiquidFunDefine.h"
 
+class GameControlMediator;
+
 /*------------------------------------------------------------*/
 //	@class		：	Wall
 //	@brief		：	画面端の壁
@@ -41,6 +43,12 @@ public:
 	 *	@return	Wall	インスタンス
 	 */
 	static Wall* create( const cocos2d::Vec2& start, const cocos2d::Vec2& end );
+	
+	/**
+	 *	@brief	ゲーム終了イベントの有効化
+	 *	@param	mediator	ゲーム制御仲介者
+	 */
+	void enableGameEndEvent( GameControlMediator& mediator );
 	
 private:
 	

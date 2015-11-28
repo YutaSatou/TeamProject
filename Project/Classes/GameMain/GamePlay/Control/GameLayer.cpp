@@ -26,7 +26,7 @@ bool GameLayer::init()
 		return false;
 	}
 	
-	mWallManager	= WallManager::create();
+	mWallManager	= WallManager::create( *this );
 	mPlayerManager	= PlayerManager::create();
 	mEnemyManager	= EnemyManager::create();
 	mUserBrush		= Brush::create( *this );

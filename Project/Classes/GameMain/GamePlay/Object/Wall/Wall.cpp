@@ -1,5 +1,6 @@
 #include "Wall.h"
 #include "../../LiquidFun/LiquidFunUserAPI.h"
+#include "../../Control/GameControlMediator.h"
 #include "../Common/LiquidFunBodyDeleter.h"
 #include "../Contact/ContactSettlor.h"
 
@@ -21,6 +22,7 @@ bool Wall::init( const Vec2& start, const Vec2& end )
 	}
 	
 	// 各パラメータを設定する。
+	setName( "Wall" );
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setPosition( Vec2::ZERO );
 	
@@ -45,6 +47,20 @@ Wall* Wall::create( const Vec2& start, const Vec2& end )
 	return nullptr;
 }
 
+// ゲーム終了イベントの有効化
+void Wall::enableGameEndEvent( GameControlMediator& mediator )
+{
+	// 接触コールバックを設定する。
+	SharedPtr< ContactCallback > callback = makeShared< ContactCallback >();
+	callback->onContactBegin = [ &mediator ]( Node*, LiquidFunBody* ) { mediator.gameEnd(); };
+	
+	// カテゴリの設定、接触するカテゴリの設定、コールバックの登録を行う。
+	ContactSettlor contactSettlor( mBody );
+	contactSettlor.setupCategory( Contact::Category::WALL_EVENT );
+	contactSettlor.setupContactCategory( callback, { Contact::Category::PLAYER } );
+	contactSettlor.enableContactCallback( getName(), callback );
+}
+
 // 物理構造の初期化
 void Wall::initPhysics( const Vec2& start, const Vec2& end )
 {
@@ -60,7 +76,7 @@ void Wall::initPhysics( const Vec2& start, const Vec2& end )
 	mBody = LiquidFunBodySettlor::attachBody( bodyDesc, fixtureDesc );
 	addChild( LiquidFunBodyDeleter::create( mBody ) );
 	
-	// カテゴリの設定、衝突の有効化を行う。
+	// カテゴリの設定、衝突するカテゴリの設定を行う。
 	ContactSettlor contactSettlor( mBody );
 	contactSettlor.setupCategory( Contact::Category::WALL );
 	contactSettlor.setupCollisionCategory();

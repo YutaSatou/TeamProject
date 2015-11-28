@@ -3,6 +3,8 @@
 
 #include "cocos2d.h"
 
+class GameControlMediator;
+
 /*------------------------------------------------------------*/
 //	@class		：	WallManager
 //	@brief		：	壁管理者
@@ -25,17 +27,19 @@ protected:
 	
 	/**
 	 *	@brief	初期化
-	 *	@return	bool	初期化が完了したか否か
+	 *	@param	mediator	ゲーム制御仲介者
+	 *	@return	bool		初期化が完了したか否か
 	 */
-	virtual bool init() override;
+	bool init( GameControlMediator& mediator );
 	
 public:
 	
 	/**
 	 *	@brief	インスタンスの生成
+	 *	@param	mediator	ゲーム制御仲介者
 	 *	@return	WallManager	インスタンス
 	 */
-	static WallManager* create();
+	static WallManager* create( GameControlMediator& mediator );
 };
 
 #endif
