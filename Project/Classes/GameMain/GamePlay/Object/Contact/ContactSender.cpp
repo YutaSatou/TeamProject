@@ -59,22 +59,30 @@ void ContactSender::sendContactObject( const ContactFuncTag& funcTag, const std:
 			{ mCallbackContainer[ nodeName ]->onContactEnd( contactNode, contactBody );			} },
 	};
 	
-	// 要素検索用イテレータを用意する。
-	auto findItor = mCallbackContainer.find( nodeName );
-	
-	if ( findItor != mCallbackContainer.end() )
-	{
-		// オブジェクトに接触を通知する。
-		sendFuncMap[ funcTag ]( nodeName, contactNode, contactBody );
-	}
+	// オブジェクトに接触を通知する。
+	sendFuncMap[ funcTag ]( nodeName, contactNode, contactBody );
 }
 
 // 通知するか否か
 bool ContactSender::isSend( const std::string& nodeNameA, const std::string& nodeNameB, LiquidFunContact* contact )
 {
+	// フィルタを取得する。
 	const auto& filterA = contact->GetFixtureA()->GetFilterData();
 	const auto& filterB = contact->GetFixtureB()->GetFilterData();
 	
+	// 要素の検索を行うラムダ式を定義する。
+	static const auto isFind = [ this ]( const std::string& nodeName )
+	{
+		return ( mCallbackContainer.find( nodeName ) != mCallbackContainer.end() );
+	};
+	
+	if ( !isFind( nodeNameA ) || !isFind( nodeNameB ) )
+	{
+		// 要素の検索に失敗している。
+		return false;
+	}
+	
+	// 演算結果を返却する。
 	return ( ( filterA.categoryBits & mCallbackContainer[ nodeNameB ]->contactBitmask ) != 0 &&
 			 ( filterB.categoryBits & mCallbackContainer[ nodeNameA ]->contactBitmask ) != 0 );
 }

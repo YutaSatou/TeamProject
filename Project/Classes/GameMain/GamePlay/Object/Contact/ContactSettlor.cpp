@@ -24,6 +24,12 @@ void ContactSettlor::setupCollisionCategory( const OtherCategory& otherCategory 
 	LiquidFunFilteringSettlor::setupFilter( mTargetBody, mContactFilter );
 }
 
+// 接触するカテゴリの設定
+void ContactSettlor::setupContactCategory( SharedPtr< ContactCallback > callback, const OtherCategory& otherCategory )
+{
+	callback->contactBitmask = orCalculate( otherCategory );
+}
+
 // 接触コールバックの有効化
 void ContactSettlor::enableContactCallback( const std::string& nodeName, SharedPtr< ContactCallback > callback )
 {

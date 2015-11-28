@@ -44,6 +44,13 @@ public:
 	void setupCollisionCategory( const OtherCategory& otherCategory = { Contact::Category::ALL_CATEGORY } );
 	
 	/**
+	 *	@brief	接触するカテゴリの設定
+	 *	@param	callback		コールバック
+	 *	@param	otherCategory	接触するカテゴリベクタ
+	 */
+	void setupContactCategory( SharedPtr< ContactCallback > callback, const OtherCategory& otherCategory = { Contact::Category::ALL_CATEGORY } );
+	
+	/**
 	 *	@brief	接触コールバックの有効化
 	 *	@param	nodeName	ノードの名前
 	 *	@param	callback	コールバック

@@ -1,5 +1,6 @@
 #include "GamePlayLayer.h"
 #include "LiquidFun/LiquidFunCoreAPI.h"
+#include "Object/Contact/ContactListener.h"
 #include "Control/GameLayer.h"
 #include "User/UI/UILayer.h"
 
@@ -22,6 +23,7 @@ bool GamePlayLayer::init()
 	scheduleUpdate();
 	
 	addChild( LiquidFunDebugDrawer::create() );
+	addChild( ContactListener::create() );
 	addChild( GameLayer::create( "Plist/StageData/StageData_01.plist" ) );
 	addChild( UILayer::create() );
 	
