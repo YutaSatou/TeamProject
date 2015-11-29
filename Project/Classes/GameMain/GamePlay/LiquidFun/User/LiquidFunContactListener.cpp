@@ -58,3 +58,15 @@ void LiquidFunContactListener::EndContact( LiquidFunContact* contact )
 {
 	onContactEnd( contact );
 }
+
+// 接触時に呼ばれるコールバック関数( パーティクル )
+void LiquidFunContactListener::BeginContact( LiquidFunParticle* particle, LiquidFunParticleBodyContact* contact )
+{
+	onContactParticleBegin( particle, contact );
+}
+
+// 離脱時に呼ばれるコールバック関数( パーティクル )
+void LiquidFunContactListener::EndContact( LiquidFunFixture* fixture, LiquidFunParticle* particle, signed int index )
+{
+	onContactParticleEnd( fixture, particle, index );
+}

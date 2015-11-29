@@ -6,12 +6,6 @@
 
 using namespace cocos2d;
 
-// デストラクタ
-GamePlayLayer::~GamePlayLayer()
-{
-	LiquidFunWorldManager::getInstance().resetWorld();
-}
-
 // 初期化
 bool GamePlayLayer::init()
 {

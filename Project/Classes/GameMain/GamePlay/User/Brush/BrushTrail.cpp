@@ -5,7 +5,7 @@ using namespace cocos2d;
 
 namespace
 {
-	const float DISTANCE_MIN = 10.0f;	//=> 線を引いたと認識する最低距離
+	const float DISTANCE_MIN = 15.0f;	//=> 線を引いたと認識する最低距離
 }
 
 // コンストラクタ

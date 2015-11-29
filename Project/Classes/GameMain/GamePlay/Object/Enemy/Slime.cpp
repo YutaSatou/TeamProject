@@ -74,7 +74,7 @@ void Slime::initPhysics()
 	
 	// ボディの生成に必要な設定記述子を生成する。
 	LiquidFunBodyDescCreator	bodyDescCreator;
-	LiquidFunBodyDesc			bodyDesc	= bodyDescCreator.createBodyDesc( this, LiquidFunBodyType::b2_dynamicBody );
+	LiquidFunBodyDesc			bodyDesc	= bodyDescCreator.createBodyDesc( this, LiquidFunBodyType::b2_kinematicBody );
 	LiquidFunFixtureDesc		fixtureDesc	= bodyDescCreator.createCircle( bodySize, mObjectData->material );
 	
 	// ボディを装着する。

@@ -65,7 +65,7 @@ void Wall::enableGameEndEvent( GameControlMediator& mediator )
 void Wall::initPhysics( const Vec2& start, const Vec2& end )
 {
 	// マテリアル( 密度, 反発係数, 摩擦係数 )を用意する。
-	LiquidFunMaterial material( 0.0f, 1.0f, 1.0f );
+	LiquidFunMaterial material( 0.0f, 0.2f, 1.0f );
 	
 	// ボディの生成に必要な設定記述子を生成する。
 	LiquidFunBodyDescCreator	bodyDescCreator;

@@ -59,15 +59,34 @@ private:
 	 */
 	virtual void EndContact( LiquidFunContact* contact ) override;
 	
+	/**
+	 *	@brief	接触時に呼ばれるコールバック関数( パーティクル )
+	 *	@param	particle	接触したパーティクル
+	 *	@param	contact		接触したオブジェクトの情報
+	 */
+	virtual void BeginContact( LiquidFunParticle* particle, LiquidFunParticleBodyContact* contact ) override;
+	
+	/**
+	 *	@brief	離脱時に呼ばれるコールバック関数( パーティクル )
+	 *	@param	fixture		接触したフィクスチャ
+	 *	@param	particle	接触したパーティクル
+	 *	@param	index		パーティクルで使用するインデックス
+	 */
+	virtual void EndContact( LiquidFunFixture* fixture, LiquidFunParticle* particle, signed int index ) override;
+	
 public:
 	
-	using ContactBegin		= std::function< void( LiquidFunContact* ) >;
-	using ContactPreSolve	= std::function< void( LiquidFunContact*, const LiquidFunManifold* ) >;
-	using ContactEnd		= std::function< void( LiquidFunContact* ) >;
+	using ContactBegin			= std::function< void( LiquidFunContact* ) >;
+	using ContactPreSolve		= std::function< void( LiquidFunContact*, const LiquidFunManifold* ) >;
+	using ContactEnd			= std::function< void( LiquidFunContact* ) >;
+	using ContactParticleBegin	= std::function< void( LiquidFunParticle*, LiquidFunParticleBodyContact* ) >;
+	using ContactParticleEnd	= std::function< void( LiquidFunFixture*, LiquidFunParticle*, signed int ) >;
 	
-	ContactBegin	onContactBegin;		//=> ユーザが接触時に呼びたい関数
-	ContactPreSolve	onContactPreSolve;	//=> ユーザが接触中に呼びたい関数
-	ContactEnd		onContactEnd;		//=> ユーザが離脱時に呼びたい関数
+	ContactBegin			onContactBegin;			//=> ユーザが接触時に呼びたい関数
+	ContactPreSolve			onContactPreSolve;		//=> ユーザが接触中に呼びたい関数
+	ContactEnd				onContactEnd;			//=> ユーザが離脱時に呼びたい関数
+	ContactParticleBegin	onContactParticleBegin;	//=> ユーザが接触時に呼びたい関数( パーティクル )
+	ContactParticleEnd		onContactParticleEnd;	//=> ユーザが離脱時に呼びたい関数( パーティクル )
 };
 
 #endif

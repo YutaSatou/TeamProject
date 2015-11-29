@@ -23,7 +23,7 @@ BrushBody::~BrushBody()
 void BrushBody::pushSegment( const Vec2& start, const Vec2& end, float lineWidth )
 {
 	// マテリアル( 密度, 反発係数, 摩擦係数 )を用意する。
-	LiquidFunMaterial material( 0.0f, 0.0f, 0.8f );
+	LiquidFunMaterial material( 0.0f, 0.0f, 1.0f );
 	
 	// 線形状のフィクスチャ設定記述子を生成し、格納する。
 	LiquidFunFixtureDesc segment = mBodyDescCreator->createSegment( start, end, lineWidth, material );

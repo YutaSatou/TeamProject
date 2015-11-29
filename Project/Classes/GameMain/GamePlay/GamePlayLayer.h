@@ -21,7 +21,7 @@ protected:
 	/**
 	 *	@brief	デストラクタ
 	 */
-	~GamePlayLayer();
+	~GamePlayLayer() = default;
 	
 	/**
 	 *	@brief	初期化
