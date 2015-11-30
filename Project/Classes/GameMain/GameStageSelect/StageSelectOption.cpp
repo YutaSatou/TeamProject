@@ -27,9 +27,9 @@ bool StageSelectOption::init(){
     SCREEN_SIZE = Director::getInstance()->getVisibleSize();
     ORIGIN_SIZE = Director::getInstance()->getVisibleOrigin();
     
-    Button* creditButton = Button::create( "Texture/Debug/Stage_Option_Button.png",
-                                           "Texture/Debug/Stage_Option_Button.png",
-                                           "Texture/Debug/Stage_Option_Button.png");
+    Button* creditButton = Button::create( "Texture/GameStageSelect/Stage_Option_Button.png",
+                                           "Texture/GameStageSelect/Stage_Option_Button.png",
+                                           "Texture/GameStageSelect/Stage_Option_Button.png");
     creditButton->setTitleText( "クレジット" );
     creditButton->setTitleFontName( "Font/RiiPopkkR.otf" );
     creditButton->setTitleFontSize( 24 );
@@ -45,9 +45,9 @@ bool StageSelectOption::init(){
         }
     });
 
-    Button* optionButton = Button::create( "Texture/Debug/Stage_Option_Button.png",
-                                          "Texture/Debug/Stage_Option_Button.png",
-                                          "Texture/Debug/Stage_Option_Button.png");
+    Button* optionButton = Button::create( "Texture/GameStageSelect/Stage_Option_Button.png",
+                                          "Texture/GameStageSelect/Stage_Option_Button.png",
+                                          "Texture/GameStageSelect/Stage_Option_Button.png");
     optionButton->setTitleText( "オプション" );
     optionButton->setTitleFontName( "Font/RiiPopkkR.otf" );
     optionButton->setTitleFontSize( 24 );

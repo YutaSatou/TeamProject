@@ -38,7 +38,7 @@ public:
     virtual void onTouchMoved( cocos2d::Touch *touch, cocos2d::Event *event ) override;
     virtual void onTouchEnded( cocos2d::Touch *touch, cocos2d::Event *event ) override;
     virtual void onTouchCancelled( cocos2d::Touch *touch, cocos2d::Event *event ) override;
-    virtual void update( float deltaTime );
+    virtual void update( float deltaTime ) override;
     
     CC_SYNTHESIZE_READONLY( int, pageCount, PageCount );
     

@@ -45,7 +45,7 @@ bool StageSelectPage::init( const int pageNum ){
     };
     
     for (int j = 0; j < 27; ++j){
-        Button* image = Button::create( "Texture/Debug/Stage_Numberbox_Notclear.png" );
+        Button* image = Button::create( "Texture/GameStageSelect/Stage_Numberbox_Notclear.png" );
         image->setTitleText( StringUtils::toString( j + 1 ) );
         image->setTitleFontName( "Font/RiiPopkkR.otf" );
         image->setTitleFontSize( 68 );
@@ -63,8 +63,8 @@ bool StageSelectPage::init( const int pageNum ){
         mPage->addChild( image );
     }
     
-    ImageView* sliderBack = PageCursor::baseTex( "Texture/Debug/Select_Box_Stageline.png", Vec2( 358, 163 ) );
-    slider = PageCursor::sliderTex( "Texture/Debug/Select_Box.png", Vec2( 161, 163 ) );
+    ImageView* sliderBack = PageCursor::baseTex( "Texture/GameStageSelect/Select_Box_Stageline.png", Vec2( 358, 163 ) );
+    slider = PageCursor::sliderTex( "Texture/GameStageSelect/Select_Box.png", Vec2( 161, 163 ) );
     slider->setTag( 1 );
     
     auto listener = EventListenerTouchOneByOne::create();
