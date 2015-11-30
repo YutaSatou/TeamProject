@@ -1,7 +1,11 @@
 #include "GameTitleLayer.h"
+#include "ui/CocosGUI.h"
 #include "../../Utility/Assistant/SceneSwitcher.h"
+#include "../../GameMain/GameStageSelect/GameStageSelectLayer.h"
+#include "../../Utility/Assistant/SceneCreator.h"
 
 using namespace cocos2d;
+using namespace ui;
 
 namespace  {
     
@@ -15,8 +19,8 @@ GameTitleLayer::GameTitleLayer(){
 }
 
 GameTitleLayer::~GameTitleLayer(){
-    
     ADX2Player::getInstance().stop( mBgm );
+    //mManager->release();
 }
 
 bool GameTitleLayer::init()
@@ -32,6 +36,11 @@ bool GameTitleLayer::init()
     drawBackGraund();
     drawTitle();
     drawTouch();
+    
+    /*mManager = ParticleManager::createPool( ParticleType::SPLASH, 100 );
+    mManager->retain();*/
+    
+    //mManager->playParicle( this, Vec2( SCREEN_SIZE.width / 2, SCREEN_SIZE.height / 2 ) ):
 
     mBgm = ADX2Player::getInstance().play( 4 );
     
@@ -40,16 +49,6 @@ bool GameTitleLayer::init()
 	scheduleUpdate();
 	
 	return true;
-}
-
-void GameTitleLayer::update( float deltaTime )
-{
-    
-}
-
-void GameTitleLayer::onEnter()
-{
-    Layer::onEnter();
 }
 
 GameTitleLayer* GameTitleLayer::create()
@@ -69,7 +68,7 @@ GameTitleLayer* GameTitleLayer::create()
 void GameTitleLayer::drawBackGraund(){
 
     //背景
-    Sprite* backGraund = Sprite::create( "Texture/Debug/BackGround.png" );
+    Sprite* backGraund = Sprite::create( "Texture/GameTitle/BackScreen.png" );
     backGraund->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 2.0f ) );
 
     addChild(backGraund);
@@ -78,7 +77,7 @@ void GameTitleLayer::drawBackGraund(){
 void GameTitleLayer::drawTitle(){
 
     //タイトルロゴ
-    Sprite* titleLogo = Sprite::create( "Texture/Debug/Title.png" );
+    Sprite* titleLogo = Sprite::create( "Texture/GameTitle/Title.png" );
     titleLogo->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 1.2f ) );
     
     addChild(titleLogo);
@@ -87,15 +86,20 @@ void GameTitleLayer::drawTitle(){
 void GameTitleLayer::drawTouch(){
 
     //TouchStartロゴ
-    Sprite* touchLogo = Sprite::create( "Texture/Debug/TouchStart.png" );
-    touchLogo->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 4.0f ) );
+    Button* touchLogo = Button::create( "Texture/GameTitle/Title_Button.png" );
+    touchLogo->setTitleText( "タップスタート" );
+    touchLogo->setTitleFontName( "Font/RiiPopkkR.otf" );
+    touchLogo->setTitleFontSize( 68 );
+    touchLogo->setTitleColor( Color3B::BLACK );
+    touchLogo->setEnabled( false );
+    touchLogo->setPosition( Vec2( 359, 307 ) );
     
     //TouchStartアニメーション
     FadeIn* startTScale = FadeIn::create( 1.0f );
     FadeOut* endTScale = FadeOut::create( 1.0f );
     touchLogo->runAction( RepeatForever::create( Sequence::create( endTScale, startTScale, NULL ) ) );
     
-    addChild(touchLogo);
+    addChild( touchLogo );
 }
 
 void GameTitleLayer::touchListener(){

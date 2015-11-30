@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "../../Utility/Audio/ADX2Player.h"
+#include "../../Utility/Particle/ParticleManager.h"
 
 class GameTitleLayer : public cocos2d::LayerColor
 {
@@ -14,10 +15,6 @@ protected:
 	~GameTitleLayer();
 	
 	virtual bool init() override;
-	
-	virtual void update( float deltaTime ) override;
-    
-    virtual void onEnter() override;
 	
 public:
 	
@@ -37,7 +34,7 @@ private:
 private:
     
     int mBgm;
-    
+    ParticleManager* mManager;
 };
 
 #endif

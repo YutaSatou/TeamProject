@@ -10,6 +10,9 @@
 #define _PARTICLEMANAGER_H_
 
 #include <vector>
+//#include <string.h>
+//#include <cstddef>
+#include "ParticleType.h"
 
 namespace cocos2d {
  
@@ -17,17 +20,17 @@ namespace cocos2d {
     class Vec2;
 }
 
-class SimpleParticle;
+class SingleParticle;
 
-class ParticleManager{
+class ParticleManager : public cocos2d::Node{
 
 protected:
     
-    ParticleManager() = default;
+    ParticleManager();
     
-    ~ParticleManager() = default;
+    ~ParticleManager();
     
-    bool init( const std::string& fileName, const size_t& instanceNum  );
+    bool init( const ParticleType type, const size_t& instanceNum  );
     
 public:
     
@@ -37,7 +40,7 @@ public:
      *	@return	instanceNum 生成するパーティクルの数
      *  @MEMO   FileNameはフォルダー＆拡張子なしで大丈夫です
      */
-    static ParticleManager* createPool( const std::string& fileName, const size_t& instanceNum );
+    static ParticleManager* createPool( const ParticleType type, const size_t& instanceNum );
     
     /**
      *	@brief	パーティクル再生
@@ -45,20 +48,18 @@ public:
      *	@return	pos     パーティクルの座標
      *  @MEMO   パーティクルプール
      */
-    SimpleParticle* playParicle( cocos2d::Node* node, const cocos2d::Vec2& pos );
+    void playParicle( cocos2d::Node* node, const cocos2d::Vec2& pos );
     
 private:
     
-    void push( SimpleParticle* particle );
+    void newParticle();
     
-    void newCreateParticle();
+    void push( SingleParticle* particle );
+
+    using mParticlePool = std::vector< SingleParticle* >;
+    mParticlePool mPool;
     
-    using ParticlePool = std::vector< SimpleParticle* >;
-    ParticlePool pool;
-    
-    std::string mFileName;
-    
-    SimpleParticle* mParticle;
+    ParticleType mFileName;
 };
 
 #endif

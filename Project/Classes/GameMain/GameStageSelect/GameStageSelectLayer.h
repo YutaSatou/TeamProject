@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "../../Utility/Audio/ADX2Player.h"
+#include "../../Utility/Particle/ParticleManager.h"
 
 class GameStageSelectLayer : public cocos2d::LayerColor
 {
@@ -27,11 +28,11 @@ private:
     
     void drawBackGraund();
     
-    void drawStageSelectLogo();
-    
-private:
+public:
     
     int mBgm;
+    ParticleManager* mParticle;
+    
 };
 
 #endif

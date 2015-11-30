@@ -6,16 +6,15 @@
 //
 //
 
-#include "SimpleParticle.h"
-#include "cocos2d.h"
+#include "SingleParticle.h"
 
 using namespace cocos2d;
 
-SimpleParticle* SimpleParticle::create( const std::string& fileName ){
+SingleParticle* SingleParticle::create( const std::string& fileName ){
 
-    SimpleParticle* inst = new SimpleParticle();
+    SingleParticle* inst = new SingleParticle();
     
-    if ( inst && inst->initWithFile( "Plist/Particle/" + fileName + ".plist" ) )
+    if ( inst && inst->initWithFile( fileName ) )
     {
         inst->autorelease();
         return inst;
@@ -25,7 +24,7 @@ SimpleParticle* SimpleParticle::create( const std::string& fileName ){
     return nullptr;
 }
 
-void SimpleParticle::update( float deltaTitme ){
+void SingleParticle::update( float deltaTitme ){
     
     CC_PROFILER_START_CATEGORY(kProfilerCategoryParticles , "ParticleSystem - update");
     
