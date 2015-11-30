@@ -7,6 +7,7 @@
 //
 
 #include "PageCursor.h"
+#include "StageSelectPage.h"
 
 using namespace cocos2d;
 using namespace ui;
@@ -36,4 +37,23 @@ PageCursor* PageCursor::create(){
 }
 
 void PageCursor::update( float deltaTime ){
+}
+
+ImageView* PageCursor::baseTex( const std::string& baseTex, const Vec2& pos ){
+    
+    ImageView* image = ImageView::create( baseTex );
+    image->setPosition( pos );
+    
+    return image;
+}
+
+MenuItemImage* PageCursor::sliderTex( const std::string& sliderTex, const Vec2& pos ){
+    
+    MenuItemImage* button = MenuItemImage::create( sliderTex, sliderTex, [](Ref* ref){} );
+    
+    auto listener = EventListenerTouchOneByOne::create();
+    listener->setSwallowTouches( true );
+    button->setPosition( pos );
+    
+    return button;
 }
