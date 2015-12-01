@@ -32,9 +32,10 @@ public:
 	/**
 	 *	@brief	初期化
 	 *	@param	parentNode	親ノード
-	 *	@param	position	初期座標
+	 *	@param	textureName	テクスチャの名前
+	 *	@param	position	ボディの座標
 	 */
-	void init( cocos2d::Node* parentNode, const cocos2d::Vec2& position );
+	void init( cocos2d::Node* parentNode, const std::string& textureName, const cocos2d::Vec2& position );
 	
 	/**
 	 *	@brief	更新
@@ -50,14 +51,15 @@ private:
 	
 	/**
 	 *	@brief	ボディの初期化
-	 *	@param	position	初期座標
+	 *	@param	position	ボディの座標
 	 */
 	void initBody( const cocos2d::Vec2& position );
 	
 	/**
 	 *	@brief	テクスチャの初期化
+	 *	@param	textureName	テクスチャの名前
 	 */
-	void initTexture();
+	void initTexture( const std::string& textureName );
 	
 	/**
 	 *	@brief	バッファの巡回

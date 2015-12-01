@@ -37,7 +37,7 @@ bool Player::init( SharedPtr< ObjectData > objectData )
 	setPosition( Vec2::ZERO );
 	
 	// ボディの初期化を行う。
-	mPlayerBody->init( this, objectData->position );
+	mPlayerBody->init( this, objectData->textureName, objectData->position );
 	
 	return true;
 }

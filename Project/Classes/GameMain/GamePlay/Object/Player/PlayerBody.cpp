@@ -28,7 +28,7 @@ PlayerBody::~PlayerBody()
 }
 
 // 初期化
-void PlayerBody::init( Node* parentNode, const Vec2& position )
+void PlayerBody::init( Node* parentNode, const std::string& textureName, const Vec2& position )
 {
 	// メンバ変数を初期化する。
 	mParentNode			= parentNode;
@@ -36,7 +36,7 @@ void PlayerBody::init( Node* parentNode, const Vec2& position )
 	
 	// ボディとテクスチャを初期化する。
 	initBody( position );
-	initTexture();
+	initTexture( textureName );
 }
 
 // ボディの初期化
@@ -100,12 +100,12 @@ void PlayerBody::enableGravity()
 }
 
 // テクスチャの初期化
-void PlayerBody::initTexture()
+void PlayerBody::initTexture( const std::string& textureName )
 {
-	eachBuffer( [ this ]( UserDataPointer* userData, LiquidFunParticleColor* color, LiquidFunVec2* position )
+	eachBuffer( [ this, &textureName ]( UserDataPointer* userData, LiquidFunParticleColor* color, LiquidFunVec2* position )
 	{
 		// パーティクル用のテクスチャを生成する。
-		Sprite* particle = Sprite::create( "Texture/GamePlay/Particle.png" );
+		Sprite* particle = Sprite::create( textureName );
 		particle->setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 		particle->setScale( 0.5f );
 		
