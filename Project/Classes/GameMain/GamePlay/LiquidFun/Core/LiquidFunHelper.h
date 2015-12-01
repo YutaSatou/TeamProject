@@ -12,6 +12,10 @@
 class LiquidFunHelper
 {
 	
+private:
+	
+	using VoidPointer = void*;
+	
 public:
 	
 	/**
@@ -58,6 +62,13 @@ public:
 	 *	@return	Node	ノードのインスタンス
 	 */
 	static cocos2d::Node* getNode( LiquidFunBody* body );
+	
+	/**
+	 *	@brief	ノードの取得
+	 *	@param	userData	ユーザデータ
+	 *	@return	Node		ノードのインスタンス
+	 */
+	static cocos2d::Node* getNode( VoidPointer* userData );
 	
 public:
 	

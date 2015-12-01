@@ -72,7 +72,7 @@ private:
 	 *	@param	particle	接触したパーティクル
 	 *	@param	index		パーティクルで使用するインデックス
 	 */
-	virtual void EndContact( LiquidFunFixture* fixture, LiquidFunParticle* particle, signed int index ) override;
+	virtual void EndContact( LiquidFunFixture* fixture, LiquidFunParticle* particle, int index ) override;
 	
 public:
 	
@@ -80,7 +80,7 @@ public:
 	using ContactPreSolve		= std::function< void( LiquidFunContact*, const LiquidFunManifold* ) >;
 	using ContactEnd			= std::function< void( LiquidFunContact* ) >;
 	using ContactParticleBegin	= std::function< void( LiquidFunParticle*, LiquidFunParticleBodyContact* ) >;
-	using ContactParticleEnd	= std::function< void( LiquidFunFixture*, LiquidFunParticle*, signed int ) >;
+	using ContactParticleEnd	= std::function< void( LiquidFunFixture*, LiquidFunParticle*, int ) >;
 	
 	ContactBegin			onContactBegin;			//=> ユーザが接触時に呼びたい関数
 	ContactPreSolve			onContactPreSolve;		//=> ユーザが接触中に呼びたい関数

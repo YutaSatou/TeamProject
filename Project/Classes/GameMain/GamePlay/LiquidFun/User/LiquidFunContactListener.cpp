@@ -8,6 +8,8 @@ LiquidFunContactListener::LiquidFunContactListener()
 	: onContactBegin( []( LiquidFunContact* ) { } )
 	, onContactPreSolve( []( LiquidFunContact*, const LiquidFunManifold* ) { } )
 	, onContactEnd( []( LiquidFunContact* ) { } )
+	, onContactParticleBegin( []( LiquidFunParticle*, LiquidFunParticleBodyContact* ) { } )
+	, onContactParticleEnd( []( LiquidFunFixture*, LiquidFunParticle*, int ) { } )
 {
 	
 }
@@ -66,7 +68,7 @@ void LiquidFunContactListener::BeginContact( LiquidFunParticle* particle, Liquid
 }
 
 // 離脱時に呼ばれるコールバック関数( パーティクル )
-void LiquidFunContactListener::EndContact( LiquidFunFixture* fixture, LiquidFunParticle* particle, signed int index )
+void LiquidFunContactListener::EndContact( LiquidFunFixture* fixture, LiquidFunParticle* particle, int index )
 {
 	onContactParticleEnd( fixture, particle, index );
 }
