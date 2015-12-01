@@ -4,16 +4,17 @@
 #include "cocos2d.h"
 #include "Utility/Template/SmartPtr.h"
 
-class ObjectData;
-class ColorCMY;
-class ColorMixer;
+struct	ObjectData;
+class	PlayerBody;
+class	ColorCMY;
+class	ColorMixer;
 
 /*------------------------------------------------------------*/
 //	@class		：	Player
 //	@brief		：	プレイヤ
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/
-class Player : public cocos2d::Sprite
+class Player : public cocos2d::Node
 {
 	
 protected:
@@ -35,6 +36,12 @@ protected:
 	 */
 	bool init( SharedPtr< ObjectData > objectData );
 	
+	/**
+	 *	@brief	更新
+	 *	@param	deltaTime	デルタ時間
+	 */
+	virtual void update( float deltaTime ) override;
+	
 public:
 	
 	/**
@@ -45,22 +52,9 @@ public:
 	static Player* create( SharedPtr< ObjectData > objectData );
 	
 	/**
-	 *	@brief	接触時に呼ばれるコールバック関数
-	 *	@param	contactNode	接触したノード
-	 */
-	void onContactBegin( cocos2d::Node* contactNode );
-	
-	/**
 	 *	@brief	重力の有効化
 	 */
 	void enableGravity();
-	
-private:
-	
-	/**
-	 *	@brief	物理構造の初期化
-	 */
-	void initPhysics();
 	
 	/**
 	 *	@brief	色の更新
@@ -71,6 +65,7 @@ private:
 private:
 	
 	SharedPtr< ObjectData >	mObjectData;	//=> オブジェクトデータ
+	SharedPtr< PlayerBody >	mPlayerBody;	//=> プレイヤのボディ
 	SharedPtr< ColorMixer >	mColorMixer;	//=> 色合成者
 };
 
