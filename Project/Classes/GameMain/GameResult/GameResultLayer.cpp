@@ -1,6 +1,16 @@
 #include "GameResultLayer.h"
+#include "../../Utility/Assistant/SceneChanger.h"
+#include "../GameStageSelect/GameStageSelectLayer.h"
+#include "ResultManager.h"
+#include "ResultEvaluation.h"
 
 using namespace cocos2d;
+
+namespace  {
+    
+    Size SCREEN_SIZE;
+    Vec2 ORIGIN_SIZE;
+}
 
 bool GameResultLayer::init()
 {
@@ -8,13 +18,16 @@ bool GameResultLayer::init()
 	{
 		return false;
 	}
+    
+    SCREEN_SIZE = Director::getInstance()->getWinSize();
+    ORIGIN_SIZE = Director::getInstance()->getVisibleOrigin();
+    
+    touchListener();
+    
+    mResultManager = ResultManager::create();
+    addChild( mResultManager );
 	
-	scheduleUpdate();
-	
-	Label* sceneNameLabel = Label::createWithTTF( "GameResult", "Font/Arial.ttf", 32 );
-	sceneNameLabel->setColor( Color3B::WHITE );
-	sceneNameLabel->setPosition( Vec2( 300, 400 ) );
-	addChild( sceneNameLabel );
+    scheduleUpdate();
 	
 	return true;
 }
@@ -36,4 +49,23 @@ GameResultLayer* GameResultLayer::create()
 	
 	CC_SAFE_DELETE( inst );
 	return nullptr;
+}
+
+void GameResultLayer::touchListener(){
+    
+    //イベントリスナーを作成
+    EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
+    
+    //タッチ開始
+    listener->onTouchBegan = [ = ](Touch* touch, Event* event){
+        return true;
+    };
+    
+    //タッチ終了
+    listener->onTouchEnded = [ = ](Touch* touch, Event* event){
+        mResultManager->touchAction();
+    };
+    
+    //イベントリスナーを登録
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority( listener, this );
 }

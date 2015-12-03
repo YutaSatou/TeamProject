@@ -35,7 +35,7 @@ bool GameStageSelectLayer::init()
     
     drawBackGraund();
     
-    mBgm = ADX2Player::getInstance().play( 3 );
+    mBgm = ADX2Player::getInstance().play( 0 );
     
     StageSelectPage* page = StageSelectPage::create( 3 );
     
