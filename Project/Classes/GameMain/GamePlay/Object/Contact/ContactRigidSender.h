@@ -1,7 +1,8 @@
-#ifndef _CONTACT_SENDER_H_
-#define _CONTACT_SENDER_H_
+#ifndef _CONTACT_RIGID_SENDER_H_
+#define _CONTACT_RIGID_SENDER_H_
 
 #include "../../LiquidFun/LiquidFunDefine.h"
+#include "Utility/Template/SmartPtr.h"
 #include "ContactEventManager.h"
 
 namespace cocos2d
@@ -11,14 +12,15 @@ namespace cocos2d
 
 enum class ContactFuncTag : int;
 
-struct ContactCallback;
+struct	ContactCallback;
+class	ContactSendChecker;
 
 /*------------------------------------------------------------*/
-//	@class		：	ContactSender
-//	@brief		：	接触通知者
+//	@class		：	ContactRigidSender
+//	@brief		：	剛体接触通知者
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/
-class ContactSender
+class ContactRigidSender
 {
 	
 public:
@@ -27,12 +29,12 @@ public:
 	 *	@brief	コンストラクタ
 	 *	@param	callbackContainer	コールバックコンテナ
 	 */
-	ContactSender( ContactEventManager::CallbackContainer& callbackContainer );
+	ContactRigidSender( ContactEventManager::CallbackContainer& callbackContainer );
 	
 	/**
 	 *	@brief	デストラクタ
 	 */
-	~ContactSender() = default;
+	~ContactRigidSender() = default;
 	
 	/**
 	 *	@brief	通知
@@ -52,18 +54,10 @@ private:
 	 */
 	void sendContactObject( const ContactFuncTag& funcTag, const std::string& nodeName, cocos2d::Node* contactNode, LiquidFunBody* contactBody );
 	
-	/**
-	 *	@brief	通知するか否か
-	 *	@param	nodeNameA	フィルタ情報を引き出すノードの名前
-	 *	@param	nodeNameB	フィルタ情報を引き出すノードの名前
-	 *	@param	contact		接触したオブジェクトの情報
-	 *	@return	bool		通知するか否か
-	 */
-	bool isSend( const std::string& nodeNameA, const std::string& nodeNameB, LiquidFunContact* contact );
-	
 private:
 	
-	ContactEventManager::CallbackContainer& mCallbackContainer;	//=> コールバックコンテナ
+	ContactEventManager::CallbackContainer&	mCallbackContainer;	//=> コールバックコンテナ
+	SharedPtr< ContactSendChecker >			mSendChecker;		//=> 接触通知確認者
 };
 
 #endif

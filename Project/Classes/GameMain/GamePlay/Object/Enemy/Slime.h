@@ -46,11 +46,13 @@ public:
 	static Slime* create( SharedPtr< ObjectData > objectData, const std::string& nodeName );
 	
 	/**
-	 *	@brief	接触時に呼ばれるコールバック関数
+	 *	@brief	剛体と液体の接触時に呼ばれるコールバック関数
 	 *	@param	contactNode	接触したノード
-	 *	@param	contactBody	接触したボディ
+	 *	@param	body		接触したボディ
+	 *	@param	particle	接触したパーティクル
+	 *	@param	index		パーティクルで使用するインデックス
 	 */
-	void onContactBegin( cocos2d::Node* contactNode, LiquidFunBody* contactBody );
+	void onContactRigidBegin( cocos2d::Node* contactNode, LiquidFunBody* body, LiquidFunParticle* particle, int index );
 	
 private:
 	

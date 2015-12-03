@@ -19,7 +19,7 @@ bool UILayer::init()
 	GameUIButtonDesc returnButtonDesc = { "Button_ReturnStageSelect.png", { 100.0f, 1180.0f }, []()
 	{
 		Scene* scene		= SceneCreator::createScene( GameStageSelectLayer::create() );
-		Scene* nextScene	= TransitionFade::create( 1.0f, scene, Color3B::BLACK );
+		Scene* nextScene	= TransitionFade::create( 1.0f, scene, Color3B::WHITE );
 		SceneChanger::switchScene( nextScene );
 	} };
 	

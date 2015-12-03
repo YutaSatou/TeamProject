@@ -39,22 +39,29 @@ void ContactListener::initListener()
 	LiquidFunContactListener*	listener	= LiquidFunContactListener::create();
 	ContactEventManager&		manager		= ContactEventManager::getInstance();
 	
-	// オブジェクトが接触した時に呼ばれる。
-	listener->onContactBegin = [ &manager ]( LiquidFunContact* contact )
+	listener->onContactRigidBegin = [ &manager ]( LiquidFunContact* contact )
 	{
-		manager.onContactEvent( ContactFuncTag::BEGIN, contact );
+		manager.onContactEvent( ContactFuncTag::RIGID_BEGIN, contact );
 	};
 	
-	// オブジェクトが接触している時に呼ばれる。
-	listener->onContactPreSolve = [ &manager ]( LiquidFunContact* contact, const LiquidFunManifold* oldManifold )
+	listener->onContactRigidPreSolve = [ &manager ]( LiquidFunContact* contact, const LiquidFunManifold* oldManifold )
 	{
-		manager.onContactEvent( ContactFuncTag::PRESOLVE, contact );
+		manager.onContactEvent( ContactFuncTag::RIGID_PRESOLVE, contact );
 	};
 	
-	// オブジェクトが離れた時に呼ばれる。
-	listener->onContactEnd = [ &manager ]( LiquidFunContact* contact )
+	listener->onContactRigidEnd = [ &manager ]( LiquidFunContact* contact )
 	{
-		manager.onContactEvent( ContactFuncTag::END, contact );
+		manager.onContactEvent( ContactFuncTag::RIGID_END, contact );
+	};
+	
+	listener->onContactLiquidBegin = [ &manager ]( LiquidFunParticle* particle, LiquidFunParticleBodyContact* contact )
+	{
+		manager.onContactEvent( ContactFuncTag::LIQUID_BEGIN, contact->fixture, particle, contact->index );
+	};
+	
+	listener->onContactLiquidEnd = [ &manager ]( LiquidFunFixture* fixture, LiquidFunParticle* particle, int index )
+	{
+		manager.onContactEvent( ContactFuncTag::LIQUID_END, fixture, particle, index );
 	};
 	
 	addChild( listener );

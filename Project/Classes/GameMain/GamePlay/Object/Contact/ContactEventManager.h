@@ -10,7 +10,8 @@
 enum class ContactFuncTag : int;
 
 struct	ContactCallback;
-class	ContactSender;
+class	ContactRigidSender;
+class	ContactLiquidSender;
 
 /*------------------------------------------------------------*/
 //	@class		：	ContactEventManager
@@ -39,6 +40,15 @@ public:
 	void onContactEvent( const ContactFuncTag& funcTag, LiquidFunContact* contact );
 	
 	/**
+	 *	@brief	接触イベントコールバック
+	 *	@param	funcTag		接触関数のタグ
+	 *	@param	fixture		接触したフィクスチャ
+	 *	@param	particle	接触したパーティクル
+	 *	@param	index		接触したパーティクルのインデックス
+	 */
+	void onContactEvent( const ContactFuncTag& funcTag, LiquidFunFixture* fixture, LiquidFunParticle* particle, int index );
+	
+	/**
 	 *	@brief	コールバックの追加
 	 *	@param	nodeName	ノードの名前
 	 *	@param	callback	追加するコールバック
@@ -62,8 +72,9 @@ private:
 	
 	friend class Singleton< ContactEventManager >;
 	
-	CallbackContainer			mCallbackContainer;	//=> コールバックコンテナ
-	UniquePtr< ContactSender >	mContactSender;		//=> 接触通知者
+	CallbackContainer					mCallbackContainer;		//=> コールバックコンテナ
+	SharedPtr< ContactRigidSender >		mContactRigidSender;	//=> 剛体接触通知者
+	SharedPtr< ContactLiquidSender >	mContactLiquidSender;	//=> 液体接触通知者
 };
 
 #endif

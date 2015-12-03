@@ -2,11 +2,14 @@
 #include "../../LiquidFun/LiquidFunUserAPI.h"
 #include "ContactFuncTag.h"
 #include "ContactCallback.h"
-#include "ContactSender.h"
+#include "ContactRigidSender.h"
+#include "ContactLiquidSender.h"
 
 // コンストラクタ
 ContactEventManager::ContactEventManager()
-	: mContactSender( makeUnique< ContactSender >( mCallbackContainer ) )
+	: mCallbackContainer()
+	, mContactRigidSender( makeShared< ContactRigidSender >( mCallbackContainer ) )
+	, mContactLiquidSender( makeShared< ContactLiquidSender >( mCallbackContainer ) )
 {
 	
 }
@@ -20,7 +23,13 @@ ContactEventManager::~ContactEventManager()
 // 接触イベントコールバック
 void ContactEventManager::onContactEvent( const ContactFuncTag& funcTag, LiquidFunContact* contact )
 {
-	mContactSender->send( funcTag, contact );
+	mContactRigidSender->send( funcTag, contact );
+}
+
+// 接触イベントコールバック
+void ContactEventManager::onContactEvent( const ContactFuncTag& funcTag, LiquidFunFixture* fixture, LiquidFunParticle* particle, int index )
+{
+	mContactLiquidSender->send( funcTag, fixture, particle, index );
 }
 
 // コールバックの追加

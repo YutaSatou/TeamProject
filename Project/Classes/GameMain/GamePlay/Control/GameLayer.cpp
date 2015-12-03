@@ -5,6 +5,9 @@
 #include "../User/Brush/Brush.h"
 #include "../Object/Data/ObjectData.h"
 #include "../Object/Stage/StageCreator.h"
+#include "Utility/Assistant/SceneCreator.h"
+#include "Utility/Assistant/SceneChanger.h"
+#include "GameMain/GameStageSelect/GameStageSelectLayer.h"
 
 using namespace cocos2d;
 
@@ -64,7 +67,9 @@ void GameLayer::gameStart()
 // ゲーム終了
 void GameLayer::gameEnd()
 {
-	
+	Scene* scene		= SceneCreator::createScene( GameStageSelectLayer::create() );
+	Scene* nextScene	= TransitionFade::create( 1.0f, scene, Color3B::WHITE );
+	SceneChanger::switchScene( nextScene );
 }
 
 // ステージの初期化
