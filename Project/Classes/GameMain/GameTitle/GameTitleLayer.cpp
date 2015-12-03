@@ -18,7 +18,7 @@ GameTitleLayer::GameTitleLayer(){
 }
 
 GameTitleLayer::~GameTitleLayer(){
-    ADX2Player::getInstance().stop( mBgm );
+    //ADX2Player::getInstance().stop( mBgm );
     //mManager->release();
 }
 
@@ -115,7 +115,6 @@ void GameTitleLayer::touchListener(){
     listener->onTouchEnded = [ = ](Touch* touch, Event* event){
         ADX2Player::getInstance().play( 6 );
         SceneChanger::switchScene( GameStageSelectLayer::create() );
-
     };
     
     //イベントリスナーを登録
