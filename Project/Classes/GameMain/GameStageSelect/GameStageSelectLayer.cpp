@@ -3,7 +3,6 @@
 #include "StageSelectPage.h"
 #include "PageCursor.h"
 #include "StageSelectOption.h"
-#include "../../Utility/Assistant/SceneSwitcher.h"
 #include "ui/CocosGUI.h"
 
 using namespace cocos2d;

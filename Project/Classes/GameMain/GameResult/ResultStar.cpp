@@ -37,7 +37,6 @@ ResultStar* ResultStar::create(){
 
 void ResultStar::drawStar( int StarNum, float delay ){
 	
-	/*
     std::string fileName[] = {
         
         "Texture/GameResult/Star_Small.png",
@@ -51,7 +50,7 @@ void ResultStar::drawStar( int StarNum, float delay ){
         Vec2( 360, 620 ),
         Vec2( 540, 520 )
     };
-	 */
+	
     mStarNum = StarNum;
     
     for ( int i = 0; i < StarNum; ++i ){

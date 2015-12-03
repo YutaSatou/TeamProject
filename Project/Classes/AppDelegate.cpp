@@ -1,9 +1,11 @@
 #include "AppDelegate.h"
-#include "Utility/Assistant/SceneSwitcher.h"
-#include "Utility/Assistant/SceneChanger.h"
 #include "Utility/Audio/ADX2Manager.h"
 #include "Utility/Audio/ADX2Player.h"
+#include "Utility/Assistant/SceneChanger.h"
+#include "GameMain/GameTitle/GameTitleLayer.h"
+#include "GameMain/GameStageSelect/GameStageSelectLayer.h"
 #include "GameMain/GamePlay/GamePlayLayer.h"
+#include "GameMain/GameResult/GameResultLayer.h"
 
 using namespace cocos2d;
 
@@ -32,21 +34,21 @@ bool AppDelegate::applicationDidFinishLaunching()
 	
 	glView->setDesignResolutionSize( 720.0f, 1280.0f, ResolutionPolicy::SHOW_ALL );
 	
-	ADX2Manager::getInstance().init( "Audio/Demo.acf" );
-	ADX2Player::getInstance().init( "Audio/Demo.acb" );
+	ADX2Manager::getInstance().init( "Audio/Sound.acf" );
+	ADX2Player::getInstance().init( "Audio/HungrySlimeSounds.acb" );
 	
 // iOS Simulator.
 #ifdef DEBUG_HOSHI
-	SceneSwitcher::change( SceneType::PLAY );
+	SceneChanger::switchScene( GameTitleLayer::create() );
 #elif DEBUG_TOSHIKAWA
 	SceneChanger::switchScene( GamePlayLayer::create() );
 #elif DEBUG_SATOU
-	SceneSwitcher::change( SceneType::TITLE );
+	SceneChanger::switchScene( GameTitleLayer::create() );
 #endif
 	
 // Android.
 #if ( CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID )
-	SceneSwitcher::change( SceneType::TITLE );
+	SceneChanger::switchScene( GameTitleLayer::create() );
 #endif
 	
 	return true;
