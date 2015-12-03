@@ -20,7 +20,7 @@ GameStageSelectLayer::GameStageSelectLayer(){
 }
 
 GameStageSelectLayer::~GameStageSelectLayer(){
-    ADX2Player::getInstance().stop( mBgm );
+    //ADX2Player::getInstance().stop( mBgm );
 }
 
 bool GameStageSelectLayer::init()
@@ -35,7 +35,7 @@ bool GameStageSelectLayer::init()
     
     drawBackGraund();
     
-    mBgm = ADX2Player::getInstance().play( 0 );
+    //mBgm = ADX2Player::getInstance().play( 0 );
     
     StageSelectPage* page = StageSelectPage::create( 3 );
     
