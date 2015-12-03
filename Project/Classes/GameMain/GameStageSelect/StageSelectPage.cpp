@@ -12,6 +12,7 @@
 #include "../GamePlay/GamePlayLayer.h"
 #include "ui/CocosGUI.h"
 #include "../../Utility/Audio/ADX2Player.h"
+#include "../../Utility/PlayerData/PlayerData.h"
 
 using namespace cocos2d;
 using namespace ui;
@@ -54,12 +55,14 @@ bool StageSelectPage::init( const int pageNum ){
         image->setTitleColor( Color3B::BLACK );
         image->setZoomScale( 0.1f );
         image->setPosition( poses[j] );
+        
         image->addTouchEventListener( [ = ]( Ref* sender, Widget::TouchEventType type ){
             
             if ( type == Widget::TouchEventType::BEGAN ){
             }
             if ( type == Widget::TouchEventType::ENDED ){
                 ADX2Player::getInstance().play( 6 );
+                PlayerData::saveString( "StageNum", "StageData_" + StringUtils::toString( j + 1 ) + ".plist" );
                 SceneChanger::switchScene( GamePlayLayer::create() );
             }
         });
