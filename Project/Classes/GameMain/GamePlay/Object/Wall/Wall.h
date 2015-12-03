@@ -2,7 +2,9 @@
 #define _WALL_H_
 
 #include "cocos2d.h"
-#include "../Collision/ContactCategory.h"
+#include "../../LiquidFun/LiquidFunDefine.h"
+
+class GameControlMediator;
 
 /*------------------------------------------------------------*/
 //	@class		：	Wall
@@ -26,23 +28,27 @@ protected:
 	
 	/**
 	 *	@brief	初期化
-	 *	@param	category	設定するカテゴリ
-	 *	@param	start		線の開始座標
-	 *	@param	end			線の終了座標
-	 *	@return	bool		初期化が完了したか否か
+	 *	@param	start	線の開始座標
+	 *	@param	end		線の終了座標
+	 *	@return	bool	初期化が完了したか否か
 	 */
-	bool init( const ContactCategory& category, const cocos2d::Vec2& start, const cocos2d::Vec2& end );
+	bool init( const cocos2d::Vec2& start, const cocos2d::Vec2& end );
 	
 public:
 	
 	/**
 	 *	@brief	インスタンスの生成
-	 *	@param	category	設定するカテゴリ
-	 *	@param	start		線の開始座標
-	 *	@param	end			線の終了座標
-	 *	@return	Wall		インスタンス
+	 *	@param	start	線の開始座標
+	 *	@param	end		線の終了座標
+	 *	@return	Wall	インスタンス
 	 */
-	static Wall* create( const ContactCategory& category, const cocos2d::Vec2& start, const cocos2d::Vec2& end );
+	static Wall* create( const cocos2d::Vec2& start, const cocos2d::Vec2& end );
+	
+	/**
+	 *	@brief	ゲーム終了イベントの有効化
+	 *	@param	mediator	ゲーム制御仲介者
+	 */
+	void enableGameEndEvent( GameControlMediator& mediator );
 	
 private:
 	
@@ -53,15 +59,9 @@ private:
 	 */
 	void initPhysics( const cocos2d::Vec2& start, const cocos2d::Vec2& end );
 	
-	/**
-	 *	@brief	ボディの設定
-	 *	@param	body	設定するボディ
-	 */
-	void setupPhysicsBody( cocos2d::PhysicsBody* body );
-	
 private:
 	
-	ContactCategory mCategory;	//=> カテゴリ
+	LiquidFunBody* mBody;	//=> ボディ
 };
 
 #endif

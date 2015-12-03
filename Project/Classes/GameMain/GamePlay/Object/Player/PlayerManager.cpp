@@ -6,7 +6,7 @@ using namespace cocos2d;
 
 namespace
 {
-	const std::string PLAYER_TEXTURE_NAME = "Texture/Debug/Player.png";	//=> プレイヤのテクスチャの名前
+	const std::string PLAYER_TEXTURE_NAME = "Texture/GamePlay/Particle.png";	//=> プレイヤのテクスチャの名前
 }
 
 // コンストラクタ

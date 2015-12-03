@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 
-enum class ContactCategory : int;
+class GameControlMediator;
 
 /*------------------------------------------------------------*/
 //	@class		：	WallManager
@@ -27,27 +27,19 @@ protected:
 	
 	/**
 	 *	@brief	初期化
-	 *	@return	bool	初期化が完了したか否か
+	 *	@param	mediator	ゲーム制御仲介者
+	 *	@return	bool		初期化が完了したか否か
 	 */
-	virtual bool init() override;
+	bool init( GameControlMediator& mediator );
 	
 public:
 	
 	/**
 	 *	@brief	インスタンスの生成
+	 *	@param	mediator	ゲーム制御仲介者
 	 *	@return	WallManager	インスタンス
 	 */
-	static WallManager* create();
-	
-private:
-	
-	/**
-	 *	@brief	壁の装着
-	 *	@param	category	設定するカテゴリ
-	 *	@param	start		線の開始座標
-	 *	@param	end			線の終了座標
-	 */
-	void attachWall( const ContactCategory& category, const cocos2d::Vec2& start, const cocos2d::Vec2& end );
+	static WallManager* create( GameControlMediator& mediator );
 };
 
 #endif

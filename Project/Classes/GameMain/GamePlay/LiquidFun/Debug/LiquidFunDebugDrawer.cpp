@@ -84,7 +84,7 @@ void LiquidFunDebugDrawer::initDebugDrawFlags()
 	unsigned int flags = 0;
 	flags += LiquidFunDraw::e_shapeBit;
 	flags += LiquidFunDraw::e_jointBit;
-	// flags += LiquidFunDraw::e_aabbBit;
+	flags += LiquidFunDraw::e_aabbBit;
 	flags += LiquidFunDraw::e_pairBit;
 	flags += LiquidFunDraw::e_centerOfMassBit;
 	flags += LiquidFunDraw::e_particleBit;

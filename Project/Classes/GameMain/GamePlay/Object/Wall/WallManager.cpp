@@ -1,10 +1,11 @@
 #include "WallManager.h"
+#include "../../Control/GameControlMediator.h"
 #include "Wall.h"
 
 using namespace cocos2d;
 
 // 初期化
-bool WallManager::init()
+bool WallManager::init( GameControlMediator& mediator )
 {
 	if ( !Node::init() )
 	{
@@ -15,21 +16,30 @@ bool WallManager::init()
 	const Vec2	screenMin	= Vec2::ZERO;
 	const Vec2	screenMax	= Director::getInstance()->getWinSize();
 	
-	// 上, 下, 左, 右の壁を装着する。
-	attachWall( ContactCategory::WALL_UP,		{ screenMin.x, screenMax.y }, { screenMax.x, screenMax.y } );
-	attachWall( ContactCategory::WALL_DOWN,		{ screenMin.x, screenMin.y }, { screenMax.x, screenMin.y } );
-	attachWall( ContactCategory::WALL_LEFT,		{ screenMin.x, screenMax.y }, { screenMin.x, screenMin.y } );
-	attachWall( ContactCategory::WALL_RIGHT,	{ screenMax.x, screenMax.y }, { screenMax.x, screenMin.y } );
+	// 上, 下, 左, 右の壁を生成する。
+	Wall* up	= Wall::create( { screenMin.x, screenMax.y }, { screenMax.x, screenMax.y } );
+	Wall* down	= Wall::create( { screenMin.x, screenMin.y }, { screenMax.x, screenMin.y } );
+	Wall* left	= Wall::create( { screenMin.x, screenMax.y }, { screenMin.x, screenMin.y } );
+	Wall* right	= Wall::create( { screenMax.x, screenMax.y }, { screenMax.x, screenMin.y } );
+	
+	// ゲーム終了イベントを有効化する。
+	down->enableGameEndEvent( mediator );
+	
+	// 自身の子ノードとして追加する。
+	addChild( up );
+	addChild( down );
+	addChild( left );
+	addChild( right );
 	
 	return true;
 }
 
 // インスタンスの生成
-WallManager* WallManager::create()
+WallManager* WallManager::create( GameControlMediator& mediator )
 {
 	WallManager* inst = new WallManager();
 	
-	if ( inst && inst->init() )
+	if ( inst && inst->init( mediator ) )
 	{
 		inst->autorelease();
 		return inst;
@@ -37,12 +47,4 @@ WallManager* WallManager::create()
 	
 	CC_SAFE_DELETE( inst );
 	return nullptr;
-}
-
-// 壁の装着
-void WallManager::attachWall( const ContactCategory& category, const Vec2& start, const Vec2& end )
-{
-	Wall* wall = Wall::create( category, start, end );
-	
-	addChild( wall );
 }

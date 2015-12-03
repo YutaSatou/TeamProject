@@ -15,7 +15,7 @@ Brush::Brush( GameControlMediator& mediator )
 	, mMediator( mediator )
 	, mIsWrite( false )
 {
-	
+	isFirstWrite = true;
 }
 
 // 初期化

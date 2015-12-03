@@ -7,7 +7,6 @@
 #include "LiquidFunBox2D.h"
 
 class LiquidFunScheduler;
-class LiquidFunContactListener;
 
 /*------------------------------------------------------------*/
 //	@class		：	LiquidFunWorldManager
@@ -38,7 +37,7 @@ public:
 	 *	@brief	コンタクトリスナの登録
 	 *	@param	contactListener	コンタクトリスナ
 	 */
-	void registerContactListener( LiquidFunContactListener* contactListener );
+	void registerContactListener( LiquidFunBaseContactListener* contactListener );
 	
 	/**
 	 *	@brief	ボディの追加

@@ -34,3 +34,9 @@ Node* LiquidFunHelper::getNode( LiquidFunBody* body )
 {
 	return static_cast< Node* >( body->GetUserData() );
 }
+
+// ノードの取得
+Node* LiquidFunHelper::getNode( VoidPointer* userData )
+{
+	return static_cast< Node* >( ( *userData ) );
+}

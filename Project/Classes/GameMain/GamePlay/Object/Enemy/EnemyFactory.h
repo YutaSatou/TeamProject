@@ -9,7 +9,7 @@ namespace cocos2d
 	class Node;
 }
 
-class ObjectData;
+struct ObjectData;
 
 /*------------------------------------------------------------*/
 //	@class		：	EnemyFactory

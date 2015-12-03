@@ -4,8 +4,8 @@
 #include "cocos2d.h"
 #include "Utility/Template/SmartPtr.h"
 
-class ObjectData;
-class EnemyFactory;
+struct	ObjectData;
+class	EnemyFactory;
 
 /*------------------------------------------------------------*/
 //	@class		：	EnemyManager

@@ -2,7 +2,7 @@
 #define _LIQUID_FUN_MATERIAL_H_
 
 /*------------------------------------------------------------*/
-//	@class		：	LiquidFunMaterial
+//	@struct		：	LiquidFunMaterial
 //	@brief		：	LiquidFunのマテリアル
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/

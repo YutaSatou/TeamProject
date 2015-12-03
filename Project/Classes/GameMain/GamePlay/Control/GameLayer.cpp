@@ -5,6 +5,9 @@
 #include "../User/Brush/Brush.h"
 #include "../Object/Data/ObjectData.h"
 #include "../Object/Stage/StageCreator.h"
+#include "Utility/Assistant/SceneCreator.h"
+#include "Utility/Assistant/SceneChanger.h"
+#include "GameMain/GameStageSelect/GameStageSelectLayer.h"
 
 using namespace cocos2d;
 
@@ -26,7 +29,7 @@ bool GameLayer::init()
 		return false;
 	}
 	
-	mWallManager	= WallManager::create();
+	mWallManager	= WallManager::create( *this );
 	mPlayerManager	= PlayerManager::create();
 	mEnemyManager	= EnemyManager::create();
 	mUserBrush		= Brush::create( *this );
@@ -64,7 +67,9 @@ void GameLayer::gameStart()
 // ゲーム終了
 void GameLayer::gameEnd()
 {
-	
+	Scene* scene		= SceneCreator::createScene( GameStageSelectLayer::create() );
+	Scene* nextScene	= TransitionFade::create( 1.0f, scene, Color3B::WHITE );
+	SceneChanger::switchScene( nextScene );
 }
 
 // ステージの初期化

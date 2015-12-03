@@ -5,9 +5,11 @@ using namespace cocos2d;
 
 // コンストラクタ
 LiquidFunContactListener::LiquidFunContactListener()
-	: onContactBegin( []( LiquidFunContact* ) { } )
-	, onContactPreSolve( []( LiquidFunContact*, const LiquidFunManifold* ) { } )
-	, onContactEnd( []( LiquidFunContact* ) { } )
+	: onContactRigidBegin( []( LiquidFunContact* ) { } )
+	, onContactRigidPreSolve( []( LiquidFunContact*, const LiquidFunManifold* ) { } )
+	, onContactRigidEnd( []( LiquidFunContact* ) { } )
+	, onContactLiquidBegin( []( LiquidFunParticle*, LiquidFunParticleBodyContact* ) { } )
+	, onContactLiquidEnd( []( LiquidFunFixture*, LiquidFunParticle*, int ) { } )
 {
 	
 }
@@ -41,20 +43,32 @@ LiquidFunContactListener* LiquidFunContactListener::create()
 	return nullptr;
 }
 
-// 接触時に呼ばれるコールバック関数
+// 剛体と剛体の接触時に呼ばれるコールバック関数
 void LiquidFunContactListener::BeginContact( LiquidFunContact* contact )
 {
-	onContactBegin( contact );
+	onContactRigidBegin( contact );
 }
 
-// 接触中に呼ばれるコールバック関数
+// 剛体と剛体の接触中に呼ばれるコールバック関数
 void LiquidFunContactListener::PreSolve( LiquidFunContact* contact, const LiquidFunManifold* oldManifold )
 {
-	onContactPreSolve( contact, oldManifold );
+	onContactRigidPreSolve( contact, oldManifold );
 }
 
-// 離脱時に呼ばれるコールバック関数
+// 剛体と剛体の離脱時に呼ばれるコールバック関数
 void LiquidFunContactListener::EndContact( LiquidFunContact* contact )
 {
-	onContactEnd( contact );
+	onContactRigidEnd( contact );
+}
+
+// 剛体と液体の接触時に呼ばれるコールバック関数
+void LiquidFunContactListener::BeginContact( LiquidFunParticle* particle, LiquidFunParticleBodyContact* contact )
+{
+	onContactLiquidBegin( particle, contact );
+}
+
+// 剛体と液体の離脱時に呼ばれるコールバック関数
+void LiquidFunContactListener::EndContact( LiquidFunFixture* fixture, LiquidFunParticle* particle, int index )
+{
+	onContactLiquidEnd( fixture, particle, index );
 }

@@ -1,6 +1,7 @@
 #include "BrushBody.h"
 #include "cocos2d.h"
 #include "../../LiquidFun/LiquidFunUserAPI.h"
+#include "../../Object/Common/LiquidFunBodyDeleter.h"
 
 using namespace cocos2d;
 
@@ -22,7 +23,7 @@ BrushBody::~BrushBody()
 void BrushBody::pushSegment( const Vec2& start, const Vec2& end, float lineWidth )
 {
 	// マテリアル( 密度, 反発係数, 摩擦係数 )を用意する。
-	LiquidFunMaterial material( 0.0f, 0.0f, 0.8f );
+	LiquidFunMaterial material( 0.0f, 0.0f, 1.0f );
 	
 	// 線形状のフィクスチャ設定記述子を生成し、格納する。
 	LiquidFunFixtureDesc segment = mBodyDescCreator->createSegment( start, end, lineWidth, material );
@@ -50,6 +51,9 @@ void BrushBody::attachBody( Node* registerNode )
 	
 	// コンテナを巡回して、フィクスチャの生成と装着を行う。
 	each( [ &emptyBody ]( LiquidFunFixtureDesc& desc ) { LiquidFunBodySettlor::attachFixture( emptyBody, desc ); } );
+	
+	// ノードが削除されるタイミングでボディも削除されるように設定する。
+	registerNode->addChild( LiquidFunBodyDeleter::create( emptyBody ) );
 }
 
 // コンテナの巡回

@@ -5,7 +5,7 @@ using namespace cocos2d;
 
 namespace
 {
-	const float DISTANCE_MIN = 10.0f;	//=> 線を引いたと認識する最低距離
+	const float DISTANCE_MIN = 15.0f;	//=> 線を引いたと認識する最低距離
 }
 
 // コンストラクタ
@@ -71,7 +71,7 @@ void BrushTrail::writeMove( Touch* touch )
 	if ( distance > DISTANCE_MIN )
 	{
 		// 線形状のフィクスチャ設定記述子を追加する。
-		mBrushBody.pushSegment( mTrailOffset, delta + mTrailOffset, 4.0f );
+		mBrushBody.pushSegment( mTrailOffset, delta + mTrailOffset, 8.0f );
 		
 		// 軌跡の描画を行う。
 		drawTrail( touch, distance );
@@ -119,7 +119,7 @@ void BrushTrail::drawTrail( Touch* touch, float distance )
 		for ( float i = 0.0f; i < distance; i += 1.0f )
 		{
 			Sprite* trail = Sprite::create();
-			trail->setTextureRect( Rect( 0.0f, 0.0f, 6.0f, 6.0f ) );
+			trail->setTextureRect( Rect( 0.0f, 0.0f, 8.0f, 8.0f ) );
 			trail->setColor( Color3B::YELLOW );
 			trail->setPosition( delta * i / distance + touchPoint );
 			
