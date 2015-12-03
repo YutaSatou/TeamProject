@@ -42,7 +42,7 @@ bool GameTitleLayer::init()
     
     //mManager->playParicle( this, Vec2( SCREEN_SIZE.width / 2, SCREEN_SIZE.height / 2 ) ):
 
-    mBgm = ADX2Player::getInstance().play( 4 );
+    mBgm = ADX2Player::getInstance().play( 0 );
     
     touchListener();
 	
@@ -114,7 +114,7 @@ void GameTitleLayer::touchListener(){
     
     //タッチ終了
     listener->onTouchEnded = [ = ](Touch* touch, Event* event){
-        ADX2Player::getInstance().play( 1 );
+        ADX2Player::getInstance().play( 6 );
         SceneSwitcher::change( SceneType::STAGE_SELECT );
     };
     
