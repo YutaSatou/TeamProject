@@ -57,30 +57,6 @@ bool ResultManager::init(){
 
 void ResultManager::touchAction(){
     
-    /*switch ( mTouchCount ) {
-        case SKIP_SCORE:
-            mEvaluation->skipAnimation();
-            CCLOG( "評価文字SKIP" );
-            break;
-            
-        case SKIP_SLIME:
-            mSlime->skipAnimation();
-            CCLOG( "スライムSKIP" );
-            break;
-            
-        case SKIP_STAR:
-            mStar->skipAnimation();
-            CCLOG( "星SKIP" );
-            break;
-            
-        case SKIP_SCENE:
-            mIsAnimationEnd = true;
-            CCLOG( "終わり" );
-            break;
-    }
-    
-    mTouchCount++;*/
-    
     mTouch[ mTouchAnimationTag ]();
 }
 
@@ -107,7 +83,6 @@ void ResultManager::initFunc(){
         mStar->skipAnimation();
         mTouchAnimationTag =  TouchAnimationTag::SKIP_SLIME;
     };
-
     
     auto slimeSkip = [ & ](){
         if ( mSlime->isAnimation() ){
