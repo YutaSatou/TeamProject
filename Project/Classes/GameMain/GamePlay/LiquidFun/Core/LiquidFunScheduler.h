@@ -1,8 +1,8 @@
 #ifndef _LIQUID_FUN_SCHEDULER_H_
 #define _LIQUID_FUN_SCHEDULER_H_
 
-#include "Utility/Template/SmartPtr.h"
 #include "LiquidFunDefine.h"
+#include "Utility/Template/SmartPtr.h"
 
 /*------------------------------------------------------------*/
 //	@class		：	LiquidFunScheduler

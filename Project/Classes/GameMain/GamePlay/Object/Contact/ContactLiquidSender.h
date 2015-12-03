@@ -12,8 +12,7 @@ namespace cocos2d
 
 enum class ContactFuncTag : int;
 
-struct	ContactCallback;
-class	ContactSendChecker;
+class ContactSendChecker;
 
 /*------------------------------------------------------------*/
 //	@class		：	ContactLiquidSender
@@ -55,7 +54,7 @@ private:
 	 *	@brief	オブジェクトへの接触通知
 	 *	@param	funcTag		接触関数のタグ
 	 *	@param	nodeName	通知するオブジェクトの名前
-	 *	@param	contact		接触情報タプル
+	 *	@param	contact		接触情報のタプル
 	 */
 	void sendContactObject( const ContactFuncTag& funcTag, const std::string& nodeName, const ContactInfo& contact );
 	
