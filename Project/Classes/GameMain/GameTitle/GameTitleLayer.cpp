@@ -1,8 +1,7 @@
 #include "GameTitleLayer.h"
 #include "ui/CocosGUI.h"
-#include "../../Utility/Assistant/SceneSwitcher.h"
 #include "../../GameMain/GameStageSelect/GameStageSelectLayer.h"
-#include "../../Utility/Assistant/SceneCreator.h"
+#include "../../Utility/Assistant/SceneChanger.h"
 
 using namespace cocos2d;
 using namespace ui;
@@ -115,7 +114,8 @@ void GameTitleLayer::touchListener(){
     //タッチ終了
     listener->onTouchEnded = [ = ](Touch* touch, Event* event){
         ADX2Player::getInstance().play( 6 );
-        SceneSwitcher::change( SceneType::STAGE_SELECT );
+        SceneChanger::switchScene( GameStageSelectLayer::create() );
+
     };
     
     //イベントリスナーを登録

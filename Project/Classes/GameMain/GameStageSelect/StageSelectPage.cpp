@@ -8,7 +8,8 @@
 
 #include "StageSelectPage.h"
 #include "PageCursor.h"
-#include "../../Utility/Assistant/SceneSwitcher.h"
+#include "../../Utility/Assistant/SceneChanger.h"
+#include "../GamePlay/GamePlayLayer.h"
 #include "ui/CocosGUI.h"
 #include "../../Utility/Audio/ADX2Player.h"
 
@@ -59,7 +60,7 @@ bool StageSelectPage::init( const int pageNum ){
             }
             if ( type == Widget::TouchEventType::ENDED ){
                 ADX2Player::getInstance().play( 6 );
-                SceneSwitcher::change( SceneType::RESULT );
+                SceneChanger::switchScene( GamePlayLayer::create() );
             }
         });
         mPage->addChild( image );

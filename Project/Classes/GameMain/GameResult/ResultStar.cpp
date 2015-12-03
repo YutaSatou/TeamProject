@@ -51,26 +51,21 @@ void ResultStar::drawStar( int StarNum, float delay ){
         Vec2( 540, 520 )
     };
     mStarNum = StarNum;
-    
-    for ( int i = 0; i < StarNum; ++i ) {
         
-        Sequence* animation = Sequence::create( DelayTime::create( delay + i ), CallFunc::create( [ = ] (){
-            mIsAnimation = true;
-            Sprite* star = Sprite::create( fileName[ i ] );
-            star->setName( "Star" + StringUtils::toString( i ) );
-            star->setAnchorPoint( Vec2::ANCHOR_MIDDLE );
-            RotateBy* rotate = RotateBy::create( 0.3f, 360 );
-            rotate->setTag( 10 + i );
-            star->runAction( rotate );
-            ADX2Player::getInstance().play( 3 );
-            star->setPosition( poses[ i ] );
-            this->addChild( star );
-        }), nullptr );
+    Sequence* animation = Sequence::create( DelayTime::create( delay ), CallFunc::create( [ = ] (){
+        mIsAnimation = true;
+        Sprite* star = Sprite::create( "Texture/GameResult/Star_Small.png" );
+        star->setAnchorPoint( Vec2::ANCHOR_MIDDLE );
+        RotateBy* rotate = RotateBy::create( 0.3f, 360 );
+        star->runAction( rotate );
+        ADX2Player::getInstance().play( 3 );
+        star->setPosition( Vec2( 180, 520 ) );
+        this->addChild( star );
+    }), nullptr );
         
-        animation->setTag( i );
+    animation->setTag( 1 );
         
-        this->runAction( animation );
-    }
+    this->runAction( animation );
 }
 
 void ResultStar::playAnimation(){
@@ -101,7 +96,7 @@ void ResultStar::playAnimation(){
 
 void ResultStar::skipAnimation(){
     
-    mIsAnimation = false;
+    //mIsAnimation = false;
     for ( int i = 0; i < mStarNum; ++i ) {
         Sequence* action = ( Sequence* )this->getActionByTag( i );
         if ( !action ){ return; }
