@@ -3,6 +3,8 @@
 
 #include "cocos2d.h"
 
+class ResultManager;
+
 class GameResultLayer : public cocos2d::LayerColor
 {
 	
@@ -19,6 +21,13 @@ protected:
 public:
 	
 	static GameResultLayer* create();
+    
+private:
+    
+    //タッチ
+    void touchListener();
+    
+    ResultManager* mResultManager;
 };
 
 #endif
