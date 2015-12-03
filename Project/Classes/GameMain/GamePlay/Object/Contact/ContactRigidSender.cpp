@@ -2,7 +2,6 @@
 #include "../../LiquidFun/LiquidFunUserAPI.h"
 #include "../../LiquidFun/LiquidFunCoreAPI.h"
 #include "ContactFuncTag.h"
-#include "ContactCallback.h"
 #include "ContactSendChecker.h"
 #include "Utility/Template/EnumHash.h"
 

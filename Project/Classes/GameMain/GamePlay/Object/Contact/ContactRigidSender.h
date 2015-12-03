@@ -12,8 +12,7 @@ namespace cocos2d
 
 enum class ContactFuncTag : int;
 
-struct	ContactCallback;
-class	ContactSendChecker;
+class ContactSendChecker;
 
 /*------------------------------------------------------------*/
 //	@class		：	ContactRigidSender
