@@ -2,17 +2,15 @@
 #define _GAMETITLE_LAYER_
 
 #include "cocos2d.h"
-#include "../../Utility/Audio/ADX2Player.h"
-#include "../../Utility/Particle/ParticleManager.h"
 
 class GameTitleLayer : public cocos2d::LayerColor
 {
 	
 protected:
 	
-	GameTitleLayer();
+	GameTitleLayer() = default;
 	
-	~GameTitleLayer();
+	~GameTitleLayer() = default;
 	
 	virtual bool init() override;
 	
@@ -22,19 +20,10 @@ public:
     
 private:
     
-    void drawBackGraund();
-    
-    void drawTitle();
-    
-    void drawTouch();
+    void drawSprite( const std::string& fileName, const cocos2d::Vec2& pos, bool isAnimation );
     
     //タッチ
     void touchListener();
-    
-private:
-    
-    int mBgm;
-    ParticleManager* mManager;
 };
 
 #endif
