@@ -1,7 +1,7 @@
 #include "UILayer.h"
 #include "GameUIButton.h"
-#include "Utility/Assistant/SceneCreator.h"
-#include "Utility/Assistant/SceneChanger.h"
+#include "Utility/Assistant/Scene/SceneCreator.h"
+#include "Utility/Assistant/Scene/SceneChanger.h"
 #include "GameMain/GameStageSelect/GameStageSelectLayer.h"
 #include "GameMain/GamePlay/GamePlayLayer.h"
 
@@ -23,10 +23,13 @@ bool UILayer::init()
 		SceneChanger::switchScene( nextScene );
 	} };
 	
-	// ゲームをやり直すボタンの設定記述子
+	// ゲームをやり直すボタンの設定記述子。
 	GameUIButtonDesc restartButtonDesc = { "Button_RestartGamePlay.png", { 620.0f, 1180.0f }, []()
 	{
-		SceneChanger::switchScene( GamePlayLayer::create() );
+		Layer* bridgeSceneLayer	= BridgeScene::create( []() { return SceneCreator::createScene( GamePlayLayer::create() ); } );
+		Scene* nextScene		= SceneCreator::createScene( bridgeSceneLayer );
+		
+		SceneChanger::switchScene( nextScene );
 	} };
 	
 	// ボタンを生成して、自身の子ノードとして追加する。

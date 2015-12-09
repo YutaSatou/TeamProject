@@ -1,7 +1,7 @@
 #include "AppDelegate.h"
 #include "Utility/Audio/ADX2Manager.h"
 #include "Utility/Audio/ADX2Player.h"
-#include "Utility/Assistant/SceneChanger.h"
+#include "Utility/Assistant/Scene/SceneChanger.h"
 #include "GameMain/GameTitle/GameTitleLayer.h"
 #include "GameMain/GameStageSelect/GameStageSelectLayer.h"
 #include "GameMain/GamePlay/GamePlayLayer.h"

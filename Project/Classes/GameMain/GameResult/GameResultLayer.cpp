@@ -1,5 +1,5 @@
 #include "GameResultLayer.h"
-#include "../../Utility/Assistant/SceneChanger.h"
+#include "Utility/Assistant/Scene/SceneChanger.h"
 #include "../GameStageSelect/GameStageSelectLayer.h"
 #include "ResultManager.h"
 #include "ResultEvaluation.h"

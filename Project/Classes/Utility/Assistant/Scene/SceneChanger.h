@@ -1,11 +1,7 @@
 #ifndef _SCENE_CHANGER_H_
 #define _SCENE_CHANGER_H_
 
-namespace cocos2d
-{
-	class Layer;
-	class Scene;
-}
+#include "BridgeScene.h"
 
 /*------------------------------------------------------------*/
 //	@class		：	SceneChanger

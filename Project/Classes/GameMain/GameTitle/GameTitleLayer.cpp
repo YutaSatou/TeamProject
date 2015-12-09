@@ -2,8 +2,8 @@
 #include "ui/CocosGUI.h"
 #include "../../Utility/Audio/ADX2Player.h"
 #include "../../GameMain/GameStageSelect/GameStageSelectLayer.h"
-#include "Utility/Assistant/SceneCreator.h"
-#include "../../Utility/Assistant/SceneChanger.h"
+#include "Utility/Assistant/Scene/SceneCreator.h"
+#include "Utility/Assistant/Scene/SceneChanger.h"
 
 using namespace cocos2d;
 using namespace ui;

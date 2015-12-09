@@ -11,7 +11,7 @@
 #include "ResultEvaluation.h"
 #include "ResultSlime.h"
 #include "ResultStar.h"
-#include "../../Utility/Assistant/SceneChanger.h"
+#include "../../Utility/Assistant/Scene/SceneChanger.h"
 #include "../GameStageSelect/GameStageSelectLayer.h"
 
 ResultManager::ResultManager()

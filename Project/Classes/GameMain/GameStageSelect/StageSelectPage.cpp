@@ -8,7 +8,7 @@
 
 #include "StageSelectPage.h"
 #include "PageCursor.h"
-#include "../../Utility/Assistant/SceneChanger.h"
+#include "Utility/Assistant/Scene/SceneChanger.h"
 #include "../GamePlay/GamePlayLayer.h"
 #include "ui/CocosGUI.h"
 #include "../../Utility/Audio/ADX2Player.h"

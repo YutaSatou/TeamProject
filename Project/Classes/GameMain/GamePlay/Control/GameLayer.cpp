@@ -5,8 +5,8 @@
 #include "../User/Brush/Brush.h"
 #include "../Object/Data/ObjectData.h"
 #include "../Object/Stage/StageCreator.h"
-#include "Utility/Assistant/SceneCreator.h"
-#include "Utility/Assistant/SceneChanger.h"
+#include "Utility/Assistant/Scene/SceneCreator.h"
+#include "Utility/Assistant/Scene/SceneChanger.h"
 #include "GameMain/GameStageSelect/GameStageSelectLayer.h"
 
 using namespace cocos2d;
