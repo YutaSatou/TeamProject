@@ -1,8 +1,8 @@
 #include "Wall.h"
 #include "../../LiquidFun/LiquidFunUserAPI.h"
 #include "../../Control/GameControlMediator.h"
-#include "../Common/LiquidFunBodyDeleter.h"
 #include "../Contact/ContactSettlor.h"
+#include "../Common/LiquidFunBodyDeleter.h"
 
 using namespace cocos2d;
 

@@ -4,18 +4,14 @@
 
 using namespace cocos2d;
 
-namespace
-{
-	bool isFirstWrite = true;	//=> 初めて書くか否か
-}
-
 // コンストラクタ
 Brush::Brush( GameControlMediator& mediator )
 	: mBrushTrail( nullptr )
 	, mMediator( mediator )
 	, mIsWrite( false )
+	, mIsFirstWrite( true )
 {
-	isFirstWrite = true;
+	
 }
 
 // 初期化
@@ -79,14 +75,14 @@ void Brush::onTouchEnded( Touch* touch, Event* event )
 	
 	if ( mBrushTrail->writeEnd( touch, this ) )
 	{
-		if ( !isFirstWrite )
+		if ( !mIsFirstWrite )
 		{
 			return;
 		}
 		
 		// 初めて書いた時にゲームを開始する。
 		mMediator.gameStart();
-		isFirstWrite = false;
+		mIsFirstWrite = false;
 	}
 }
 

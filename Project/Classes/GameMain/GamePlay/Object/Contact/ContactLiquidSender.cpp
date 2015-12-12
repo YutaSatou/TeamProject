@@ -44,10 +44,10 @@ void ContactLiquidSender::send( const ContactFuncTag& funcTag, LiquidFunFixture*
 void ContactLiquidSender::sendContactObject( const ContactFuncTag& funcTag, const std::string& nodeName, const ContactInfo& contact )
 {
 	// タプルから要素を取得する。
-	auto contactNode	= std::get< 0 >( contact );
-	auto body			= std::get< 1 >( contact );
-	auto particle		= std::get< 2 >( contact );
-	auto index			= std::get< 3 >( contact );
+	auto& contactNode	= std::get< 0 >( contact );
+	auto& body			= std::get< 1 >( contact );
+	auto& particle		= std::get< 2 >( contact );
+	auto& index			= std::get< 3 >( contact );
 	
 	if ( funcTag == ContactFuncTag::LIQUID_BEGIN )
 	{

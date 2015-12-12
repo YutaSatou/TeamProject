@@ -28,7 +28,6 @@ bool UILayer::init()
 	{
 		Layer* bridgeSceneLayer	= BridgeScene::create( []() { return SceneCreator::createScene( GamePlayLayer::create() ); } );
 		Scene* nextScene		= SceneCreator::createScene( bridgeSceneLayer );
-		
 		SceneChanger::switchScene( nextScene );
 	} };
 	

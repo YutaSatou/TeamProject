@@ -76,6 +76,7 @@ private:
 	BrushTrail*				mBrushTrail;	//=> ブラシの軌跡
 	GameControlMediator&	mMediator;		//=> ゲーム制御仲介者
 	bool					mIsWrite;		//=> 書いているか否か
+	bool					mIsFirstWrite;	//=> 初めて書くか否か
 };
 
 #endif

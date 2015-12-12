@@ -1,10 +1,10 @@
 #ifndef _LIQUID_FUN_WORLD_MANAGER_H_
 #define _LIQUID_FUN_WORLD_MANAGER_H_
 
-#include "Utility/Template/Singleton.h"
-#include "Utility/Template/SmartPtr.h"
 #include "cocos2d.h"
 #include "LiquidFunBox2D.h"
+#include "Utility/Template/Singleton.h"
+#include "Utility/Template/SmartPtr.h"
 
 class LiquidFunScheduler;
 

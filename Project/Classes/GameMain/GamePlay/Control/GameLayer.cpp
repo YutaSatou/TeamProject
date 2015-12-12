@@ -7,7 +7,7 @@
 #include "../Object/Stage/StageCreator.h"
 #include "Utility/Assistant/Scene/SceneCreator.h"
 #include "Utility/Assistant/Scene/SceneChanger.h"
-#include "GameMain/GameStageSelect/GameStageSelectLayer.h"
+#include "GameMain/GameResult/GameResultLayer.h"
 
 using namespace cocos2d;
 
@@ -67,7 +67,7 @@ void GameLayer::gameStart()
 // ゲーム終了
 void GameLayer::gameEnd()
 {
-	Scene* scene		= SceneCreator::createScene( GameStageSelectLayer::create() );
+	Scene* scene		= SceneCreator::createScene( GameResultLayer::create() );
 	Scene* nextScene	= TransitionFade::create( 1.0f, scene, Color3B::WHITE );
 	SceneChanger::switchScene( nextScene );
 }
