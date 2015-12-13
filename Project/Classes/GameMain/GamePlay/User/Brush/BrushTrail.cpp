@@ -120,7 +120,7 @@ void BrushTrail::drawTrail( Touch* touch, float distance )
 		{
 			Sprite* trail = Sprite::create();
 			trail->setTextureRect( Rect( 0.0f, 0.0f, 8.0f, 8.0f ) );
-			trail->setColor( Color3B::YELLOW );
+			trail->setColor( Color3B::WHITE );
 			trail->setPosition( delta * i / distance + touchPoint );
 			
 			mCanvas->addRenderingTarget( trail );

@@ -5,8 +5,6 @@
 #include "Utility/Template/Singleton.h"
 #include "Utility/Template/SmartPtr.h"
 #include "ContactCallback.h"
-#include <string>
-#include <unordered_map>
 
 enum class ContactFuncTag : int;
 
