@@ -82,7 +82,7 @@ public:
 	
 private:
 	
-	using ColorTuple = std::tuple< float, float, float >;
+	using ColorTuple = std::tuple< GLubyte, GLubyte, GLubyte >;
 	
 	/**
 	 *	@brief	RGB⇔CMYの相互変換
@@ -91,7 +91,7 @@ private:
 	 *	@param	element3	色要素3
 	 *	@return	ColorTuple	色要素タプル
 	 */
-	static ColorTuple convertColor( float element1, float element2, float element3 );
+	static ColorTuple convertColor( GLubyte element1, GLubyte element2, GLubyte element3 );
 	
 public:
 	

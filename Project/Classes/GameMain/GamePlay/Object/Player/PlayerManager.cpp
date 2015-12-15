@@ -56,5 +56,5 @@ void PlayerManager::onDataLoaded( SharedPtr< ObjectData > objectData )
 // ゲーム開始時のコールバック関数
 void PlayerManager::onGameStart()
 {
-	mPlayer->enableGravity();
+	mPlayer->enableLiquidBehavior();
 }

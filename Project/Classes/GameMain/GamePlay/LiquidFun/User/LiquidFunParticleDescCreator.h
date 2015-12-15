@@ -22,30 +22,29 @@ public:
 	/**
 	 *	@brief	コンストラクタ
 	 */
-	LiquidFunParticleDescCreator() = delete;
+	LiquidFunParticleDescCreator() = default;
 	
 	/**
 	 *	@brief	デストラクタ
 	 */
-	~LiquidFunParticleDescCreator() = delete;
+	~LiquidFunParticleDescCreator() = default;
 	
 	/**
 	 *	@brief	パーティクル設定記述子の生成
-	 *	@param	particleSize			粒子1つの大きさ
+	 *	@param	particleSize			パーティクル単体の大きさ
 	 *	@return	LiquidFunParticleDesc	パーティクル設定記述子
 	 */
 	LiquidFunParticleDesc createParticleDesc( float particleSize );
 	
 	/**
 	 *	@brief	パーティクルグループ設定記述子の生成
-	 *	@param	particleType				パーティクルの種類
 	 *	@param	color						パーティクルの色
-	 *	@param	position					パーティクルグループの座標
+	 *	@param	position					パーティクルの座標
+	 *	@param	particleType				パーティクルの種類
 	 *	@param	groupSize					パーティクルグループの大きさ
-	 *	@param	alpha						パーティクルのα値
 	 *	@return	LiquidFunParticleGroupDesc	パーティクルグループ設定記述子
 	 */
-	LiquidFunParticleGroupDesc createParticleGroupDesc( const LiquidFunParticleType& particleType, const cocos2d::Color3B& color, const cocos2d::Vec2& position, float groupSize, float alpha = 255.0f );
+	LiquidFunParticleGroupDesc createParticleGroupDesc( const cocos2d::Color3B& color, const cocos2d::Vec2& position, unsigned short particleType, float groupSize );
 };
 
 #endif

@@ -7,6 +7,7 @@
 #include "User/LiquidFunFilteringSettlor.h"
 #include "User/LiquidFunBodyDescCreator.h"
 #include "User/LiquidFunBodySettlor.h"
+#include "User/LiquidFunParticleDescCreator.h"
 #include "User/LiquidFunParticleSettlor.h"
 
 #endif

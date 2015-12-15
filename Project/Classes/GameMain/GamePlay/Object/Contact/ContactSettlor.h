@@ -3,7 +3,6 @@
 
 #include "../../LiquidFun/LiquidFunDefine.h"
 #include "Utility/Template/SmartPtr.h"
-#include "ContactCategory.h"
 #include "ContactCallback.h"
 
 /*------------------------------------------------------------*/

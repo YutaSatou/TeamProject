@@ -16,15 +16,17 @@ LiquidFunParticleDesc LiquidFunParticleDescCreator::createParticleDesc( float pa
 }
 
 // パーティクルグループ設定記述子の生成
-LiquidFunParticleGroupDesc LiquidFunParticleDescCreator::createParticleGroupDesc( const LiquidFunParticleType& particleType, const Color3B& color, const Vec2& position, float groupSize, float alpha )
+LiquidFunParticleGroupDesc LiquidFunParticleDescCreator::createParticleGroupDesc( const Color3B& color, const Vec2& position, unsigned short particleType, float groupSize )
 {
-	LiquidFunCircleShape		shape;
-	LiquidFunParticleGroupDesc	groupDesc;
+	LiquidFunCircleShape* shape = new LiquidFunCircleShape();
 	
-	shape.m_radius		= LiquidFunHelper::toMeter( groupSize / 2.0f );
-	groupDesc.shape		= &shape;
+	shape->m_radius = LiquidFunHelper::toMeter( groupSize / 2.0f );
+	
+	LiquidFunParticleGroupDesc groupDesc;
+	
+	groupDesc.shape		= shape;
 	groupDesc.flags		= particleType | LiquidFunParticleType::b2_fixtureContactListenerParticle;
-	groupDesc.color		= LiquidFunParticleColor( color.r, color.g, color.b, alpha );
+	groupDesc.color		= LiquidFunParticleColor( color.r, color.g, color.b, 255 );
 	groupDesc.position	= LiquidFunHelper::toMeter( position );
 	
 	return groupDesc;

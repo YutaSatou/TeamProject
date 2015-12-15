@@ -1,20 +1,17 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
 
-#include "cocos2d.h"
+#include "../Common/LiquidObject.h"
 #include "Utility/Template/SmartPtr.h"
 
-struct	ObjectData;
-class	PlayerBody;
-class	ColorCMY;
-class	ColorMixer;
+struct ObjectData;
 
 /*------------------------------------------------------------*/
 //	@class		：	Player
 //	@brief		：	プレイヤ
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/
-class Player : public cocos2d::Node
+class Player : public LiquidObject
 {
 	
 protected:
@@ -52,21 +49,18 @@ public:
 	static Player* create( SharedPtr< ObjectData > objectData );
 	
 	/**
-	 *	@brief	重力の有効化
+	 *	@brief	パーティクルの初期化
 	 */
-	void enableGravity();
+	virtual void initParticle() override;
 	
 	/**
-	 *	@brief	色の更新
-	 *	@param	blendColor	合成色
+	 *	@brief	液体挙動の有効化
 	 */
-	void updateColor( const ColorCMY& blendColor );
+	void enableLiquidBehavior();
 	
 private:
 	
-	SharedPtr< ObjectData >	mObjectData;	//=> オブジェクトデータ
-	SharedPtr< PlayerBody >	mPlayerBody;	//=> プレイヤのボディ
-	SharedPtr< ColorMixer >	mColorMixer;	//=> 色合成者
+	SharedPtr< ObjectData > mObjectData;	//=> オブジェクトデータ
 };
 
 #endif

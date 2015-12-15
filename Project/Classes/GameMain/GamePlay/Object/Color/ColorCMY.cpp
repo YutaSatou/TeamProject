@@ -39,7 +39,7 @@ ColorCMY::ColorCMY( const Color3B& colorRGB )
 // 色の三原色( CMY )から光の三原色( RGB )への変換
 Color3B ColorCMY::convertToRGB( const ColorCMY& colorCMY )
 {
-	float r, g, b;
+	GLubyte r, g, b;
 	std::tie( r, g, b ) = convertColor( colorCMY.c, colorCMY.m, colorCMY.y );
 	return Color3B( r, g, b );
 }
@@ -47,7 +47,7 @@ Color3B ColorCMY::convertToRGB( const ColorCMY& colorCMY )
 // 光の三原色( RGB )から色の三原色( CMY )への変換
 ColorCMY ColorCMY::convertToCMY( const Color3B& colorRGB )
 {
-	float c, m, y;
+	GLubyte c, m, y;
 	std::tie( c, m, y ) = convertColor( colorRGB.r, colorRGB.g, colorRGB.b );
 	return ColorCMY( c, m, y );
 }
@@ -81,7 +81,7 @@ bool ColorCMY::operator != ( const Color3B& colorRGB ) const
 }
 
 // RGB⇔CMYの相互変換
-ColorCMY::ColorTuple ColorCMY::convertColor( float element1, float element2, float element3 )
+ColorCMY::ColorTuple ColorCMY::convertColor( GLubyte element1, GLubyte element2, GLubyte element3 )
 {
-	return std::make_tuple( ( 255.0f - element1 ), ( 255.0f - element2 ), ( 255.0f - element3 ) );
+	return std::make_tuple( ( 255 - element1 ), ( 255 - element2 ), ( 255 - element3 ) );
 }
