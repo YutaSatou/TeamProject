@@ -3,6 +3,12 @@
 
 using namespace cocos2d;
 
+namespace
+{
+	const unsigned short PARTICLE_TYPE =	LiquidFunParticleType::b2_springParticle |
+											LiquidFunParticleType::b2_barrierParticle;	// パーティクルのビットマスク
+}
+
 // コンストラクタ
 Player::Player()
 	: mObjectData( nullptr )
@@ -44,7 +50,7 @@ bool Player::init( SharedPtr< ObjectData > objectData )
 void Player::update( float deltaTime )
 {
 	// 基底クラスの更新を行う。
-	Node::update( deltaTime );
+	LiquidObject::update( deltaTime );
 	
 	// パーティクルの更新を行う。
 	updateParticle();
@@ -68,13 +74,10 @@ Player* Player::create( SharedPtr< ObjectData > objectData )
 // パーティクルの初期化
 void Player::initParticle()
 {
-	// 弾力のあるパーティクルタイプを定義する。
-	unsigned short particleType = LiquidFunParticleType::b2_springParticle | LiquidFunParticleType::b2_barrierParticle;
-	
 	// パーティクルの生成に必要な設定記述子を生成する。
 	LiquidFunParticleDescCreator creator;
 	auto particleDesc	= creator.createParticleDesc( 4.0f );
-	auto groupDesc		= creator.createParticleGroupDesc( mObjectData->textureColor, mObjectData->position, particleType, getContentSize().width );
+	auto groupDesc		= creator.createParticleGroupDesc( mObjectData->textureColor, mObjectData->position, PARTICLE_TYPE, getContentSize().width );
 	
 	// 弾力の強さを設定する。
 	particleDesc.springStrength	= 0.2f;

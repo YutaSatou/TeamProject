@@ -45,7 +45,7 @@ void PlayerManager::onDataLoaded( SharedPtr< ObjectData > objectData )
 		return;
 	}
 	
-	// プレイヤを生成して自身の子ノードとして追加する。
+	// プレイヤを生成して、自身の子ノードとして追加する。
 	mPlayer = Player::create( objectData );
 	addChild( mPlayer );
 	

@@ -61,7 +61,7 @@ void Wall::enableGameEndEvent( GameControlMediator& mediator )
 		mediator.gameEnd();
 	};
 	
-	// カテゴリの設定、接触するカテゴリの設定、コールバックの登録を行う。
+	// カテゴリの設定、接触するカテゴリの設定、コールバックの有効化を行う。
 	ContactSettlor contactSettlor( mBody );
 	contactSettlor.setupCategory( Contact::Category::WALL_EVENT );
 	contactSettlor.setupContactCategory( callback, { Contact::Category::PLAYER, Contact::Category::LIQUID } );
