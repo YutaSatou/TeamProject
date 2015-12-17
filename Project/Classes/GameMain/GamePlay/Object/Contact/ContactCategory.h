@@ -14,9 +14,8 @@ namespace Contact
 		WALL			= 1 << 0,
 		WALL_EVENT		= 1 << 1,
 		LIQUID			= 1 << 2,
-		TERRAIN			= 1 << 3,
-		PLAYER			= 1 << 4,
-		SLIME			= 1 << 5,
+		PLAYER			= 1 << 3,
+		SLIME			= 1 << 4,
 		ALL_CATEGORY	= USHRT_MAX,
 	};
 	

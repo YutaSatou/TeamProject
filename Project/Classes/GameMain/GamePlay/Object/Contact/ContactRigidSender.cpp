@@ -9,8 +9,8 @@ using namespace cocos2d;
 
 namespace
 {
-	using SendFunc		= std::function< void( const std::string&, Node*, LiquidFunBody* ) >;
-	using SendFuncMap	= std::unordered_map< ContactFuncTag, SendFunc, EnumHash >;
+	using SendFunc			= std::function< void( const std::string&, Node*, LiquidFunBody* ) >;
+	using SendFuncContainer	= std::unordered_map< ContactFuncTag, SendFunc, EnumHash >;
 }
 
 // コンストラクタ
@@ -50,7 +50,7 @@ void ContactRigidSender::send( const ContactFuncTag& funcTag, LiquidFunContact* 
 // オブジェクトへの接触通知
 void ContactRigidSender::sendContactObject( const ContactFuncTag& funcTag, const std::string& nodeName, Node* contactNode, LiquidFunBody* contactBody )
 {
-	static SendFuncMap sendFuncMap =
+	static SendFuncContainer sendFuncContainer =
 	{
 		{ ContactFuncTag::RIGID_BEGIN,		[ this ]( const std::string& nodeName, Node* contactNode, LiquidFunBody* contactBody )
 			{ mCallbackContainer[ nodeName ]->onContactRigidBegin( contactNode, contactBody );		} },
@@ -61,5 +61,5 @@ void ContactRigidSender::sendContactObject( const ContactFuncTag& funcTag, const
 	};
 	
 	// オブジェクトに接触を通知する。
-	sendFuncMap[ funcTag ]( nodeName, contactNode, contactBody );
+	sendFuncContainer[ funcTag ]( nodeName, contactNode, contactBody );
 }
