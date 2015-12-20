@@ -8,8 +8,8 @@ using namespace cocos2d;
 
 namespace
 {
-	using FixtureDescCreateFunc				= std::function< LiquidFunFixtureDesc( LiquidFunBodyDescCreator& creator ) >;
-	using FixtureDescCreateFuncContainer	= std::unordered_map< StageTerrainType, FixtureDescCreateFunc, EnumHash >;
+	using DescCreateFunc			= std::function< LiquidFunFixtureDesc( LiquidFunBodyDescCreator&, const Size&, const LiquidFunMaterial& ) >;
+	using DescCreateFuncContainer	= std::unordered_map< StageTerrainType, DescCreateFunc, EnumHash >;
 }
 
 // コンストラクタ
@@ -59,25 +59,28 @@ StageTerrain* StageTerrain::create( SharedPtr< ObjectData > objectData, const St
 // 物理構造の初期化
 void StageTerrain::initPhysics( const StageTerrainType& terrainType )
 {
-	static FixtureDescCreateFuncContainer fixtureDescCreateFuncContainer
+	static DescCreateFuncContainer descCreateFuncContainer
 	{
 		{
-			StageTerrainType::BOX, [ this ]( LiquidFunBodyDescCreator& creator )
+			StageTerrainType::BOX, []( LiquidFunBodyDescCreator& creator, const Size& size, const LiquidFunMaterial& material )
 			{
-				return creator.createBox( getContentSize(), mObjectData->material );
+				return std::move( creator.createBox( size, material ) );
 			}
 		},
 		{
-			StageTerrainType::TRIANGLE, [ this ]( LiquidFunBodyDescCreator& creator )
+			StageTerrainType::TRIANGLE, []( LiquidFunBodyDescCreator& creator, const Size& size, const LiquidFunMaterial& material )
 			{
-				Vec2 vertices[] = { { 0.0f, 0.0f }, { 0.0f, getContentSize().height }, { getContentSize().width, 0.0f } };
-				return creator.createPolygon( vertices, 3, mObjectData->material );
+				const float	halfW		= size.width	/ 2.0f;
+				const float	halfH		= size.height	/ 2.0f;
+				const Vec2	vertices[]	= { { -halfW, -halfH }, { -halfW, halfH }, { halfW, -halfH } };
+				
+				return std::move( creator.createPolygon( vertices, 3, material ) );
 			}
 		},
 		{
-			StageTerrainType::CIRCLE, [ this ]( LiquidFunBodyDescCreator& creator )
+			StageTerrainType::CIRCLE, []( LiquidFunBodyDescCreator& creator, const Size& size, const LiquidFunMaterial& material )
 			{
-				return creator.createCircle( getContentSize().width / 2.0f, mObjectData->material );
+				return std::move( creator.createCircle( size.width / 2.0f, material ) );
 			}
 		},
 	};
@@ -85,9 +88,11 @@ void StageTerrain::initPhysics( const StageTerrainType& terrainType )
 	// ボディの生成に必要な設定記述子を生成する。
 	LiquidFunBodyDescCreator	bodyDescCreator;
 	LiquidFunBodyDesc			bodyDesc	= bodyDescCreator.createBodyDesc( this, LiquidFunBodyType::b2_staticBody );
-	LiquidFunFixtureDesc		fixtureDesc	= fixtureDescCreateFuncContainer[ terrainType ]( bodyDescCreator );
+	LiquidFunFixtureDesc		fixtureDesc	= descCreateFuncContainer[ terrainType ]( bodyDescCreator, getContentSize(), mObjectData->material );
 	
 	// ボディを装着する。
 	LiquidFunBody* body = LiquidFunBodySettlor::attachBody( bodyDesc, fixtureDesc );
+	
+	// ノードが削除されるタイミングでボディも削除されるように設定する。
 	addChild( LiquidFunBodyDeleter::create( body ) );
 }

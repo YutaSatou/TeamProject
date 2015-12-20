@@ -1,22 +1,22 @@
 #include "GameLayer.h"
-#include "../Object/Wall/WallManager.h"
 #include "../Object/Player/PlayerManager.h"
 #include "../Object/Enemy/EnemyManager.h"
+#include "../Object/Stage/StageTerrainManager.h"
+#include "../Object/Wall/WallManager.h"
 #include "../User/Brush/Brush.h"
 #include "../Object/Data/ObjectData.h"
 #include "../Object/Stage/StageCreator.h"
+#include "GameMain/GameResult/GameResultLayer.h"
 #include "Utility/Assistant/Scene/SceneCreator.h"
 #include "Utility/Assistant/Scene/SceneChanger.h"
-#include "GameMain/GameResult/GameResultLayer.h"
 
 using namespace cocos2d;
 
 // コンストラクタ
 GameLayer::GameLayer()
-	: mWallManager( nullptr )
-	, mPlayerManager( nullptr )
+	: mPlayerManager( nullptr )
 	, mEnemyManager( nullptr )
-	, mUserBrush( nullptr )
+	, mStageTerrainManager( nullptr )
 {
 	
 }
@@ -29,15 +29,15 @@ bool GameLayer::init()
 		return false;
 	}
 	
-	mWallManager	= WallManager::create( *this );
-	mPlayerManager	= PlayerManager::create();
-	mEnemyManager	= EnemyManager::create();
-	mUserBrush		= Brush::create( *this );
+	mPlayerManager			= PlayerManager::create();
+	mEnemyManager			= EnemyManager::create();
+	mStageTerrainManager	= StageTerrainManager::create();
 	
-	addChild( mWallManager );
 	addChild( mPlayerManager );
 	addChild( mEnemyManager );
-	addChild( mUserBrush );
+	addChild( mStageTerrainManager );
+	addChild( WallManager::create( *this ) );
+	addChild( Brush::create( *this ) );
 	
 	return true;
 }
@@ -76,7 +76,8 @@ void GameLayer::gameEnd()
 void GameLayer::initStage( const std::string& plistFilePath )
 {
 	StageCreator stageCreator;
-	stageCreator.addListener( [ this ]( SharedPtr< ObjectData > data ) { mPlayerManager->onDataLoaded( data ); }	);
-	stageCreator.addListener( [ this ]( SharedPtr< ObjectData > data ) { mEnemyManager->onDataLoaded( data ); }		);
+	stageCreator.addListener( [ this ]( SharedPtr< ObjectData > data ) { mPlayerManager->onDataLoaded( data ); }		);
+	stageCreator.addListener( [ this ]( SharedPtr< ObjectData > data ) { mEnemyManager->onDataLoaded( data ); }			);
+	stageCreator.addListener( [ this ]( SharedPtr< ObjectData > data ) { mStageTerrainManager->onDataLoaded( data ); }	);
 	stageCreator.createStage( plistFilePath );
 }

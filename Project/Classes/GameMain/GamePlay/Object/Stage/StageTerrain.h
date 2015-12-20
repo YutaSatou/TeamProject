@@ -19,7 +19,7 @@ enum class StageTerrainType : int
 
 /*------------------------------------------------------------*/
 //	@class		：	StageTerrain
-//	@brief		：	ステージの地形
+//	@brief		：	地形
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/
 class StageTerrain : public cocos2d::Sprite

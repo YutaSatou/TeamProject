@@ -34,7 +34,7 @@ bool Player::init( SharedPtr< ObjectData > objectData )
 	// 各パラメータを設定する。
 	setName( "Player" );
 	setColor( mObjectData->textureColor );
-	setContentSize( Size( 64.0f, 64.0f ) );
+	setContentSize( Size( 60.0f, 60.0f ) );
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setPosition( Vec2::ZERO );
 	
@@ -76,7 +76,7 @@ void Player::initParticle()
 {
 	// パーティクルの生成に必要な設定記述子を生成する。
 	LiquidFunParticleDescCreator creator;
-	auto particleDesc	= creator.createParticleDesc( 4.0f );
+	auto particleDesc	= creator.createParticleDesc( 3.5f );
 	auto groupDesc		= creator.createParticleGroupDesc( mObjectData->textureColor, mObjectData->position, PARTICLE_TYPE, getContentSize().width );
 	
 	// 弾力の強さを設定する。
