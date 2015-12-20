@@ -23,7 +23,7 @@ struct GameUIButtonDesc
 	 *	@param	_position		ボタンの座標
 	 *	@param	_func			ボタンを離した時に呼ばれる関数
 	 */
-	GameUIButtonDesc( const std::string& _textureName, const cocos2d::Vec2& _position, const TouchEndedFunc& _func )
+	GameUIButtonDesc( const std::string& _textureName, const cocos2d::Vec2& _position, TouchEndedFunc _func )
 	{
 		textureName		= _textureName;
 		position		= _position;

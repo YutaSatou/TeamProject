@@ -16,7 +16,7 @@ class LiquidFunBodyDescCreator;
 
 /*------------------------------------------------------------*/
 //	@class		：	BrushBody
-//	@brief		：	ブラシ用の物理構造
+//	@brief		：	ブラシ用のボディ
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/
 class BrushBody
@@ -65,7 +65,7 @@ private:
 	 *	@brief	コンテナの巡回
 	 *	@param	func	実行する関数
 	 */
-	void each( std::function< void( LiquidFunFixtureDesc& decs ) > func );
+	void each( std::function< void( LiquidFunFixtureDesc& ) > func );
 	
 private:
 	

@@ -34,7 +34,7 @@ public:
 	/**
 	 *	@brief	データの読み込み
 	 *	@param	plistFilePath		プロパティリストファイルのパス
-	 *	@return	ObjectDataContainer	読み込んだデータを格納したベクタ
+	 *	@return	ObjectDataContainer	読み込んだデータを格納したコンテナ
 	 */
 	ObjectDataContainer read( const std::string& plistFilePath );
 };

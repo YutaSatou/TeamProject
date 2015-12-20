@@ -11,7 +11,7 @@ BridgeScene::BridgeScene()
 }
 
 // 初期化
-bool BridgeScene::init( const NextSceneCreateFunc& func )
+bool BridgeScene::init( NextSceneCreateFunc func )
 {
 	if ( !Layer::init() )
 	{
@@ -20,7 +20,7 @@ bool BridgeScene::init( const NextSceneCreateFunc& func )
 	
 	mNextSceneCreateFunc = func;
 	
-	schedule( CC_SCHEDULE_SELECTOR( BridgeScene::next ) );
+	scheduleOnce( CC_SCHEDULE_SELECTOR( BridgeScene::next ), 0.2f );
 	
 	return true;
 }
@@ -28,15 +28,13 @@ bool BridgeScene::init( const NextSceneCreateFunc& func )
 // 次のシーンへの遷移
 void BridgeScene::next( float deltaTime )
 {
-	// 初回フレームでシーンを変更する。
 	SceneChanger::switchScene( mNextSceneCreateFunc() );
 	
-	// スケジュール登録を解除する。
 	unschedule( CC_SCHEDULE_SELECTOR( BridgeScene::next ) );
 }
 
 // インスタンスの生成
-BridgeScene* BridgeScene::create( const NextSceneCreateFunc& func )
+BridgeScene* BridgeScene::create( NextSceneCreateFunc func )
 {
 	BridgeScene* inst = new BridgeScene();
 	

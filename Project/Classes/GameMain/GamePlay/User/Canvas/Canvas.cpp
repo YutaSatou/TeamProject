@@ -45,8 +45,8 @@ void Canvas::resetCanvas()
 	removeChild( mRenderTexture );
 	
 	// 画面サイズを取得する。
-	const Size	winSize		= Director::getInstance()->getWinSize();
-	const Size	halfSize	= winSize / 2;
+	const Size&	winSize		= Director::getInstance()->getWinSize();
+	const Size&	halfSize	= winSize / 2;
 	
 	// レンダテクスチャを子ノードとして追加する。
 	mRenderTexture = RenderTexture::create( winSize.width, winSize.height, Texture2D::PixelFormat::RGBA8888 );

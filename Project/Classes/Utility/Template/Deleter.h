@@ -24,7 +24,7 @@ public:
 	 */
 	Deleter()
 		: mInstance( nullptr )
-		, mDeleteFunction( []( T* instance ) { } )
+		, mDeleteFunction( []( T* ) { } )
 	{
 		
 	}
@@ -38,14 +38,10 @@ public:
 	}
 	
 	/**
-	 *	@brief	コピーコンストラクタ( 封印 )
+	 *	@brief	コピー禁止
 	 */
-	Deleter( const Deleter& )	= delete;
-	Deleter( Deleter&& )		= delete;
-	
-	/**
-	 *	@brief	代入演算子( 封印 )
-	 */
+	Deleter( const Deleter& )				= delete;
+	Deleter( Deleter&& )					= delete;
 	Deleter& operator = ( const Deleter& )	= delete;
 	Deleter& operator = ( Deleter&& )		= delete;
 	

@@ -41,10 +41,16 @@ void LiquidObject::updateParticle()
 }
 
 // 剛体と液体の接触時に呼ばれるコールバック関数
-void LiquidObject::onContactLiquidBegin( Node* contactNode, LiquidFunBody* body, LiquidFunParticle* particle, int index ) { }
+void LiquidObject::onContactLiquidBegin( Node* contactNode, LiquidFunBody* body, LiquidFunParticle* particle, int index )
+{
+	return;
+}
 
 // 剛体と液体の離脱時に呼ばれるコールバック関数
-void LiquidObject::onContactLiquidEnd( Node* contactNode, LiquidFunBody* body, LiquidFunParticle* particle, int index ) { }
+void LiquidObject::onContactLiquidEnd( Node* contactNode, LiquidFunBody* body, LiquidFunParticle* particle, int index )
+{
+	return;
+}
 
 // テクスチャの登録
 void LiquidObject::registerTexture( const std::string& textureName )

@@ -18,24 +18,6 @@ LiquidFunWorldManager::LiquidFunWorldManager()
 	
 }
 
-// ワールドのリセット
-void LiquidFunWorldManager::resetWorld()
-{
-	LiquidFunBody* body = mWorld->GetBodyList();
-	
-	while ( body )
-	{
-		// ボディをコピーする。
-		b2Body* currentBody = body;
-		
-		// コピー元のボディは次のボディを取得する。
-		body = body->GetNext();
-		
-		// ワールドからボディを削除する。
-		deleteBody( currentBody );
-	}
-}
-
 // 更新
 void LiquidFunWorldManager::update()
 {

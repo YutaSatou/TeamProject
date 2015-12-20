@@ -2,9 +2,9 @@
 #define _CONTACT_EVENT_MANAGER_H_
 
 #include "../../LiquidFun/LiquidFunDefine.h"
+#include "ContactCallback.h"
 #include "Utility/Template/Singleton.h"
 #include "Utility/Template/SmartPtr.h"
-#include "ContactCallback.h"
 
 enum class ContactFuncTag : int;
 

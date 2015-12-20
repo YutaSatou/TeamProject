@@ -2,8 +2,8 @@
 #define _CONTACT_LIQUID_SENDER_H_
 
 #include "../../LiquidFun/LiquidFunDefine.h"
-#include "Utility/Template/SmartPtr.h"
 #include "ContactEventManager.h"
+#include "Utility/Template/SmartPtr.h"
 
 namespace cocos2d
 {

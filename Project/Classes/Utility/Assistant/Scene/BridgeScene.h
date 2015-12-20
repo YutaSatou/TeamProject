@@ -32,7 +32,7 @@ protected:
 	 *	@param	func	次のシーンを生成する関数
 	 *	@return	bool	初期化が完了したか否か
 	 */
-	bool init( const NextSceneCreateFunc& func );
+	bool init( NextSceneCreateFunc func );
 	
 	/**
 	 *	@brief	次のシーンへの遷移
@@ -47,7 +47,7 @@ public:
 	 *	@param	func		次のシーンを生成する関数
 	 *	@return	BridgeScene	インスタンス
 	 */
-	static BridgeScene* create( const NextSceneCreateFunc& func );
+	static BridgeScene* create( NextSceneCreateFunc func );
 	
 private:
 	

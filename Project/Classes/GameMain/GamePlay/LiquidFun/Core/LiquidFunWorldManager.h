@@ -24,11 +24,6 @@ public:
 	~LiquidFunWorldManager() = default;
 	
 	/**
-	 *	@brief	ワールドのリセット
-	 */
-	void resetWorld();
-	
-	/**
 	 *	@brief	更新
 	 */
 	void update();
