@@ -62,25 +62,25 @@ void StageTerrain::initPhysics( const StageTerrainType& terrainType )
 	static DescCreateFuncContainer descCreateFuncContainer
 	{
 		{
-			StageTerrainType::BOX, []( LiquidFunBodyDescCreator& creator, const Size& size, const LiquidFunMaterial& material )
+			StageTerrainType::BOX,		[]( LiquidFunBodyDescCreator& creator, const Size& size, const LiquidFunMaterial& material )
 			{
-				return std::move( creator.createBox( size, material ) );
+				return creator.createBox( size, material );
 			}
 		},
 		{
-			StageTerrainType::TRIANGLE, []( LiquidFunBodyDescCreator& creator, const Size& size, const LiquidFunMaterial& material )
+			StageTerrainType::TRIANGLE,	[]( LiquidFunBodyDescCreator& creator, const Size& size, const LiquidFunMaterial& material )
 			{
 				const float	halfW		= size.width	/ 2.0f;
 				const float	halfH		= size.height	/ 2.0f;
 				const Vec2	vertices[]	= { { -halfW, -halfH }, { -halfW, halfH }, { halfW, -halfH } };
 				
-				return std::move( creator.createPolygon( vertices, 3, material ) );
+				return creator.createPolygon( vertices, 3, material );
 			}
 		},
 		{
-			StageTerrainType::CIRCLE, []( LiquidFunBodyDescCreator& creator, const Size& size, const LiquidFunMaterial& material )
+			StageTerrainType::CIRCLE,	[]( LiquidFunBodyDescCreator& creator, const Size& size, const LiquidFunMaterial& material )
 			{
-				return std::move( creator.createCircle( size.width / 2.0f, material ) );
+				return creator.createCircle( size.width / 2.0f, material );
 			}
 		},
 	};

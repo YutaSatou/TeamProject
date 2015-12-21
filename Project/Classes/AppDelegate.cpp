@@ -25,7 +25,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	
 	if ( !glView )
 	{
-		glView = GLViewImpl::create( "TeamProject" );
+		glView = GLViewImpl::create( "HungrySlime" );
 		director->setOpenGLView( glView );
 	}
 	
@@ -34,8 +34,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 	
 	glView->setDesignResolutionSize( 720.0f, 1280.0f, ResolutionPolicy::SHOW_ALL );
 	
-	ADX2Manager::getInstance().init( "Audio/Sound.acf" );
-	ADX2Player::getInstance().init( "Audio/HungrySlimeSounds.acb" );
+	ADX2Manager::getInstance().init( "Audio/HungrySlimeSounds.acf" );
+	ADX2Player::getInstance().init( "Audio/HungrySlimeSheet.acb" );
 	
 // iOS Simulator.
 #ifdef DEBUG_HOSHI
