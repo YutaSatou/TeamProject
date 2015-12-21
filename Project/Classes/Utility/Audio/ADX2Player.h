@@ -12,6 +12,7 @@
 #include "cocos2d.h"
 #include "../Template/Singleton.h"
 #include "cri_adx2le.h"
+#include "HungrySlimeSheet.h"
 
 class ADX2CueSheet;
 
