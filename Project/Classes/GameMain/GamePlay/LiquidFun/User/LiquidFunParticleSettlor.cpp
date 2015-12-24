@@ -5,7 +5,7 @@
 // パーティクルの装着
 LiquidFunParticle* LiquidFunParticleSettlor::attachParticle( const LiquidFunParticleDesc& particleDesc )
 {
-	LiquidFunParticle* particle = LiquidFunWorldManager::getInstance().addParticle( &particleDesc );
+	LiquidFunParticle* particle { LiquidFunWorldManager::getInstance().addParticle( &particleDesc ) };
 	
 	return particle;
 }
@@ -25,7 +25,7 @@ void LiquidFunParticleSettlor::detachParticle( LiquidFunParticle* particle )
 // パーティクルグループの装着解除
 void LiquidFunParticleSettlor::detachParticleGroup( LiquidFunParticle* particle, LiquidFunParticleGroup* group )
 {
-	const int particleCount = group->GetParticleCount();
+	const int particleCount { group->GetParticleCount() };
 	
 	for ( int i = 0; i < particleCount; ++i )
 	{

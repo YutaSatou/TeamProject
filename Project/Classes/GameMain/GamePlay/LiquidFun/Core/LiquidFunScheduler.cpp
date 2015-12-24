@@ -7,10 +7,10 @@ using namespace cocos2d;
 
 namespace
 {
-	const float	TIME_STEP			= 1.0f / 60.0f;	// 物理エンジンの更新フレーム
-	const int	VELOCITY_ITERATIONS	= 6;			// 移動の更新頻度
-	const int	POSITION_ITERATIONS	= 4;			// 座標の更新頻度
-	const int	PARTICLE_ITERATIONS	= 2;			// 粒子の更新頻度
+	const float	TIME_STEP			{ 1.0f / 60.0f };	// 物理エンジンの更新フレーム
+	const int	VELOCITY_ITERATIONS	{ 6 };				// 移動の更新頻度
+	const int	POSITION_ITERATIONS	{ 4 };				// 座標の更新頻度
+	const int	PARTICLE_ITERATIONS	{ 2 };				// 粒子の更新頻度
 }
 
 // コンストラクタ
@@ -37,7 +37,7 @@ void LiquidFunScheduler::updateBox2D()
 // ワールド内のノードの更新
 void LiquidFunScheduler::updateWorldNode()
 {
-	for ( LiquidFunBody* body = mWorld->GetBodyList(); body; body = body->GetNext() )
+	for ( LiquidFunBody* body { mWorld->GetBodyList() };  body; body = body->GetNext() )
 	{
 		if ( !body->GetUserData() )
 		{
@@ -46,7 +46,7 @@ void LiquidFunScheduler::updateWorldNode()
 		}
 		
 		// ユーザデータからノードを取り出して、Cocos2d-x用に座標、角度の変換を行う。
-		Node* node = LiquidFunHelper::getNode( body );
+		Node* node { LiquidFunHelper::getNode( body ) };
 		node->setPosition( LiquidFunHelper::toPixsel( body->GetPosition() ) );
 		node->setRotation( CC_RADIANS_TO_DEGREES( body->GetAngle() ) * -1 );
 	}

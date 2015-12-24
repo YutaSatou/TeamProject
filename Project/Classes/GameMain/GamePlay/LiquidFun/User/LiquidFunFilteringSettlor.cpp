@@ -17,7 +17,7 @@ void LiquidFunFilteringSettlor::setupFilter( LiquidFunFixture* fixture, const Li
 // フィルタの設定
 void LiquidFunFilteringSettlor::setupFilter( LiquidFunBody* body, const LiquidFunContactFilter& contactFilter )
 {
-	for ( LiquidFunFixture* fixture = body->GetFixtureList(); fixture; fixture = fixture->GetNext() )
+	for ( LiquidFunFixture* fixture { body->GetFixtureList() }; fixture; fixture = fixture->GetNext() )
 	{
 		setupFilter( fixture, contactFilter );
 	}

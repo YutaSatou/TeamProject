@@ -41,7 +41,7 @@ Canvas* Canvas::create()
 // キャンバスのリセット
 void Canvas::resetCanvas()
 {
-	// レンダテクスチャを子ノードから削除する。
+	// 子ノードから削除する。
 	removeChild( mRenderTexture );
 	
 	// 画面サイズを取得する。

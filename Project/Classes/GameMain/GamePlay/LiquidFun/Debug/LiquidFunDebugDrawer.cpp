@@ -41,9 +41,9 @@ bool LiquidFunDebugDrawer::init()
 void LiquidFunDebugDrawer::draw( Renderer* renderer, const Mat4& transform, uint32_t flags )
 {
 	Layer::draw( renderer, transform, flags );
-	GL::enableVertexAttribs( cocos2d::GL::VERTEX_ATTRIB_FLAG_POSITION );
+	GL::enableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION );
 	
-	Director* director = Director::getInstance();
+	Director* director { Director::getInstance() };
 	
 	director->pushMatrix( MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW );
 	{
@@ -61,7 +61,7 @@ void LiquidFunDebugDrawer::draw( Renderer* renderer, const Mat4& transform, uint
 // インスタンスの生成
 LiquidFunDebugDrawer* LiquidFunDebugDrawer::create()
 {
-	LiquidFunDebugDrawer* inst = new LiquidFunDebugDrawer();
+	LiquidFunDebugDrawer* inst { new LiquidFunDebugDrawer() };
 	
 	if ( inst && inst->init() )
 	{
@@ -96,10 +96,10 @@ void LiquidFunDebugDrawer::initDebugDrawFlags()
 // 描画のコールバック関数
 void LiquidFunDebugDrawer::onDraw()
 {
-	Director* director = Director::getInstance();
+	Director* director { Director::getInstance() };
 	
 	// モデルビュの状態を保存する。
-	Mat4 prevModelView = director->getMatrix( MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW );
+	const Mat4& prevModelView { director->getMatrix( MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW ) };
 	
 	// 現在のモデルビュを読み込む。
 	director->loadMatrix( MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, mModelView );

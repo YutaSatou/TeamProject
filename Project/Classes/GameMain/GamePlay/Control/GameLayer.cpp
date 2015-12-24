@@ -45,7 +45,7 @@ bool GameLayer::init()
 // インスタンスの生成
 GameLayer* GameLayer::create( const std::string& plistFilePath )
 {
-	GameLayer* inst = new GameLayer();
+	GameLayer* inst { new GameLayer() };
 	
 	if ( inst && inst->init() )
 	{
@@ -67,8 +67,8 @@ void GameLayer::gameStart()
 // ゲーム終了
 void GameLayer::gameEnd()
 {
-	Scene* scene		= SceneCreator::createScene( GameResultLayer::create() );
-	Scene* nextScene	= TransitionRotoZoom::create( 0.8f, scene );
+	Scene* scene		{ SceneCreator::createScene( GameResultLayer::create() ) };
+	Scene* nextScene	{ TransitionRotoZoom::create( 0.8f, scene ) };
 	SceneChanger::switchScene( nextScene );
 }
 

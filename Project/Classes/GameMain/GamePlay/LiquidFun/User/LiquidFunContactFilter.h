@@ -26,7 +26,7 @@ struct LiquidFunContactFilter
 	 *	@param	_collisionBitmask	衝突するオブジェクトのビットマスク
 	 *	@param	_groupIndex			グループインデックス
 	 */
-	LiquidFunContactFilter( unsigned short _categoryBitmask, unsigned short _collisionBitmask, signed int _groupIndex )
+	LiquidFunContactFilter( unsigned short _categoryBitmask, unsigned short _collisionBitmask, signed short _groupIndex )
 		: categoryBitmask( _categoryBitmask )
 		, collisionBitmask( _collisionBitmask )
 		, groupIndex( _groupIndex ) { }

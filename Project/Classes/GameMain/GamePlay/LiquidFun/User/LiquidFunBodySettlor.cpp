@@ -5,7 +5,7 @@
 // 空ボディの装着
 LiquidFunBody* LiquidFunBodySettlor::attachEmptyBody( const LiquidFunBodyDesc& bodyDesc )
 {
-	LiquidFunBody* body = LiquidFunWorldManager::getInstance().addBody( &bodyDesc );
+	LiquidFunBody* body { LiquidFunWorldManager::getInstance().addBody( &bodyDesc ) };
 	
 	return body;
 }
@@ -13,7 +13,7 @@ LiquidFunBody* LiquidFunBodySettlor::attachEmptyBody( const LiquidFunBodyDesc& b
 // ボディの装着
 LiquidFunBody* LiquidFunBodySettlor::attachBody( const LiquidFunBodyDesc& bodyDesc, const LiquidFunFixtureDesc& fixtureDesc )
 {
-	LiquidFunBody* body = attachEmptyBody( bodyDesc );
+	LiquidFunBody* body { attachEmptyBody( bodyDesc ) };
 	
 	attachFixture( body, fixtureDesc );
 	

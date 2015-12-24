@@ -18,7 +18,6 @@ bool GamePlayLayer::init()
 	
 	LiquidFunWorldManager::getInstance().setGravity( Vect( 0.0f, -4.0f ) );
 	
-	/* addChild( LiquidFunDebugDrawer::create() ); */
 	addChild( ContactListener::create() );
 	addChild( GameLayer::create( "Plist/StageData/StageData_01.plist" ) );
 	addChild( UILayer::create() );
@@ -37,7 +36,7 @@ void GamePlayLayer::update( float deltaTime )
 // インスタンスの生成
 GamePlayLayer* GamePlayLayer::create()
 {
-	GamePlayLayer* inst = new GamePlayLayer();
+	GamePlayLayer* inst { new GamePlayLayer() };
 	
 	if ( inst && inst->init() )
 	{

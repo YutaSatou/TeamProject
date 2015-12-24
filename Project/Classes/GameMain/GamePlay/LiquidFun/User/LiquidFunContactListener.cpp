@@ -31,7 +31,7 @@ bool LiquidFunContactListener::init()
 // インスタンスの生成
 LiquidFunContactListener* LiquidFunContactListener::create()
 {
-	LiquidFunContactListener* inst = new LiquidFunContactListener();
+	LiquidFunContactListener* inst { new LiquidFunContactListener() };
 	
 	if ( inst && inst->init() )
 	{
