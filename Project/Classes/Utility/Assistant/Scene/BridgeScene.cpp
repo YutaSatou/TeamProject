@@ -36,7 +36,7 @@ void BridgeScene::next( float deltaTime )
 // インスタンスの生成
 BridgeScene* BridgeScene::create( NextSceneCreateFunc func )
 {
-	BridgeScene* inst = new BridgeScene();
+	BridgeScene* inst { new BridgeScene() };
 	
 	if ( inst && inst->init( func ) )
 	{

@@ -7,7 +7,7 @@ using namespace cocos2d;
 // シーンの変更
 void SceneChanger::switchScene( Layer* nextLayer )
 {
-	Scene* nextScene = SceneCreator::createScene( nextLayer );
+	Scene* nextScene { SceneCreator::createScene( nextLayer ) };
 	
 	switchScene( nextScene );
 }

@@ -35,7 +35,7 @@ bool Brush::init()
 // インスタンスの生成
 Brush* Brush::create( GameControlMediator& mediator )
 {
-	Brush* inst = new Brush( mediator );
+	Brush* inst { new Brush( mediator ) };
 	
 	if ( inst && inst->init() )
 	{
@@ -90,7 +90,7 @@ void Brush::onTouchEnded( Touch* touch, Event* event )
 void Brush::initTouchListener()
 {
 	// タッチリスナを生成する。
-	EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
+	EventListenerTouchOneByOne* listener { EventListenerTouchOneByOne::create() };
 	
 	// 各関数をコールバックとして設定する。
 	listener->onTouchBegan		= CC_CALLBACK_2( Brush::onTouchBegan, this );

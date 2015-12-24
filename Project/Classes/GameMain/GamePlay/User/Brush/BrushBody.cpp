@@ -23,11 +23,11 @@ BrushBody::~BrushBody()
 void BrushBody::pushSegment( const Vec2& start, const Vec2& end, float lineWidth )
 {
 	// マテリアル( 密度, 反発係数, 摩擦係数 )を用意する。
-	LiquidFunMaterial material( 0.0f, 0.0f, 1.0f );
+	LiquidFunMaterial material { 0.0f, 0.0f, 1.0f };
 	
 	// 線形状のフィクスチャ設定記述子を生成し、格納する。
-	LiquidFunFixtureDesc segment = mBodyDescCreator->createSegment( start, end, lineWidth, material );
-	mSegmentContainer.push_back( std::move( segment ) );
+	LiquidFunFixtureDesc segment { mBodyDescCreator->createSegment( start, end, lineWidth, material ) };
+	mSegmentContainer.emplace_back( segment );
 }
 
 // コンテナの解放
@@ -46,13 +46,13 @@ bool BrushBody::isEmpty() const
 void BrushBody::attachBody( Node* registerNode )
 {
 	// フィクスチャ装着用の空ボディを用意する。
-	LiquidFunBodyDesc	bodyDesc	= mBodyDescCreator->createBodyDesc( registerNode, LiquidFunBodyType::b2_staticBody );
-	LiquidFunBody*		emptyBody	= LiquidFunBodySettlor::attachEmptyBody( bodyDesc );
+	LiquidFunBodyDesc	bodyDesc	{ mBodyDescCreator->createBodyDesc( registerNode, LiquidFunBodyType::b2_staticBody ) };
+	LiquidFunBody*		emptyBody	{ LiquidFunBodySettlor::attachEmptyBody( bodyDesc ) };
 	
 	// コンテナを巡回して、フィクスチャの生成と装着を行う。
 	each( [ &emptyBody ]( LiquidFunFixtureDesc& desc ) { LiquidFunBodySettlor::attachFixture( emptyBody, desc ); } );
 	
-	// ノードが削除されるタイミングでボディも削除されるように設定する。
+	// ノードが削除されるタイミングで、ボディも削除されるように設定する。
 	registerNode->addChild( LiquidFunBodyDeleter::create( emptyBody ) );
 }
 

@@ -26,7 +26,7 @@ bool Canvas::init()
 // インスタンスの生成
 Canvas* Canvas::create()
 {
-	Canvas* inst = new Canvas();
+	Canvas* inst { new Canvas() };
 	
 	if ( inst && inst->init() )
 	{
@@ -45,10 +45,10 @@ void Canvas::resetCanvas()
 	removeChild( mRenderTexture );
 	
 	// 画面サイズを取得する。
-	const Size&	winSize		= Director::getInstance()->getWinSize();
-	const Size&	halfSize	= winSize / 2;
+	const Size&	winSize		{ Director::getInstance()->getWinSize() };
+	const Size&	halfSize	{ winSize / 2 };
 	
-	// レンダテクスチャを子ノードとして追加する。
+	// 自身の子ノードとして追加する。
 	mRenderTexture = RenderTexture::create( winSize.width, winSize.height, Texture2D::PixelFormat::RGBA8888 );
 	mRenderTexture->setPosition( halfSize );
 	addChild( mRenderTexture );
@@ -75,7 +75,7 @@ void Canvas::addRenderingTarget( Node* object )
 // イメージの生成
 Image* Canvas::createImage()
 {
-	Image* image = mRenderTexture->newImage();
+	Image* image { mRenderTexture->newImage() };
 	
 	image->autorelease();
 	
@@ -85,8 +85,8 @@ Image* Canvas::createImage()
 // テクスチャの生成
 Texture2D* Canvas::createTexture()
 {
-	Texture2D*	texture	= new Texture2D();
-	Image*		image	= createImage();
+	Texture2D*	texture	{ new Texture2D() };
+	Image*		image	{ createImage() };
 	
 	texture->autorelease();
 	texture->initWithImage( image );

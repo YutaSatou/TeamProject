@@ -64,17 +64,17 @@ private:
 	
 	/**
 	 *	@brief	軌跡の描画
-	 *	@param	touch		タッチ情報
-	 *	@param	distance	2点間の距離
+	 *	@param	start	軌跡の開始地点
+	 *	@param	end		軌跡の終了地点
 	 */
-	void drawTrail( cocos2d::Touch* touch, float distance );
+	void drawTrail( const cocos2d::Vec2& start, const cocos2d::Vec2& end );
 	
 private:
 	
+	Canvas*				mCanvas;				//=> キャンバス
 	BrushBody			mBrushBody;				//=> ブラシ用のボディ
 	cocos2d::Vec2		mPreviousTouchPoint;	//=> 前回のタッチ座標
 	cocos2d::Vec2		mTrailOffset;			//=> 軌跡の座標オフセット
-	Canvas*				mCanvas;				//=> キャンバス
 };
 
 #endif

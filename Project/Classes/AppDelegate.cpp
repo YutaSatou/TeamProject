@@ -20,8 +20,8 @@ void AppDelegate::initGLContextAttrs()
 // アプリケーションの起動準備が整った時に呼ばれるコールバック関数
 bool AppDelegate::applicationDidFinishLaunching()
 {
-	Director*	director	= Director::getInstance();
-	GLView*		glView		= director->getOpenGLView();
+	Director*	director	{ Director::getInstance() };
+	GLView*		glView		{ director->getOpenGLView() };
 	
 	if ( !glView )
 	{

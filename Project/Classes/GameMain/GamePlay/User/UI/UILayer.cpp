@@ -16,18 +16,18 @@ bool UILayer::init()
 	}
 	
 	// ステージセレクトシーンに戻るボタンの設定記述子。
-	GameUIButtonDesc returnButtonDesc = { "Button_ReturnStageSelect.png", { 100.0f, 1180.0f }, []()
+	GameUIButtonDesc returnButtonDesc { "Button_ReturnStageSelect.png", { 100.0f, 1180.0f }, []()
 	{
-		Scene* scene		= SceneCreator::createScene( GameStageSelectLayer::create() );
-		Scene* nextScene	= TransitionRotoZoom::create( 0.8f, scene );
+		Scene* scene		{ SceneCreator::createScene( GameStageSelectLayer::create() ) };
+		Scene* nextScene	{ TransitionRotoZoom::create( 0.8f, scene ) };
 		SceneChanger::switchScene( nextScene );
 	} };
 	
 	// ゲームをやり直すボタンの設定記述子。
-	GameUIButtonDesc restartButtonDesc = { "Button_RestartGamePlay.png", { 620.0f, 1180.0f }, []()
+	GameUIButtonDesc restartButtonDesc { "Button_RestartGamePlay.png", { 620.0f, 1180.0f }, []()
 	{
-		Layer* bridgeSceneLayer	= BridgeScene::create( []() { return SceneCreator::createScene( GamePlayLayer::create() ); } );
-		Scene* nextScene		= SceneCreator::createScene( bridgeSceneLayer );
+		Layer* bridgeSceneLayer	{ BridgeScene::create( []() { return SceneCreator::createScene( GamePlayLayer::create() ); } ) };
+		Scene* nextScene		{ SceneCreator::createScene( bridgeSceneLayer ) };
 		SceneChanger::switchScene( nextScene );
 	} };
 	
@@ -41,7 +41,7 @@ bool UILayer::init()
 // インスタンスの生成
 UILayer* UILayer::create()
 {
-	UILayer* inst = new UILayer();
+	UILayer* inst { new UILayer() };
 	
 	if ( inst && inst->init() )
 	{
