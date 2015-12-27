@@ -1,8 +1,8 @@
 #include "Wall.h"
 #include "../../LiquidFun/LiquidFunUserAPI.h"
 #include "../../Control/GameControlMediator.h"
-#include "../Contact/ContactSettlor.h"
 #include "../Common/LiquidFunBodyDeleter.h"
+#include "../Contact/ContactSettlor.h"
 
 using namespace cocos2d;
 
@@ -34,7 +34,7 @@ bool Wall::init( const Vec2& start, const Vec2& end )
 // インスタンスの生成
 Wall* Wall::create( const Vec2& start, const Vec2& end )
 {
-	Wall* inst = new Wall();
+	Wall* inst { new Wall() };
 	
 	if ( inst && inst->init( start, end ) )
 	{
@@ -53,8 +53,8 @@ void Wall::enableGameEndEvent( GameControlMediator& mediator )
 	setName( "WallEvent" );
 	
 	// 接触コールバックを設定する。
-	SharedPtr< ContactCallback > callback = makeShared< ContactCallback >();
-	callback->onContactLiquidBegin = [ &mediator ]( Node* contactNode, LiquidFunBody* body, LiquidFunParticle* particle, int index )
+	SharedPtr< ContactCallback > callback { makeShared< ContactCallback >() };
+	callback->onContactLiquidBegin = [ &mediator ]( Node* contactNode, LiquidFunParticle* particle, int index )
 	{
 		// パーティクルを停止状態にして、ゲームを終了する。
 		particle->SetPaused( true );
@@ -62,7 +62,7 @@ void Wall::enableGameEndEvent( GameControlMediator& mediator )
 	};
 	
 	// カテゴリの設定、接触するカテゴリの設定、コールバックの有効化を行う。
-	ContactSettlor contactSettlor( mBody );
+	ContactSettlor contactSettlor { mBody };
 	contactSettlor.setupCategory( Contact::Category::WALL_EVENT );
 	contactSettlor.setupContactCategory( callback, { Contact::Category::PLAYER, Contact::Category::LIQUID } );
 	contactSettlor.enableContactCallback( getName(), callback );
@@ -72,19 +72,21 @@ void Wall::enableGameEndEvent( GameControlMediator& mediator )
 void Wall::initPhysics( const Vec2& start, const Vec2& end )
 {
 	// マテリアル( 密度, 反発係数, 摩擦係数 )を用意する。
-	LiquidFunMaterial material( 0.0f, 0.2f, 1.0f );
+	LiquidFunMaterial material { 0.0f, 0.2f, 1.0f };
 	
 	// ボディの生成に必要な設定記述子を生成する。
 	LiquidFunBodyDescCreator	bodyDescCreator;
-	LiquidFunBodyDesc			bodyDesc	= bodyDescCreator.createBodyDesc( this, LiquidFunBodyType::b2_staticBody );
-	LiquidFunFixtureDesc		fixtureDesc	= bodyDescCreator.createEdgeSegment( start, end, material );
+	LiquidFunBodyDesc			bodyDesc	{ bodyDescCreator.createBodyDesc( this, LiquidFunBodyType::b2_staticBody ) };
+	LiquidFunFixtureDesc		fixtureDesc	{ bodyDescCreator.createEdgeSegment( start, end, material ) };
 	
 	// ボディを装着する。
 	mBody = LiquidFunBodySettlor::attachBody( bodyDesc, fixtureDesc );
+	
+	// ノードが削除されるタイミングで、ボディも削除されるように設定する。
 	addChild( LiquidFunBodyDeleter::create( mBody ) );
 	
 	// カテゴリの設定、衝突するカテゴリの設定を行う。
-	ContactSettlor contactSettlor( mBody );
+	ContactSettlor contactSettlor { mBody };
 	contactSettlor.setupCategory( Contact::Category::WALL );
 	contactSettlor.setupCollisionCategory();
 }

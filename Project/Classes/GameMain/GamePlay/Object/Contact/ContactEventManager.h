@@ -1,15 +1,13 @@
 #ifndef _CONTACT_EVENT_MANAGER_H_
 #define _CONTACT_EVENT_MANAGER_H_
 
-#include "../../LiquidFun/LiquidFunDefine.h"
 #include "ContactCallback.h"
 #include "Utility/Template/Singleton.h"
 #include "Utility/Template/SmartPtr.h"
 
 enum class ContactFuncTag : int;
 
-class ContactRigidSender;
-class ContactLiquidSender;
+class ContactSender;
 
 /*------------------------------------------------------------*/
 //	@class		：	ContactEventManager
@@ -70,9 +68,8 @@ private:
 	
 	friend class Singleton< ContactEventManager >;
 	
-	CallbackContainer					mCallbackContainer;		//=> コールバックコンテナ
-	SharedPtr< ContactRigidSender >		mContactRigidSender;	//=> 剛体接触通知者
-	SharedPtr< ContactLiquidSender >	mContactLiquidSender;	//=> 液体接触通知者
+	CallbackContainer			mCallbackContainer;	//=> コールバックコンテナ
+	SharedPtr< ContactSender >	mContactSender;		//=> 接触通知者
 };
 
 #endif

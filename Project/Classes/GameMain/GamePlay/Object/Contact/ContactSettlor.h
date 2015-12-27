@@ -1,7 +1,6 @@
 #ifndef _CONTACT_SETTLOR_H_
 #define _CONTACT_SETTLOR_H_
 
-#include "../../LiquidFun/LiquidFunDefine.h"
 #include "ContactCallback.h"
 #include "Utility/Template/SmartPtr.h"
 

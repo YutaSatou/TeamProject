@@ -13,14 +13,14 @@ bool WallManager::init( GameControlMediator& mediator )
 	}
 	
 	// 画面サイズを取得する。
-	const Vec2&	screenMin	= Vec2::ZERO;
-	const Vec2&	screenMax	= Director::getInstance()->getWinSize();
+	const Vec2&	screenMin	{ Vec2::ZERO };
+	const Vec2&	screenMax	{ Director::getInstance()->getWinSize() };
 	
 	// 上, 下, 左, 右の壁を生成する。
-	Wall* up	= Wall::create( { screenMin.x, screenMax.y }, { screenMax.x, screenMax.y } );
-	Wall* down	= Wall::create( { screenMin.x, screenMin.y }, { screenMax.x, screenMin.y } );
-	Wall* left	= Wall::create( { screenMin.x, screenMax.y }, { screenMin.x, screenMin.y } );
-	Wall* right	= Wall::create( { screenMax.x, screenMax.y }, { screenMax.x, screenMin.y } );
+	Wall* up	{ Wall::create( { screenMin.x, screenMax.y }, { screenMax.x, screenMax.y } ) };
+	Wall* down	{ Wall::create( { screenMin.x, screenMin.y }, { screenMax.x, screenMin.y } ) };
+	Wall* left	{ Wall::create( { screenMin.x, screenMax.y }, { screenMin.x, screenMin.y } ) };
+	Wall* right	{ Wall::create( { screenMax.x, screenMax.y }, { screenMax.x, screenMin.y } ) };
 	
 	// ゲーム終了イベントを有効化する。
 	down->enableGameEndEvent( mediator );
@@ -37,7 +37,7 @@ bool WallManager::init( GameControlMediator& mediator )
 // インスタンスの生成
 WallManager* WallManager::create( GameControlMediator& mediator )
 {
-	WallManager* inst = new WallManager();
+	WallManager* inst { new WallManager() };
 	
 	if ( inst && inst->init( mediator ) )
 	{

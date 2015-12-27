@@ -13,7 +13,7 @@ StageCreator::StageCreator()
 void StageCreator::addListener( DataLoadListener listener )
 {
 	// リスナを保管する。
-	const DataLoadListener& prev = mListener;
+	const DataLoadListener& prev { mListener };
 	
 	// リスナを合成する。
 	mListener = [ = ]( SharedPtr< ObjectData > objectData ) { prev( objectData ); listener( objectData ); };
@@ -23,12 +23,12 @@ void StageCreator::addListener( DataLoadListener listener )
 void StageCreator::createStage( const std::string& plistFilePath )
 {
 	ObjectDataReader						objectDataReader;
-	ObjectDataReader::ObjectDataContainer	continer;
+	ObjectDataReader::ObjectDataContainer	container;
 	
 	// プロパティリストファイルを読み込む。
-	continer = objectDataReader.read( plistFilePath );
+	container = objectDataReader.read( plistFilePath );
 	
-	std::for_each( continer.begin(), continer.end(), [ this ]( SharedPtr< ObjectData > objectData )
+	std::for_each( container.begin(), container.end(), [ this ]( SharedPtr< ObjectData > objectData )
 	{
 		// リスナにコールバックを送信する。
 		mListener( objectData );

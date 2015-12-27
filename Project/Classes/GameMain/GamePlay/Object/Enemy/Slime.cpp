@@ -54,7 +54,7 @@ Slime* Slime::create( SharedPtr< ObjectData > objectData, const std::string& nod
 }
 
 // 剛体と液体の接触時に呼ばれるコールバック関数
-void Slime::onContactRigidBegin( Node* contactNode, LiquidFunBody* body, LiquidFunParticle* particle, int index )
+void Slime::onContactLiquidBegin( Node* contactNode, LiquidFunParticle* particle, int index )
 {
 	// ボディの衝突を切り、接触コールバックを無効にする。
 	mBody->SetActive( false );
@@ -71,8 +71,6 @@ void Slime::onContactRigidBegin( Node* contactNode, LiquidFunBody* body, LiquidF
 // 物理構造の初期化
 void Slime::initPhysics()
 {
-	using namespace std::placeholders;
-	
 	// ボディの大きさを定義する。
 	const float bodySize = getContentSize().width / 2.0f;
 	
@@ -87,7 +85,7 @@ void Slime::initPhysics()
 	
 	// 接触コールバックを設定する。
 	SharedPtr< ContactCallback > callback = makeShared< ContactCallback >();
-	callback->onContactLiquidBegin = std::bind( &Slime::onContactRigidBegin, this, _1, _2, _3, _4 );
+	callback->onContactLiquidBegin = CC_CALLBACK_3( Slime::onContactLiquidBegin, this );
 	
 	// カテゴリの設定、衝突するカテゴリの設定、接触するカテゴリの設定、コールバックの登録を行う。
 	ContactSettlor contactSettlor( mBody );

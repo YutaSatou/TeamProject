@@ -11,7 +11,7 @@ LiquidFunBodyDeleter::LiquidFunBodyDeleter()
 // インスタンスの生成
 LiquidFunBodyDeleter* LiquidFunBodyDeleter::create( LiquidFunBody* body )
 {
-	LiquidFunBodyDeleter* inst = new LiquidFunBodyDeleter();
+	LiquidFunBodyDeleter* inst { new LiquidFunBodyDeleter() };
 	
 	if ( inst && inst->init() )
 	{

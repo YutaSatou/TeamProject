@@ -6,7 +6,7 @@ using namespace cocos2d;
 
 namespace
 {
-	const std::string PLAYER_TEXTURE_NAME = "Texture/GamePlay/Particle.png";	//=> プレイヤのテクスチャの名前
+	const std::string PLAYER_TEXTURE_NAME { "Texture/GamePlay/Particle.png" };	//=> プレイヤのテクスチャの名前
 }
 
 // コンストラクタ
@@ -20,7 +20,7 @@ PlayerManager::PlayerManager()
 // インスタンスの生成
 PlayerManager* PlayerManager::create()
 {
-	PlayerManager* inst = new PlayerManager();
+	PlayerManager* inst { new PlayerManager() };
 	
 	if ( inst && inst->init() )
 	{
@@ -37,6 +37,7 @@ void PlayerManager::onDataLoaded( SharedPtr< ObjectData > objectData )
 {
 	if ( mIsPlayerCreated )
 	{
+		// 現状、プレイヤは1体でいい。
 		return;
 	}
 	
@@ -45,7 +46,7 @@ void PlayerManager::onDataLoaded( SharedPtr< ObjectData > objectData )
 		return;
 	}
 	
-	// プレイヤを生成して、自身の子ノードとして追加する。
+	// 自身の子ノードとして追加する。
 	mPlayer = Player::create( objectData );
 	addChild( mPlayer );
 	

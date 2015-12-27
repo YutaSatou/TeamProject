@@ -44,7 +44,7 @@ bool StageTerrain::init( SharedPtr< ObjectData > objectData, const StageTerrainT
 // インスタンスの生成
 StageTerrain* StageTerrain::create( SharedPtr< ObjectData > objectData, const StageTerrainType& terrainType )
 {
-	StageTerrain* inst = new StageTerrain();
+	StageTerrain* inst { new StageTerrain() };
 	
 	if ( inst && inst->init( objectData, terrainType ) )
 	{
@@ -70,9 +70,9 @@ void StageTerrain::initPhysics( const StageTerrainType& terrainType )
 		{
 			StageTerrainType::TRIANGLE,	[]( LiquidFunBodyDescCreator& creator, const Size& size, const LiquidFunMaterial& material )
 			{
-				const float	halfW		= size.width	/ 2.0f;
-				const float	halfH		= size.height	/ 2.0f;
-				const Vec2	vertices[]	= { { -halfW, -halfH }, { -halfW, halfH }, { halfW, -halfH } };
+				const float	halfW		{ size.width	/ 2.0f };
+				const float	halfH		{ size.height	/ 2.0f };
+				const Vec2	vertices[]	{ { -halfW, -halfH }, { -halfW, halfH }, { halfW, -halfH } };
 				
 				return creator.createPolygon( vertices, 3, material );
 			}
@@ -87,12 +87,12 @@ void StageTerrain::initPhysics( const StageTerrainType& terrainType )
 	
 	// ボディの生成に必要な設定記述子を生成する。
 	LiquidFunBodyDescCreator	bodyDescCreator;
-	LiquidFunBodyDesc			bodyDesc	= bodyDescCreator.createBodyDesc( this, LiquidFunBodyType::b2_staticBody );
-	LiquidFunFixtureDesc		fixtureDesc	= descCreateFuncContainer[ terrainType ]( bodyDescCreator, getContentSize(), mObjectData->material );
+	LiquidFunBodyDesc			bodyDesc	{ bodyDescCreator.createBodyDesc( this, LiquidFunBodyType::b2_staticBody ) };
+	LiquidFunFixtureDesc		fixtureDesc	{ descCreateFuncContainer.at( terrainType )( bodyDescCreator, getContentSize(), mObjectData->material ) };
 	
 	// ボディを装着する。
-	LiquidFunBody* body = LiquidFunBodySettlor::attachBody( bodyDesc, fixtureDesc );
+	LiquidFunBody* body { LiquidFunBodySettlor::attachBody( bodyDesc, fixtureDesc ) };
 	
-	// ノードが削除されるタイミングでボディも削除されるように設定する。
+	// ノードが削除されるタイミングで、ボディも削除されるように設定する。
 	addChild( LiquidFunBodyDeleter::create( body ) );
 }

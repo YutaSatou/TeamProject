@@ -37,7 +37,7 @@ ObjectDataReader::ObjectDataContainer ObjectDataReader::read( const std::string&
 	
 	for ( auto& valueMap : valueMapContainer )
 	{
-		SharedPtr< ObjectData > data = makeShared< ObjectData >();
+		SharedPtr< ObjectData > data { makeShared< ObjectData >() };
 		
 		data->textureName	= readTextureName( valueMap );
 		data->textureColor	= readColor( valueMap );
@@ -45,7 +45,7 @@ ObjectDataReader::ObjectDataContainer ObjectDataReader::read( const std::string&
 		data->material		= readMaterial( valueMap );
 		data->blendColor	= ColorCMY::convertToCMY( data->textureColor );
 		
-		container.push_back( data );
+		container.emplace_back( data );
 	}
 	
 	return container;

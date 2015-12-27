@@ -4,9 +4,9 @@
 #include "cocos2d.h"
 #include "GameControlMediator.h"
 
+class StageTerrainManager;
 class PlayerManager;
 class EnemyManager;
-class StageTerrainManager;
 
 /*------------------------------------------------------------*/
 //	@class		：	GameLayer
@@ -63,9 +63,9 @@ private:
 	
 private:
 	
+	StageTerrainManager*	mStageTerrainManager;	// 地形管理者
 	PlayerManager*			mPlayerManager;			// プレイヤ管理者
 	EnemyManager*			mEnemyManager;			// 敵管理者
-	StageTerrainManager*	mStageTerrainManager;	// 地形管理者
 };
 
 #endif

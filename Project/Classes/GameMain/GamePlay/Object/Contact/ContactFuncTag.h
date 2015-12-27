@@ -6,11 +6,9 @@
  */
 enum class ContactFuncTag : int
 {
-	RIGID_BEGIN		= 0,
-	RIGID_PRESOLVE	= 1,
-	RIGID_END		= 2,
-	LIQUID_BEGIN	= 3,
-	LIQUID_END		= 4,
+	BEGIN		= 0,
+	PRESOLVE	= 1,
+	END			= 2,
 };
 
 #endif

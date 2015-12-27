@@ -44,22 +44,18 @@ public:
 protected:
 	
 	/**
-	 *	@brief	剛体と液体の接触時に呼ばれるコールバック関数
+	 *	@brief	剛体と接触した時に呼ばれるコールバック関数
 	 *	@param	contactNode	接触したノード
 	 *	@param	body		接触したボディ
-	 *	@param	particle	接触したパーティクル
-	 *	@param	index		接触したパーティクルのインデックス
 	 */
-	virtual void onContactLiquidBegin( cocos2d::Node* contactNode, LiquidFunBody* body, LiquidFunParticle* particle, int index );
+	virtual void onContactRigidBegin( cocos2d::Node* contactNode, LiquidFunBody* body );
 	
 	/**
-	 *	@brief	剛体と液体の離脱時に呼ばれるコールバック関数
+	 *	@brief	剛体と接触し終わった時に呼ばれるコールバック関数
 	 *	@param	contactNode	接触したノード
 	 *	@param	body		接触したボディ
-	 *	@param	particle	接触したパーティクル
-	 *	@param	index		接触したパーティクルのインデックス
 	 */
-	virtual void onContactLiquidEnd( cocos2d::Node* contactNode, LiquidFunBody* body, LiquidFunParticle* particle, int index );
+	virtual void onContactRigidEnd( cocos2d::Node* contactNode, LiquidFunBody* body );
 	
 	/**
 	 *	@brief	テクスチャの登録

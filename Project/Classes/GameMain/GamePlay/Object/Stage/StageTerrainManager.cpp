@@ -15,7 +15,7 @@ StageTerrainManager::StageTerrainManager()
 // インスタンスの生成
 StageTerrainManager* StageTerrainManager::create()
 {
-	StageTerrainManager* inst = new StageTerrainManager();
+	StageTerrainManager* inst { new StageTerrainManager() };
 	
 	if ( inst && inst->init() )
 	{
@@ -41,7 +41,7 @@ void StageTerrainManager::addStageTerrain( SharedPtr< ObjectData > objectData, c
 	if ( std::strstr( objectData->textureName.c_str(), key.c_str() ) )
 	{
 		// テクスチャの名前にキーが含まれている場合、地形を生成する。
-		StageTerrain* stageTerrain = mStageTerrainFactory->createObject( key, objectData );
+		StageTerrain* stageTerrain { mStageTerrainFactory->createObject( key, objectData ) };
 		
 		// 自身の子ノードとして追加する。
 		addChild( stageTerrain );

@@ -1,7 +1,7 @@
 #include "GameLayer.h"
+#include "../Object/Stage/StageTerrainManager.h"
 #include "../Object/Player/PlayerManager.h"
 #include "../Object/Enemy/EnemyManager.h"
-#include "../Object/Stage/StageTerrainManager.h"
 #include "../Object/Wall/WallManager.h"
 #include "../User/Brush/Brush.h"
 #include "../Object/Data/ObjectData.h"
@@ -14,9 +14,9 @@ using namespace cocos2d;
 
 // コンストラクタ
 GameLayer::GameLayer()
-	: mPlayerManager( nullptr )
+	: mStageTerrainManager( nullptr )
+	, mPlayerManager( nullptr )
 	, mEnemyManager( nullptr )
-	, mStageTerrainManager( nullptr )
 {
 	
 }
@@ -29,13 +29,13 @@ bool GameLayer::init()
 		return false;
 	}
 	
+	mStageTerrainManager	= StageTerrainManager::create();
 	mPlayerManager			= PlayerManager::create();
 	mEnemyManager			= EnemyManager::create();
-	mStageTerrainManager	= StageTerrainManager::create();
 	
+	addChild( mStageTerrainManager );
 	addChild( mPlayerManager );
 	addChild( mEnemyManager );
-	addChild( mStageTerrainManager );
 	addChild( WallManager::create( *this ) );
 	addChild( Brush::create( *this ) );
 	

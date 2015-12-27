@@ -13,13 +13,13 @@
 struct ContactCallback
 {
 	using ContactRigidFunc	= std::function< void( cocos2d::Node*, LiquidFunBody* ) >;
-	using ContactLiquidFunc	= std::function< void( cocos2d::Node*, LiquidFunBody*, LiquidFunParticle*, int ) >;
+	using ContactLiquidFunc	= std::function< void( cocos2d::Node*, LiquidFunParticle*, int ) >;
 	
-	ContactRigidFunc	onContactRigidBegin;	//=> 剛体と剛体の接触時に呼ばれるコールバック関数
-	ContactRigidFunc	onContactRigidPreSolve;	//=> 剛体と剛体の接触中に呼ばれるコールバック関数
-	ContactRigidFunc	onContactRigidEnd;		//=> 剛体と剛体の離脱時に呼ばれるコールバック関数
-	ContactLiquidFunc	onContactLiquidBegin;	//=> 剛体と液体の接触時に呼ばれるコールバック関数
-	ContactLiquidFunc	onContactLiquidEnd;		//=> 剛体と液体の離脱時に呼ばれるコールバック関数
+	ContactRigidFunc	onContactRigidBegin;	//=> 剛体と接触した時に呼ばれるコールバック関数
+	ContactRigidFunc	onContactRigidPreSolve;	//=> 剛体と接触している時に呼ばれるコールバック関数
+	ContactRigidFunc	onContactRigidEnd;		//=> 剛体と接触し終わった時に呼ばれるコールバック関数
+	ContactLiquidFunc	onContactLiquidBegin;	//=> 液体と接触した時に呼ばれるコールバック関数
+	ContactLiquidFunc	onContactLiquidEnd;		//=> 液体と接触し終わった時に呼ばれるコールバック関数
 	unsigned short		contactBitmask;			//=> 接触するオブジェクトのビットマスク
 	
 	/**
@@ -29,8 +29,8 @@ struct ContactCallback
 		: onContactRigidBegin(		[]( cocos2d::Node*, LiquidFunBody* ) { } )
 		, onContactRigidPreSolve(	[]( cocos2d::Node*, LiquidFunBody* ) { } )
 		, onContactRigidEnd(		[]( cocos2d::Node*, LiquidFunBody* ) { } )
-		, onContactLiquidBegin(		[]( cocos2d::Node*, LiquidFunBody*, LiquidFunParticle*, int ) { } )
-		, onContactLiquidEnd(		[]( cocos2d::Node*, LiquidFunBody*, LiquidFunParticle*, int ) { } )
+		, onContactLiquidBegin(		[]( cocos2d::Node*, LiquidFunParticle*, int ) { } )
+		, onContactLiquidEnd(		[]( cocos2d::Node*, LiquidFunParticle*, int ) { } )
 		, contactBitmask( Contact::toUShort( Contact::Category::NONE ) )
 	{
 		

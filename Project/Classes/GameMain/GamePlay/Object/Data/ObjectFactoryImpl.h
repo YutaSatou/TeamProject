@@ -21,7 +21,7 @@ void ObjectFactory< InstanceType, Param... >::addCreateFunction( const std::stri
 template< typename InstanceType, typename... Param >
 InstanceType* ObjectFactory< InstanceType, Param... >::createObject( const std::string& key, Param... param )
 {
-	return mCreateFunctionContainer[ key ]( param... );
+	return mCreateFunctionContainer.at( key )( param... );
 }
 
 // 要素が空か否か
@@ -35,14 +35,14 @@ bool ObjectFactory< InstanceType, Param... >::isEmptyElement( const std::string&
 template< typename InstanceType, typename... Param >
 std::string ObjectFactory< InstanceType, Param... >::extractFileName( const std::string& filePath ) const
 {
-	std::string	str = filePath;
+	std::string	str { filePath };
 	
 	// 階層を削除する。
-	std::size_t hierarchy = str.find_last_of( "/" ) + 1;
+	std::size_t hierarchy { str.find_last_of( "/" ) + 1 };
 	str.erase( 0, hierarchy );
 	
 	// 拡張子を削除する。
-	std::size_t extension = str.find_last_of( "." );
+	std::size_t extension { str.find_last_of( "." ) };
 	str.erase( extension );
 	
 	return str;

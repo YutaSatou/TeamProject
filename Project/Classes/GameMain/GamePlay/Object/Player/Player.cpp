@@ -5,8 +5,10 @@ using namespace cocos2d;
 
 namespace
 {
-	const unsigned short PARTICLE_TYPE =	LiquidFunParticleType::b2_springParticle |
-											LiquidFunParticleType::b2_barrierParticle;	// パーティクルのビットマスク
+	const unsigned short PARTICLE_TYPE
+	{
+		LiquidFunParticleType::b2_springParticle | LiquidFunParticleType::b2_barrierParticle
+	};
 }
 
 // コンストラクタ
@@ -34,7 +36,7 @@ bool Player::init( SharedPtr< ObjectData > objectData )
 	// 各パラメータを設定する。
 	setName( "Player" );
 	setColor( mObjectData->textureColor );
-	setContentSize( Size( 60.0f, 60.0f ) );
+	setContentSize( Size( 64.0f, 64.0f ) );
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setPosition( Vec2::ZERO );
 	
@@ -59,7 +61,7 @@ void Player::update( float deltaTime )
 // インスタンスの生成
 Player* Player::create( SharedPtr< ObjectData > objectData )
 {
-	Player* inst = new Player();
+	Player* inst { new Player() };
 	
 	if ( inst && inst->init( objectData ) )
 	{
@@ -75,9 +77,9 @@ Player* Player::create( SharedPtr< ObjectData > objectData )
 void Player::initParticle()
 {
 	// パーティクルの生成に必要な設定記述子を生成する。
-	LiquidFunParticleDescCreator creator;
-	auto particleDesc	= creator.createParticleDesc( 3.5f );
-	auto groupDesc		= creator.createParticleGroupDesc( mObjectData->textureColor, mObjectData->position, PARTICLE_TYPE, getContentSize().width );
+	LiquidFunParticleDescCreator	creator;
+	LiquidFunParticleDesc			particleDesc	{ creator.createParticleDesc( 3.0f ) };
+	LiquidFunParticleGroupDesc		groupDesc		{ creator.createParticleGroupDesc( mObjectData->textureColor, mObjectData->position, PARTICLE_TYPE, getContentSize().width ) };
 	
 	// 弾力の強さを設定する。
 	particleDesc.springStrength	= 0.2f;

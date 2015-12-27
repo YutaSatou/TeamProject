@@ -1,5 +1,4 @@
 #include "ContactSettlor.h"
-#include "../../LiquidFun/LiquidFunUserAPI.h"
 #include "ContactEventManager.h"
 
 // コンストラクタ
@@ -50,7 +49,7 @@ void ContactSettlor::disableContactCallback( const std::string& nodeName )
 // OR演算
 unsigned short ContactSettlor::orCalculate( const OtherCategory& otherCategory )
 {
-	unsigned short bitmask = 0;
+	unsigned short bitmask { 0 };
 	
 	for ( auto& bit : otherCategory )
 	{

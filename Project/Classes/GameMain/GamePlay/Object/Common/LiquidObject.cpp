@@ -3,7 +3,6 @@
 #include "../Contact/ContactSettlor.h"
 
 using namespace cocos2d;
-using namespace std::placeholders;
 
 // コンストラクタ
 LiquidObject::LiquidObject()
@@ -25,11 +24,11 @@ void LiquidObject::updateParticle()
 	eachBuffer( [ this ]( UserDataPointer* userData, LiquidFunParticleColor* color, LiquidFunVec2* position )
 	{
 		// ユーザデータからノードを取得する。
-		Node* node = LiquidFunHelper::getNode( userData );
+		Node* node { LiquidFunHelper::getNode( userData ) };
 		
 		if ( !node )
 		{
-			// 取得に失敗した場合は終了する。
+			// ノードの取得に失敗した場合は、終了する。
 			return;
 		}
 		
@@ -40,14 +39,14 @@ void LiquidObject::updateParticle()
 	} );
 }
 
-// 剛体と液体の接触時に呼ばれるコールバック関数
-void LiquidObject::onContactLiquidBegin( Node* contactNode, LiquidFunBody* body, LiquidFunParticle* particle, int index )
+// 剛体と接触した時に呼ばれるコールバック関数
+void LiquidObject::onContactRigidBegin( Node* contactNode, LiquidFunBody* body )
 {
 	return;
 }
 
-// 剛体と液体の離脱時に呼ばれるコールバック関数
-void LiquidObject::onContactLiquidEnd( Node* contactNode, LiquidFunBody* body, LiquidFunParticle* particle, int index )
+// 剛体と接触し終わった時に呼ばれるコールバック関数
+void LiquidObject::onContactRigidEnd( Node* contactNode, LiquidFunBody* body )
 {
 	return;
 }
@@ -58,12 +57,12 @@ void LiquidObject::registerTexture( const std::string& textureName )
 	eachBuffer( [ this, &textureName ]( UserDataPointer* userData, LiquidFunParticleColor* color, LiquidFunVec2* position )
 	{
 		// パーティクル用のスプライトを生成する。
-		Sprite* particle = Sprite::create( textureName );
+		Sprite* particle { Sprite::create( textureName ) };
 		
 		// ユーザデータにスプライトを登録する。
 		( *userData ) = particle;
 		
-		// 自身に追加する。
+		// 自身の子ノードとして追加する。
 		addChild( particle );
 	} );
 }
@@ -72,12 +71,12 @@ void LiquidObject::registerTexture( const std::string& textureName )
 void LiquidObject::setupContactCallback()
 {
 	// 接触コールバックを設定する。
-	SharedPtr< ContactCallback > callback	= makeShared< ContactCallback >();
-	callback->onContactLiquidBegin			= std::bind( &LiquidObject::onContactLiquidBegin,	this, _1, _2, _3, _4 );
-	callback->onContactLiquidEnd			= std::bind( &LiquidObject::onContactLiquidEnd,		this, _1, _2, _3, _4 );
+	SharedPtr< ContactCallback > callback { makeShared< ContactCallback >() };
+	callback->onContactRigidBegin	= CC_CALLBACK_2( LiquidObject::onContactRigidBegin,	this );
+	callback->onContactRigidEnd		= CC_CALLBACK_2( LiquidObject::onContactRigidEnd,	this );
 	
 	// 接触するカテゴリの設定、コールバックの有効化を行う。
-	ContactSettlor contactSettlor( nullptr );
+	ContactSettlor contactSettlor { nullptr };
 	contactSettlor.setupContactCategory( callback );
 	contactSettlor.enableContactCallback( getName(), callback );
 }

@@ -52,7 +52,7 @@ public:
 	 *	@param	particle	接触したパーティクル
 	 *	@param	index		パーティクルで使用するインデックス
 	 */
-	void onContactRigidBegin( cocos2d::Node* contactNode, LiquidFunBody* body, LiquidFunParticle* particle, int index );
+	void onContactLiquidBegin( cocos2d::Node* contactNode, LiquidFunParticle* particle, int index );
 	
 private:
 	

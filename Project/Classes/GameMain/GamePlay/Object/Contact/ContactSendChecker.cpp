@@ -10,40 +10,14 @@ ContactSendChecker::ContactSendChecker( ContactEventManager::CallbackContainer& 
 	
 }
 
-// 剛体のフィルタチェックを通過したか否か
-bool ContactSendChecker::isRigidFilter( LiquidFunContact* contact, Node* nodeA, Node* nodeB ) const
+// フィルタチェックを通過したか否か
+bool ContactSendChecker::isFilter( const CategoryPair& categoryPair, const NodeNamePair& nodeNamePair ) const
 {
-	const std::string& nodeNameA	= nodeA->getName();
-	const std::string& nodeNameB	= nodeB->getName();
+	if ( !isFind( nodeNamePair.first ) )	{ return false; }
+	if ( !isFind( nodeNamePair.second ) )	{ return false; }
 	
-	if ( !isFind( nodeNameA ) || !isFind( nodeNameB ) )
-	{
-		return false;
-	}
-	
-	const LiquidFunFilter& filterA	= contact->GetFixtureA()->GetFilterData();
-	const LiquidFunFilter& filterB	= contact->GetFixtureB()->GetFilterData();
-	
-	return ( isBitStand( filterA.categoryBits, mCallbackContainer[ nodeNameB ]->contactBitmask ) &&
-			 isBitStand( filterB.categoryBits, mCallbackContainer[ nodeNameA ]->contactBitmask ) );
-}
-
-// 液体のフィルタチェックを通過したか否か
-bool ContactSendChecker::isLiquidFilter( LiquidFunFixture* fixture, Node* rigidBodyNode, Node* liquidBodyNode ) const
-{
-	const std::string& rigidBodyNodeName	= rigidBodyNode->getName();
-	const std::string& liquidBodyNodeName	= liquidBodyNode->getName();
-	
-	if ( !isFind( rigidBodyNodeName ) || !isFind( liquidBodyNodeName ) )
-	{
-		return false;
-	}
-	
-	const LiquidFunFilter&	filter		= fixture->GetFilterData();
-	const unsigned short&	liquidBit	= Contact::toUShort( Contact::Category::LIQUID );
-	
-	return ( isBitStand( filter.categoryBits, mCallbackContainer[ liquidBodyNodeName ]->contactBitmask ) &&
-			 isBitStand( liquidBit, mCallbackContainer[ rigidBodyNodeName ]->contactBitmask ) );
+	return ( isBitStand( categoryPair.first, mCallbackContainer.at( nodeNamePair.second )->contactBitmask ) &&
+			 isBitStand( categoryPair.second, mCallbackContainer.at( nodeNamePair.first )->contactBitmask ) );
 }
 
 // 検索に成功したか否か
