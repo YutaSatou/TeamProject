@@ -6,7 +6,7 @@ using namespace cocos2d;
 
 namespace
 {
-	const Vect DEFAULT_GRAVITY { 0.0f, -6.0f };	//=> デフォルトの重力値
+	const Vect DEFAULT_GRAVITY { 0.0f, -4.0f };	//=> デフォルトの重力値
 }
 
 // コンストラクタ

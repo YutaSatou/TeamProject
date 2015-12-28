@@ -22,8 +22,8 @@ void ContactSender::send( const ContactFuncTag& funcTag, LiquidFunContact* conta
 	// 接触したフィクスチャから、ボディとボディに登録されているノードを取得する。
 	LiquidFunFixture*	fixtureA	{ contact->GetFixtureA() };
 	LiquidFunFixture*	fixtureB	{ contact->GetFixtureB() };
-	LiquidFunBody*		bodyA		{ contact->GetFixtureA()->GetBody() };
-	LiquidFunBody*		bodyB		{ contact->GetFixtureB()->GetBody() };
+	LiquidFunBody*		bodyA		{ fixtureA->GetBody() };
+	LiquidFunBody*		bodyB		{ fixtureB->GetBody() };
 	Node*				nodeA		{ LiquidFunHelper::getNode( bodyA ) };
 	Node*				nodeB		{ LiquidFunHelper::getNode( bodyB ) };
 	
@@ -76,9 +76,9 @@ void ContactSender::initContainer()
 	auto rigidBegin		= [ this ]( Key& key, Node* _1, LiquidFunBody* _2 )				{ mCallbackContainer.at( key )->onContactRigidBegin( _1, _2 );			};
 	auto rigidPresolve	= [ this ]( Key& key, Node* _1, LiquidFunBody* _2 )				{ mCallbackContainer.at( key )->onContactRigidPreSolve( _1, _2 );		};
 	auto rigidEnd		= [ this ]( Key& key, Node* _1, LiquidFunBody* _2 )				{ mCallbackContainer.at( key )->onContactRigidEnd( _1, _2 );			};
-	auto liquidBegin	= [ this ]( Key& key, Node* _1, LiquidFunParticle* _2, int _3 )	{ mCallbackContainer.at( key )->onContactLiquidBegin( _1, _2, _3 );	};
-	auto liquidPresolve	= [ this ]( Key& key, Node* _1, LiquidFunParticle* _2, int _3 )	{ return; };
+	auto liquidBegin	= [ this ]( Key& key, Node* _1, LiquidFunParticle* _2, int _3 )	{ mCallbackContainer.at( key )->onContactLiquidBegin( _1, _2, _3 );		};
 	auto liquidEnd		= [ this ]( Key& key, Node* _1, LiquidFunParticle* _2, int _3 )	{ mCallbackContainer.at( key )->onContactLiquidEnd( _1, _2, _3 );		};
+	auto liquidPresolve	= [ this ]( Key& key, Node* _1, LiquidFunParticle* _2, int _3 )	{ CCLOG( "%s", "onContactLiquidPreSolve is not implemented yet." );		};
 	
 	mContactRigidContainer.emplace( ContactFuncTag::BEGIN, rigidBegin );
 	mContactRigidContainer.emplace( ContactFuncTag::PRESOLVE, rigidPresolve );

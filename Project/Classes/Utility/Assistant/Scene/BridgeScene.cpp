@@ -13,14 +13,14 @@ BridgeScene::BridgeScene()
 // 初期化
 bool BridgeScene::init( NextSceneCreateFunc func )
 {
-	if ( !Layer::init() )
+	if ( !LayerColor::initWithColor( Color4B::WHITE ) )
 	{
 		return false;
 	}
 	
 	mNextSceneCreateFunc = func;
 	
-	scheduleOnce( CC_SCHEDULE_SELECTOR( BridgeScene::next ), 0.2f );
+	scheduleOnce( CC_SCHEDULE_SELECTOR( BridgeScene::next ), 0.1f );
 	
 	return true;
 }

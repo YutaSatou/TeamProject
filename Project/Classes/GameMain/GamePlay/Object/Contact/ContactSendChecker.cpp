@@ -1,5 +1,4 @@
 #include "ContactSendChecker.h"
-#include "../../LiquidFun/LiquidFunUserAPI.h"
 
 using namespace cocos2d;
 

@@ -42,6 +42,13 @@ public:
 	 *	@return	GamePlayLayer	インスタンス
 	 */
 	static GamePlayLayer* create();
+	
+private:
+	
+	/**
+	 *	@brief	背景の追加
+	 */
+	void addBackground();
 };
 
 #endif

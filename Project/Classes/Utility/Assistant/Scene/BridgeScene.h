@@ -8,7 +8,7 @@
 //	@brief		：	ブリッジシーン
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/
-class BridgeScene : public cocos2d::Layer
+class BridgeScene : public cocos2d::LayerColor
 {
 	
 public:

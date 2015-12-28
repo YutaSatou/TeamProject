@@ -15,8 +15,7 @@ bool GamePlayLayer::init()
 	}
 	
 	scheduleUpdate();
-	
-	LiquidFunWorldManager::getInstance().setGravity( Vect( 0.0f, -4.0f ) );
+	addBackground();
 	
 	addChild( ContactListener::create() );
 	addChild( GameLayer::create( "Plist/StageData/StageData_01.plist" ) );
@@ -46,4 +45,17 @@ GamePlayLayer* GamePlayLayer::create()
 	
 	CC_SAFE_DELETE( inst );
 	return nullptr;
+}
+
+// 背景の追加
+void GamePlayLayer::addBackground()
+{
+	std::random_device						random;
+	std::mt19937							mt { random() };
+	std::uniform_int_distribution< int >	number { 1, 3 };
+	std::string								numberStr { StringUtils::toString( number( mt ) ) };
+	
+	Sprite* background { Sprite::create( "Texture/GamePlay/Background_" + numberStr + ".png" ) };
+	background->setPosition( Director::getInstance()->getWinSize() / 2.0f );
+	addChild( background );
 }
