@@ -37,7 +37,7 @@ ContactListener* ContactListener::create()
 void ContactListener::initListener()
 {
 	LiquidFunContactListener*	listener	{ LiquidFunContactListener::create() };
-	ContactEventManager&		manager		{ ContactEventManager::getInstance() };
+	ContactEventManager&		manager		= ContactEventManager::getInstance();
 	
 	listener->onContactRigidBegin = [ &manager ]( LiquidFunContact* contact )
 	{
