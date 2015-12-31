@@ -21,13 +21,13 @@ namespace Contact
 	};
 	
 	/**
-	 *	@brief	unsigned shortへの変換
-	 *	@param	category		変換するカテゴリ
-	 *	@return	unsigned short	変換された値
+	 *	@brief	uint16_tへの変換
+	 *	@param	category	変換するカテゴリ
+	 *	@return	uint16_t	変換された値
 	 */
-	static unsigned short toUShort( const Category& category )
+	static uint16_t toUShort( const Category& category )
 	{
-		return static_cast< unsigned short >( category );
+		return static_cast< uint16_t >( category );
 	}
 	
 	/**

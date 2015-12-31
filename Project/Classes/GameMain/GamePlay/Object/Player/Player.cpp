@@ -5,7 +5,7 @@ using namespace cocos2d;
 
 namespace
 {
-	const unsigned short PARTICLE_TYPE
+	const uint16_t PARTICLE_TYPE
 	{
 		LiquidFunParticleType::b2_springParticle | LiquidFunParticleType::b2_barrierParticle
 	};

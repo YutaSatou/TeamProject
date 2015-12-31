@@ -66,9 +66,9 @@ private:
 	/**
 	 *	@brief	OR演算
 	 *	@param	otherCategory	OR演算を行うカテゴリベクタ
-	 *	@return	unsigned short	ビットマスク
+	 *	@return	uint16_t		ビットマスク
 	 */
-	unsigned short orCalculate( const OtherCategory& otherCategory );
+	uint16_t orCalculate( const OtherCategory& otherCategory );
 	
 private:
 	
