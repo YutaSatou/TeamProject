@@ -25,7 +25,7 @@ public:
 	 *	@param	_m	マゼンタ
 	 *	@param	_y	イエロー
 	 */
-	ColorCMY( GLubyte _c, GLubyte _m, GLubyte _y );
+	ColorCMY( uint8_t _c, uint8_t _m, uint8_t _y );
 	
 	/**
 	 *	@brief	コンストラクタ
@@ -82,7 +82,7 @@ public:
 	
 private:
 	
-	using ColorTuple = std::tuple< GLubyte, GLubyte, GLubyte >;
+	using ColorTuple = std::tuple< uint8_t, uint8_t, uint8_t >;
 	
 	/**
 	 *	@brief	RGB⇔CMYの相互変換
@@ -91,13 +91,13 @@ private:
 	 *	@param	element3	色要素3
 	 *	@return	ColorTuple	色要素タプル
 	 */
-	static ColorTuple convertColor( GLubyte element1, GLubyte element2, GLubyte element3 );
+	static ColorTuple convertColor( uint8_t element1, uint8_t element2, uint8_t element3 );
 	
 public:
 	
-	GLubyte	c;	//=> シアン
-	GLubyte	m;	//=> マゼンタ
-	GLubyte y;	//=> イエロー
+	uint8_t	c;	//=> シアン
+	uint8_t	m;	//=> マゼンタ
+	uint8_t y;	//=> イエロー
 	
 	static const ColorCMY WHITE;
 	static const ColorCMY BLACK;

@@ -18,7 +18,7 @@ ColorCMY::ColorCMY()
 	, y( 0 ) { }
 
 // コンストラクタ
-ColorCMY::ColorCMY( GLubyte _c, GLubyte _m, GLubyte _y )
+ColorCMY::ColorCMY( uint8_t _c, uint8_t _m, uint8_t _y )
 	: c( _c )
 	, m( _m )
 	, y( _y ) { }
@@ -29,7 +29,7 @@ ColorCMY::ColorCMY( const Color3B& colorRGB )
 	, m( 0 )
 	, y( 0 )
 {
-	ColorCMY color = convertToCMY( colorRGB );
+	ColorCMY color { convertToCMY( colorRGB ) };
 	
 	c	= color.c;
 	m	= color.m;
@@ -39,17 +39,17 @@ ColorCMY::ColorCMY( const Color3B& colorRGB )
 // 色の三原色( CMY )から光の三原色( RGB )への変換
 Color3B ColorCMY::convertToRGB( const ColorCMY& colorCMY )
 {
-	GLubyte r, g, b;
+	uint8_t r, g, b;
 	std::tie( r, g, b ) = convertColor( colorCMY.c, colorCMY.m, colorCMY.y );
-	return Color3B( r, g, b );
+	return { r, g, b };
 }
 
 // 光の三原色( RGB )から色の三原色( CMY )への変換
 ColorCMY ColorCMY::convertToCMY( const Color3B& colorRGB )
 {
-	GLubyte c, m, y;
+	uint8_t c, m, y;
 	std::tie( c, m, y ) = convertColor( colorRGB.r, colorRGB.g, colorRGB.b );
-	return ColorCMY( c, m, y );
+	return { c, m, y };
 }
 
 // 等価演算子
@@ -61,7 +61,7 @@ bool ColorCMY::operator == ( const ColorCMY& colorCMY ) const
 // 等価演算子
 bool ColorCMY::operator == ( const Color3B& colorRGB ) const
 {
-	ColorCMY color = convertToCMY( colorRGB );
+	ColorCMY color { convertToCMY( colorRGB ) };
 	
 	return ( c == color.c && m == color.m && y == color.y );
 }
@@ -75,13 +75,13 @@ bool ColorCMY::operator != ( const ColorCMY& colorCMY ) const
 // 非等価演算子
 bool ColorCMY::operator != ( const Color3B& colorRGB ) const
 {
-	ColorCMY color = convertToCMY( colorRGB );
+	ColorCMY color { convertToCMY( colorRGB ) };
 	
 	return !( *this == color );
 }
 
 // RGB⇔CMYの相互変換
-ColorCMY::ColorTuple ColorCMY::convertColor( GLubyte element1, GLubyte element2, GLubyte element3 )
+ColorCMY::ColorTuple ColorCMY::convertColor( uint8_t element1, uint8_t element2, uint8_t element3 )
 {
 	return std::make_tuple( ( 255 - element1 ), ( 255 - element2 ), ( 255 - element3 ) );
 }

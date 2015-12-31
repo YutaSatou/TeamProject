@@ -1,6 +1,8 @@
 #ifndef _LIQUID_FUN_CONTACT_FILTER_H_
 #define _LIQUID_FUN_CONTACT_FILTER_H_
 
+#include <cstdint>
+
 /*------------------------------------------------------------*/
 //	@struct		：	LiquidFunContactFilter
 //	@brief		：	LiquidFunの接触フィルタ
@@ -8,9 +10,9 @@
 /*------------------------------------------------------------*/
 struct LiquidFunContactFilter
 {
-	unsigned short	categoryBitmask;	//=> カテゴリビットマスク
-	unsigned short	collisionBitmask;	//=> 衝突するオブジェクトのビットマスク
-	signed short	groupIndex;			//=> グループインデックス
+	uint16_t	categoryBitmask;	//=> カテゴリビットマスク
+	uint16_t	collisionBitmask;	//=> 衝突するオブジェクトのビットマスク
+	short		groupIndex;			//=> グループインデックス
 	
 	/**
 	 *	@brief	コンストラクタ
@@ -26,7 +28,7 @@ struct LiquidFunContactFilter
 	 *	@param	_collisionBitmask	衝突するオブジェクトのビットマスク
 	 *	@param	_groupIndex			グループインデックス
 	 */
-	LiquidFunContactFilter( unsigned short _categoryBitmask, unsigned short _collisionBitmask, signed short _groupIndex )
+	LiquidFunContactFilter( uint16_t _categoryBitmask, uint16_t _collisionBitmask, short _groupIndex )
 		: categoryBitmask( _categoryBitmask )
 		, collisionBitmask( _collisionBitmask )
 		, groupIndex( _groupIndex ) { }

@@ -49,7 +49,7 @@ void ContactSettlor::disableContactCallback( const std::string& nodeName )
 // OR演算
 unsigned short ContactSettlor::orCalculate( const OtherCategory& otherCategory )
 {
-	unsigned short bitmask { 0 };
+	uint16_t bitmask { 0 };
 	
 	for ( auto& bit : otherCategory )
 	{

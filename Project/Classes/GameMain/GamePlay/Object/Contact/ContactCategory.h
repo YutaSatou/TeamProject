@@ -2,13 +2,14 @@
 #define _CONTACT_CATEGORY_H_
 
 #include <climits>
+#include <cstdint>
 
 namespace Contact
 {
 	/**
 	 *	@brief	接触判定用カテゴリ
 	 */
-	enum class Category : unsigned short
+	enum class Category : uint16_t
 	{
 		NONE			= 0x0000,
 		WALL			= 1 << 0,
@@ -34,7 +35,7 @@ namespace Contact
 	 *	@param	category	変換するカテゴリ
 	 *	@return	Category	変換された値
 	 */
-	static Contact::Category toEnum( unsigned short category )
+	static Contact::Category toEnum( uint16_t category )
 	{
 		return static_cast< Contact::Category >( category );
 	}

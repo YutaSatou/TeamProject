@@ -58,7 +58,7 @@ LiquidFunFixtureDesc LiquidFunBodyDescCreator::createSegment( const Vec2& start,
 {
 	static const auto getCenter = []( float start, float end, float offset )
 	{
-		return LiquidFunHelper::toMeter( ( start + end ) / 2 ) - LiquidFunHelper::toMeter( offset );
+		return LiquidFunHelper::toMeter( ( start + end ) / 2.0f ) - LiquidFunHelper::toMeter( offset );
 	};
 	
 	const float width		{ LiquidFunHelper::toMeter( std::abs( start.distance( end ) ) ) };
@@ -69,7 +69,7 @@ LiquidFunFixtureDesc LiquidFunBodyDescCreator::createSegment( const Vec2& start,
 	
 	LiquidFunPolygonShape* shape { new LiquidFunPolygonShape() };
 	
-	shape->SetAsBox( width / 2, height / 2, LiquidFunVec2( centerX, centerY ), angle );
+	shape->SetAsBox( width / 2.0f, height / 2.0f, LiquidFunVec2( centerX, centerY ), angle );
 	
 	return createFixtureDesc( shape, material );
 }

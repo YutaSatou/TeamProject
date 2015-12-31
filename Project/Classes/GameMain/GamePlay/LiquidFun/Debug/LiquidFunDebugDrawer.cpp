@@ -81,7 +81,7 @@ void LiquidFunDebugDrawer::initDebugDrawFlags()
 	// デバッグ描画用レンダラを登録する。
 	LiquidFunWorldManager::getInstance().mWorld->SetDebugDraw( mDebugRenderer );
 	
-	unsigned int flags { 0 };
+	uint32_t flags { 0 };
 	flags += LiquidFunDraw::e_shapeBit;
 	flags += LiquidFunDraw::e_jointBit;
 	flags += LiquidFunDraw::e_aabbBit;

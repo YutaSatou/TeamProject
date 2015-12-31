@@ -71,14 +71,14 @@ void ContactSender::send( const ContactFuncTag& funcTag, LiquidFunFixture* fixtu
 // コンテナの初期化
 void ContactSender::initContainer()
 {
-	using Key = const std::string;
+	using Key = std::string;
 	
-	auto rigidBegin		= [ this ]( Key& key, Node* _1, LiquidFunBody* _2 )				{ mCallbackContainer.at( key )->onContactRigidBegin( _1, _2 );			};
-	auto rigidPresolve	= [ this ]( Key& key, Node* _1, LiquidFunBody* _2 )				{ mCallbackContainer.at( key )->onContactRigidPreSolve( _1, _2 );		};
-	auto rigidEnd		= [ this ]( Key& key, Node* _1, LiquidFunBody* _2 )				{ mCallbackContainer.at( key )->onContactRigidEnd( _1, _2 );			};
-	auto liquidBegin	= [ this ]( Key& key, Node* _1, LiquidFunParticle* _2, int _3 )	{ mCallbackContainer.at( key )->onContactLiquidBegin( _1, _2, _3 );		};
-	auto liquidEnd		= [ this ]( Key& key, Node* _1, LiquidFunParticle* _2, int _3 )	{ mCallbackContainer.at( key )->onContactLiquidEnd( _1, _2, _3 );		};
-	auto liquidPresolve	= [ this ]( Key& key, Node* _1, LiquidFunParticle* _2, int _3 )	{ CCLOG( "%s", "onContactLiquidPreSolve is not implemented yet." );		};
+	auto rigidBegin		= [ this ]( Key key, Node* _1, LiquidFunBody* _2 )				{ mCallbackContainer.at( key )->onContactRigidBegin( _1, _2 );			};
+	auto rigidPresolve	= [ this ]( Key key, Node* _1, LiquidFunBody* _2 )				{ mCallbackContainer.at( key )->onContactRigidPreSolve( _1, _2 );		};
+	auto rigidEnd		= [ this ]( Key key, Node* _1, LiquidFunBody* _2 )				{ mCallbackContainer.at( key )->onContactRigidEnd( _1, _2 );			};
+	auto liquidBegin	= [ this ]( Key key, Node* _1, LiquidFunParticle* _2, int _3 )	{ mCallbackContainer.at( key )->onContactLiquidBegin( _1, _2, _3 );		};
+	auto liquidEnd		= [ this ]( Key key, Node* _1, LiquidFunParticle* _2, int _3 )	{ mCallbackContainer.at( key )->onContactLiquidEnd( _1, _2, _3 );		};
+	auto liquidPresolve	= [ this ]( Key key, Node* _1, LiquidFunParticle* _2, int _3 )	{ CCLOG( "%s", "onContactLiquidPreSolve is not implemented yet." );		};
 	
 	mContactRigidContainer.emplace( ContactFuncTag::BEGIN, rigidBegin );
 	mContactRigidContainer.emplace( ContactFuncTag::PRESOLVE, rigidPresolve );

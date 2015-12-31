@@ -16,7 +16,7 @@ LiquidFunParticleDesc LiquidFunParticleDescCreator::createParticleDesc( float pa
 }
 
 // パーティクルグループ設定記述子の生成
-LiquidFunParticleGroupDesc LiquidFunParticleDescCreator::createParticleGroupDesc( const Color3B& color, const Vec2& position, unsigned short particleType, float groupSize )
+LiquidFunParticleGroupDesc LiquidFunParticleDescCreator::createParticleGroupDesc( const Color3B& color, const Vec2& position, uint16_t particleType, float groupSize )
 {
 	LiquidFunCircleShape* shape { new LiquidFunCircleShape() };
 	

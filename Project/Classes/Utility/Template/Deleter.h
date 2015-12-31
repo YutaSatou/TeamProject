@@ -2,7 +2,6 @@
 #define _DELETER_H_
 
 #include <functional>
-#include <type_traits>
 
 /*------------------------------------------------------------*/
 //	@class		：	Deleter

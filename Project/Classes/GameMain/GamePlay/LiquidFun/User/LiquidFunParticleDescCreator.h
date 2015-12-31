@@ -44,7 +44,7 @@ public:
 	 *	@param	groupSize					パーティクルグループの大きさ
 	 *	@return	LiquidFunParticleGroupDesc	パーティクルグループ設定記述子
 	 */
-	LiquidFunParticleGroupDesc createParticleGroupDesc( const cocos2d::Color3B& color, const cocos2d::Vec2& position, unsigned short particleType, float groupSize );
+	LiquidFunParticleGroupDesc createParticleGroupDesc( const cocos2d::Color3B& color, const cocos2d::Vec2& position, uint16_t particleType, float groupSize );
 };
 
 #endif

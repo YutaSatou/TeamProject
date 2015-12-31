@@ -29,7 +29,7 @@ void LiquidFunParticleSettlor::detachParticleGroup( LiquidFunParticle* particle,
 	
 	for ( int i = 0; i < particleCount; ++i )
 	{
-		unsigned short mask = particle->GetFlagsBuffer()[ i ];
+		uint16_t mask = particle->GetFlagsBuffer()[ i ];
 		mask |= LiquidFunParticleType::b2_zombieParticle;
 		particle->SetParticleFlags( i, mask );
 	}
