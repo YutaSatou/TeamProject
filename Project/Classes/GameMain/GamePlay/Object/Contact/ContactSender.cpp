@@ -59,7 +59,7 @@ void ContactSender::send( const ContactFuncTag& funcTag, LiquidFunFixture* fixtu
 	if ( !mSendChecker->isFilter( std::make_pair( fixture->GetFilterData().categoryBits, Contact::toUShort( Contact::Category::LIQUID ) ),
 								  std::make_pair( rigidNode->getName(), liquidNode->getName() ) ) )
 	{
-		// フィルタチェックを通過できない場合は終了する。
+		// フィルタチェックを通過できない場合は、終了する。
 		return;
 	}
 	

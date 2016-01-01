@@ -11,9 +11,14 @@ LiquidFunParticle* LiquidFunParticleSettlor::attachParticle( const LiquidFunPart
 }
 
 // パーティクルグループの装着
-LiquidFunParticleGroup* LiquidFunParticleSettlor::attachParticleGroup( LiquidFunParticle* particle, const LiquidFunParticleGroupDesc& groupDesc )
+LiquidFunParticleGroup* LiquidFunParticleSettlor::attachParticleGroup( LiquidFunParticle* particle, LiquidFunParticleGroupDesc& groupDesc )
 {
-	return particle->CreateParticleGroup( groupDesc );
+	LiquidFunParticleGroup* particleGroup { particle->CreateParticleGroup( groupDesc ) };
+	
+	// シェイプは移動ではなくコピーされるので、忘れずに解放する。
+	CC_SAFE_DELETE( groupDesc.shape );
+	
+	return particleGroup;
 }
 
 // パーティクルの装着解除

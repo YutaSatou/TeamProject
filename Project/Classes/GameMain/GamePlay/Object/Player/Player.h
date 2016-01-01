@@ -49,14 +49,16 @@ public:
 	static Player* create( SharedPtr< ObjectData > objectData );
 	
 	/**
-	 *	@brief	パーティクルの初期化
-	 */
-	virtual void initParticle() override;
-	
-	/**
 	 *	@brief	液体挙動の有効化
 	 */
 	void enableLiquidBehavior();
+	
+private:
+	
+	/**
+	 *	@brief	パーティクルの初期化
+	 */
+	virtual void initParticle() override;
 	
 private:
 	

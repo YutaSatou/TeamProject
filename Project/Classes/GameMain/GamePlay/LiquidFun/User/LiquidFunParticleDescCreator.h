@@ -42,9 +42,10 @@ public:
 	 *	@param	position					パーティクルの座標
 	 *	@param	particleType				パーティクルの種類
 	 *	@param	groupSize					パーティクルグループの大きさ
+	 *	@param	alpha						パーティクルグループのα値
 	 *	@return	LiquidFunParticleGroupDesc	パーティクルグループ設定記述子
 	 */
-	LiquidFunParticleGroupDesc createParticleGroupDesc( const cocos2d::Color3B& color, const cocos2d::Vec2& position, uint16_t particleType, float groupSize );
+	LiquidFunParticleGroupDesc createParticleGroupDesc( const cocos2d::Color3B& color, const cocos2d::Vec2& position, uint16_t particleType, float groupSize, uint8_t alpha = 255 );
 };
 
 #endif

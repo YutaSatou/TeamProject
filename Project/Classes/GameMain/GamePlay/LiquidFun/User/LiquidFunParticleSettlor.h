@@ -36,7 +36,7 @@ public:
 	 *	@param	groupDesc				パーティクルグループ設定記述子
 	 *	@return	LiquidFunParticleGroup	パーティクルグループのインスタンス
 	 */
-	static LiquidFunParticleGroup* attachParticleGroup( LiquidFunParticle* particle, const LiquidFunParticleGroupDesc& groupDesc );
+	static LiquidFunParticleGroup* attachParticleGroup( LiquidFunParticle* particle, LiquidFunParticleGroupDesc& groupDesc );
 	
 	/**
 	 *	@brief	パーティクルの装着解除

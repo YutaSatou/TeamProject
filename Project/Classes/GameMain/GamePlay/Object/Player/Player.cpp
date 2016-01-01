@@ -73,17 +73,24 @@ Player* Player::create( SharedPtr< ObjectData > objectData )
 	return nullptr;
 }
 
+// 液体挙動の有効化
+void Player::enableLiquidBehavior()
+{
+	mParticle->SetPaused( false );
+}
+
 // パーティクルの初期化
 void Player::initParticle()
 {
 	// パーティクルの生成に必要な設定記述子を生成する。
 	LiquidFunParticleDescCreator	creator;
-	LiquidFunParticleDesc			particleDesc	{ creator.createParticleDesc( 3.0f ) };
-	LiquidFunParticleGroupDesc		groupDesc		{ creator.createParticleGroupDesc( mObjectData->textureColor, mObjectData->position, PARTICLE_TYPE, getContentSize().width ) };
+	LiquidFunParticleDesc			particleDesc	{ creator.createParticleDesc( 4.0f ) };
+	LiquidFunParticleGroupDesc		groupDesc		{ creator.createParticleGroupDesc( mObjectData->textureColor, mObjectData->position, PARTICLE_TYPE, getContentSize().width, 80 ) };
 	
 	// 弾力の強さを設定する。
-	particleDesc.springStrength	= 0.2f;
-	groupDesc.strength			= 0.4f;
+	particleDesc.springStrength		= 0.2f;
+	particleDesc.dampingStrength	= 0.5f;
+	groupDesc.strength				= 0.3f;
 	
 	// パーティクルを装着する。
 	mParticle		= LiquidFunParticleSettlor::attachParticle( particleDesc );
@@ -91,10 +98,4 @@ void Player::initParticle()
 	
 	// パーティクルを停止状態にする。
 	mParticle->SetPaused( true );
-}
-
-// 液体挙動の有効化
-void Player::enableLiquidBehavior()
-{
-	mParticle->SetPaused( false );
 }

@@ -36,7 +36,7 @@ public:
 	 *	@param	fixtureDesc		フィクスチャ設定記述子
 	 *	@return	LiquidFunBody	ボディのインスタンス
 	 */
-	static LiquidFunBody* attachBody( const LiquidFunBodyDesc& bodyDesc, const LiquidFunFixtureDesc& fixtureDesc );
+	static LiquidFunBody* attachBody( const LiquidFunBodyDesc& bodyDesc, LiquidFunFixtureDesc& fixtureDesc );
 	
 	/**
 	 *	@brief	フィクスチャの装着
@@ -44,7 +44,7 @@ public:
 	 *	@param	fixtureDesc			フィクスチャ設定記述子
 	 *	@return	LiquidFunFixture	フィクスチャのインスタンス
 	 */
-	static LiquidFunFixture* attachFixture( LiquidFunBody* body, const LiquidFunFixtureDesc& fixtureDesc );
+	static LiquidFunFixture* attachFixture( LiquidFunBody* body, LiquidFunFixtureDesc& fixtureDesc );
 	
 	/**
 	 *	@brief	ボディの装着解除

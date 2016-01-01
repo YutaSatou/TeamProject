@@ -38,7 +38,7 @@ void StageTerrainManager::onDataLoaded( SharedPtr< ObjectData > objectData )
 // 地形の追加
 void StageTerrainManager::addStageTerrain( SharedPtr< ObjectData > objectData, const std::string& key )
 {
-	if ( strstr( objectData->textureName.c_str(), key.c_str() ) != nullptr )
+	if ( strstr( objectData->textureName.c_str(), key.c_str() ) )
 	{
 		// テクスチャの名前にキーが含まれている場合、地形を生成する。
 		StageTerrain* stageTerrain { mStageTerrainFactory->createObject( key, objectData ) };

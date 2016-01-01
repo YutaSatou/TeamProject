@@ -11,7 +11,7 @@ LiquidFunBody* LiquidFunBodySettlor::attachEmptyBody( const LiquidFunBodyDesc& b
 }
 
 // ボディの装着
-LiquidFunBody* LiquidFunBodySettlor::attachBody( const LiquidFunBodyDesc& bodyDesc, const LiquidFunFixtureDesc& fixtureDesc )
+LiquidFunBody* LiquidFunBodySettlor::attachBody( const LiquidFunBodyDesc& bodyDesc, LiquidFunFixtureDesc& fixtureDesc )
 {
 	LiquidFunBody* body { attachEmptyBody( bodyDesc ) };
 	
@@ -21,9 +21,14 @@ LiquidFunBody* LiquidFunBodySettlor::attachBody( const LiquidFunBodyDesc& bodyDe
 }
 
 // フィクスチャの装着
-LiquidFunFixture* LiquidFunBodySettlor::attachFixture( LiquidFunBody* body, const LiquidFunFixtureDesc& fixtureDesc )
+LiquidFunFixture* LiquidFunBodySettlor::attachFixture( LiquidFunBody* body, LiquidFunFixtureDesc& fixtureDesc )
 {
-	return body->CreateFixture( &fixtureDesc );
+	LiquidFunFixture* fixture { body->CreateFixture( &fixtureDesc ) };
+	
+	// シェイプは移動ではなくコピーされるので、忘れずに解放する。
+	CC_SAFE_DELETE( fixtureDesc.shape );
+	
+	return fixture;
 }
 
 // ボディの装着解除
