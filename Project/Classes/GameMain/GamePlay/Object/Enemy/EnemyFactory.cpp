@@ -6,12 +6,15 @@
 // コンストラクタ
 EnemyFactory::EnemyFactory()
 {
-	initProductList();
+	addProductList();
 }
 
-// 生成する製品の初期化
-void EnemyFactory::initProductList()
+// 生成する製品の追加
+void EnemyFactory::addProductList()
 {
-	addCreateFunction( "Slime", []( SharedPtr< ObjectData > objectData, const std::string& nodeName )
+	addCreateFunction( "Slime_1", []( SharedPtr< ObjectData > objectData, const std::string& nodeName )
+					   { return Slime::create( objectData, nodeName ); } );
+	
+	addCreateFunction( "Slime_2", []( SharedPtr< ObjectData > objectData, const std::string& nodeName )
 					   { return Slime::create( objectData, nodeName ); } );
 }

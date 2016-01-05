@@ -14,7 +14,7 @@ EnemyManager::EnemyManager()
 // インスタンスの生成
 EnemyManager* EnemyManager::create()
 {
-	EnemyManager* inst = new EnemyManager();
+	EnemyManager* inst { new EnemyManager() };
 	
 	if ( inst && inst->init() )
 	{
@@ -30,15 +30,15 @@ EnemyManager* EnemyManager::create()
 void EnemyManager::onDataLoaded( SharedPtr< ObjectData > objectData )
 {
 	// テクスチャの名前をキーとして使用する。
-	std::string key = mEnemyFactory->extractFileName( objectData->textureName );
+	const std::string& key { mEnemyFactory->extractFileName( objectData->textureName ) };
 	
 	if ( !mEnemyFactory->isEmptyElement( key ) )
 	{
-		// テクスチャの名前とオブジェクト管理数をオブジェクトの名前として使用する。
-		std::string name = key + StringUtils::toString( getObjectManageCount() );
+		// テクスチャの名前と、オブジェクト管理数をオブジェクトの名前として使用する。
+		const std::string& name { key + StringUtils::toString( getObjectManageCount() ) };
 		
-		// 敵を生成して自身の子ノードとして追加する。
-		Node* enemy = mEnemyFactory->createObject( key, objectData, name );
+		// 自身の子ノードとして追加する。
+		Node* enemy { mEnemyFactory->createObject( key, objectData, name ) };
 		addChild( enemy );
 	}
 }

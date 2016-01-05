@@ -1,8 +1,8 @@
 #ifndef _ENEMY_FACTORY_H_
 #define _ENEMY_FACTORY_H_
 
-#include "Utility/Template/SmartPtr.h"
 #include "../Data/ObjectFactory.h"
+#include "Utility/Template/SmartPtr.h"
 
 namespace cocos2d
 {
@@ -34,9 +34,9 @@ public:
 private:
 	
 	/**
-	 *	@brief	生成する製品の初期化
+	 *	@brief	生成する製品の追加
 	 */
-	void initProductList();
+	void addProductList();
 };
 
 #endif
