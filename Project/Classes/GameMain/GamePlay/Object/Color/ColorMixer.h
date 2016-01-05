@@ -1,8 +1,8 @@
 #ifndef _COLOR_MIXER_H_
 #define _COLOR_MIXER_H_
 
-#include "Utility/Template/SmartPtr.h"
 #include "ColorCMY.h"
+#include "Utility/Template/SmartPtr.h"
 
 namespace cocos2d
 {
@@ -33,12 +33,12 @@ public:
 	
 	/**
 	 *	@brief	色の合成
-	 *	@param	node		ノード
-	 *	@param	contactNode	接触したノード
-	 *	@param	saturation	色の彩度
-	 *	@return	ColorCMY	合成した色
+	 *	@param	blendBaseNode	合成元の色を持つノード
+	 *	@param	blendNode		合成する色を持つノード
+	 *	@param	blendRate		合成する割合
+	 *	@return	ColorCMY		合成した色
 	 */
-	ColorCMY blend( cocos2d::Node* node, cocos2d::Node* contactNode, float saturation = 1.0f ) const;
+	ColorCMY blend( cocos2d::Node* blendBaseNode, cocos2d::Node* blendNode, double blendRate = 0.5 ) const;
 	
 private:
 	
@@ -46,17 +46,10 @@ private:
 	 *	@brief	色の合成
 	 *	@param	src			合成する色( 前面 )
 	 *	@param	dst			合成する色( 背面 )
-	 *	@param	saturation	色の彩度
+	 *	@param	blendRate	合成する割合
 	 *	@return	ColorCMY	合成した色
 	 */
-	ColorCMY colorBlend( const ColorCMY& src, const ColorCMY& dst, float saturation ) const;
-	
-	/**
-	 *	@brief	彩度の補正
-	 *	@param	colorElement	色の要素
-	 *	@param	saturation		色の彩度
-	 */
-	void revisedSaturation( float* colorElement, float saturation ) const;
+	ColorCMY colorBlend( const ColorCMY& src, const ColorCMY& dst, double blendRate ) const;
 	
 private:
 	

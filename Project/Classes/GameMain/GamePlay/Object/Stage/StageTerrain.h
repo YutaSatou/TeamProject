@@ -30,7 +30,7 @@ protected:
 	/**
 	 *	@brief	コンストラクタ
 	 */
-	StageTerrain();
+	StageTerrain() = default;
 	
 	/**
 	 *	@brief	デストラクタ
@@ -59,13 +59,10 @@ private:
 	
 	/**
 	 *	@brief	物理構造の初期化
+	 *	@param	objectData	オブジェクトデータ
 	 *	@param	terrainType	地形の種類
 	 */
-	void initPhysics( const StageTerrainType& terrainType );
-	
-private:
-	
-	SharedPtr< ObjectData > mObjectData;	//=> オブジェクトデータ
+	void initPhysics( SharedPtr< ObjectData > objectData, const StageTerrainType& terrainType );
 };
 
 #endif

@@ -12,13 +12,6 @@ namespace
 	using DescCreateFuncContainer	= std::unordered_map< StageTerrainType, DescCreateFunc, EnumHash >;
 }
 
-// コンストラクタ
-StageTerrain::StageTerrain()
-	: mObjectData( nullptr )
-{
-	
-}
-
 // 初期化
 bool StageTerrain::init( SharedPtr< ObjectData > objectData, const StageTerrainType& terrainType )
 {
@@ -27,16 +20,13 @@ bool StageTerrain::init( SharedPtr< ObjectData > objectData, const StageTerrainT
 		return false;
 	}
 	
-	// オブジェクトデータを登録する。
-	mObjectData = objectData;
-	
 	// 各パラメータを設定する。
-	setColor( mObjectData->textureColor );
+	setColor( objectData->textureColor );
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
-	setPosition( mObjectData->position );
+	setPosition( objectData->position );
 	
 	// 物理構造の初期化を行う。
-	initPhysics( terrainType );
+	initPhysics( objectData, terrainType );
 	
 	return true;
 }
@@ -57,7 +47,7 @@ StageTerrain* StageTerrain::create( SharedPtr< ObjectData > objectData, const St
 }
 
 // 物理構造の初期化
-void StageTerrain::initPhysics( const StageTerrainType& terrainType )
+void StageTerrain::initPhysics( SharedPtr< ObjectData > objectData, const StageTerrainType& terrainType )
 {
 	static DescCreateFuncContainer descCreateFuncContainer
 	{
@@ -88,7 +78,7 @@ void StageTerrain::initPhysics( const StageTerrainType& terrainType )
 	// ボディの生成に必要な設定記述子を生成する。
 	LiquidFunBodyDescCreator	bodyDescCreator;
 	LiquidFunBodyDesc			bodyDesc	{ bodyDescCreator.createBodyDesc( this, LiquidFunBodyType::b2_staticBody ) };
-	LiquidFunFixtureDesc		fixtureDesc	{ descCreateFuncContainer.at( terrainType )( bodyDescCreator, getContentSize(), mObjectData->material ) };
+	LiquidFunFixtureDesc		fixtureDesc	{ descCreateFuncContainer.at( terrainType )( bodyDescCreator, getContentSize(), objectData->material ) };
 	
 	// ボディを装着する。
 	LiquidFunBody* body { LiquidFunBodySettlor::attachBody( bodyDesc, fixtureDesc ) };

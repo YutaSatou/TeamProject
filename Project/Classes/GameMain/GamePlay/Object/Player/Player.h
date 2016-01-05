@@ -4,7 +4,8 @@
 #include "../Common/LiquidObject.h"
 #include "Utility/Template/SmartPtr.h"
 
-struct ObjectData;
+struct	ObjectData;
+class	ColorMixer;
 
 /*------------------------------------------------------------*/
 //	@class		：	Player
@@ -60,9 +61,17 @@ private:
 	 */
 	virtual void initParticle() override;
 	
+	/**
+	 *	@brief	剛体と接触した時に呼ばれるコールバック関数
+	 *	@param	contactNode	接触したノード
+	 *	@param	body		接触したボディ
+	 */
+	virtual void onContactRigidBegin( cocos2d::Node* contactNode, LiquidFunBody* body ) override;
+	
 private:
 	
-	SharedPtr< ObjectData > mObjectData;	//=> オブジェクトデータ
+	SharedPtr< ObjectData >	mObjectData;	//=> オブジェクトデータ
+	SharedPtr< ColorMixer >	mColorMixer;	//=> 色合成者
 };
 
 #endif

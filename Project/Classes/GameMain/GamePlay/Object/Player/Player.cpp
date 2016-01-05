@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "../Data/ObjectData.h"
+#include "../Color/ColorMixer.h"
 
 using namespace cocos2d;
 
@@ -14,6 +15,7 @@ namespace
 // コンストラクタ
 Player::Player()
 	: mObjectData( nullptr )
+	, mColorMixer( makeShared< ColorMixer >() )
 {
 	
 }
@@ -35,7 +37,6 @@ bool Player::init( SharedPtr< ObjectData > objectData )
 	
 	// 各パラメータを設定する。
 	setName( "Player" );
-	setColor( mObjectData->textureColor );
 	setContentSize( Size( 64.0f, 64.0f ) );
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setPosition( Vec2::ZERO );
@@ -98,4 +99,20 @@ void Player::initParticle()
 	
 	// パーティクルを停止状態にする。
 	mParticle->SetPaused( true );
+}
+
+// 剛体と接触した時に呼ばれるコールバック関数
+void Player::onContactRigidBegin( Node* contactNode, LiquidFunBody* body )
+{
+	// 合成した色を取得する。
+	const ColorCMY& blendColor { mColorMixer->blend( this, contactNode, 0.5 ) };
+	
+	// 色情報を更新する。
+	mObjectData->blendColor		= blendColor;
+	mObjectData->textureColor	= ColorCMY::convertToRGB( blendColor );
+	
+	eachBuffer( [ this ]( UserDataPointer* userData, LiquidFunParticleColor* color, LiquidFunVec2* position )
+	{
+		( *color ) = { mObjectData->textureColor.r, mObjectData->textureColor.g, mObjectData->textureColor.b, color->a };
+	} );
 }
