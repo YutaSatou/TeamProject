@@ -16,11 +16,11 @@ ColorCMY ColorHelper::getBlendColor( Node* node, Node* contactNode ) const
 		assert( contactBlendColor && "両方のオブジェクトで、合成色が設定されていません。" );
 		
 		// ノードに合成色が設定されていない場合は、接触したノードの合成色を使用する。
-		return *contactBlendColor;
+		return ( *contactBlendColor );
 	}
 	
 	// 合成色を返却する。
-	return *blendColor;
+	return ( *blendColor );
 }
 
 // 合成色の抽出

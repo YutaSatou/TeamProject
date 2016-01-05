@@ -33,9 +33,9 @@ ColorCMY ColorMixer::blend( Node* blendBaseNode, Node* blendNode, double blendRa
 // 色の合成
 ColorCMY ColorMixer::colorBlend( const ColorCMY& src, const ColorCMY& dst, double blendRate ) const
 {
-	double	c	= std::min( dst.c * 1.0 + src.c * blendRate, COLOR_MAX );
-	double	m	= std::min( dst.m * 1.0 + src.m * blendRate, COLOR_MAX );
-	double	y	= std::min( dst.y * 1.0 + src.y * blendRate, COLOR_MAX );
+	double	c	{ std::min( dst.c * 1.0 + src.c * blendRate, COLOR_MAX ) };
+	double	m	{ std::min( dst.m * 1.0 + src.m * blendRate, COLOR_MAX ) };
+	double	y	{ std::min( dst.y * 1.0 + src.y * blendRate, COLOR_MAX ) };
 	
 	c	= std::round( c );
 	m	= std::round( m );
