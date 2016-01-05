@@ -38,7 +38,7 @@ public:
 	 *	@param	blendRate		合成する割合
 	 *	@return	ColorCMY		合成した色
 	 */
-	ColorCMY blend( cocos2d::Node* blendBaseNode, cocos2d::Node* blendNode, double blendRate = 0.5 ) const;
+	ColorCMY blend( cocos2d::Node* blendBaseNode, cocos2d::Node* blendNode, float blendRate = 0.5 ) const;
 	
 private:
 	
@@ -49,7 +49,7 @@ private:
 	 *	@param	blendRate	合成する割合
 	 *	@return	ColorCMY	合成した色
 	 */
-	ColorCMY colorBlend( const ColorCMY& src, const ColorCMY& dst, double blendRate ) const;
+	ColorCMY colorBlend( const ColorCMY& src, const ColorCMY& dst, float blendRate ) const;
 	
 private:
 	
