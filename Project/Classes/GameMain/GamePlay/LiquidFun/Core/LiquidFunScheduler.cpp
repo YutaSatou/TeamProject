@@ -37,7 +37,7 @@ void LiquidFunScheduler::updateBox2D()
 // ワールド内のノードの更新
 void LiquidFunScheduler::updateWorldNode()
 {
-	for ( LiquidFunBody* body { mWorld->GetBodyList() };  body; body = body->GetNext() )
+	for ( LiquidFunBody* body { mWorld->GetBodyList() }; body; body = body->GetNext() )
 	{
 		if ( !body->GetUserData() )
 		{

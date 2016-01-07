@@ -43,7 +43,7 @@ public:
 	 *	@brief	アニメイトの生成
 	 *	@param	animationName		アニメーションの名前
 	 *	@param	frameSwitchSpeed	フレームを切り替える速度
-	 *	@return	Animate				アニメイトのインスタンス
+	 *	@return	Animate				インスタンス
 	 */
 	cocos2d::Animate* createAnimate( const std::string& animationName, float frameSwitchSpeed );
 	

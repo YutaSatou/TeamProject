@@ -3,7 +3,6 @@
 #include "../Data/ObjectData.h"
 #include "../Common/LiquidFunBodyDeleter.h"
 #include "../Contact/ContactSettlor.h"
-#include "Utility/Audio/ADX2Player.h"
 
 using namespace cocos2d;
 
@@ -75,25 +74,24 @@ void Slime::initPhysics()
 	SharedPtr< ContactCallback > callback { makeShared< ContactCallback >() };
 	callback->onContactLiquidBegin = CC_CALLBACK_3( Slime::onContactLiquidBegin, this );
 	
-	// カテゴリの設定、衝突するカテゴリの設定、接触するカテゴリの設定、コールバックの登録を行う。
+	// カテゴリの設定、衝突するカテゴリの設定、接触するカテゴリの設定、コールバックの有効化を行う。
 	ContactSettlor contactSettlor { mBody };
 	contactSettlor.setupCategory( Contact::Category::SLIME );
 	contactSettlor.setupCollisionCategory();
-	contactSettlor.setupContactCategory( callback, { Contact::Category::PLAYER, Contact::Category::LIQUID } );
+	contactSettlor.setupContactCategory( callback, { Contact::Category::LIQUID } );
 	contactSettlor.enableContactCallback( getName(), callback );
 }
 
 // 液体と接触した時に呼ばれるコールバック関数
 void Slime::onContactLiquidBegin( Node* contactNode, LiquidFunParticle* particle, int index )
 {
-	// ボディの衝突を切り、接触コールバックを無効にする。
-	ADX2Player::getInstance().play( CRI_HUNGRYSLIMESHEET_SE_PLAYER_EAT );
+	// ボディの衝突判定と接触コールバックを無効にする。
 	mBody->SetActive( false );
 	ContactSettlor contactSettlor { mBody };
 	contactSettlor.disableContactCallback( getName() );
 	
 	// オブジェクト削除のアクションを実行する。
-	ActionInterval* deadAction		{ Spawn::create( ScaleTo::create( 0.5f, 0.0f ), Blink::create( 0.5f, 7 ), nullptr ) };
-	ActionInterval* removeAction	{ Sequence::create( deadAction, RemoveSelf::create(), nullptr ) };
+	ActionInterval*	deadAction		{ Spawn::create( ScaleTo::create( 0.5f, 0.0f ), Blink::create( 0.5f, 7 ), nullptr ) };
+	ActionInterval*	removeAction	{ Sequence::create( deadAction, RemoveSelf::create(), nullptr ) };
 	runAction( removeAction );
 }

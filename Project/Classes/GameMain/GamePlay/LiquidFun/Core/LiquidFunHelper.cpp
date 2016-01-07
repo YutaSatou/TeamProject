@@ -36,7 +36,7 @@ Node* LiquidFunHelper::getNode( LiquidFunBody* body )
 }
 
 // ノードの取得
-Node* LiquidFunHelper::getNode( UserData* userData )
+Node* LiquidFunHelper::getNode( UserDataPointer* userData )
 {
 	return static_cast< Node* >( ( *userData ) );
 }

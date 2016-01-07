@@ -31,7 +31,6 @@ void SpriteAnimationData::addAnimation( const std::string& fileName, const std::
 			}
 			
 			Rect rect { frameSize.width * x, frameSize.height * y, frameSize.width, frameSize.height };
-			animation->setRestoreOriginalFrame( true );
 			animation->addSpriteFrame( SpriteFrame::create( fileName, rect ) );
 			++currentFrameCount;
 		}
@@ -54,6 +53,7 @@ void SpriteAnimationData::addAnimation( const std::string& fileName, const std::
 Animate* SpriteAnimationData::createAnimate( const std::string& animationName, float frameSwitchSpeed )
 {
 	Animation* animation { mAnimationCache->getAnimation( animationName ) };
+	animation->setRestoreOriginalFrame( true );
 	animation->setDelayPerUnit( frameSwitchSpeed );
 	
 	return Animate::create( animation );

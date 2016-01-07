@@ -37,7 +37,7 @@ bool Player::init( SharedPtr< ObjectData > objectData )
 	
 	// 各パラメータを設定する。
 	setName( "Player" );
-	setContentSize( Size( 64.0f, 64.0f ) );
+	setContentSize( { 64.0f, 64.0f } );
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setPosition( Vec2::ZERO );
 	
