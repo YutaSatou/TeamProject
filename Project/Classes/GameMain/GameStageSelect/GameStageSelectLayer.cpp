@@ -2,7 +2,7 @@
 #include "../../Utility/Audio/ADX2Player.h"
 #include "StageSelectPage.h"
 #include "PageCursor.h"
-#include "StageSelectOption.h"
+// #include "StageSelectOption.h"
 #include "ui/CocosGUI.h"
 
 using namespace cocos2d;

@@ -147,9 +147,11 @@ bool StageSelectPage::init( const int pageNum ){
     return true;
 }
 
+/*
 void StageSelectPage::update( float deltaTime ){
     
 }
+ */
 
 StageSelectPage* StageSelectPage::create( const int pageNum ){
     StageSelectPage* inst = new StageSelectPage();
