@@ -105,7 +105,7 @@ void Player::initParticle()
 void Player::onContactRigidBegin( Node* contactNode, LiquidFunBody* body )
 {
 	// 合成した色を取得する。
-	const ColorCMY& blendColor { mColorMixer->blend( this, contactNode, 0.5 ) };
+	const ColorCMY& blendColor { mColorMixer->blend( this, contactNode, 0.4f ) };
 	
 	// 色情報を更新する。
 	mObjectData->blendColor		= blendColor;

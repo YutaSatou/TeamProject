@@ -48,6 +48,11 @@ public:
 private:
 	
 	/**
+	 *	@brief	アニメーションの初期化
+	 */
+	void initAnimation();
+	
+	/**
 	 *	@brief	物理構造の初期化
 	 */
 	void initPhysics();
