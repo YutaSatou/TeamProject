@@ -74,12 +74,6 @@ Player* Player::create( SharedPtr< ObjectData > objectData )
 	return nullptr;
 }
 
-// 液体挙動の有効化
-void Player::enableLiquidBehavior()
-{
-	mParticle->SetPaused( false );
-}
-
 // パーティクルの初期化
 void Player::initParticle()
 {
@@ -97,8 +91,8 @@ void Player::initParticle()
 	mParticle		= LiquidFunParticleSettlor::attachParticle( particleDesc );
 	mParticleGroup	= LiquidFunParticleSettlor::attachParticleGroup( mParticle, groupDesc );
 	
-	// パーティクルを停止状態にする。
-	mParticle->SetPaused( true );
+	// 液体挙動を無効化する。
+	disableLiquidBehavior();
 }
 
 // 剛体と接触した時に呼ばれるコールバック関数

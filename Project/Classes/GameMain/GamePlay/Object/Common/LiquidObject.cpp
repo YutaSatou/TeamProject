@@ -39,6 +39,18 @@ void LiquidObject::updateParticle()
 	} );
 }
 
+// 液体挙動の有効化
+void LiquidObject::enableLiquidBehavior()
+{
+	mParticle->SetPaused( true );
+}
+
+// 液体挙動の無効化
+void LiquidObject::disableLiquidBehavior()
+{
+	mParticle->SetPaused( false );
+}
+
 // 剛体と接触した時に呼ばれるコールバック関数
 void LiquidObject::onContactRigidBegin( Node* contactNode, LiquidFunBody* body )
 {

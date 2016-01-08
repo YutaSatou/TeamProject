@@ -49,11 +49,6 @@ public:
 	 */
 	static Player* create( SharedPtr< ObjectData > objectData );
 	
-	/**
-	 *	@brief	液体挙動の有効化
-	 */
-	void enableLiquidBehavior();
-	
 private:
 	
 	/**

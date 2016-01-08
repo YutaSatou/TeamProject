@@ -41,6 +41,16 @@ public:
 	 */
 	virtual void updateParticle();
 	
+	/**
+	 *	@brief	液体挙動の有効化
+	 */
+	void enableLiquidBehavior();
+	
+	/**
+	 *	@brief	液体挙動の無効化
+	 */
+	void disableLiquidBehavior();
+	
 protected:
 	
 	/**
