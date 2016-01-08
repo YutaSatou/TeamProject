@@ -21,8 +21,6 @@ protected:
     ~StageSelectPage() = default;
     
     bool init( const int pageNum );
-    
-    virtual void update( float deltaTime ) override;
 
 public:
     
