@@ -33,7 +33,7 @@ void LiquidObject::updateParticle()
 		}
 		
 		// 各バッファの情報をノードに適応する。
-		node->setColor( Color3B( ( *color ).r, ( *color ).g, ( *color ).b ) );
+		node->setColor( { ( *color ).r, ( *color ).g, ( *color ).b } );
 		node->setPosition( LiquidFunHelper::toPixsel( ( *position ) ) + ( getContentSize() / 2.0f ) );
 		node->setOpacity( ( *color ).a );
 	} );
@@ -42,13 +42,13 @@ void LiquidObject::updateParticle()
 // 液体挙動の有効化
 void LiquidObject::enableLiquidBehavior()
 {
-	mParticle->SetPaused( true );
+	mParticle->SetPaused( false );
 }
 
 // 液体挙動の無効化
 void LiquidObject::disableLiquidBehavior()
 {
-	mParticle->SetPaused( false );
+	mParticle->SetPaused( true );
 }
 
 // 剛体と接触した時に呼ばれるコールバック関数

@@ -87,5 +87,5 @@ void LiquidFunWorldManager::setGravity( const Vect& gravity )
 	}
 	
 	mGravity = gravity;
-	mWorld->SetGravity( LiquidFunVec2( mGravity.x, mGravity.y ) );
+	mWorld->SetGravity( { mGravity.x, mGravity.y } );
 }
