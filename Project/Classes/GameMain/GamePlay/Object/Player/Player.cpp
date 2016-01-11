@@ -74,6 +74,19 @@ Player* Player::create( SharedPtr< ObjectData > objectData )
 	return nullptr;
 }
 
+// 色情報の更新
+void Player::updateColor( const ColorCMY& color )
+{
+	mObjectData->backupColor	= mObjectData->blendColor;
+	mObjectData->blendColor		= color;
+	mObjectData->textureColor	= ColorCMY::convertToRGB( color );
+	
+	eachBuffer( [ this ]( UserDataPointer* userData, LiquidFunParticleColor* color, LiquidFunVec2* position )
+	{
+		( *color ) = { mObjectData->textureColor.r, mObjectData->textureColor.g, mObjectData->textureColor.b, color->a };
+	} );
+}
+
 // パーティクルの初期化
 void Player::initParticle()
 {
@@ -102,11 +115,5 @@ void Player::onContactRigidBegin( Node* contactNode, LiquidFunBody* body )
 	const ColorCMY& blendColor { mColorMixer->blend( this, contactNode, 0.4f ) };
 	
 	// 色情報を更新する。
-	mObjectData->blendColor		= blendColor;
-	mObjectData->textureColor	= ColorCMY::convertToRGB( blendColor );
-	
-	eachBuffer( [ this ]( UserDataPointer* userData, LiquidFunParticleColor* color, LiquidFunVec2* position )
-	{
-		( *color ) = { mObjectData->textureColor.r, mObjectData->textureColor.g, mObjectData->textureColor.b, color->a };
-	} );
+	updateColor( blendColor );
 }

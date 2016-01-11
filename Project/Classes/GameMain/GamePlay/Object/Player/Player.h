@@ -5,6 +5,7 @@
 #include "Utility/Template/SmartPtr.h"
 
 struct	ObjectData;
+class	ColorCMY;
 class	ColorMixer;
 
 /*------------------------------------------------------------*/
@@ -48,6 +49,12 @@ public:
 	 *	@return	Player		インスタンス
 	 */
 	static Player* create( SharedPtr< ObjectData > objectData );
+	
+	/**
+	 *	@brief	色情報の更新
+	 *	@param	color	更新する色
+	 */
+	void updateColor( const ColorCMY& color );
 	
 private:
 	
