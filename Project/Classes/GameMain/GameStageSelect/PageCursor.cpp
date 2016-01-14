@@ -51,8 +51,8 @@ MenuItemImage* PageCursor::sliderTex( const std::string& sliderTex, const Vec2& 
     
     MenuItemImage* button = MenuItemImage::create( sliderTex, sliderTex, [](Ref* ref){} );
     
-    auto listener = EventListenerTouchOneByOne::create();
-    listener->setSwallowTouches( true );
+    //auto listener = EventListenerTouchOneByOne::create();
+    //listener->setSwallowTouches( true );
     button->setPosition( pos );
     
     return button;

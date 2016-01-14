@@ -2,23 +2,17 @@
 #define _GAMESTAGE_SELECT_LAYER_H_
 
 #include "cocos2d.h"
-#include "../../Utility/Audio/ADX2Player.h"
-#include "../../Utility/Particle/ParticleManager.h"
 
 class GameStageSelectLayer : public cocos2d::LayerColor
 {
     
 protected:
     
-    GameStageSelectLayer();
+    GameStageSelectLayer() = default;
     
-    ~GameStageSelectLayer();
+    ~GameStageSelectLayer() = default;
     
     virtual bool init() override;
-    
-    virtual void update( float deltaTime ) override;
-    
-    virtual void onEnter() override;
     
 public:
     
@@ -27,12 +21,6 @@ public:
 private:
     
     void drawBackGraund();
-    
-public:
-    
-    int mBgm;
-    ParticleManager* mParticle;
-    
 };
 
 #endif

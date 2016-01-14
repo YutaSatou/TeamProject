@@ -2,24 +2,17 @@
 #include "../../Utility/Audio/ADX2Player.h"
 #include "StageSelectPage.h"
 #include "PageCursor.h"
-// #include "StageSelectOption.h"
 #include "ui/CocosGUI.h"
+#include "StageSelectButton.h"
+#include "StageSelectScrollView.h"
+#include "UIPageView.h"
 
 using namespace cocos2d;
-using namespace ui;
 
-namespace  {
-    
+namespace
+{    
     Size SCREEN_SIZE;
     Vec2 ORIGIN_SIZE;
-}
-
-GameStageSelectLayer::GameStageSelectLayer(){
-    
-}
-
-GameStageSelectLayer::~GameStageSelectLayer(){
-    //ADX2Player::getInstance().stop( mBgm );
 }
 
 bool GameStageSelectLayer::init()
@@ -32,29 +25,26 @@ bool GameStageSelectLayer::init()
     SCREEN_SIZE = Director::getInstance()->getVisibleSize();
     ORIGIN_SIZE = Director::getInstance()->getVisibleOrigin();
     
+    //背景の描画
     drawBackGraund();
     
-    //mBgm = ADX2Player::getInstance().play( 0 );
-    
+    //ページビューの追加
     StageSelectPage* page = StageSelectPage::create( 3 );
-    
-    //StageSelectOption* sso = StageSelectOption::create();
-    
+    /*Size screen_size = Director::getInstance()->getWinSize();
+    UIPageView* page = UIPageView::creae( screen_size );
+    page->setContentSize( screen_size );
+    for (int i=0; i < 3; ++i){
+        auto pageLayer = Layer::create();
+        page->insertPage( pageLayer );
+    }*/
+    //StageSelectButton* button = StageSelectButton::create();
+
     addChild( page );
-    //addChild( sso );
+
     
     scheduleUpdate();
     
     return true;
-}
-
-void GameStageSelectLayer::onEnter()
-{
-    Layer::onEnter();
-}
-
-void GameStageSelectLayer::update( float deltaTime )
-{
 }
 
 GameStageSelectLayer* GameStageSelectLayer::create()
@@ -71,8 +61,8 @@ GameStageSelectLayer* GameStageSelectLayer::create()
     return nullptr;
 }
 
-void GameStageSelectLayer::drawBackGraund(){
-    
+void GameStageSelectLayer::drawBackGraund()
+{
     //背景
     Sprite* sprite = Sprite::create( "Texture/GameTitle/BackScreen.png" );
     sprite->setPosition( Vec2( SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 2.0f ) );
