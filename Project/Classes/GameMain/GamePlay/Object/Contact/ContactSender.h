@@ -52,7 +52,7 @@ private:
 	
 private:
 	
-	using ContactRigid				= std::function< void( std::string, cocos2d::Node*, LiquidFunBody* ) >;
+	using ContactRigid				= std::function< void( std::string, cocos2d::Node*, LiquidFunFixture* ) >;
 	using ContactLiquid				= std::function< void( std::string, cocos2d::Node*, LiquidFunParticle*, int ) >;
 	using ContactRigidContainer		= std::unordered_map< ContactFuncTag, ContactRigid, EnumHash >;
 	using ContactLiquidContainer	= std::unordered_map< ContactFuncTag, ContactLiquid, EnumHash >;

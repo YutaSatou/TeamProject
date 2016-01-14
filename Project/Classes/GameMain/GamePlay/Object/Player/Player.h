@@ -66,9 +66,9 @@ private:
 	/**
 	 *	@brief	剛体と接触した時に呼ばれるコールバック関数
 	 *	@param	contactNode	接触したノード
-	 *	@param	body		接触したボディ
+	 *	@param	fixture		接触したフィクスチャ
 	 */
-	virtual void onContactRigidBegin( cocos2d::Node* contactNode, LiquidFunBody* body ) override;
+	virtual void onContactRigidBegin( cocos2d::Node* contactNode, LiquidFunFixture* fixture ) override;
 	
 private:
 	

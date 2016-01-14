@@ -52,13 +52,13 @@ void LiquidObject::disableLiquidBehavior()
 }
 
 // 剛体と接触した時に呼ばれるコールバック関数
-void LiquidObject::onContactRigidBegin( Node* contactNode, LiquidFunBody* body )
+void LiquidObject::onContactRigidBegin( Node* contactNode, LiquidFunFixture* fixture )
 {
 	return;
 }
 
 // 剛体と接触し終わった時に呼ばれるコールバック関数
-void LiquidObject::onContactRigidEnd( Node* contactNode, LiquidFunBody* body )
+void LiquidObject::onContactRigidEnd( Node* contactNode, LiquidFunFixture* fixture )
 {
 	return;
 }

@@ -18,7 +18,7 @@ Slime::Slime()
 // 初期化
 bool Slime::init( SharedPtr< ObjectData > objectData, const std::string& nodeName )
 {
-	if ( !Sprite::initWithFile( objectData->textureName ) )
+	if ( !Sprite::initWithFile( objectData->textureName, { 0.0f, 0.0f, 70.0f, 70.0f } ) )
 	{
 		return false;
 	}
@@ -32,7 +32,6 @@ bool Slime::init( SharedPtr< ObjectData > objectData, const std::string& nodeNam
 	setColor( mObjectData->textureColor );
 	setOpacity( 160 );
 	setScale( 1.5f );
-	setContentSize( { 70.0f, 70.0f } );
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setPosition( objectData->position );
 	
