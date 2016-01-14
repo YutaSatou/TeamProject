@@ -10,8 +10,6 @@
 #define _PARTICLEMANAGER_H_
 
 #include <vector>
-//#include <string.h>
-//#include <cstddef>
 #include "ParticleType.h"
 
 namespace cocos2d {
