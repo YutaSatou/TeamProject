@@ -16,13 +16,13 @@ protected:
 	
 	virtual bool init() override;
 	
-	virtual void update( float deltaTime ) override;
-	
 public:
 	
 	static GameResultLayer* create();
     
 private:
+    
+    void drawSprite( const std::string& fileName, const cocos2d::Vec2& pos );
     
     //タッチ
     void touchListener();

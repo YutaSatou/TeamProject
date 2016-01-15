@@ -26,7 +26,7 @@ bool GameTitleLayer::init()
     ORIGIN_SIZE = Director::getInstance()->getVisibleOrigin();
     
     //背景描画
-    drawSprite( "Texture/GameTitle/BackScreen.png", Vec2( SCREEN_SIZE.width / 2, SCREEN_SIZE.height / 2 ), false);
+    drawSprite( "Texture/GameTitle/Title_Background.png", Vec2( SCREEN_SIZE.width / 2, SCREEN_SIZE.height / 2 ), false);
     
     //タイトルロゴ描画
     drawSprite( "Texture/GameTitle/Title.png", Vec2( SCREEN_SIZE.width / 2.0f, 915 ), false );
