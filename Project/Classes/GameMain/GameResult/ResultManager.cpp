@@ -11,8 +11,11 @@
 #include "ResultEvaluation.h"
 #include "ResultSlime.h"
 #include "ResultStar.h"
-#include "../../Utility/Assistant/Scene/SceneChanger.h"
+#include "Utility/Assistant/Scene/SceneChanger.h"
+#include "../../Utility/Assistant/Scene/SceneCreator.h"
 #include "../GameStageSelect/GameStageSelectLayer.h"
+
+using namespace cocos2d;
 
 ResultManager::ResultManager()
 : mTouchCount( 0 )
@@ -97,7 +100,9 @@ void ResultManager::initFunc(){
     };
     
     auto sceneChange = [ & ](){
-        SceneChanger::switchScene( GameStageSelectLayer::create() );
+        Scene* scene		{ SceneCreator::createScene( GameStageSelectLayer::create() ) };
+        Scene* nextScene	{ TransitionRotoZoom::create( 0.8f, scene ) };
+        SceneChanger::switchScene( nextScene );
     };
     
     mTouch[ TouchAnimationTag::SKIP_SPRITE ]	= scoreSkip;
