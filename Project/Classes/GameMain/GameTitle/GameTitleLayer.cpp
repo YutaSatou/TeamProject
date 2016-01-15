@@ -77,6 +77,7 @@ void GameTitleLayer::drawSprite( const std::string& fileName, const Vec2& pos, b
         FadeOut* endTScale = FadeOut::create( 1.0f );
         touchLogo->runAction( RepeatForever::create( Sequence::create( endTScale, startTScale, NULL ) ) );
         this->addChild( touchLogo );
+        
         return;
     }
     
@@ -103,9 +104,9 @@ void GameTitleLayer::touchListener()
     {
         //タッチされた時の音再生
         ADX2Player::getInstance().play( 6 );
-        //シーン遷移して、フェードさせる
-        Scene* scene = SceneCreator::createScene( GameStageSelectLayer::create() );
-        Scene* nextScene = TransitionFade::create( 1.0f, scene, Color3B::WHITE );
+        //シーン遷移
+        Scene* scene		{ SceneCreator::createScene( GameStageSelectLayer::create() ) };
+        Scene* nextScene	{ TransitionRotoZoom::create( 0.8f, scene ) };
         SceneChanger::switchScene( nextScene );
     };
     

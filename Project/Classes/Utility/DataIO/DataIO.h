@@ -6,18 +6,18 @@
 //
 //
 
-#ifndef _PALYERDATA_H_
-#define _PALYERDATA_H_
+#ifndef _DATAIO_H_
+#define _DATAIO_H_
 
 #include "cocos2d.h"
 
-class PlayerData : public cocos2d::Node{
+class DataIO : public cocos2d::Node{
 
 protected:
     
-    PlayerData() = default;
+    DataIO() = default;
     
-    ~PlayerData() = default;
+    ~DataIO() = default;
     
     virtual bool init() override;
     

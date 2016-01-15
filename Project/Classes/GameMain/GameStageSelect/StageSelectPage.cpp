@@ -9,10 +9,13 @@
 #include "StageSelectPage.h"
 #include "PageCursor.h"
 #include "Utility/Assistant/Scene/SceneChanger.h"
+#include "../../Utility/Assistant/Scene/SceneCreator.h"
 #include "../GamePlay/GamePlayLayer.h"
 #include "ui/CocosGUI.h"
 #include "../../Utility/Audio/ADX2Player.h"
-#include "../../Utility/PlayerData/PlayerData.h"
+#include "../../Utility/DataIO/DataIO.h"
+
+#include "../../Utility/DataIO/StageNumber.h"
 
 using namespace cocos2d;
 using namespace ui;
@@ -31,6 +34,9 @@ bool StageSelectPage::init( const int pageNum ){
         auto pageLayer = Layer::create();
         mPage->insertPage( pageLayer );
     }
+    
+    /*StageNumber* stage = StageNumber::create();
+    addChild( stage );*/
     
     Vec2 poses[] = {
         
@@ -62,8 +68,13 @@ bool StageSelectPage::init( const int pageNum ){
             }
             if ( type == Widget::TouchEventType::ENDED ){
                 ADX2Player::getInstance().play( 6 );
-                PlayerData::saveString( "StageNum", "StageData_" + StringUtils::toString( j + 1 ) + ".plist" );
-                SceneChanger::switchScene( GamePlayLayer::create() );
+                StageNumber stage;
+                stage.saveStageNumber( j + 1 );
+                std::string num = stage.loadStageNumber();
+                //CCLOG( " ステージ : %s", num.c_str() );
+                Scene* scene		{ SceneCreator::createScene( GamePlayLayer::create() ) };
+                Scene* nextScene	{ TransitionRotoZoom::create( 0.8f, scene ) };
+                SceneChanger::switchScene( nextScene );
             }
         });
         mPage->addChild( image );
@@ -119,8 +130,6 @@ bool StageSelectPage::init( const int pageNum ){
             float x = ( mlocal.x - sprite->getPositionX() ) * 3.65f;
             mPage->move( Vec2( x, 0 ) );
             mlocal.x = sprite->getPositionX();
-            
-            //CCLOG( "aaaa" );
         }
         if ( mlocal.x >= sprite->getPositionX() ){
             float x = ( sprite->getPositionX() - mlocal.x ) * 3.65f;
@@ -147,13 +156,8 @@ bool StageSelectPage::init( const int pageNum ){
     return true;
 }
 
-/*
-void StageSelectPage::update( float deltaTime ){
-    
-}
- */
-
 StageSelectPage* StageSelectPage::create( const int pageNum ){
+    
     StageSelectPage* inst = new StageSelectPage();
     
     if ( inst && inst->init( pageNum ) ){

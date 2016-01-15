@@ -6,11 +6,11 @@
 //
 //
 
-#include "PlayerData.h"
+#include "DataIO.h"
 
 using namespace cocos2d;
 
-bool PlayerData::init(){
+bool DataIO::init(){
 
     if ( !Node::init() ){
         
@@ -20,7 +20,7 @@ bool PlayerData::init(){
     return true;
 }
 
-void PlayerData::saveInt( const char* key, int value ){
+void DataIO::saveInt( const char* key, int value ){
 
     UserDefault* userDefault = UserDefault::getInstance();
     
@@ -29,7 +29,7 @@ void PlayerData::saveInt( const char* key, int value ){
     userDefault->flush();
 }
 
-void PlayerData::saveString(const char* key, const std::string& string ){
+void DataIO::saveString(const char* key, const std::string& string ){
 
     UserDefault* userDefault = UserDefault::getInstance();
     
@@ -38,7 +38,7 @@ void PlayerData::saveString(const char* key, const std::string& string ){
     userDefault->flush();
 }
 
-void PlayerData::saveBool( const char* key, bool flg ){
+void DataIO::saveBool( const char* key, bool flg ){
 
     UserDefault* userDefault = UserDefault::getInstance();
     
@@ -47,7 +47,7 @@ void PlayerData::saveBool( const char* key, bool flg ){
     userDefault->flush();
 }
 
-int PlayerData::loadInt( const char* key ){
+int DataIO::loadInt( const char* key ){
 
     UserDefault* userDefault = UserDefault::getInstance();
     
@@ -56,7 +56,7 @@ int PlayerData::loadInt( const char* key ){
     return value;
 }
 
-std::string PlayerData::loadString( const char* key ){
+std::string DataIO::loadString( const char* key ){
 
     UserDefault* userDefault = UserDefault::getInstance();
     
@@ -65,7 +65,7 @@ std::string PlayerData::loadString( const char* key ){
     return string;
 }
 
-bool PlayerData::loadBool( const char* key ){
+bool DataIO::loadBool( const char* key ){
 
     UserDefault* userDefault = UserDefault::getInstance();
     
