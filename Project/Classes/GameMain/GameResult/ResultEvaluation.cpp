@@ -10,7 +10,7 @@
 #include "ui/CocosGUI.h"
 #include "Evaluation.h"
 #include "EvaluationTag.h"
-#include "../../Utility/PlayerData/PlayerData.h"
+// #include "../../Utility/PlayerData/PlayerData.h"
 
 using namespace cocos2d;
 using namespace ui;
@@ -50,7 +50,8 @@ void ResultEvaluation::playAnimation(){
     
     Evaluation* e = Evaluation::create();
     addChild( e );
-    
+	
+	/*
     Sequence* animation = nullptr;
     int ColorR = PlayerData::loadInt( "ColorR" );
     int ColorG = PlayerData::loadInt( "ColorG" );
@@ -106,6 +107,7 @@ void ResultEvaluation::playAnimation(){
     
     animation->setTag( 0 );
     this->runAction( animation );
+	 */
 }
 
 void ResultEvaluation::skipAnimation(){

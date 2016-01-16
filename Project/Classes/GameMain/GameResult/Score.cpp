@@ -8,7 +8,7 @@
 
 #include "Score.h"
 #include "ui/CocosGUI.h"
-#include "../../Utility/PlayerData/PlayerData.h"
+// #include "../../Utility/PlayerData/PlayerData.h"
 
 using namespace cocos2d;
 using namespace ui;
@@ -49,10 +49,11 @@ void Score::score(){
     PlayerData::saveInt( "ColorB", 255 );*/
     
     //ゲームメインでプレイヤーが作った色
-    int playerR = PlayerData::loadInt( "ColorR" );
-    int playerG = PlayerData::loadInt( "ColorG" );
-    int playerB = PlayerData::loadInt( "ColorB" );
-    
+    // int playerR = PlayerData::loadInt( "ColorR" );
+    // int playerG = PlayerData::loadInt( "ColorG" );
+    // int playerB = PlayerData::loadInt( "ColorB" );
+	
+	/*
     //ゲームメインでプレイヤーが書いた線の長さ
     int lineLength = 1;
     
@@ -60,13 +61,16 @@ void Score::score(){
     int stageR = 255;
     int stageG = 255;
     int stageB = 255;
-    
+	 */
+	
+	/*
     mScore = ( MAX( playerR, stageR ) - MIN( playerR, stageR ) )
            + ( MAX( playerG, stageG ) - MIN( playerG, stageG ) )
            + ( MAX( playerB, stageB ) - MIN( playerB, stageB ) )
            + lineLength;
     
     //CCLOG( "%i", mScore );
+	 */
 }
 
 int Score::getScore() const{
