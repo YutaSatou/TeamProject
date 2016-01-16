@@ -76,8 +76,8 @@ void GameLayer::gameEnd()
 void GameLayer::initStage( const std::string& plistFilePath )
 {
 	StageCreator stageCreator;
-	stageCreator.addListener( [ this ]( SharedPtr< ObjectData > data ) { mPlayerManager->onDataLoaded( data ); }		);
-	stageCreator.addListener( [ this ]( SharedPtr< ObjectData > data ) { mEnemyManager->onDataLoaded( data ); }			);
-	stageCreator.addListener( [ this ]( SharedPtr< ObjectData > data ) { mStageTerrainManager->onDataLoaded( data ); }	);
+	stageCreator.addListener( [ this ]( ObjectDataPtr data ) { mPlayerManager->onDataLoaded( data ); }			);
+	stageCreator.addListener( [ this ]( ObjectDataPtr data ) { mEnemyManager->onDataLoaded( data ); }			);
+	stageCreator.addListener( [ this ]( ObjectDataPtr data ) { mStageTerrainManager->onDataLoaded( data ); }	);
 	stageCreator.createStage( plistFilePath );
 }

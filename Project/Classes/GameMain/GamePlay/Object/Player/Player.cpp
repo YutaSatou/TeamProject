@@ -1,6 +1,5 @@
 #include "Player.h"
 #include "../Data/ObjectData.h"
-#include "../Color/ColorMixer.h"
 
 using namespace cocos2d;
 
@@ -15,13 +14,12 @@ namespace
 // コンストラクタ
 Player::Player()
 	: mObjectData( nullptr )
-	, mColorMixer( makeShared< ColorMixer >() )
 {
 	
 }
 
 // 初期化
-bool Player::init( SharedPtr< ObjectData > objectData )
+bool Player::init( ObjectDataPtr objectData )
 {
 	if ( !Node::init() )
 	{
@@ -60,7 +58,7 @@ void Player::update( float deltaTime )
 }
 
 // インスタンスの生成
-Player* Player::create( SharedPtr< ObjectData > objectData )
+Player* Player::create( ObjectDataPtr objectData )
 {
 	Player* inst { new Player() };
 	
@@ -72,19 +70,6 @@ Player* Player::create( SharedPtr< ObjectData > objectData )
 	
 	CC_SAFE_DELETE( inst );
 	return nullptr;
-}
-
-// 色情報の更新
-void Player::updateColor( const ColorCMY& color )
-{
-	mObjectData->backupColor	= mObjectData->blendColor;
-	mObjectData->blendColor		= color;
-	mObjectData->textureColor	= ColorCMY::convertToRGB( color );
-	
-	eachBuffer( [ this ]( UserDataPointer* userData, LiquidFunParticleColor* color, LiquidFunVec2* position )
-	{
-		( *color ) = { mObjectData->textureColor.r, mObjectData->textureColor.g, mObjectData->textureColor.b, color->a };
-	} );
 }
 
 // パーティクルの初期化
@@ -111,9 +96,5 @@ void Player::initParticle()
 // 剛体と接触した時に呼ばれるコールバック関数
 void Player::onContactRigidBegin( Node* contactNode, LiquidFunFixture* fixture )
 {
-	// 合成した色を取得する。
-	const ColorCMY& blendColor { mColorMixer->blend( this, contactNode, 0.4f ) };
 	
-	// 色情報を更新する。
-	updateColor( blendColor );
 }

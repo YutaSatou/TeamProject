@@ -53,11 +53,11 @@ void Wall::enableGameEndEvent( GameControlMediator& mediator )
 	setName( "WallEvent" );
 	
 	// 接触コールバックを設定する。
-	SharedPtr< ContactCallback > callback { makeShared< ContactCallback >() };
+	ContactCallback::Ptr callback { std::make_shared< ContactCallback >() };
 	callback->onContactLiquidBegin = [ &mediator ]( Node* contactNode, LiquidFunParticle* particle, int index )
 	{
-		// パーティクルを停止状態にして、ゲームを終了する。
-		particle->SetPaused( true );
+		// 更新を停止して、ゲームを終了する。
+		contactNode->unscheduleUpdate();
 		mediator.gameEnd();
 	};
 	

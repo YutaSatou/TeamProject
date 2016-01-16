@@ -37,7 +37,7 @@ ObjectDataReader::ObjectDataContainer ObjectDataReader::read( const std::string&
 	
 	for ( auto& valueMap : valueMapContainer )
 	{
-		SharedPtr< ObjectData > data { makeShared< ObjectData >() };
+		ObjectDataPtr data { std::make_shared< ObjectData >() };
 		
 		data->textureName	= readTextureName( valueMap );
 		data->textureColor	= readColor( valueMap );

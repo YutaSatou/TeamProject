@@ -16,7 +16,7 @@ Slime::Slime()
 }
 
 // 初期化
-bool Slime::init( SharedPtr< ObjectData > objectData, const std::string& nodeName )
+bool Slime::init( ObjectDataPtr objectData, const std::string& nodeName )
 {
 	if ( !Sprite::initWithFile( objectData->textureName, { 0.0f, 0.0f, 70.0f, 70.0f } ) )
 	{
@@ -31,7 +31,7 @@ bool Slime::init( SharedPtr< ObjectData > objectData, const std::string& nodeNam
 	setName( nodeName );
 	setColor( mObjectData->textureColor );
 	setOpacity( 160 );
-	setScale( 1.5f );
+	setScale( 1.2f );
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setPosition( objectData->position );
 	
@@ -45,7 +45,7 @@ bool Slime::init( SharedPtr< ObjectData > objectData, const std::string& nodeNam
 }
 
 // インスタンスの生成
-Slime* Slime::create( SharedPtr< ObjectData > objectData, const std::string& nodeName )
+Slime* Slime::create( ObjectDataPtr objectData, const std::string& nodeName )
 {
 	Slime* inst { new Slime() };
 	
@@ -101,7 +101,7 @@ void Slime::initPhysics()
 	addChild( LiquidFunBodyDeleter::create( mBody ) );
 	
 	// 接触コールバックを設定する。
-	SharedPtr< ContactCallback > callback { makeShared< ContactCallback >() };
+	ContactCallback::Ptr callback { std::make_shared< ContactCallback >() };
 	callback->onContactLiquidBegin = CC_CALLBACK_3( Slime::onContactLiquidBegin, this );
 	
 	// カテゴリの設定、衝突するカテゴリの設定、接触するカテゴリの設定、コールバックの有効化を行う。

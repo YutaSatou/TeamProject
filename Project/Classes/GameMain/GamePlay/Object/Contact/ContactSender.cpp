@@ -11,7 +11,7 @@ ContactSender::ContactSender( ContactEventManager::CallbackContainer& callbackCo
 	: mCallbackContainer( callbackContainer )
 	, mContactRigidContainer()
 	, mContactLiquidContainer()
-	, mSendChecker( makeShared< ContactSendChecker >( callbackContainer ) )
+	, mSendChecker( std::make_shared< ContactSendChecker >( callbackContainer ) )
 {
 	initContainer();
 }

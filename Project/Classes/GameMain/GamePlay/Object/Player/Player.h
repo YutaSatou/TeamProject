@@ -2,11 +2,7 @@
 #define _PLAYER_H_
 
 #include "../Common/LiquidObject.h"
-#include "Utility/Template/SmartPtr.h"
-
-struct	ObjectData;
-class	ColorCMY;
-class	ColorMixer;
+#include "../Data/ObjectDataPtr.h"
 
 /*------------------------------------------------------------*/
 //	@class		：	Player
@@ -33,7 +29,7 @@ protected:
 	 *	@param	objectData	オブジェクトデータ
 	 *	@return	bool		初期化が完了したか否か
 	 */
-	bool init( SharedPtr< ObjectData > objectData );
+	bool init( ObjectDataPtr objectData );
 	
 	/**
 	 *	@brief	更新
@@ -48,13 +44,7 @@ public:
 	 *	@param	objectData	オブジェクトデータ
 	 *	@return	Player		インスタンス
 	 */
-	static Player* create( SharedPtr< ObjectData > objectData );
-	
-	/**
-	 *	@brief	色情報の更新
-	 *	@param	color	更新する色
-	 */
-	void updateColor( const ColorCMY& color );
+	static Player* create( ObjectDataPtr objectData );
 	
 private:
 	
@@ -72,8 +62,7 @@ private:
 	
 private:
 	
-	SharedPtr< ObjectData >	mObjectData;	//=> オブジェクトデータ
-	SharedPtr< ColorMixer >	mColorMixer;	//=> 色合成者
+	ObjectDataPtr mObjectData;	//=> オブジェクトデータ
 };
 
 #endif

@@ -12,6 +12,7 @@
 /*------------------------------------------------------------*/
 struct ContactCallback
 {
+	using Ptr				= std::shared_ptr< ContactCallback >;
 	using ContactRigidFunc	= std::function< void( cocos2d::Node*, LiquidFunFixture* ) >;
 	using ContactLiquidFunc	= std::function< void( cocos2d::Node*, LiquidFunParticle*, int ) >;
 	

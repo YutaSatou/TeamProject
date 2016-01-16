@@ -83,7 +83,7 @@ void LiquidObject::registerTexture( const std::string& textureName )
 void LiquidObject::setupContactCallback()
 {
 	// 接触コールバックを設定する。
-	SharedPtr< ContactCallback > callback { makeShared< ContactCallback >() };
+	ContactCallback::Ptr callback { std::make_shared< ContactCallback >() };
 	callback->onContactRigidBegin	= CC_CALLBACK_2( LiquidObject::onContactRigidBegin,	this );
 	callback->onContactRigidEnd		= CC_CALLBACK_2( LiquidObject::onContactRigidEnd,	this );
 	

@@ -1,11 +1,9 @@
 #ifndef _STAGE_CREATOR_H_
 #define _STAGE_CREATOR_H_
 
-#include "Utility/Template/SmartPtr.h"
+#include "../Data/ObjectDataPtr.h"
 #include <string>
 #include <functional>
-
-struct ObjectData;
 
 /*------------------------------------------------------------*/
 //	@class		：	StageCreator
@@ -17,7 +15,7 @@ class StageCreator
 	
 public:
 	
-	using DataLoadListener = std::function< void( SharedPtr< ObjectData > ) >;
+	using DataLoadListener = std::function< void( ObjectDataPtr ) >;
 	
 public:
 	

@@ -33,7 +33,7 @@ PlayerManager* PlayerManager::create()
 }
 
 // データ読み込み時のコールバック関数
-void PlayerManager::onDataLoaded( SharedPtr< ObjectData > objectData )
+void PlayerManager::onDataLoaded( ObjectDataPtr objectData )
 {
 	if ( mIsPlayerCreated )
 	{

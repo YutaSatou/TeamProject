@@ -11,8 +11,8 @@ namespace
 
 // コンストラクタ
 LiquidFunWorldManager::LiquidFunWorldManager()
-	: mWorld( makeShared< LiquidFunWorld >( LiquidFunVec2( DEFAULT_GRAVITY.x, DEFAULT_GRAVITY.y ) ) )
-	, mScheduler( makeShared< LiquidFunScheduler >( mWorld ) )
+	: mWorld( std::make_shared< LiquidFunWorld >( LiquidFunVec2( DEFAULT_GRAVITY.x, DEFAULT_GRAVITY.y ) ) )
+	, mScheduler( std::make_shared< LiquidFunScheduler >( mWorld ) )
 	, mGravity( DEFAULT_GRAVITY )
 {
 	

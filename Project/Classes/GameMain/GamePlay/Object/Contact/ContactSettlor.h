@@ -2,7 +2,6 @@
 #define _CONTACT_SETTLOR_H_
 
 #include "ContactCallback.h"
-#include "Utility/Template/SmartPtr.h"
 
 /*------------------------------------------------------------*/
 //	@class		：	ContactSettlor
@@ -46,14 +45,14 @@ public:
 	 *	@param	callback		コールバック
 	 *	@param	otherCategory	接触するカテゴリベクタ
 	 */
-	void setupContactCategory( SharedPtr< ContactCallback > callback, const OtherCategory& otherCategory = { Contact::Category::ALL_CATEGORY } );
+	void setupContactCategory( ContactCallback::Ptr callback, const OtherCategory& otherCategory = { Contact::Category::ALL_CATEGORY } );
 	
 	/**
 	 *	@brief	接触コールバックの有効化
 	 *	@param	nodeName	ノードの名前
 	 *	@param	callback	コールバック
 	 */
-	void enableContactCallback( const std::string& nodeName, SharedPtr< ContactCallback > callback );
+	void enableContactCallback( const std::string& nodeName, ContactCallback::Ptr callback );
 	
 	/**
 	 *	@brief	接触コールバックの無効化

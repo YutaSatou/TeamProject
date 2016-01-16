@@ -24,13 +24,13 @@ void ContactSettlor::setupCollisionCategory( const OtherCategory& otherCategory 
 }
 
 // 接触するカテゴリの設定
-void ContactSettlor::setupContactCategory( SharedPtr< ContactCallback > callback, const OtherCategory& otherCategory )
+void ContactSettlor::setupContactCategory( ContactCallback::Ptr callback, const OtherCategory& otherCategory )
 {
 	callback->contactBitmask = orCalculate( otherCategory );
 }
 
 // 接触コールバックの有効化
-void ContactSettlor::enableContactCallback( const std::string& nodeName, SharedPtr< ContactCallback > callback )
+void ContactSettlor::enableContactCallback( const std::string& nodeName, ContactCallback::Ptr callback )
 {
 	auto isNotEmpty	= !nodeName.empty();
 	auto errMessage	= "ノードに名前が設定されていません。接触用コールバックを受け取りたい場合は、ノードに名前を設定する必要があります。";

@@ -3,7 +3,6 @@
 
 #include "ContactCallback.h"
 #include "Utility/Template/Singleton.h"
-#include "Utility/Template/SmartPtr.h"
 
 enum class ContactFuncTag : int;
 
@@ -19,7 +18,7 @@ class ContactEventManager : public Singleton< ContactEventManager >
 	
 public:
 	
-	using CallbackContainer = std::unordered_map< std::string, SharedPtr< ContactCallback > >;
+	using CallbackContainer = std::unordered_map< std::string, ContactCallback::Ptr >;
 	
 public:
 	
@@ -49,7 +48,7 @@ public:
 	 *	@param	nodeName	ノードの名前
 	 *	@param	callback	追加するコールバック
 	 */
-	void addCallback( const std::string& nodeName, SharedPtr< ContactCallback > callback );
+	void addCallback( const std::string& nodeName, ContactCallback::Ptr callback );
 	
 	/**
 	 *	@brief	コールバックの削除
@@ -68,8 +67,10 @@ private:
 	
 	friend class Singleton< ContactEventManager >;
 	
-	CallbackContainer			mCallbackContainer;	//=> コールバックコンテナ
-	SharedPtr< ContactSender >	mContactSender;		//=> 接触通知者
+	using ContactSenderPtr = std::shared_ptr< ContactSender >;
+	
+	CallbackContainer	mCallbackContainer;	//=> コールバックコンテナ
+	ContactSenderPtr	mContactSender;		//=> 接触通知者
 };
 
 #endif

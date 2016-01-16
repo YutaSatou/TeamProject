@@ -11,12 +11,12 @@ StageTerrainFactory::StageTerrainFactory()
 // 生成する製品の追加
 void StageTerrainFactory::addProductList()
 {
-	addCreateFunction( "Terrain_Box",		[]( SharedPtr< ObjectData > objectData )
+	addCreateFunction( "Terrain_Box",		[]( ObjectDataPtr objectData )
 					  { return StageTerrain::create( objectData, StageTerrainType::BOX ); } );
 	
-	addCreateFunction( "Terrain_Triangle",	[]( SharedPtr< ObjectData > objectData )
+	addCreateFunction( "Terrain_Triangle",	[]( ObjectDataPtr objectData )
 					  { return StageTerrain::create( objectData, StageTerrainType::TRIANGLE ); } );
 	
-	addCreateFunction( "Terrain_Circle",	[]( SharedPtr< ObjectData > objectData )
+	addCreateFunction( "Terrain_Circle",	[]( ObjectDataPtr objectData )
 					  { return StageTerrain::create( objectData, StageTerrainType::CIRCLE ); } );
 }
