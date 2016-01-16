@@ -52,15 +52,16 @@ private:
 	
 private:
 	
-	using ContactRigid				= std::function< void( std::string, cocos2d::Node*, LiquidFunBody* ) >;
+	using ContactRigid				= std::function< void( std::string, cocos2d::Node*, LiquidFunFixture* ) >;
 	using ContactLiquid				= std::function< void( std::string, cocos2d::Node*, LiquidFunParticle*, int ) >;
 	using ContactRigidContainer		= std::unordered_map< ContactFuncTag, ContactRigid, EnumHash >;
 	using ContactLiquidContainer	= std::unordered_map< ContactFuncTag, ContactLiquid, EnumHash >;
+	using ContactSendCheckerPtr		= std::shared_ptr< ContactSendChecker >;
 	
 	ContactEventManager::CallbackContainer&	mCallbackContainer;			//=> コールバックコンテナ
 	ContactRigidContainer					mContactRigidContainer;		//=> 剛体接触通知用コンテナ
 	ContactLiquidContainer					mContactLiquidContainer;	//=> 液体接触通知用コンテナ
-	SharedPtr< ContactSendChecker >			mSendChecker;				//=> 接触通知確認者
+	ContactSendCheckerPtr					mSendChecker;				//=> 接触通知確認者
 };
 
 #endif

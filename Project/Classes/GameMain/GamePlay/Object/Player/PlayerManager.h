@@ -2,10 +2,9 @@
 #define _PLAYER_MANAGER_H_
 
 #include "cocos2d.h"
-#include "Utility/Template/SmartPtr.h"
+#include "../Data/ObjectDataPtr.h"
 
-struct	ObjectData;
-class	Player;
+class Player;
 
 /*------------------------------------------------------------*/
 //	@class		：	PlayerManager
@@ -39,7 +38,7 @@ public:
 	 *	@brief	データ読み込み時のコールバック関数
 	 *	@param	objectData	オブジェクトデータ
 	 */
-	void onDataLoaded( SharedPtr< ObjectData > objectData );
+	void onDataLoaded( ObjectDataPtr objectData );
 	
 	/**
 	 *	@brief	ゲーム開始時のコールバック関数

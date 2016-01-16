@@ -8,7 +8,7 @@ using namespace cocos2d;
 
 // コンストラクタ
 StageTerrainManager::StageTerrainManager()
-	: mStageTerrainFactory( makeShared< StageTerrainFactory >() )
+	: mStageTerrainFactory( std::make_shared< StageTerrainFactory >() )
 {
 	
 }
@@ -29,7 +29,7 @@ StageTerrainManager* StageTerrainManager::create()
 }
 
 // データ読み込み時のコールバック関数
-void StageTerrainManager::onDataLoaded( SharedPtr< ObjectData > objectData )
+void StageTerrainManager::onDataLoaded( ObjectDataPtr objectData )
 {
 	addStageTerrain( objectData, "Terrain_Box"		);
 	addStageTerrain( objectData, "Terrain_Triangle"	);
@@ -37,7 +37,7 @@ void StageTerrainManager::onDataLoaded( SharedPtr< ObjectData > objectData )
 }
 
 // 地形の追加
-void StageTerrainManager::addStageTerrain( SharedPtr< ObjectData > objectData, const std::string& key )
+void StageTerrainManager::addStageTerrain( ObjectDataPtr objectData, const std::string& key )
 {
 	if ( std::strstr( objectData->textureName.c_str(), key.c_str() ) )
 	{

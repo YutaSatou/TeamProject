@@ -56,16 +56,16 @@ protected:
 	/**
 	 *	@brief	剛体と接触した時に呼ばれるコールバック関数
 	 *	@param	contactNode	接触したノード
-	 *	@param	body		接触したボディ
+	 *	@param	fixture		接触したフィクスチャ
 	 */
-	virtual void onContactRigidBegin( cocos2d::Node* contactNode, LiquidFunBody* body );
+	virtual void onContactRigidBegin( cocos2d::Node* contactNode, LiquidFunFixture* fixture );
 	
 	/**
 	 *	@brief	剛体と接触し終わった時に呼ばれるコールバック関数
 	 *	@param	contactNode	接触したノード
-	 *	@param	body		接触したボディ
+	 *	@param	fixture		接触したフィクスチャ
 	 */
-	virtual void onContactRigidEnd( cocos2d::Node* contactNode, LiquidFunBody* body );
+	virtual void onContactRigidEnd( cocos2d::Node* contactNode, LiquidFunFixture* fixture );
 	
 	/**
 	 *	@brief	テクスチャの登録

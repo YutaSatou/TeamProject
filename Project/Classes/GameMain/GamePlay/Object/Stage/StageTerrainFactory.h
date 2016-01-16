@@ -2,17 +2,16 @@
 #define _STAGE_TERRAIN_FACTORY_H_
 
 #include "../Data/ObjectFactory.h"
-#include "Utility/Template/SmartPtr.h"
+#include "../Data/ObjectDataPtr.h"
 
-struct	ObjectData;
-class	StageTerrain;
+class StageTerrain;
 
 /*------------------------------------------------------------*/
 //	@class		：	StageTerrainFactory
 //	@brief		：	地形生成工場
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/
-class StageTerrainFactory : public ObjectFactory< StageTerrain, SharedPtr< ObjectData > >
+class StageTerrainFactory : public ObjectFactory< StageTerrain, ObjectDataPtr >
 {
 	
 public:

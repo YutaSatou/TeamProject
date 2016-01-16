@@ -4,7 +4,7 @@
 
 // コンストラクタ
 StageCreator::StageCreator()
-	: mListener( []( SharedPtr< ObjectData > ) { } )
+	: mListener( []( ObjectDataPtr ) { } )
 {
 	
 }
@@ -16,7 +16,7 @@ void StageCreator::addListener( DataLoadListener listener )
 	const DataLoadListener& prev { mListener };
 	
 	// リスナを合成する。
-	mListener = [ = ]( SharedPtr< ObjectData > objectData ) { prev( objectData ); listener( objectData ); };
+	mListener = [ = ]( ObjectDataPtr objectData ) { prev( objectData ); listener( objectData ); };
 }
 
 // ステージの生成
@@ -28,7 +28,7 @@ void StageCreator::createStage( const std::string& plistFilePath )
 	// プロパティリストファイルを読み込む。
 	container = objectDataReader.read( plistFilePath );
 	
-	std::for_each( container.begin(), container.end(), [ this ]( SharedPtr< ObjectData > objectData )
+	std::for_each( container.begin(), container.end(), [ this ]( ObjectDataPtr objectData )
 	{
 		// リスナにコールバックを送信する。
 		mListener( objectData );

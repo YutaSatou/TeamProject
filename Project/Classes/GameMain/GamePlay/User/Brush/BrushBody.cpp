@@ -8,7 +8,7 @@ using namespace cocos2d;
 // コンストラクタ
 BrushBody::BrushBody()
 	: mSegmentContainer()
-	, mBodyDescCreator( makeUnique< LiquidFunBodyDescCreator >() )
+	, mBodyDescCreator( std::make_shared< LiquidFunBodyDescCreator >() )
 {
 	
 }

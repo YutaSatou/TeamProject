@@ -6,7 +6,7 @@ using namespace cocos2d;
 
 // コンストラクタ
 EnemyManager::EnemyManager()
-	: mEnemyFactory( makeShared< EnemyFactory >() )
+	: mEnemyFactory( std::make_shared< EnemyFactory >() )
 {
 	
 }
@@ -27,7 +27,7 @@ EnemyManager* EnemyManager::create()
 }
 
 // データ読み込み時のコールバック関数
-void EnemyManager::onDataLoaded( SharedPtr< ObjectData > objectData )
+void EnemyManager::onDataLoaded( ObjectDataPtr objectData )
 {
 	// テクスチャの名前をキーとして使用する。
 	const std::string& key { mEnemyFactory->extractFileName( objectData->textureName ) };

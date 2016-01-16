@@ -1,6 +1,5 @@
 #include "Player.h"
 #include "../Data/ObjectData.h"
-#include "../Color/ColorMixer.h"
 
 using namespace cocos2d;
 
@@ -15,13 +14,12 @@ namespace
 // コンストラクタ
 Player::Player()
 	: mObjectData( nullptr )
-	, mColorMixer( makeShared< ColorMixer >() )
 {
 	
 }
 
 // 初期化
-bool Player::init( SharedPtr< ObjectData > objectData )
+bool Player::init( ObjectDataPtr objectData )
 {
 	if ( !Node::init() )
 	{
@@ -60,7 +58,7 @@ void Player::update( float deltaTime )
 }
 
 // インスタンスの生成
-Player* Player::create( SharedPtr< ObjectData > objectData )
+Player* Player::create( ObjectDataPtr objectData )
 {
 	Player* inst { new Player() };
 	
@@ -80,11 +78,11 @@ void Player::initParticle()
 	// パーティクルの生成に必要な設定記述子を生成する。
 	LiquidFunParticleDescCreator	creator;
 	LiquidFunParticleDesc			particleDesc	{ creator.createParticleDesc( 4.0f ) };
-	LiquidFunParticleGroupDesc		groupDesc		{ creator.createParticleGroupDesc( mObjectData->textureColor, mObjectData->position, PARTICLE_TYPE, getContentSize().width, 80 ) };
+	LiquidFunParticleGroupDesc		groupDesc		{ creator.createParticleGroupDesc( mObjectData->textureColor, mObjectData->position, PARTICLE_TYPE, getContentSize().width, 120 ) };
 	
 	// 弾力の強さを設定する。
 	particleDesc.springStrength		= 0.2f;
-	particleDesc.dampingStrength	= 0.5f;
+	particleDesc.dampingStrength	= 0.7f;
 	groupDesc.strength				= 0.3f;
 	
 	// パーティクルを装着する。
@@ -96,17 +94,7 @@ void Player::initParticle()
 }
 
 // 剛体と接触した時に呼ばれるコールバック関数
-void Player::onContactRigidBegin( Node* contactNode, LiquidFunBody* body )
+void Player::onContactRigidBegin( Node* contactNode, LiquidFunFixture* fixture )
 {
-	// 合成した色を取得する。
-	const ColorCMY& blendColor { mColorMixer->blend( this, contactNode, 0.4f ) };
 	
-	// 色情報を更新する。
-	mObjectData->blendColor		= blendColor;
-	mObjectData->textureColor	= ColorCMY::convertToRGB( blendColor );
-	
-	eachBuffer( [ this ]( UserDataPointer* userData, LiquidFunParticleColor* color, LiquidFunVec2* position )
-	{
-		( *color ) = { mObjectData->textureColor.r, mObjectData->textureColor.g, mObjectData->textureColor.b, color->a };
-	} );
 }

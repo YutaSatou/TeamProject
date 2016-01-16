@@ -2,7 +2,7 @@
 #define _LIQUID_FUN_SCHEDULER_H_
 
 #include "LiquidFunDefine.h"
-#include "Utility/Template/SmartPtr.h"
+#include <memory>
 
 /*------------------------------------------------------------*/
 //	@class		：	LiquidFunScheduler
@@ -18,7 +18,7 @@ public:
 	 *	@brief	コンストラクタ
 	 *	@param	world	ワールド
 	 */
-	LiquidFunScheduler( SharedPtr< LiquidFunWorld > world );
+	LiquidFunScheduler( std::shared_ptr< LiquidFunWorld > world );
 	
 	/**
 	 *	@brief	デストラクタ
@@ -44,7 +44,7 @@ private:
 	
 private:
 	
-	SharedPtr< LiquidFunWorld > mWorld;	//=> ワールド
+	std::shared_ptr< LiquidFunWorld > mWorld;	//=> ワールド
 };
 
 #endif
