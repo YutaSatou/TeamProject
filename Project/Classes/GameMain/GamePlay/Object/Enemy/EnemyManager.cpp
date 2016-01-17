@@ -32,12 +32,12 @@ void EnemyManager::onDataLoaded( ObjectDataPtr objectData )
 	// テクスチャの名前をキーとして使用する。
 	const std::string& key { mEnemyFactory->extractFileName( objectData->textureName ) };
 	
-	if ( !mEnemyFactory->isEmptyElement( key ) )
+	if ( mEnemyFactory->isRegisterElement( key ) )
 	{
 		// テクスチャの名前と、オブジェクト管理数をオブジェクトの名前として使用する。
-		const std::string& name { key + StringUtils::toString( getObjectManageCount() ) };
+		const std::string& name { key + ":" + StringUtils::toString( getObjectManageCount() ) };
 		
-		// 自身の子ノードとして追加する。
+		// 敵を生成して、自身の子ノードとして追加する。
 		Node* enemy { mEnemyFactory->createObject( key, objectData, name ) };
 		addChild( enemy );
 	}

@@ -56,7 +56,7 @@ void Wall::enableGameEndEvent( GameControlMediator& mediator )
 	ContactCallback::Ptr callback { std::make_shared< ContactCallback >() };
 	callback->onContactLiquidBegin = [ &mediator ]( Node* contactNode, LiquidFunParticle* particle, int index )
 	{
-		// 更新を停止して、ゲームを終了する。
+		// スケジュール登録を解除し、ゲームを終了する。
 		contactNode->unscheduleUpdate();
 		mediator.gameEnd();
 	};

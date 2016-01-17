@@ -62,7 +62,7 @@ void StageTerrain::initPhysics( ObjectDataPtr objectData, const StageTerrainType
 			{
 				const float	halfW		{ size.width	/ 2.0f };
 				const float	halfH		{ size.height	/ 2.0f };
-				const Vec2	vertices[]	{ { -halfW, -halfH }, { -halfW, halfH }, { halfW, -halfH } };
+				const Vec2	vertices[]	{ { -halfW, -halfH }, { halfW, halfH }, { halfW, -halfH } };
 				
 				return creator.createPolygon( vertices, 3, material );
 			}

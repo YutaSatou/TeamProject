@@ -49,11 +49,19 @@ public:
 	InstanceType* createObject( const std::string& key, Param... param );
 	
 	/**
-	 *	@brief	要素が空か否か
+	 *	@brief	要素が登録済みか否か
 	 *	@param	key		要素を引き出すキー
-	 *	@return	bool	要素が空か否か
+	 *	@return	bool	要素が登録済みか否か
 	 */
-	bool isEmptyElement( const std::string& key ) const;
+	bool isRegisterElement( const std::string& key ) const;
+	
+	/**
+	 *	@brief	文字列にキーが含まれているか否か
+	 *	@param	key		検索するキー
+	 *	@param	str		確認する文字列
+	 *	@return	bool	文字列にキーが含まれているか否か
+	 */
+	bool containsKeyToStr( const std::string& key, const std::string& str ) const;
 	
 	/**
 	 *	@brief	ファイルパスからファイルネームの抽出
