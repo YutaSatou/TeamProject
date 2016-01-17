@@ -5,7 +5,7 @@ using namespace cocos2d;
 
 namespace
 {
-	const int ACTION_TAG_UNIQUE { 1245780 };	//=> アニメーションのタグ
+	const int ACTION_TAG_UNIQUE { 1245780 };	//=> アクションのタグ
 }
 
 // コンストラクタ

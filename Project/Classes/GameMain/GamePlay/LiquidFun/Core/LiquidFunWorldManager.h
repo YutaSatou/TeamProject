@@ -4,7 +4,6 @@
 #include "cocos2d.h"
 #include "LiquidFunBox2D.h"
 #include "Utility/Template/Singleton.h"
-#include "Utility/Template/SmartPtr.h"
 
 class LiquidFunScheduler;
 
@@ -97,9 +96,12 @@ private:
 	friend class Singleton< LiquidFunWorldManager >;
 	friend class LiquidFunDebugDrawer;
 	
-	SharedPtr< LiquidFunWorld >		mWorld;		//=> ワールド
-	SharedPtr< LiquidFunScheduler >	mScheduler;	//=> 定期実行者
-	cocos2d::Vect					mGravity;	//=> 重力値
+	using LiquidFunWorldPtr		= std::shared_ptr< LiquidFunWorld >;
+	using LiquidFunSchedulerPtr	= std::shared_ptr< LiquidFunScheduler >;
+	
+	LiquidFunWorldPtr		mWorld;		//=> ワールド
+	LiquidFunSchedulerPtr	mScheduler;	//=> 定期実行者
+	cocos2d::Vect			mGravity;	//=> 重力値
 };
 
 #endif

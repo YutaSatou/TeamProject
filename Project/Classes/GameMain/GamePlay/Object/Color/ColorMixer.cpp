@@ -11,7 +11,7 @@ namespace
 
 // コンストラクタ
 ColorMixer::ColorMixer()
-	: mColorHelper( makeShared< ColorHelper >() )
+	: mColorHelper( std::make_shared< ColorHelper >() )
 {
 	
 }

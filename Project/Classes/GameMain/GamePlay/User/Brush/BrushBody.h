@@ -2,7 +2,7 @@
 #define _BRUSH_BODY_H_
 
 #include "../../LiquidFun/LiquidFunDefine.h"
-#include "Utility/Template/SmartPtr.h"
+#include <memory>
 #include <vector>
 #include <functional>
 
@@ -69,10 +69,11 @@ private:
 	
 private:
 	
-	using SegmentContainer = std::vector< LiquidFunFixtureDesc >;
+	using SegmentContainer				= std::vector< LiquidFunFixtureDesc >;
+	using LiquidFunBodyDescCreatorPtr	= std::shared_ptr< LiquidFunBodyDescCreator >;
 	
-	SegmentContainer						mSegmentContainer;	//=> 線形状のフィクスチャ設定記述子のコンテナ
-	UniquePtr< LiquidFunBodyDescCreator >	mBodyDescCreator;	//=> ボディ設定記述子生成者
+	SegmentContainer			mSegmentContainer;	//=> 線形状のフィクスチャ設定記述子のコンテナ
+	LiquidFunBodyDescCreatorPtr	mBodyDescCreator;	//=> ボディ設定記述子生成者
 };
 
 #endif

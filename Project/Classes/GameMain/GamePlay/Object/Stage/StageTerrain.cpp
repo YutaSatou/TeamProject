@@ -1,6 +1,6 @@
 #include "StageTerrain.h"
-#include "../../LiquidFun/LiquidFunUserAPI.h"
 #include "../Data/ObjectData.h"
+#include "../../LiquidFun/LiquidFunUserAPI.h"
 #include "../Common/LiquidFunBodyDeleter.h"
 #include "Utility/Template/EnumHash.h"
 
@@ -13,7 +13,7 @@ namespace
 }
 
 // 初期化
-bool StageTerrain::init( SharedPtr< ObjectData > objectData, const StageTerrainType& terrainType )
+bool StageTerrain::init( ObjectDataPtr objectData, const StageTerrainType& terrainType )
 {
 	if ( !Sprite::initWithFile( objectData->textureName ) )
 	{
@@ -32,7 +32,7 @@ bool StageTerrain::init( SharedPtr< ObjectData > objectData, const StageTerrainT
 }
 
 // インスタンスの生成
-StageTerrain* StageTerrain::create( SharedPtr< ObjectData > objectData, const StageTerrainType& terrainType )
+StageTerrain* StageTerrain::create( ObjectDataPtr objectData, const StageTerrainType& terrainType )
 {
 	StageTerrain* inst { new StageTerrain() };
 	
@@ -47,7 +47,7 @@ StageTerrain* StageTerrain::create( SharedPtr< ObjectData > objectData, const St
 }
 
 // 物理構造の初期化
-void StageTerrain::initPhysics( SharedPtr< ObjectData > objectData, const StageTerrainType& terrainType )
+void StageTerrain::initPhysics( ObjectDataPtr objectData, const StageTerrainType& terrainType )
 {
 	static DescCreateFuncContainer descCreateFuncContainer
 	{
@@ -62,7 +62,7 @@ void StageTerrain::initPhysics( SharedPtr< ObjectData > objectData, const StageT
 			{
 				const float	halfW		{ size.width	/ 2.0f };
 				const float	halfH		{ size.height	/ 2.0f };
-				const Vec2	vertices[]	{ { -halfW, -halfH }, { -halfW, halfH }, { halfW, -halfH } };
+				const Vec2	vertices[]	{ { -halfW, -halfH }, { halfW, halfH }, { halfW, -halfH } };
 				
 				return creator.createPolygon( vertices, 3, material );
 			}

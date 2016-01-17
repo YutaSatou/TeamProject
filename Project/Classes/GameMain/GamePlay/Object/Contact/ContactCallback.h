@@ -12,7 +12,8 @@
 /*------------------------------------------------------------*/
 struct ContactCallback
 {
-	using ContactRigidFunc	= std::function< void( cocos2d::Node*, LiquidFunBody* ) >;
+	using Ptr				= std::shared_ptr< ContactCallback >;
+	using ContactRigidFunc	= std::function< void( cocos2d::Node*, LiquidFunFixture* ) >;
 	using ContactLiquidFunc	= std::function< void( cocos2d::Node*, LiquidFunParticle*, int ) >;
 	
 	ContactRigidFunc	onContactRigidBegin;	//=> 剛体と接触した時に呼ばれるコールバック関数
@@ -26,9 +27,9 @@ struct ContactCallback
 	 *	@brief	コンストラクタ
 	 */
 	ContactCallback()
-		: onContactRigidBegin(		[]( cocos2d::Node*, LiquidFunBody* ) { } )
-		, onContactRigidPreSolve(	[]( cocos2d::Node*, LiquidFunBody* ) { } )
-		, onContactRigidEnd(		[]( cocos2d::Node*, LiquidFunBody* ) { } )
+		: onContactRigidBegin(		[]( cocos2d::Node*, LiquidFunFixture* ) { } )
+		, onContactRigidPreSolve(	[]( cocos2d::Node*, LiquidFunFixture* ) { } )
+		, onContactRigidEnd(		[]( cocos2d::Node*, LiquidFunFixture* ) { } )
 		, onContactLiquidBegin(		[]( cocos2d::Node*, LiquidFunParticle*, int ) { } )
 		, onContactLiquidEnd(		[]( cocos2d::Node*, LiquidFunParticle*, int ) { } )
 		, contactBitmask( Contact::toUShort( Contact::Category::NONE ) )

@@ -2,10 +2,9 @@
 #define _STAGE_TERRAIN_MANAGER_H_
 
 #include "cocos2d.h"
-#include "Utility/Template/SmartPtr.h"
+#include "../Data/ObjectDataPtr.h"
 
-struct	ObjectData;
-class	StageTerrainFactory;
+class StageTerrainFactory;
 
 /*------------------------------------------------------------*/
 //	@class		：	StageTerrainManager
@@ -39,7 +38,7 @@ public:
 	 *	@brief	データ読み込み時のコールバック関数
 	 *	@param	objectData	オブジェクトデータ
 	 */
-	void onDataLoaded( SharedPtr< ObjectData > objectData );
+	void onDataLoaded( ObjectDataPtr objectData );
 	
 private:
 	
@@ -48,11 +47,13 @@ private:
 	 *	@param	objectData	オブジェクトデータ
 	 *	@param	key			地形の生成に必要なキー
 	 */
-	void addStageTerrain( SharedPtr< ObjectData > objectData, const std::string& key );
+	void addStageTerrain( ObjectDataPtr objectData, const std::string& key );
 	
 private:
 	
-	SharedPtr< StageTerrainFactory > mStageTerrainFactory;	//=> 地形生成工場
+	using StageTerrainFactoryPtr = std::shared_ptr< StageTerrainFactory >;
+	
+	StageTerrainFactoryPtr mStageTerrainFactory;	//=> 地形生成工場
 };
 
 #endif

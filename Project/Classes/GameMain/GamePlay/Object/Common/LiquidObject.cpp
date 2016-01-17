@@ -33,7 +33,7 @@ void LiquidObject::updateParticle()
 		}
 		
 		// 各バッファの情報をノードに適応する。
-		node->setColor( Color3B( ( *color ).r, ( *color ).g, ( *color ).b ) );
+		node->setColor( { ( *color ).r, ( *color ).g, ( *color ).b } );
 		node->setPosition( LiquidFunHelper::toPixsel( ( *position ) ) + ( getContentSize() / 2.0f ) );
 		node->setOpacity( ( *color ).a );
 	} );
@@ -42,23 +42,23 @@ void LiquidObject::updateParticle()
 // 液体挙動の有効化
 void LiquidObject::enableLiquidBehavior()
 {
-	mParticle->SetPaused( true );
+	mParticle->SetPaused( false );
 }
 
 // 液体挙動の無効化
 void LiquidObject::disableLiquidBehavior()
 {
-	mParticle->SetPaused( false );
+	mParticle->SetPaused( true );
 }
 
 // 剛体と接触した時に呼ばれるコールバック関数
-void LiquidObject::onContactRigidBegin( Node* contactNode, LiquidFunBody* body )
+void LiquidObject::onContactRigidBegin( Node* contactNode, LiquidFunFixture* fixture )
 {
 	return;
 }
 
 // 剛体と接触し終わった時に呼ばれるコールバック関数
-void LiquidObject::onContactRigidEnd( Node* contactNode, LiquidFunBody* body )
+void LiquidObject::onContactRigidEnd( Node* contactNode, LiquidFunFixture* fixture )
 {
 	return;
 }
@@ -83,7 +83,7 @@ void LiquidObject::registerTexture( const std::string& textureName )
 void LiquidObject::setupContactCallback()
 {
 	// 接触コールバックを設定する。
-	SharedPtr< ContactCallback > callback { makeShared< ContactCallback >() };
+	ContactCallback::Ptr callback { std::make_shared< ContactCallback >() };
 	callback->onContactRigidBegin	= CC_CALLBACK_2( LiquidObject::onContactRigidBegin,	this );
 	callback->onContactRigidEnd		= CC_CALLBACK_2( LiquidObject::onContactRigidEnd,	this );
 	

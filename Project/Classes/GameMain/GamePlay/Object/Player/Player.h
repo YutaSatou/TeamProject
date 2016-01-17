@@ -2,10 +2,7 @@
 #define _PLAYER_H_
 
 #include "../Common/LiquidObject.h"
-#include "Utility/Template/SmartPtr.h"
-
-struct	ObjectData;
-class	ColorMixer;
+#include "../Data/ObjectDataPtr.h"
 
 /*------------------------------------------------------------*/
 //	@class		：	Player
@@ -32,7 +29,7 @@ protected:
 	 *	@param	objectData	オブジェクトデータ
 	 *	@return	bool		初期化が完了したか否か
 	 */
-	bool init( SharedPtr< ObjectData > objectData );
+	bool init( ObjectDataPtr objectData );
 	
 	/**
 	 *	@brief	更新
@@ -47,7 +44,7 @@ public:
 	 *	@param	objectData	オブジェクトデータ
 	 *	@return	Player		インスタンス
 	 */
-	static Player* create( SharedPtr< ObjectData > objectData );
+	static Player* create( ObjectDataPtr objectData );
 	
 private:
 	
@@ -59,14 +56,13 @@ private:
 	/**
 	 *	@brief	剛体と接触した時に呼ばれるコールバック関数
 	 *	@param	contactNode	接触したノード
-	 *	@param	body		接触したボディ
+	 *	@param	fixture		接触したフィクスチャ
 	 */
-	virtual void onContactRigidBegin( cocos2d::Node* contactNode, LiquidFunBody* body ) override;
+	virtual void onContactRigidBegin( cocos2d::Node* contactNode, LiquidFunFixture* fixture ) override;
 	
 private:
 	
-	SharedPtr< ObjectData >	mObjectData;	//=> オブジェクトデータ
-	SharedPtr< ColorMixer >	mColorMixer;	//=> 色合成者
+	ObjectDataPtr mObjectData;	//=> オブジェクトデータ
 };
 
 #endif

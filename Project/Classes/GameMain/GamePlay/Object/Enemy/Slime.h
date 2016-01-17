@@ -3,9 +3,7 @@
 
 #include "cocos2d.h"
 #include "../../LiquidFun/LiquidFunDefine.h"
-#include "Utility/Template/SmartPtr.h"
-
-struct ObjectData;
+#include "../Data/ObjectDataPtr.h"
 
 /*------------------------------------------------------------*/
 //	@class		：	Slime
@@ -33,7 +31,7 @@ protected:
 	 *	@param	nodeName	ノードに設定する名前
 	 *	@return	bool		初期化が完了したか否か
 	 */
-	bool init( SharedPtr< ObjectData > objectData, const std::string& nodeName );
+	bool init( ObjectDataPtr objectData, const std::string& nodeName );
 	
 public:
 	
@@ -43,7 +41,7 @@ public:
 	 *	@param	nodeName	ノードに設定する名前
 	 *	@return	Slime		インスタンス
 	 */
-	static Slime* create( SharedPtr< ObjectData > objectData, const std::string& nodeName );
+	static Slime* create( ObjectDataPtr objectData, const std::string& nodeName );
 	
 private:
 	
@@ -67,8 +65,8 @@ private:
 	
 private:
 	
-	LiquidFunBody*			mBody;			//=> ボディ
-	SharedPtr< ObjectData >	mObjectData;	//=> オブジェクトデータ
+	LiquidFunBody*	mBody;			//=> ボディ
+	ObjectDataPtr	mObjectData;	//=> オブジェクトデータ
 };
 
 #endif

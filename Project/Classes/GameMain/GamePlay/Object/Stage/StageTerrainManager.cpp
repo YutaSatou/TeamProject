@@ -2,13 +2,12 @@
 #include "../Data/ObjectData.h"
 #include "StageTerrainFactory.h"
 #include "StageTerrain.h"
-#include <cstring>
 
 using namespace cocos2d;
 
 // コンストラクタ
 StageTerrainManager::StageTerrainManager()
-	: mStageTerrainFactory( makeShared< StageTerrainFactory >() )
+	: mStageTerrainFactory( std::make_shared< StageTerrainFactory >() )
 {
 	
 }
@@ -29,7 +28,7 @@ StageTerrainManager* StageTerrainManager::create()
 }
 
 // データ読み込み時のコールバック関数
-void StageTerrainManager::onDataLoaded( SharedPtr< ObjectData > objectData )
+void StageTerrainManager::onDataLoaded( ObjectDataPtr objectData )
 {
 	addStageTerrain( objectData, "Terrain_Box"		);
 	addStageTerrain( objectData, "Terrain_Triangle"	);
@@ -37,14 +36,12 @@ void StageTerrainManager::onDataLoaded( SharedPtr< ObjectData > objectData )
 }
 
 // 地形の追加
-void StageTerrainManager::addStageTerrain( SharedPtr< ObjectData > objectData, const std::string& key )
+void StageTerrainManager::addStageTerrain( ObjectDataPtr objectData, const std::string& key )
 {
-	if ( std::strstr( objectData->textureName.c_str(), key.c_str() ) )
+	if ( mStageTerrainFactory->containsKeyToStr( key, objectData->textureName ) )
 	{
-		// テクスチャの名前にキーが含まれている場合、地形を生成する。
+		// テクスチャの名前にキーが含まれている場合は、地形を生成して自身の子ノードとして追加する。
 		StageTerrain* stageTerrain { mStageTerrainFactory->createObject( key, objectData ) };
-		
-		// 自身の子ノードとして追加する。
 		addChild( stageTerrain );
 	}
 }

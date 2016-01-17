@@ -5,7 +5,7 @@
 // コンストラクタ
 ContactEventManager::ContactEventManager()
 	: mCallbackContainer()
-	, mContactSender( makeShared< ContactSender >( mCallbackContainer ) )
+	, mContactSender( std::make_shared< ContactSender >( mCallbackContainer ) )
 {
 	
 }
@@ -29,7 +29,7 @@ void ContactEventManager::onContactEvent( const ContactFuncTag& funcTag, LiquidF
 }
 
 // コールバックの追加
-void ContactEventManager::addCallback( const std::string& nodeName, SharedPtr< ContactCallback > callback )
+void ContactEventManager::addCallback( const std::string& nodeName, ContactCallback::Ptr callback )
 {
 	mCallbackContainer[ nodeName ] = callback;
 }

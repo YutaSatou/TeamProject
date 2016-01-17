@@ -6,7 +6,7 @@
 
 /*------------------------------------------------------------*/
 //	@struct		：	EnumHash
-//	@brief		：	EnumHash関数オブジェクト
+//	@brief		：	map用のHash
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/
 struct EnumHash
@@ -17,9 +17,9 @@ struct EnumHash
 	 *	@return	size_t	要素数
 	 */
 	template< typename T >
-	std::size_t operator () ( T t ) const
+	std::size_t operator () ( T x ) const
 	{
-		return static_cast< std::size_t >( t );
+		return static_cast< std::size_t >( x );
 	}
 };
 

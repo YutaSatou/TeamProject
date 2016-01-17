@@ -2,10 +2,9 @@
 #define _ENEMY_MANAGER_H_
 
 #include "cocos2d.h"
-#include "Utility/Template/SmartPtr.h"
+#include "../Data/ObjectDataPtr.h"
 
-struct	ObjectData;
-class	EnemyFactory;
+class EnemyFactory;
 
 /*------------------------------------------------------------*/
 //	@class		：	EnemyManager
@@ -39,7 +38,7 @@ public:
 	 *	@brief	データ読み込み時のコールバック関数
 	 *	@param	objectData	オブジェクトデータ
 	 */
-	void onDataLoaded( SharedPtr< ObjectData > objectData );
+	void onDataLoaded( ObjectDataPtr objectData );
 	
 private:
 	
@@ -51,7 +50,9 @@ private:
 	
 private:
 	
-	SharedPtr< EnemyFactory > mEnemyFactory;	//=> 敵生成工場
+	using EnemyFactoryPtr = std::shared_ptr< EnemyFactory >;
+	
+	EnemyFactoryPtr mEnemyFactory;	//=> 敵生成工場
 };
 
 #endif

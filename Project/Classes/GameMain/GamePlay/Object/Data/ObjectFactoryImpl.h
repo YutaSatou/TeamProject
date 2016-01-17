@@ -2,6 +2,7 @@
 #define _OBJECT_FACTORY_IMPL_H_
 
 #include "ObjectFactory.h"
+#include <cstring>
 
 // デストラクタ
 template< typename InstanceType, typename... Param >
@@ -24,11 +25,18 @@ InstanceType* ObjectFactory< InstanceType, Param... >::createObject( const std::
 	return mCreateFunctionContainer.at( key )( param... );
 }
 
-// 要素が空か否か
+// 要素が登録済みか否か
 template< typename InstanceType, typename... Param >
-bool ObjectFactory< InstanceType, Param... >::isEmptyElement( const std::string& key ) const
+bool ObjectFactory< InstanceType, Param... >::isRegisterElement( const std::string& key ) const
 {
-	return ( mCreateFunctionContainer.count( key ) == 0 );
+	return ( mCreateFunctionContainer.count( key ) != 0 );
+}
+
+// 文字列にキーが含まれているか否か
+template< typename InstanceType, typename... Param >
+bool ObjectFactory< InstanceType, Param... >::containsKeyToStr( const std::string& key, const std::string& str ) const
+{
+	return std::strstr( str.c_str(), key.c_str() );
 }
 
 // ファイルパスからファイルネームの抽出

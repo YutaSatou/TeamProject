@@ -1,11 +1,9 @@
 #ifndef _OBJECT_DATA_READER_H_
 #define _OBJECT_DATA_READER_H_
 
-#include "Utility/Template/SmartPtr.h"
+#include "ObjectDataPtr.h"
 #include <string>
 #include <vector>
-
-struct ObjectData;
 
 /*------------------------------------------------------------*/
 //	@class		：	ObjectDataReader
@@ -17,7 +15,7 @@ class ObjectDataReader
 	
 public:
 	
-	using ObjectDataContainer = std::vector< SharedPtr< ObjectData > >;
+	using ObjectDataContainer = std::vector< ObjectDataPtr >;
 	
 public:
 	
