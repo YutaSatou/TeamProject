@@ -53,7 +53,7 @@ private:
     ResultSlime* mSlime;
     ResultStar* mStar;
     std::function< void() >	mTouch[ TouchAnimationTag::LENGTH ];
-    TouchAnimationTag	mTouchAnimationTag;
+    TouchAnimationTag mTouchAnimationTag;
 };
 
 #endif

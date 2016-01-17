@@ -24,17 +24,14 @@ bool GameResultLayer::init()
     
     touchListener();
     
+    drawSprite( "Texture/GameResult/Result_ Background.png", Vec2( SCREEN_SIZE.width / 2, SCREEN_SIZE.height / 2 ) );
+    
     mResultManager = ResultManager::create();
     addChild( mResultManager );
 	
     scheduleUpdate();
 	
 	return true;
-}
-
-void GameResultLayer::update( float deltaTime )
-{
-	
 }
 
 GameResultLayer* GameResultLayer::create()
@@ -49,6 +46,15 @@ GameResultLayer* GameResultLayer::create()
 	
 	CC_SAFE_DELETE( inst );
 	return nullptr;
+}
+
+
+void GameResultLayer::drawSprite( const std::string& fileName, const Vec2& pos )
+{
+    //単純スプライトを表示させる
+    Sprite* sprite = Sprite::create( fileName );
+    sprite->setPosition( pos );
+    this->addChild( sprite );
 }
 
 void GameResultLayer::touchListener(){
