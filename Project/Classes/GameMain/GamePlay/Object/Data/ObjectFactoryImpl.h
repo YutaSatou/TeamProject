@@ -2,6 +2,7 @@
 #define _OBJECT_FACTORY_IMPL_H_
 
 #include "ObjectFactory.h"
+#include <cstring>
 
 // デストラクタ
 template< typename InstanceType, typename... Param >
