@@ -51,6 +51,18 @@ public:
 	 */
 	void disableLiquidBehavior();
 	
+	/**
+	 *	@brief	継続的な力の加算
+	 *	@param	force	加算していく力
+	 */
+	void applyForce( const cocos2d::Vec2& force );
+	
+	/**
+	 *	@brief	瞬間的な力の加算
+	 *	@param	impulse	加算する力
+	 */
+	void applyLinearImpulse( const cocos2d::Vec2& impulse );
+	
 protected:
 	
 	/**
