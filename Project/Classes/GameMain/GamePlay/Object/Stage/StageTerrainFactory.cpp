@@ -12,11 +12,11 @@ StageTerrainFactory::StageTerrainFactory()
 void StageTerrainFactory::addProductList()
 {
 	addCreateFunction( "Terrain_Box",		[]( ObjectDataPtr objectData )
-					  { return StageTerrain::create( objectData, StageTerrainType::BOX ); } );
+					   { return StageTerrain::create( objectData, StageTerrainType::BOX ); } );
 	
 	addCreateFunction( "Terrain_Triangle",	[]( ObjectDataPtr objectData )
-					  { return StageTerrain::create( objectData, StageTerrainType::TRIANGLE ); } );
+					   { return StageTerrain::create( objectData, StageTerrainType::TRIANGLE ); } );
 	
 	addCreateFunction( "Terrain_Circle",	[]( ObjectDataPtr objectData )
-					  { return StageTerrain::create( objectData, StageTerrainType::CIRCLE ); } );
+					   { return StageTerrain::create( objectData, StageTerrainType::CIRCLE ); } );
 }
