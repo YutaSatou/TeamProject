@@ -32,6 +32,7 @@ bool Slime::init( ObjectDataPtr objectData, const std::string& nodeName )
 	setTag( Contact::toUShort( Contact::Category::SLIME ) );
 	setColor( mObjectData->textureColor );
 	setOpacity( 200 );
+	setScale( 1.2f );
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setPosition( objectData->position );
 	

@@ -22,6 +22,7 @@ bool StageTerrain::init( ObjectDataPtr objectData, const StageTerrainType& terra
 	
 	// 各パラメータを設定する。
 	setColor( objectData->textureColor );
+	setScale( 1.2f );
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setPosition( objectData->position );
 	
