@@ -74,7 +74,7 @@ bool StageSelectPage::init( const int pageNum ){
                 ADX2Player::getInstance().play( 6 );
                 stage.saveStageNumber( j + 1 );
 				stageColor.saveColor( 0, 0, 0 );
-                Scene* scene		{ SceneCreator::createScene( GameResultLayer::create() ) };
+                Scene* scene		{ SceneCreator::createScene( GamePlayLayer::create() ) };
                 Scene* nextScene	{ TransitionRotoZoom::create( 0.8f, scene ) };
                 SceneChanger::switchScene( nextScene );
             }
