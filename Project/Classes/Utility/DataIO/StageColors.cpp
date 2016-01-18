@@ -13,6 +13,7 @@ using namespace cocos2d;
 
 namespace
 {
+	const std::string ROOL = "Plist/StageData/";
 	const std::string STAGE_KEY = "StageNumber";
 	const std::string STAGE_CREATE_DIRECTORY = "StageData_";
 	const std::string EXTENSION = ".plist";
@@ -24,7 +25,7 @@ void StageColors::saveColor( int colorR, int colorG, int colorB )
 	StageNumber stageNumber;
     std::string file = path + "Stage" + StringUtils::toString( stageNumber.loadStageNumber() ) + "ColorData.plist";
     ValueMap data;
-	data["name"] = STAGE_CREATE_DIRECTORY.c_str() + StringUtils::toString( stageNumber.loadStageNumber() ) + EXTENSION.c_str();
+	data["name"] = ROOL + STAGE_CREATE_DIRECTORY + StringUtils::toString( stageNumber.loadStageNumber() ) + EXTENSION;
     data["ColorR"] = colorR;
     data["ColorG"] = colorG;
     data["ColorB"] = colorB;
