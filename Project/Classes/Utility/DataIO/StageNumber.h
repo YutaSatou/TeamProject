@@ -23,7 +23,9 @@ public:
     
     static void saveStageNumber( int stageNumber );
     
-    static std::string loadStageNumber();
+    static int loadStageNumber();
+	
+	std::string loadPlistName() const;
 };
 
 #endif
