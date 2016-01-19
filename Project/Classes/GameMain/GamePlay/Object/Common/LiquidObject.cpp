@@ -63,6 +63,14 @@ void LiquidObject::applyLinearImpulse( const Vec2& impulse )
 	mParticleGroup->ApplyLinearImpulse( { impulse.x, impulse.y } );
 }
 
+// 移動量の取得
+Vec2 LiquidObject::getLinearVelocity() const
+{
+	LiquidFunVec2 linearVelocity { mParticleGroup->GetLinearVelocity() * mParticleGroup->GetMass() };
+	
+	return { linearVelocity.x, linearVelocity.y };
+}
+
 // 剛体と接触した時に呼ばれるコールバック関数
 void LiquidObject::onContactRigidBegin( Node* contactNode, LiquidFunFixture* fixture )
 {

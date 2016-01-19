@@ -53,15 +53,21 @@ public:
 	
 	/**
 	 *	@brief	継続的な力の加算
-	 *	@param	force	加算していく力
+	 *	@param	force	液体に加える力
 	 */
 	void applyForce( const cocos2d::Vec2& force );
 	
 	/**
 	 *	@brief	瞬間的な力の加算
-	 *	@param	impulse	加算する力
+	 *	@param	impulse	液体に加える力
 	 */
 	void applyLinearImpulse( const cocos2d::Vec2& impulse );
+	
+	/**
+	 *	@brief	移動量の取得
+	 *	@return	Vec2	移動量( 質量計算済 )
+	 */
+	cocos2d::Vec2 getLinearVelocity() const;
 	
 protected:
 	
