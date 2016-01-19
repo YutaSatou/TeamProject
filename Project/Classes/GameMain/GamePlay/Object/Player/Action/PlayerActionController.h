@@ -43,7 +43,7 @@ public:
 	
 	/**
 	 *	@brief	アクションの変更
-	 *	@param	tag	変更するアクションのタグ
+	 *	@param	tag		変更するアクションのタグ
 	 */
 	virtual void switchAction( const ActionTag& tag ) override;
 	
@@ -62,7 +62,7 @@ public:
 	void init( Player* owner, ObjectDataPtr objectData );
 	
 	/**
-	 *	@param	更新
+	 *	@brief	更新
 	 *	@param	deltaTime	デルタ時間
 	 */
 	void update( float deltaTime );

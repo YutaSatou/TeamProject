@@ -4,7 +4,7 @@
 #include "../../Contact/ContactCategory.h"
 
 /*------------------------------------------------------------*/
-//	@class		：	PlayerEatAction
+//	@class		：	PlayerActionMediator
 //	@brief		：	アクション制御仲介者
 //	@author		：	利川聖太
 /*------------------------------------------------------------*/
@@ -19,7 +19,7 @@ public:
 	
 	/**
 	 *	@brief	アクションの変更
-	 *	@param	tag	変更するアクションのタグ
+	 *	@param	tag		変更するアクションのタグ
 	 */
 	virtual void switchAction( const ActionTag& tag ) = 0;
 	

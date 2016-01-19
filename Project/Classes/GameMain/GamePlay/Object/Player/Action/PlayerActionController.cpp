@@ -1,5 +1,4 @@
 #include "PlayerActionController.h"
-#include "cocos2d.h"
 #include "../../Data/ObjectData.h"
 #include "Player.h"
 #include "PlayerNoneAction.h"
@@ -48,8 +47,8 @@ void PlayerActionController::execute( Node* contactNode, LiquidFunFixture* fixtu
 // 初期化
 void PlayerActionController::init( Player* owner, ObjectDataPtr objectData )
 {
-	add( ActionTag::NONE,	std::make_shared< PlayerNoneAction >( *this ) );
-	add( ActionTag::SLIME,	std::make_shared< PlayerEatAction >( *this, owner, objectData ) );
+	add( ActionTag::NONE,	std::make_shared< PlayerNoneAction >( *this )					);
+	add( ActionTag::SLIME,	std::make_shared< PlayerEatAction >( *this, owner, objectData )	);
 }
 
 // 更新
