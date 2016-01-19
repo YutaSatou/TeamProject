@@ -82,9 +82,10 @@ void Player::syncColor()
 {
 	eachBuffer( [ this ]( UserDataPointer* userData, LiquidFunParticleColor* color, LiquidFunVec2* position )
 	{
-		const Color3B& c { mObjectData->textureColor };
+		const Color3B&	c	{ mObjectData->textureColor };
+		const uint8_t	a	{ mObjectData->alpha };
 		
-		( *color ) = { c.r, c.g, c.b, getOpacity() };
+		( *color ) = { c.r, c.g, c.b, a };
 	} );
 }
 
@@ -94,7 +95,7 @@ void Player::initParticle()
 	// パーティクルの生成に必要な設定記述子を生成する。
 	LiquidFunParticleDescCreator	creator;
 	LiquidFunParticleDesc			particleDesc	{ creator.createParticleDesc( 4.0f ) };
-	LiquidFunParticleGroupDesc		groupDesc		{ creator.createParticleGroupDesc( mObjectData->textureColor, mObjectData->position, PARTICLE_TYPE, getContentSize().width, 120 ) };
+	LiquidFunParticleGroupDesc		groupDesc		{ creator.createParticleGroupDesc( mObjectData->textureColor, mObjectData->position, PARTICLE_TYPE, getContentSize().width, mObjectData->alpha ) };
 	
 	// 弾力の強さを設定する。
 	particleDesc.springStrength		= 0.2f;

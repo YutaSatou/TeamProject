@@ -18,6 +18,7 @@ struct ObjectData
 	cocos2d::Color3B	textureColor;	//=> テクスチャの色
 	cocos2d::Vec2		position;		//=> 座標
 	LiquidFunMaterial	material;		//=> マテリアル
+	uint8_t				alpha;			//=> α値
 	
 	/**
 	 *	@brief	コンストラクタ
@@ -29,6 +30,7 @@ struct ObjectData
 		, textureColor( cocos2d::Color3B::WHITE )
 		, position( cocos2d::Vec2::ZERO )
 		, material()
+		, alpha( 0 )
 	{
 		
 	}
@@ -39,13 +41,15 @@ struct ObjectData
 	 *	@param	_textureColor	テクスチャの色
 	 *	@param	_position		座標
 	 *	@param	_material		マテリアル
+	 *	@param	_alpha			α値
 	 */
 	ObjectData
 	(
 		const std::string&			_textureName,
 		const cocos2d::Color3B&		_textureColor,
 		const cocos2d::Vec2&		_position,
-		const LiquidFunMaterial&	_material
+		const LiquidFunMaterial&	_material,
+		const uint8_t				_alpha
 	)
 		: blendColor( ColorCMY::convertToCMY( _textureColor ) )
 		, backupColor( ColorCMY::convertToCMY( _textureColor ) )
@@ -53,6 +57,7 @@ struct ObjectData
 		, textureColor( _textureColor )
 		, position( _position )
 		, material( _material )
+		, alpha( _alpha )
 	{
 		
 	}

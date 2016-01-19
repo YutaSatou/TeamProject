@@ -25,6 +25,11 @@ namespace
 	{
 		return { valueMap.at( "Density" ).asFloat(), valueMap.at( "Restitution" ).asFloat(), valueMap.at( "Friction" ).asFloat() };
 	}
+	
+	uint8_t readAlpha( const ValueMap& valueMap )
+	{
+		return { valueMap.at( "Alpha" ).asByte() };
+	}
 }
 
 // データの読み込み
@@ -42,7 +47,8 @@ ObjectDataReader::ObjectDataContainer ObjectDataReader::read( const std::string&
 			std::make_shared< ObjectData >( readTextureName( valueMap ),
 										    readColor( valueMap ),
 										    readPosition( valueMap ),
-										    readMaterial( valueMap ) )
+										    readMaterial( valueMap ),
+										    readAlpha( valueMap ) )
 		};
 		
 		container.emplace_back( data );

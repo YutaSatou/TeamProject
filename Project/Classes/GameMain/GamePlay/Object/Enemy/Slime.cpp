@@ -30,7 +30,7 @@ bool Slime::init( ObjectDataPtr objectData, const std::string& nodeName )
 	// 各パラメータを設定する。
 	setName( nodeName );
 	setColor( mObjectData->textureColor );
-	setOpacity( 200 );
+	setOpacity( mObjectData->alpha );
 	setScale( 1.2f );
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setPosition( objectData->position );
