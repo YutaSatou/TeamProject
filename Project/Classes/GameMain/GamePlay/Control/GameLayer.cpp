@@ -68,7 +68,7 @@ void GameLayer::gameStart()
 void GameLayer::gameEnd()
 {
 	Scene* scene		{ SceneCreator::createScene( GameResultLayer::create() ) };
-	Scene* nextScene	{ TransitionRotoZoom::create( 0.8f, scene ) };
+	Scene* nextScene	{ TransitionSlideInB::create( 0.8f, scene ) };
 	SceneChanger::switchScene( nextScene );
 }
 
