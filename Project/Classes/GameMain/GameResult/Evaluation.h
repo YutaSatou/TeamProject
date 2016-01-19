@@ -13,8 +13,6 @@
 #include "ui/CocosGUI.h"
 #include "EvaluationTag.h"
 
-class Score;
-
 class Evaluation : public cocos2d::Node{
     
 protected:
@@ -39,9 +37,6 @@ private:
 private:
     
     EvaluationTag evaTag;
-    
-    Score* mScore;
-    
         
 };
 

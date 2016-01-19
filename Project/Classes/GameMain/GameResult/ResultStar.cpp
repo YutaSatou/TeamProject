@@ -46,9 +46,9 @@ void ResultStar::drawStar( int StarNum, float delay ){
     
     Vec2 poses[] = {
     
-        Vec2( 180, 520 ),
-        Vec2( 360, 620 ),
-        Vec2( 540, 520 )
+        Vec2( 180, 260 ),
+        Vec2( 360, 360 ),
+        Vec2( 540, 260 )
     };
 	
     mStarNum = StarNum;
@@ -76,22 +76,22 @@ void ResultStar::playAnimation(){
     
     if ( e->getTag() == EvaluationTag::BAD ){
         
-        drawStar( 1, 1.5f );
+        drawStar( 1, 2.5f );
     }
     
     if ( e->getTag() == EvaluationTag::GOOD ){
         
-        drawStar( 2, 1.5f );
+        drawStar( 2, 2.5f );
     }
     
     if ( e->getTag() == EvaluationTag::EXCELLENT ){
     
-        drawStar( 2, 1.5f );
+        drawStar( 2, 2.5f );
     }
     
     if ( e->getTag() == EvaluationTag::PERFECT ){
     
-        drawStar( 3, 1.5f );
+        drawStar( 3, 2.5f );
     }
 }
 

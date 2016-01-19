@@ -8,7 +8,9 @@
 
 #include "Score.h"
 #include "ui/CocosGUI.h"
-// #include "../../Utility/PlayerData/PlayerData.h"
+#include "../../Utility/DataIO/StageColors.h"
+#include "../../Utility/DataIO/StageNumber.h"
+#include "../../Utility/DataIO/ClearColor.h"
 
 using namespace cocos2d;
 using namespace ui;
@@ -44,33 +46,32 @@ Score* Score::create(){
 
 void Score::score(){
     
-    /*PlayerData::saveInt( "ColorR", 255 );
-    PlayerData::saveInt( "ColorG", 255 );
-    PlayerData::saveInt( "ColorB", 255 );*/
-    
-    //ゲームメインでプレイヤーが作った色
-    // int playerR = PlayerData::loadInt( "ColorR" );
-    // int playerG = PlayerData::loadInt( "ColorG" );
-    // int playerB = PlayerData::loadInt( "ColorB" );
+	StageNumber stageNumber;
+	StageColors stageColor;
+	//ゲームメインでプレイヤーが作った色
+	int stageNum = stageNumber.loadStageNumber();
+	int playerR = stageColor.loadColorR( stageNum );
+	int playerG = stageColor.loadColorG( stageNum );
+	int playerB = stageColor.loadColorB( stageNum );
 	
-	/*
-    //ゲームメインでプレイヤーが書いた線の長さ
-    int lineLength = 1;
-    
-    //選んだステージの目標の色
-    int stageR = 255;
-    int stageG = 255;
-    int stageB = 255;
-	 */
+	//CCLOG( "Player : %i, %i, %i", playerR, playerG, playerB );
 	
-	/*
+	//ゲームメインでプレイヤーが書いた線の長さ
+	//int lineLength = 1;
+	
+	//選んだステージの目標の色
+	ClearColor clearColor;
+	Color3B color = clearColor.ColorTargetRead();
+	int stageR = color.r;
+	int stageG = color.g;
+	int stageB = color.b;
+	
     mScore = ( MAX( playerR, stageR ) - MIN( playerR, stageR ) )
            + ( MAX( playerG, stageG ) - MIN( playerG, stageG ) )
            + ( MAX( playerB, stageB ) - MIN( playerB, stageB ) )
-           + lineLength;
+           /*+ lineLength*/;
     
     //CCLOG( "%i", mScore );
-	 */
 }
 
 int Score::getScore() const{
