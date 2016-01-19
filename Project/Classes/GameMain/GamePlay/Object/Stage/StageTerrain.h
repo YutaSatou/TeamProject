@@ -2,7 +2,7 @@
 #define _STAGE_TERRAIN_H_
 
 #include "cocos2d.h"
-#include "../Data/ObjectDataPtr.h"
+#include "../Data/ObjectDataDefine.h"
 
 /**
  *	@brief	地形の種類

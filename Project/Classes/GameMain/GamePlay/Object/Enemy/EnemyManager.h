@@ -2,7 +2,7 @@
 #define _ENEMY_MANAGER_H_
 
 #include "cocos2d.h"
-#include "../Data/ObjectDataPtr.h"
+#include "../Data/ObjectDataDefine.h"
 
 class EnemyFactory;
 

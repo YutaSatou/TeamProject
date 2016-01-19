@@ -1,5 +1,5 @@
-#ifndef _OBJECT_DATA_PTR_H_
-#define _OBJECT_DATA_PTR_H_
+#ifndef _OBJECT_DATA_DEFINE_H_
+#define _OBJECT_DATA_DEFINE_H_
 
 #include <memory>
 

@@ -29,7 +29,6 @@ bool Slime::init( ObjectDataPtr objectData, const std::string& nodeName )
 	
 	// 各パラメータを設定する。
 	setName( nodeName );
-	setTag( Contact::toUShort( Contact::Category::SLIME ) );
 	setColor( mObjectData->textureColor );
 	setOpacity( 200 );
 	setScale( 1.2f );

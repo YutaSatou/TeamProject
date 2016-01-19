@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "../Data/ObjectData.h"
+#include "Action/PlayerActionController.h"
 
 using namespace cocos2d;
 
@@ -14,6 +15,7 @@ namespace
 // コンストラクタ
 Player::Player()
 	: mObjectData( nullptr )
+	, mActionController( std::make_shared< PlayerActionController >() )
 {
 	
 }
@@ -39,10 +41,13 @@ bool Player::init( ObjectDataPtr objectData )
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setPosition( Vec2::ZERO );
 	
-	// 液体関係の初期化を行う。
+	// パーティクルの初期化、接触コールバックの設定を行う。
 	initParticle();
 	registerTexture( mObjectData->textureName );
 	setupContactCallback();
+	
+	// アクション制御者の初期化を行う。
+	mActionController->init( this, mObjectData );
 	
 	return true;
 }
@@ -50,11 +55,11 @@ bool Player::init( ObjectDataPtr objectData )
 // 更新
 void Player::update( float deltaTime )
 {
-	// 基底クラスの更新を行う。
 	LiquidObject::update( deltaTime );
 	
-	// パーティクルの更新を行う。
 	updateParticle();
+	
+	mActionController->update( deltaTime );
 }
 
 // インスタンスの生成
@@ -70,6 +75,17 @@ Player* Player::create( ObjectDataPtr objectData )
 	
 	CC_SAFE_DELETE( inst );
 	return nullptr;
+}
+
+// 色情報の同期
+void Player::syncColor()
+{
+	eachBuffer( [ this ]( UserDataPointer* userData, LiquidFunParticleColor* color, LiquidFunVec2* position )
+	{
+		const Color3B& c { mObjectData->textureColor };
+		
+		( *color ) = { c.r, c.g, c.b, getOpacity() };
+	} );
 }
 
 // パーティクルの初期化
@@ -96,5 +112,5 @@ void Player::initParticle()
 // 剛体と接触した時に呼ばれるコールバック関数
 void Player::onContactRigidBegin( Node* contactNode, LiquidFunFixture* fixture )
 {
-	
+	mActionController->execute( contactNode, fixture );
 }

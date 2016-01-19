@@ -2,7 +2,7 @@
 #define _STAGE_TERRAIN_FACTORY_H_
 
 #include "../Data/ObjectFactory.h"
-#include "../Data/ObjectDataPtr.h"
+#include "../Data/ObjectDataDefine.h"
 
 class StageTerrain;
 
