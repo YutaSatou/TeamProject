@@ -22,6 +22,8 @@ bool StageTerrain::init( ObjectDataPtr objectData, const StageTerrainType& terra
 	
 	// 各パラメータを設定する。
 	setColor( objectData->textureColor );
+	setOpacity( objectData->alpha );
+	setScale( 1.2f );
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setPosition( objectData->position );
 	
@@ -78,7 +80,7 @@ void StageTerrain::initPhysics( ObjectDataPtr objectData, const StageTerrainType
 	// ボディの生成に必要な設定記述子を生成する。
 	LiquidFunBodyDescCreator	bodyDescCreator;
 	LiquidFunBodyDesc			bodyDesc	{ bodyDescCreator.createBodyDesc( this, LiquidFunBodyType::b2_staticBody ) };
-	LiquidFunFixtureDesc		fixtureDesc	{ descCreateFuncContainer.at( terrainType )( bodyDescCreator, getContentSize(), objectData->material ) };
+	LiquidFunFixtureDesc		fixtureDesc	{ descCreateFuncContainer.at( terrainType )( bodyDescCreator, getContentSize() * getScaleX(), objectData->material ) };
 	
 	// ボディを装着する。
 	LiquidFunBody* body { LiquidFunBodySettlor::attachBody( bodyDesc, fixtureDesc ) };

@@ -2,7 +2,7 @@
 #define _ENEMY_FACTORY_H_
 
 #include "../Data/ObjectFactory.h"
-#include "../Data/ObjectDataPtr.h"
+#include "../Data/ObjectDataDefine.h"
 
 namespace cocos2d
 {

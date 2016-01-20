@@ -1,7 +1,7 @@
 #ifndef _OBJECT_DATA_READER_H_
 #define _OBJECT_DATA_READER_H_
 
-#include "ObjectDataPtr.h"
+#include "ObjectDataDefine.h"
 #include <string>
 #include <vector>
 

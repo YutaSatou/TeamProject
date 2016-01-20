@@ -1,7 +1,7 @@
 #ifndef _STAGE_CREATOR_H_
 #define _STAGE_CREATOR_H_
 
-#include "../Data/ObjectDataPtr.h"
+#include "../Data/ObjectDataDefine.h"
 #include <string>
 #include <functional>
 

@@ -34,8 +34,8 @@ void LiquidObject::updateParticle()
 		
 		// 各バッファの情報をノードに適応する。
 		node->setColor( { ( *color ).r, ( *color ).g, ( *color ).b } );
-		node->setPosition( LiquidFunHelper::toPixsel( ( *position ) ) + ( getContentSize() / 2.0f ) );
 		node->setOpacity( ( *color ).a );
+		node->setPosition( LiquidFunHelper::toPixsel( ( *position ) ) + ( getContentSize() / 2.0f ) );
 	} );
 }
 
@@ -51,16 +51,36 @@ void LiquidObject::disableLiquidBehavior()
 	mParticle->SetPaused( true );
 }
 
+// 継続的な力の加算
+void LiquidObject::applyForce( const Vec2& force )
+{
+	mParticleGroup->ApplyForce( { force.x, force.y } );
+}
+
+// 瞬間的な力の加算
+void LiquidObject::applyLinearImpulse( const Vec2& impulse )
+{
+	mParticleGroup->ApplyLinearImpulse( { impulse.x, impulse.y } );
+}
+
+// 移動量の取得
+Vec2 LiquidObject::getLinearVelocity() const
+{
+	LiquidFunVec2 linearVelocity { mParticleGroup->GetLinearVelocity() * mParticleGroup->GetMass() };
+	
+	return { linearVelocity.x, linearVelocity.y };
+}
+
 // 剛体と接触した時に呼ばれるコールバック関数
 void LiquidObject::onContactRigidBegin( Node* contactNode, LiquidFunFixture* fixture )
 {
-	return;
+	
 }
 
 // 剛体と接触し終わった時に呼ばれるコールバック関数
 void LiquidObject::onContactRigidEnd( Node* contactNode, LiquidFunFixture* fixture )
 {
-	return;
+	
 }
 
 // テクスチャの登録

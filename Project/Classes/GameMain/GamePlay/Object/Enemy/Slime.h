@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 #include "../../LiquidFun/LiquidFunDefine.h"
-#include "../Data/ObjectDataPtr.h"
+#include "../Data/ObjectDataDefine.h"
 
 /*------------------------------------------------------------*/
 //	@class		：	Slime

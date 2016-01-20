@@ -2,7 +2,9 @@
 #define _PLAYER_H_
 
 #include "../Common/LiquidObject.h"
-#include "../Data/ObjectDataPtr.h"
+#include "../Data/ObjectDataDefine.h"
+
+class PlayerActionController;
 
 /*------------------------------------------------------------*/
 //	@class		：	Player
@@ -46,6 +48,11 @@ public:
 	 */
 	static Player* create( ObjectDataPtr objectData );
 	
+	/**
+	 *	@brief	色情報の同期
+	 */
+	void syncColor();
+	
 private:
 	
 	/**
@@ -62,7 +69,10 @@ private:
 	
 private:
 	
-	ObjectDataPtr mObjectData;	//=> オブジェクトデータ
+	using PlayerActionControllerPtr = std::shared_ptr< PlayerActionController >;
+	
+	ObjectDataPtr				mObjectData;		//=> オブジェクトデータ
+	PlayerActionControllerPtr	mActionController;	//=> アクション制御者
 };
 
 #endif

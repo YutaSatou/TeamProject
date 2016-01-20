@@ -4,7 +4,7 @@
 #include "ContactCallback.h"
 #include "Utility/Template/Singleton.h"
 
-enum class ContactFuncTag : int;
+enum class ContactFuncTag;
 
 class ContactSender;
 
