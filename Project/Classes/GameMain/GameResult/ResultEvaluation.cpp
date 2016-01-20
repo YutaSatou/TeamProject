@@ -12,6 +12,7 @@
 #include "EvaluationTag.h"
 #include "../../Utility/DataIO/StageNumber.h"
 #include "../../Utility/DataIO/StageColors.h"
+#include "../../Utility/Audio/ADX2Player.h"
 
 using namespace cocos2d;
 using namespace ui;
@@ -67,6 +68,7 @@ void ResultEvaluation::playAnimation(){
             Sprite* sprite = Sprite::create("Texture/GameResult/" + EvaluationPath.at( EvaluationTag::BAD ) + ".png" );
             sprite->setColor( Color3B( ColorR, ColorG, ColorB ) );
             //sprite->setPosition( 360, 930 );
+			ADX2Player::getInstance().play( 9 );
 			sprite->setAnchorPoint( Vec2::ANCHOR_MIDDLE );
             this->addChild(sprite);
         }), nullptr);
@@ -80,6 +82,7 @@ void ResultEvaluation::playAnimation(){
             Sprite* sprite = Sprite::create("Texture/GameResult/" + EvaluationPath.at( EvaluationTag::GOOD ) + ".png" );
             sprite->setColor( Color3B( ColorR, ColorG, ColorB ) );
             //sprite->setPosition( 360, 930 );
+			ADX2Player::getInstance().play( 9 );
 			sprite->setAnchorPoint( Vec2::ANCHOR_MIDDLE );
             this->addChild(sprite);
         }), nullptr);
@@ -93,6 +96,7 @@ void ResultEvaluation::playAnimation(){
             Sprite* sprite = Sprite::create("Texture/GameResult/" + EvaluationPath.at( EvaluationTag::EXCELLENT ) + ".png" );
             sprite->setColor( Color3B( ColorR, ColorG, ColorB ) );
             //sprite->setPosition( 360, 930 );
+			ADX2Player::getInstance().play( 9 );
 			sprite->setAnchorPoint( Vec2::ANCHOR_MIDDLE );
             this->addChild(sprite);
         }), nullptr);
@@ -106,6 +110,7 @@ void ResultEvaluation::playAnimation(){
             Sprite* sprite = Sprite::create("Texture/GameResult/" + EvaluationPath.at( EvaluationTag::PERFECT ) + ".png" );
             sprite->setColor( Color3B( ColorR, ColorG, ColorB ) );
             //sprite->setPosition( 360, 930 );
+			ADX2Player::getInstance().play( 9 );
 			sprite->setAnchorPoint( Vec2::ANCHOR_MIDDLE );
             this->addChild(sprite);
         }), nullptr);

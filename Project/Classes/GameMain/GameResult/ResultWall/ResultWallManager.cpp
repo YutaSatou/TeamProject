@@ -70,12 +70,13 @@ bool ResultWallManager::init()
 	addChild( rightMiddle );
 	
 	//スライムを箱に入れるための透明な壁
-	ResultWall* leftWall { ResultWall::create( { 300, 440 }, { 300, 280 } ) };
-	ResultWall* rightWall { ResultWall::create( { 420, 440 }, { 420, 280 } ) };
+	ResultWall* leftWall { ResultWall::create( { 250, 440 }, { 250, 280 } ) };
+	ResultWall* rightWall { ResultWall::create( { 470, 440 }, { 470, 280 } ) };
 	addChild( leftWall );
 	addChild( rightWall );
 	
 	//ばらばらになったスライムを入れる箱を用意する
+	ResultWall* flaskMouthLeft { ResultWall::create( { 250, 280 }, { 300, 230 } ) };
 	ResultWall* flaskLeft { ResultWall::create( { 300, 230 },{ 300, 150 } ) };
 	ResultWall* flaskLeftUp { ResultWall::create( { 300, 150 }, { 280, 130 } ) };
 	ResultWall* flaskLeftMuddle { ResultWall::create( { 280, 130 }, { 280, 100 } ) };
@@ -86,7 +87,9 @@ bool ResultWallManager::init()
 	ResultWall* flaskRightMuddle { ResultWall::create( { 440, 100 }, { 440, 130 } ) };
 	ResultWall* flaskRightUp { ResultWall::create( { 440, 130 }, { 420, 150 } ) };
 	ResultWall* flaskRight { ResultWall::create( { 420, 150 }, { 420, 230 } ) };
+	ResultWall* flaskMouthRight { ResultWall::create( { 470, 280 }, { 420, 230 } ) };
 	
+	addChild( flaskMouthLeft );
 	addChild( flaskLeft );
 	addChild( flaskLeftUp );
 	addChild( flaskLeftMuddle );
@@ -97,6 +100,7 @@ bool ResultWallManager::init()
 	addChild( flaskRightMuddle );
 	addChild( flaskRightUp );
 	addChild( flaskRight );
+	addChild( flaskMouthRight );
 	
 	return true;
 }
