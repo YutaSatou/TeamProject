@@ -71,10 +71,10 @@ bool StageSelectPage::init( const int pageNum ){
             if ( type == Widget::TouchEventType::BEGAN ){
             }
             if ( type == Widget::TouchEventType::ENDED ){
-                ADX2Player::getInstance().play( 6 );
+                ADX2Player::getInstance().play( 2 );
                 stage.saveStageNumber( j + 1 );
 				stageColor.saveColor( 0, 0, 0 );
-                Scene* scene		{ SceneCreator::createScene( GamePlayLayer::create() ) };
+                Scene* scene		{ SceneCreator::createScene( GameResultLayer::create() ) };
                 Scene* nextScene	{ TransitionRotoZoom::create( 0.8f, scene ) };
                 SceneChanger::switchScene( nextScene );
             }

@@ -60,7 +60,7 @@ void ResultStar::drawStar( int StarNum, float delay ){
             star->setAnchorPoint( Vec2::ANCHOR_MIDDLE );
             RotateBy* rotate = RotateBy::create( 0.3f, 360 );
             star->runAction( rotate );
-            ADX2Player::getInstance().play( 3 );
+            ADX2Player::getInstance().play( 10 );
             star->setPosition( poses[ i ] );
             this->addChild( star );
         }), nullptr );
