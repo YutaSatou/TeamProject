@@ -16,7 +16,9 @@ namespace
 {
     const uint16_t PARTICLE_TYPE
     {
-        LiquidFunParticleType::b2_tensileParticle | LiquidFunParticleType::b2_barrierParticle
+        LiquidFunParticleType::b2_reactiveParticle |
+		LiquidFunParticleType::b2_viscousParticle |
+		LiquidFunParticleType::b2_barrierParticle
     };
 }
 
@@ -45,7 +47,7 @@ bool ResultSlimeObject::init()
     
     // 液体関係の初期化を行う。
     initParticle();
-    registerTexture( "Texture/GamePlay/Particle.png" );
+    registerTexture( "Texture/GameResult/Particle_20x20.png" );
     setupContactCallback();
     
     return true;
@@ -88,7 +90,7 @@ void ResultSlimeObject::initParticle()
 	int colorB = stageColor.loadColorB( stageNum );
     // パーティクルの生成に必要な設定記述子を生成する。
     LiquidFunParticleDescCreator	creator;
-    LiquidFunParticleDesc			particleDesc	{ creator.createParticleDesc( 5.0f ) };
+    LiquidFunParticleDesc			particleDesc	{ creator.createParticleDesc( 10.0f ) };
 	LiquidFunParticleGroupDesc		groupDesc		{ creator.createParticleGroupDesc( Color3B( colorR, colorG, colorB ), { 360, 1280 }, PARTICLE_TYPE, 150, 200 ) };
     
     // パーティクルを装着する。

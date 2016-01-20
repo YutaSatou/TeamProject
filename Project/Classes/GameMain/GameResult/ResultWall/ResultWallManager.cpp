@@ -25,32 +25,22 @@ bool ResultWallManager::init()
 	//const Vec2&	screenMin	{ Vec2::ZERO };
 	//const Vec2&	screenMax	{ Director::getInstance()->getWinSize() };
 	
-	//スライムを箱に入れるための中間の入れ物
-	Vec2 poses[] = {
-		{ 690, 800 },{ 625, 735 },{ 560, 670 },{ 495, 605 },
-		{ 30, 800 },{ 95, 735 },{ 160, 670 },{ 225, 605 },
+	//スライムを箱に入れるための中間の入れもの
+	const Vec2 rightPos { 690, 800 };
+	const Vec2 leftPos { 30, 800 };
+	
+	const auto addWall = [ this ]( const Vec2& firstPosition, int x, int y, float rotate )
+	{
+		Sprite* wall = Sprite::create( "Texture/GamePlay/Terrain_Triangle_1_1x1.png" );
+		wall->setPosition( firstPosition + Vec2( wall->getContentSize().width * x, wall->getContentSize().height * y ) );
+		wall->setRotation( rotate );
+		addChild( wall );
 	};
 	
-	for ( int i = 0; i < 4; ++i ) {
-		Sprite* wall = Sprite::create( "Texture/GamePlay/Terrain_Triangle_3_1x1.png" );
-		wall->setPosition( { poses[ i ] } );
-		addChild( wall );
-	}
-	
-	for ( int i = 4; i < 8; ++i ) {
-		Sprite* wall = Sprite::create( "Texture/GamePlay/Terrain_Triangle_3_1x1.png" );
-		wall->setPosition( { poses[ i ] } );
-		wall->setRotation( 90 );
-		addChild( wall );
-	}
-	
-	Vec2 blockPos[] = {
-		{ 430, 535 },{ 290, 535 },
-	};
-	for ( int i = 0; i < 2; ++i ) {
-		Sprite* block = Sprite::create( "Texture/GamePlay/Terrain_Box_3_1x1.png" );
-		block->setPosition( blockPos[ i ] );
-		addChild( block );
+	for ( int i = 0; i < 5; ++i ) {
+		
+		addWall( rightPos, -i, -i, 0 );
+		addWall( leftPos, i, -i, 90 );
 	}
 	
 	ResultWall* left { ResultWall::create( { 0, 1280 } , { 0, 820 } ) };
@@ -60,20 +50,16 @@ bool ResultWallManager::init()
 	addChild( left );
 	addChild( right );
 	
-	ResultWall* leftDown { ResultWall::create( { 0, 830 }, { 260, 570 } ) };
-	ResultWall* leftMiddle { ResultWall::create( { 260, 570 }, { 320, 570 } ) };
+	ResultWall* leftDown { ResultWall::create( { 0, 830 }, { 340, 490 } ) };
 	addChild( leftDown );
-	addChild( leftMiddle );
-	ResultWall* rightDown { ResultWall::create( { 720, 830 }, { 460, 570 } ) };
-	ResultWall* rightMiddle { ResultWall::create( { 460, 570 }, { 400, 570 } ) };
+	ResultWall* rightDown { ResultWall::create( { 720, 830 }, { 380, 490 } ) };
 	addChild( rightDown );
-	addChild( rightMiddle );
 	
 	//スライムを箱に入れるための透明な壁
-	ResultWall* leftWall { ResultWall::create( { 250, 440 }, { 250, 280 } ) };
-	ResultWall* rightWall { ResultWall::create( { 470, 440 }, { 470, 280 } ) };
-	addChild( leftWall );
-	addChild( rightWall );
+	//ResultWall* leftWall { ResultWall::create( { 250, 440 }, { 250, 280 } ) };
+	//ResultWall* rightWall { ResultWall::create( { 470, 440 }, { 470, 280 } ) };
+	//addChild( leftWall );
+	//addChild( rightWall );
 	
 	//ばらばらになったスライムを入れる箱を用意する
 	ResultWall* flaskMouthLeft { ResultWall::create( { 250, 280 }, { 300, 230 } ) };

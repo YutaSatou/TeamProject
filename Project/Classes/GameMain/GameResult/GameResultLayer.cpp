@@ -53,10 +53,10 @@ bool GameResultLayer::init()
 	ResultTexturePhysics* rs { ResultTexturePhysics::create( 30.0f, { 720 / 2, 900 } ) };
 	addChild( rs );
 	
+	scheduleUpdate();
+	
 	LiquidFunWorldManager::getInstance().setGravity( { 0.0f, -9.8f } );
 	
-	scheduleUpdate();
-
 	
 	return true;
 }
