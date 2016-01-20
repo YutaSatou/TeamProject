@@ -2,6 +2,7 @@
 #include "../../Data/ObjectData.h"
 #include "Player.h"
 #include "PlayerNoneAction.h"
+#include "PlayerGoalAction.h"
 #include "PlayerEatAction.h"
 
 using namespace cocos2d;
@@ -27,7 +28,7 @@ void PlayerActionController::switchAction( const ActionTag& tag )
 {
 	if ( mActionContainer.find( tag ) == mActionContainer.end() )
 	{
-		CCLOG( "登録されていないアクションです。" );
+		CCLOG( "%s", "登録されていないアクションです。" );
 		return;
 	}
 	
@@ -47,8 +48,9 @@ void PlayerActionController::execute( Node* contactNode, LiquidFunFixture* fixtu
 // 初期化
 void PlayerActionController::init( Player* owner, ObjectDataPtr objectData )
 {
-	add( ActionTag::NONE,	std::make_shared< PlayerNoneAction >( *this )					);
-	add( ActionTag::SLIME,	std::make_shared< PlayerEatAction >( *this, owner, objectData )	);
+	add( ActionTag::NONE,		std::make_shared< PlayerNoneAction >( *this )						);
+	add( ActionTag::WALL_EVENT,	std::make_shared< PlayerGoalAction >( *this, owner, objectData )	);
+	add( ActionTag::SLIME,		std::make_shared< PlayerEatAction >( *this, owner, objectData )		);
 }
 
 // 更新

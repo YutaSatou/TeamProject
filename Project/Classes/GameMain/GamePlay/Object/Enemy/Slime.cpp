@@ -87,7 +87,7 @@ void Slime::initAnimation()
 void Slime::initPhysics()
 {
 	// ボディの大きさを定義する。
-	const float bodySize { getContentSize().width * getScaleX() / 2.0f };
+	const float bodySize { ( getContentSize().width * getScaleX() / 2.0f ) - 5.0f };
 	
 	// ボディの生成に必要な設定記述子を生成する。
 	LiquidFunBodyDescCreator	bodyDescCreator;

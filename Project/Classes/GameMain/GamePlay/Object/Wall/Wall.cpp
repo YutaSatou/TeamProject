@@ -58,7 +58,6 @@ void Wall::enableGameEndEvent( GameControlMediator& mediator )
 	{
 		// スケジュール登録を解除し、ゲームを終了する。
 		setName( "GameEndEvent" );
-		contactNode->unscheduleUpdate();
 		mediator.gameEnd();
 	};
 	
