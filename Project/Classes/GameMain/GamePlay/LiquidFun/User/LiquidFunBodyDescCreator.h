@@ -61,9 +61,10 @@ public:
 	 *	@brief	フィクスチャ設定記述子( 箱形状 )の生成
 	 *	@param	size					箱の大きさ
 	 *	@param	material				マテリアル
+	 *	@param	offset					オフセット座標
 	 *	@return	LiquidFunFixtureDesc	フィクスチャ設定記述子
 	 */
-	LiquidFunFixtureDesc createBox( const cocos2d::Size& size, const LiquidFunMaterial& material );
+	LiquidFunFixtureDesc createBox( const cocos2d::Size& size, const LiquidFunMaterial& material, const cocos2d::Vec2& offset = cocos2d::Vec2::ZERO );
 	
 	/**
 	 *	@brief	フィクスチャ設定記述子( 線形状 )の生成

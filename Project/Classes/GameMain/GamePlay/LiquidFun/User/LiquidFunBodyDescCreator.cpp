@@ -42,13 +42,14 @@ LiquidFunFixtureDesc LiquidFunBodyDescCreator::createCircle( float radius, const
 }
 
 // フィクスチャ設定記述子( 箱形状 )の生成
-LiquidFunFixtureDesc LiquidFunBodyDescCreator::createBox( const cocos2d::Size& size, const LiquidFunMaterial& material )
+LiquidFunFixtureDesc LiquidFunBodyDescCreator::createBox( const cocos2d::Size& size, const LiquidFunMaterial& material, const Vec2& offset )
 {
-	const LiquidFunVec2 halfSize { LiquidFunHelper::toMeter( size.width ) / 2.0f, LiquidFunHelper::toMeter( size.height ) / 2.0f };
+	const LiquidFunVec2	halfSize	{ LiquidFunHelper::toMeter( size.width ) / 2.0f, LiquidFunHelper::toMeter( size.height ) / 2.0f };
+	const LiquidFunVec2	offsetM		{ LiquidFunHelper::toMeter( offset ) };
 	
 	LiquidFunPolygonShape* shape { new LiquidFunPolygonShape() };
 	
-	shape->SetAsBox( halfSize.x, halfSize.y );
+	shape->SetAsBox( halfSize.x, halfSize.y, offsetM, 0.0f );
 	
 	return createFixtureDesc( shape, material );
 }

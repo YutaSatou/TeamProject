@@ -33,7 +33,7 @@ bool Slime::init( ObjectDataPtr objectData, const std::string& nodeName )
 	setOpacity( mObjectData->alpha );
 	setScale( 1.2f );
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
-	setPosition( objectData->position );
+	setPosition( mObjectData->position );
 	
 	// アニメーションの初期化を行う。
 	initAnimation();
