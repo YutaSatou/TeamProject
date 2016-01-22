@@ -4,6 +4,18 @@
 #include "ResultManager.h"
 #include "ResultEvaluation.h"
 
+//
+#include "ResultSlime/ResultSlimeObject.h"
+#include "../GamePlay/LiquidFun/LiquidFunCoreAPI.h"
+#include "ResultWall/ResultWallManager.h"
+
+#include "ResultTexturePhyiscs/ResultTexturePhysics.h"
+#include "../GamePlay/Object/Contact/ContactListener.h"
+
+#include "Utility/Assistant/Scene/SceneChanger.h"
+#include "../../Utility/Assistant/Scene/SceneCreator.h"
+#include "../GameStageSelect/GameStageSelectLayer.h"
+
 using namespace cocos2d;
 
 namespace  {
@@ -18,20 +30,41 @@ bool GameResultLayer::init()
 	{
 		return false;
 	}
-    
-    SCREEN_SIZE = Director::getInstance()->getWinSize();
-    ORIGIN_SIZE = Director::getInstance()->getVisibleOrigin();
-    
-    touchListener();
-    
-    drawSprite( "Texture/GameResult/Result_ Background.png", Vec2( SCREEN_SIZE.width / 2, SCREEN_SIZE.height / 2 ) );
-    
-    mResultManager = ResultManager::create();
-    addChild( mResultManager );
 	
-    scheduleUpdate();
+	SCREEN_SIZE = Director::getInstance()->getWinSize();
+	ORIGIN_SIZE = Director::getInstance()->getVisibleOrigin();
+	
+	drawSprite( "Texture/GameResult/Result_ Background.png", Vec2( SCREEN_SIZE.width / 2, SCREEN_SIZE.height / 2 ) );
+	
+	//addChild( LiquidFunDebugDrawer::create() );
+	addChild( ContactListener::create() );
+	
+	touchListener();
+	
+	mResultManager = ResultManager::create();
+	addChild( mResultManager );
+	
+	ResultSlimeObject* r = ResultSlimeObject::create();
+	addChild( r );
+	
+	ResultWallManager* wall = ResultWallManager::create();
+	addChild( wall );
+	
+	ResultTexturePhysics* rs { ResultTexturePhysics::create( 30.0f, { 720 / 2, 900 } ) };
+	addChild( rs );
+	
+	scheduleUpdate();
+	
+	LiquidFunWorldManager::getInstance().setGravity( { 0.0f, -9.8f } );
+	
 	
 	return true;
+}
+
+void GameResultLayer::update( float deltaTime )
+{
+		Layer::update( deltaTime );
+	LiquidFunWorldManager::getInstance().update();
 }
 
 GameResultLayer* GameResultLayer::create()
@@ -69,9 +102,12 @@ void GameResultLayer::touchListener(){
     
     //タッチ終了
     listener->onTouchEnded = [ = ](Touch* touch, Event* event){
-        mResultManager->touchAction();
+        //mResultManager->touchAction();
+		Scene* scene		{ SceneCreator::createScene( GameStageSelectLayer::create() ) };
+		Scene* nextScene	{ TransitionRotoZoom::create( 0.8f, scene ) };
+		SceneChanger::switchScene( nextScene );
     };
-    
+	
     //イベントリスナーを登録
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority( listener, this );
 }

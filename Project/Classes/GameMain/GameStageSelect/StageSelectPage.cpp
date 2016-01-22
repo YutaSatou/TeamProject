@@ -14,8 +14,10 @@
 #include "ui/CocosGUI.h"
 #include "../../Utility/Audio/ADX2Player.h"
 #include "../../Utility/DataIO/DataIO.h"
-
 #include "../../Utility/DataIO/StageNumber.h"
+
+#include "../GameResult/GameResultLayer.h"
+#include "../../Utility/DataIO/StageColors.h"
 
 using namespace cocos2d;
 using namespace ui;
@@ -37,6 +39,8 @@ bool StageSelectPage::init( const int pageNum ){
     
     /*StageNumber* stage = StageNumber::create();
     addChild( stage );*/
+	StageNumber stage;
+	StageColors stageColor;
     
     Vec2 poses[] = {
         
@@ -52,13 +56,13 @@ bool StageSelectPage::init( const int pageNum ){
         Vec2( 1590, 832 ), Vec2( 1790, 832 ), Vec2( 1990, 832 ),
         Vec2( 1590, 602 ), Vec2( 1790, 602 ), Vec2( 1990, 602 ),
     };
-    
+	
     for (int j = 0; j < 27; ++j){
         Button* image = Button::create( "Texture/GameStageSelect/Stage_Numberbox_Notclear.png" );
         image->setTitleText( StringUtils::toString( j + 1 ) );
         image->setTitleFontName( "Font/RiiPopkkR.otf" );
         image->setTitleFontSize( 68 );
-        image->setTitleColor( Color3B::BLACK );
+		image->setTitleColor( Color3B::BLACK );
         image->setZoomScale( 0.1f );
         image->setPosition( poses[j] );
         
@@ -67,12 +71,10 @@ bool StageSelectPage::init( const int pageNum ){
             if ( type == Widget::TouchEventType::BEGAN ){
             }
             if ( type == Widget::TouchEventType::ENDED ){
-                ADX2Player::getInstance().play( 6 );
-                StageNumber stage;
+                ADX2Player::getInstance().play( 2 );
                 stage.saveStageNumber( j + 1 );
-                std::string num = stage.loadStageNumber();
-                //CCLOG( " ステージ : %s", num.c_str() );
-                Scene* scene		{ SceneCreator::createScene( GamePlayLayer::create() ) };
+				stageColor.saveColor( 0, 0, 0 );
+                Scene* scene		{ SceneCreator::createScene( GameResultLayer::create() ) };
                 Scene* nextScene	{ TransitionRotoZoom::create( 0.8f, scene ) };
                 SceneChanger::switchScene( nextScene );
             }

@@ -13,31 +13,19 @@
 using namespace cocos2d;
 using namespace ui;
 
-/*namespace  {
-    
-    static const std::map< EvaluationTag, std::string > EvaluationPath{
-        
-        { EvaluationTag::BAD,       "Bad" },
-        { EvaluationTag::GOOD,      "Good" },
-        { EvaluationTag::EXCELLENT, "Excellent" },
-        { EvaluationTag::PERFECT,   "Perfect" },
-    };
-}*/
-
 Evaluation::Evaluation(){
 
 }
 
 Evaluation::~Evaluation(){
-    mScore->release();
 }
 
 bool Evaluation::init(){
-    
-    mScore = Score::create();
-    mScore->retain();
-    
-    evaluation( mScore->getScore() );
+	
+	Score* score = Score::create();
+	addChild( score );
+    evaluation( score->getScore() );
+	//CCLOG( "Score : %i", score->getScore() );
     return true;
 }
 

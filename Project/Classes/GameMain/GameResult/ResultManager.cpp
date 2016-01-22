@@ -9,7 +9,6 @@
 #include "ResultManager.h"
 #include "ResultAnimation.h"
 #include "ResultEvaluation.h"
-#include "ResultSlime.h"
 #include "ResultStar.h"
 #include "Utility/Assistant/Scene/SceneChanger.h"
 #include "../../Utility/Assistant/Scene/SceneCreator.h"
@@ -38,17 +37,15 @@ ResultManager* ResultManager::create(){
         return inst;
     }
     CC_SAFE_DELETE( inst );
-    return nullptr;
-
+	return nullptr;
 }
 
 bool ResultManager::init(){
-    
+	
+	/*
     mEvaluation = ResultEvaluation::create();
     addChild( mEvaluation );
-    
-    mSlime = ResultSlime::create();
-    addChild( mSlime );
+	 */
     
     mStar = ResultStar::create();
     addChild( mStar );
@@ -65,7 +62,7 @@ void ResultManager::touchAction(){
 
 void ResultManager::initFunc(){
 
-    auto scoreSkip = [ & ](){
+    /*auto scoreSkip = [ & ](){
         mEvaluation->skipAnimation();
         if ( mEvaluation->isAnimation() ){
             
@@ -78,13 +75,13 @@ void ResultManager::initFunc(){
     auto starSkip = [ & ](){
         if ( mStar->isAnimation() ){
             
-            mTouchAnimationTag = TouchAnimationTag::SKIP_SLIME;
+            mTouchAnimationTag = TouchAnimationTag::SCENE_CHANGE;
             this->touchAction();
             return;
         }
         
         mStar->skipAnimation();
-        mTouchAnimationTag =  TouchAnimationTag::SKIP_SLIME;
+        mTouchAnimationTag =  TouchAnimationTag::SCENE_CHANGE;
     };
     
     auto slimeSkip = [ & ](){
@@ -108,5 +105,5 @@ void ResultManager::initFunc(){
     mTouch[ TouchAnimationTag::SKIP_SPRITE ]	= scoreSkip;
     mTouch[ TouchAnimationTag::SKIP_STAR ] = starSkip;
     mTouch[ TouchAnimationTag::SKIP_SLIME ] = slimeSkip;
-    mTouch[ TouchAnimationTag::SCENE_CHANGE ] = sceneChange;
+    mTouch[ TouchAnimationTag::SCENE_CHANGE ] = sceneChange;*/
 }

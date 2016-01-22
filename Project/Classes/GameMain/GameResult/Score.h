@@ -11,7 +11,7 @@
 
 #include "cocos2d.h"
 
-class Score : public cocos2d::Ref{
+class Score : public cocos2d::Node{
     
 protected:
     

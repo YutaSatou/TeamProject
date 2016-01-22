@@ -18,7 +18,7 @@ class ResultStar;
 namespace{
     enum TouchAnimationTag{
         SKIP_SPRITE = 0,
-        SKIP_SLIME,
+        //SKIP_SLIME,
         SKIP_STAR,
         SCENE_CHANGE,
         LENGTH,

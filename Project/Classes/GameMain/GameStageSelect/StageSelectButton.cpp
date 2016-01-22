@@ -56,7 +56,7 @@ bool StageSelectButton::init()
             }
             if ( type == Widget::TouchEventType::ENDED ){
                 ADX2Player::getInstance().play( 6 );
-                StageNumber::saveStageNumber( i + 1 );
+                //StageNumber::saveStageNumber( i + 1 );
                 Scene* scene		{ SceneCreator::createScene( GamePlayLayer::create() ) };
                 Scene* nextScene	{ TransitionRotoZoom::create( 0.8f, scene ) };
                 SceneChanger::switchScene( nextScene );

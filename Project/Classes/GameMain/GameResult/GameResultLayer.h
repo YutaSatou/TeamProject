@@ -16,6 +16,8 @@ protected:
 	
 	virtual bool init() override;
 	
+	virtual void update( float deltaTime ) override;
+	
 public:
 	
 	static GameResultLayer* create();
