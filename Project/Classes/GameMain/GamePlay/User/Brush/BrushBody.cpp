@@ -27,7 +27,7 @@ void BrushBody::pushSegment( const Vec2& start, const Vec2& end, float lineWidth
 	
 	// 線形状のフィクスチャ設定記述子を生成し、格納する。
 	LiquidFunFixtureDesc segment { mBodyDescCreator->createSegment( start, end, lineWidth, material ) };
-	mSegmentContainer.emplace_back( segment );
+	mSegmentContainer.push_back( segment );
 }
 
 // コンテナの解放

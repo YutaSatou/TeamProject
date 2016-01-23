@@ -51,7 +51,7 @@ ObjectDataReader::ObjectDataContainer ObjectDataReader::read( const std::string&
 										    readAlpha( valueMap ) )
 		};
 		
-		container.emplace_back( data );
+		container.push_back( data );
 	}
 	
 	return container;
