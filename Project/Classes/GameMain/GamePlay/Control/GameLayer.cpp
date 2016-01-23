@@ -71,13 +71,13 @@ void GameLayer::gameEnd()
 	{
 		if ( isSucceed )
 		{
-			Director*	director	= Director::getInstance();
-			Sprite*		screenshot	= Sprite::create( filePath );
-			const Size&	contentSize	= screenshot->getContentSize();
-			const Size&	screenSize	= director->getWinSize();
-			const Size	harfSize	= screenSize / 2.0f;
-			const float	scaleX		= screenSize.width	/ contentSize.width;
-			const float	scaleY		= screenSize.height	/ contentSize.height;
+			Director*	director	{ Director::getInstance() };
+			Sprite*		screenshot	{ Sprite::create( filePath ) };
+			const Size&	screenSize	{ director->getWinSize() };
+			const Size&	contentSize	{ screenshot->getContentSize() };
+			const Size	harfSize	{ screenSize / 2.0f };
+			const float	scaleX		{ screenSize.width	/ contentSize.width };
+			const float	scaleY		{ screenSize.height	/ contentSize.height };
 			
 			screenshot->setScale( scaleX, scaleY );
 			screenshot->setPosition( harfSize );
