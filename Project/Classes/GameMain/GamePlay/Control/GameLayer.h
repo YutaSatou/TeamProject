@@ -61,6 +61,12 @@ private:
 	 */
 	void initStage( const std::string& plistFilePath );
 	
+	/**
+	 *	@brief	シーンの変更
+	 *	@param	screenshot	スクリーンショット
+	 */
+	void sceneChange( cocos2d::Sprite* screenshot );
+	
 private:
 	
 	StageTerrainManager*	mStageTerrainManager;	// 地形管理者

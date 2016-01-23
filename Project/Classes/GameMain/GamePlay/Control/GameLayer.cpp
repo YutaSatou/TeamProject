@@ -67,9 +67,30 @@ void GameLayer::gameStart()
 // ゲーム終了
 void GameLayer::gameEnd()
 {
-	Scene* scene		{ SceneCreator::createScene( GameResultLayer::create() ) };
-	Scene* nextScene	{ TransitionSlideInB::create( 0.8f, scene ) };
-	SceneChanger::switchScene( nextScene );
+	auto callback = [ this ]( bool isSucceed, const std::string& filePath )
+	{
+		if ( isSucceed )
+		{
+			Director*	director	= Director::getInstance();
+			Sprite*		screenshot	= Sprite::create( filePath );
+			const Size&	contentSize	= screenshot->getContentSize();
+			const Size&	screenSize	= director->getWinSize();
+			const Size	harfSize	= screenSize / 2.0f;
+			const float	scaleX		= screenSize.width	/ contentSize.width;
+			const float	scaleY		= screenSize.height	/ contentSize.height;
+			
+			screenshot->setScale( scaleX, scaleY );
+			screenshot->setPosition( harfSize );
+			director->getTextureCache()->removeTextureForKey( filePath );
+			
+			sceneChange( screenshot );
+			return;
+		}
+		
+		CCLOG( "%s", "スクリーンショットに失敗しています。" );
+	};
+	
+	utils::captureScreen( callback, "Screenshot.png" );
 }
 
 // ステージの初期化
@@ -80,4 +101,20 @@ void GameLayer::initStage( const std::string& plistFilePath )
 	stageCreator.addListener( [ this ]( ObjectDataPtr data ) { mEnemyManager->onDataLoaded( data ); }			);
 	stageCreator.addListener( [ this ]( ObjectDataPtr data ) { mStageTerrainManager->onDataLoaded( data ); }	);
 	stageCreator.createStage( plistFilePath );
+}
+
+// シーンの変更
+void GameLayer::sceneChange( Sprite* screenshot )
+{
+	auto nextSceneCreateFunc = []()
+	{
+		return TransitionSlideInB::create( 0.8f, SceneCreator::createScene( GameResultLayer::create() ) );
+	};
+	
+	Layer*	bridgeLayer	{ BridgeScene::create( nextSceneCreateFunc ) };
+	Scene*	nextScene	{ SceneCreator::createScene( bridgeLayer ) };
+	
+	bridgeLayer->addChild( screenshot );
+	
+	SceneChanger::switchScene( nextScene );
 }
