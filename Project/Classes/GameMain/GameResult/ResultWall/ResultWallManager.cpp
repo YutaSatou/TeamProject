@@ -21,10 +21,6 @@ bool ResultWallManager::init()
 		return false;
 	}
 	
-	// 画面サイズを取得する。
-	//const Vec2&	screenMin	{ Vec2::ZERO };
-	//const Vec2&	screenMax	{ Director::getInstance()->getWinSize() };
-	
 	//スライムを箱に入れるための中間の入れもの
 	const Vec2 rightPos { 690, 800 };
 	const Vec2 leftPos { 30, 800 };
@@ -43,6 +39,7 @@ bool ResultWallManager::init()
 		addWall( leftPos, i, -i, 90 );
 	}
 	
+	//壁
 	ResultWall* left { ResultWall::create( { 0, 1280 } , { 0, 820 } ) };
 	ResultWall* right { ResultWall::create( { 720, 1280 }, { 720, 820 } ) };
 	
@@ -55,38 +52,43 @@ bool ResultWallManager::init()
 	ResultWall* rightDown { ResultWall::create( { 720, 830 }, { 380, 490 } ) };
 	addChild( rightDown );
 	
-	//スライムを箱に入れるための透明な壁
-	//ResultWall* leftWall { ResultWall::create( { 250, 440 }, { 250, 280 } ) };
-	//ResultWall* rightWall { ResultWall::create( { 470, 440 }, { 470, 280 } ) };
-	//addChild( leftWall );
-	//addChild( rightWall );
-	
 	//ばらばらになったスライムを入れる箱を用意する
-	ResultWall* flaskMouthLeft { ResultWall::create( { 250, 280 }, { 300, 230 } ) };
-	ResultWall* flaskLeft { ResultWall::create( { 300, 230 },{ 300, 150 } ) };
-	ResultWall* flaskLeftUp { ResultWall::create( { 300, 150 }, { 280, 130 } ) };
-	ResultWall* flaskLeftMuddle { ResultWall::create( { 280, 130 }, { 280, 100 } ) };
-	ResultWall* flaskLeftDown { ResultWall::create( { 280, 100 }, { 300, 80 } ) };
-	ResultWall* flaskDownLeft { ResultWall::create( { 300, 80 }, { 420, 80 } ) };
-	ResultWall* flasktDownRight { ResultWall::create( { 420, 80 }, { 440, 100 } ) };
-	ResultWall* flaskRightDown { ResultWall::create( { 420, 80 }, { 440, 100 } ) };
-	ResultWall* flaskRightMuddle { ResultWall::create( { 440, 100 }, { 440, 130 } ) };
-	ResultWall* flaskRightUp { ResultWall::create( { 440, 130 }, { 420, 150 } ) };
-	ResultWall* flaskRight { ResultWall::create( { 420, 150 }, { 420, 230 } ) };
-	ResultWall* flaskMouthRight { ResultWall::create( { 470, 280 }, { 420, 230 } ) };
+	Sprite* goal = Sprite::create( "Texture/GameResult/goal_bottle.png" );
+	goal->setPosition( { 360, 100 } );
+	addChild( goal );
+	ResultWall* flaskTopLeft { ResultWall::create( { 300, 180 }, { 325, 160 } ) };
+	ResultWall* flaskMouthLeft { ResultWall::create( { 325, 160 }, { 325, 100 } ) };
+	ResultWall* flaskLeft { ResultWall::create( { 325, 100 },{ 290, 70 } ) };
+	ResultWall* flaskLeftUp { ResultWall::create( { 290, 70 }, { 280, 50 } ) };
+	ResultWall* flaskLeftMuddle { ResultWall::create( { 280, 50 }, { 275, 40 } ) };
+	ResultWall* flaskLeftDown { ResultWall::create( { 275, 40 }, { 275, 30 } ) };
 	
+	ResultWall* flaskDownLeft { ResultWall::create( { 275, 30 }, { 280, 20 } ) };
+	ResultWall* flaskDownMuddle { ResultWall::create( { 280, 20 }, { 420, 20 } ) };
+	ResultWall* flasktDownRight { ResultWall::create( { 420, 20 }, { 445, 30 } ) };
+	
+	ResultWall* flaskTopRight { ResultWall::create( { 420, 180 }, { 395, 160 } ) };
+	ResultWall* flaskMouthRight { ResultWall::create( { 395, 160 }, { 395, 100 } ) };
+	ResultWall* flaskRight { ResultWall::create( { 395, 100 }, { 430, 70 } ) };
+	ResultWall* flaskRightUp { ResultWall::create( { 430, 70 }, { 440, 50 } ) };
+	ResultWall* flaskRightMuddle { ResultWall::create( { 440, 50 }, { 445, 40 } ) };
+	ResultWall* flaskRightDown { ResultWall::create( { 445, 40 }, { 445, 30 } ) };
+	
+	addChild( flaskTopLeft );
 	addChild( flaskMouthLeft );
 	addChild( flaskLeft );
 	addChild( flaskLeftUp );
 	addChild( flaskLeftMuddle );
 	addChild( flaskLeftDown );
 	addChild( flaskDownLeft );
+	addChild( flaskDownMuddle );
 	addChild( flasktDownRight );
 	addChild( flaskRightDown );
 	addChild( flaskRightMuddle );
 	addChild( flaskRightUp );
 	addChild( flaskRight );
 	addChild( flaskMouthRight );
+	addChild( flaskTopRight );
 	
 	return true;
 }
