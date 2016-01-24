@@ -17,8 +17,8 @@ namespace Contact
 		LIQUID			= 1 << 2,
 		PLAYER			= 1 << 3,
 		SLIME			= 1 << 4,
-		MUD				= 1 << 5,
-		CLOUD			= 1 << 6,
+		CLOUD			= 1 << 5,
+		MUD				= 1 << 6,
 		CANNON			= 1 << 7,
 		ALL_CATEGORY	= USHRT_MAX,
 	};

@@ -1,6 +1,7 @@
 #include "WallManager.h"
 #include "../../Control/GameControlMediator.h"
 #include "Wall.h"
+#include "Goal.h"
 
 using namespace cocos2d;
 
@@ -30,6 +31,7 @@ bool WallManager::init( GameControlMediator& mediator )
 	addChild( down );
 	addChild( left );
 	addChild( right );
+	addChild( Goal::create( { 360.0f, 120.0f } ) );
 	
 	return true;
 }
