@@ -71,16 +71,16 @@ void Evaluation::evaluativeJudgment( EvaluationTag tag ){
 
 void Evaluation::evaluation( int score ){
     
-    if ( score <= 10 ){
+    if ( score <= 30 ){
         evaluativeJudgment( EvaluationTag::PERFECT );
     }
-    if ( score <= 30 && score > 10 ){
+    /*if ( score <= 30 && score > 10 ){
         evaluativeJudgment( EvaluationTag::EXCELLENT );
     }
     if ( score <= 50 && score > 30 ){
         evaluativeJudgment( EvaluationTag::GOOD );
-    }
-    if ( score > 50 ){
+    }*/
+    if ( score > 30 ){
         evaluativeJudgment( EvaluationTag::BAD );
     }
 }

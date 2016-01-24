@@ -29,7 +29,7 @@ bool GameStageSelectLayer::init()
     drawBackGraund();
     
     //ページビューの追加
-    StageSelectPage* page = StageSelectPage::create( 3 );
+    StageSelectPage* page = StageSelectPage::create( 1 );
     /*Size screen_size = Director::getInstance()->getWinSize();
     UIPageView* page = UIPageView::creae( screen_size );
     page->setContentSize( screen_size );

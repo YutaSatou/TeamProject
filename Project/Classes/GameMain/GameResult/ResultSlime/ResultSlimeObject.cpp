@@ -91,7 +91,7 @@ void ResultSlimeObject::initParticle()
     // パーティクルの生成に必要な設定記述子を生成する。
     LiquidFunParticleDescCreator	creator;
     LiquidFunParticleDesc			particleDesc	{ creator.createParticleDesc( 10.0f ) };
-	LiquidFunParticleGroupDesc		groupDesc		{ creator.createParticleGroupDesc( Color3B( colorR, colorG, colorB ), { 360, 1280 }, PARTICLE_TYPE, 150, 200 ) };
+	LiquidFunParticleGroupDesc		groupDesc		{ creator.createParticleGroupDesc( Color3B( colorR, colorG, colorB ), { 360, 1280 }, PARTICLE_TYPE, 150, 120 ) };
     
     // パーティクルを装着する。
     mParticle		= LiquidFunParticleSettlor::attachParticle( particleDesc );

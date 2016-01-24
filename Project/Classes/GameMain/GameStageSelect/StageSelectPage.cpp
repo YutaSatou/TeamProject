@@ -57,7 +57,7 @@ bool StageSelectPage::init( const int pageNum ){
         Vec2( 1590, 602 ), Vec2( 1790, 602 ), Vec2( 1990, 602 ),
     };
 	
-    for (int j = 0; j < 27; ++j){
+    for (int j = 0; j < 9; ++j){
         Button* image = Button::create( "Texture/GameStageSelect/Stage_Numberbox_Notclear.png" );
         image->setTitleText( StringUtils::toString( j + 1 ) );
         image->setTitleFontName( "Font/RiiPopkkR.otf" );
@@ -74,7 +74,7 @@ bool StageSelectPage::init( const int pageNum ){
                 ADX2Player::getInstance().play( 2 );
                 stage.saveStageNumber( j + 1 );
 				stageColor.saveColor( 0, 0, 0 );
-                Scene* scene		{ SceneCreator::createScene( GameResultLayer::create() ) };
+                Scene* scene		{ SceneCreator::createScene( GamePlayLayer::create() ) };
                 Scene* nextScene	{ TransitionRotoZoom::create( 0.8f, scene ) };
                 SceneChanger::switchScene( nextScene );
             }
