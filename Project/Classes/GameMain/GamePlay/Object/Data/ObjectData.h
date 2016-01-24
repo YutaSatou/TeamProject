@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "../Color/ColorCMY.h"
+#include "../Color/ColorStack.h"
 #include "../../LiquidFun/User/LiquidFunMaterial.h"
 
 /*------------------------------------------------------------*/
@@ -13,7 +14,7 @@
 struct ObjectData
 {
 	ColorCMY			blendColor;		//=> 合成色
-	ColorCMY			backupColor;	//=> 合成色のバックアップ
+	ColorStack			backupColor;	//=> 合成色のバックアップ
 	std::string			textureName;	//=> テクスチャの名前
 	cocos2d::Color3B	textureColor;	//=> テクスチャの色
 	cocos2d::Vec2		position;		//=> 座標
@@ -25,7 +26,7 @@ struct ObjectData
 	 */
 	ObjectData()
 		: blendColor( ColorCMY::WHITE )
-		, backupColor( ColorCMY::WHITE )
+		, backupColor()
 		, textureName()
 		, textureColor( cocos2d::Color3B::WHITE )
 		, position( cocos2d::Vec2::ZERO )
@@ -52,7 +53,7 @@ struct ObjectData
 		const uint8_t				_alpha
 	)
 		: blendColor( ColorCMY::convertToCMY( _textureColor ) )
-		, backupColor( ColorCMY::convertToCMY( _textureColor ) )
+		, backupColor()
 		, textureName( _textureName )
 		, textureColor( _textureColor )
 		, position( _position )

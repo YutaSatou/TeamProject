@@ -16,7 +16,9 @@ PlayerGoalAction::PlayerGoalAction( PlayerActionMediator& mediator, Player* owne
 // アクションの実行
 void PlayerGoalAction::execute( Node* contactNode, LiquidFunFixture* fixture )
 {
+	// SEを再生する。
+	ADX2Player::getInstance().play( CRI_HUNGRYSLIMESHEET_SE_GAMECLEAR );
+	
 	// スケジュール登録を解除する。
 	mOwner->unscheduleUpdate();
-	ADX2Player::getInstance().play( CRI_HUNGRYSLIMESHEET_SE_GAMECLEAR );
 }
