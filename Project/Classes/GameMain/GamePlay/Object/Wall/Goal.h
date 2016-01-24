@@ -45,6 +45,13 @@ private:
 	 *	@brief	物理構造の初期化
 	 */
 	void initPhysics();
+	
+	/**
+	 *	@brief	ボディの生成
+	 *	@param	registerNode	ボディを登録するノード
+	 *	@param	plistFilePath	プロパティリストファイルのパス
+	 */
+	void createBody( cocos2d::Node* registerNode, const std::string& plistFilePath );
 };
 
 #endif
