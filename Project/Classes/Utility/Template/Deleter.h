@@ -37,14 +37,6 @@ public:
 	}
 	
 	/**
-	 *	@brief	コピー禁止
-	 */
-	Deleter( const Deleter& )				= delete;
-	Deleter( Deleter&& )					= delete;
-	Deleter& operator = ( const Deleter& )	= delete;
-	Deleter& operator = ( Deleter&& )		= delete;
-	
-	/**
 	 *	@brief	削除するインスタンスの登録
 	 *	@param	instance	インスタンス
 	 */
