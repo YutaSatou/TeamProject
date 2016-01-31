@@ -17,7 +17,7 @@ PlayerWetAction::PlayerWetAction( PlayerActionMediator& mediator, Player* owner,
 void PlayerWetAction::execute( Node* contactNode, LiquidFunFixture* fixture )
 {
 	// SEを再生する。
-	ADX2Player::getInstance().play( CRI_HUNGRYSLIMESHEET_SE_PLAYER_EAT );
+	ADX2Player::getInstance().play( CRI_HUNGRYSLIMESHEET_SE_GIMMICK_SHOWER );
 	
 	// バックアップから色情報を復元し、同期する。
 	mObjectData->blendColor		= mObjectData->backupColor.pop();

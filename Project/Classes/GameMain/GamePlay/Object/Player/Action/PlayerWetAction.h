@@ -19,12 +19,12 @@ public:
 	 *	@param	owner		アクションを実行するオーナ
 	 *	@param	objectData	オブジェクトデータ
 	 */
-	PlayerEatAction( PlayerActionMediator& mediator, Player* owner, ObjectDataPtr objectData );
+	PlayerWetAction( PlayerActionMediator& mediator, Player* owner, ObjectDataPtr objectData );
 	
 	/**
 	 *	@brief	デストラクタ
 	 */
-	~PlayerEatAction() = default;
+	~PlayerWetAction() = default;
 	
 	/**
 	 *	@brief	アクションの実行
