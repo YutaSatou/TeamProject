@@ -17,9 +17,9 @@ bool GamePlayLayer::init()
 	scheduleUpdate();
 	addBackground();
 	
-	// addChild( LiquidFunDebugDrawer::create() );
+	/* addChild( LiquidFunDebugDrawer::create() ); */
 	addChild( ContactListener::create() );
-	addChild( GameLayer::create( "Plist/StageData/StageData_01.plist" ) );
+	addChild( GameLayer::create( "Plist/StageData/StageData_1.plist" ) );
 	addChild( UILayer::create() );
 	
 	return true;
