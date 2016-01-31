@@ -19,7 +19,7 @@ bool GamePlayLayer::init()
 	
 	/* addChild( LiquidFunDebugDrawer::create() ); */
 	addChild( ContactListener::create() );
-	addChild( GameLayer::create( "Plist/StageData/StageData_1.plist" ) );
+	addChild( GameLayer::create( "Plist/StageData/DebugData.plist" ) );
 	addChild( UILayer::create() );
 	
 	return true;

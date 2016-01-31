@@ -84,10 +84,8 @@ void LiquidFunDebugDrawer::initDebugDrawFlags()
 	uint32_t flags { 0 };
 	flags += LiquidFunDraw::e_shapeBit;
 	flags += LiquidFunDraw::e_jointBit;
-	// flags += LiquidFunDraw::e_aabbBit;
 	flags += LiquidFunDraw::e_pairBit;
 	flags += LiquidFunDraw::e_centerOfMassBit;
-	flags += LiquidFunDraw::e_particleBit;
 	
 	// デバッグ描画を行うフラグを登録する。
 	mDebugRenderer->SetFlags( flags );
