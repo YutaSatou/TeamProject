@@ -10,7 +10,8 @@
 #define _PARTICLETYPE_H_
 
 //パーティクルの種類
-enum class ParticleType{
+enum class ParticleType
+{
     SPLASH,
     LINE,
     HASHIGO,

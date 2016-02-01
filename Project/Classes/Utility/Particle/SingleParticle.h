@@ -11,7 +11,8 @@
 
 #include "cocos2d.h"
 
-class SingleParticle : public cocos2d::ParticleSystemQuad{
+class SingleParticle : public cocos2d::ParticleSystemQuad
+{
 
 protected:
     
@@ -25,7 +26,7 @@ public:
     
     virtual void update( float deltaTitme ) override;
     
-    std::function<void(SingleParticle*)> onFinishListener;
+    std::function< void( SingleParticle* ) > onFinishListener;
     
 };
 

@@ -12,13 +12,14 @@
 
 using namespace cocos2d;
 
-namespace  {
+namespace
+{
     
-    static const std::map< ParticleType, std::string> ParticleToPath{
+    static const std::map< ParticleType, std::string> ParticleToPath
+	{
         
         { ParticleType::SPLASH,   "Ring" },
         { ParticleType::LINE,     "Star" },
-        { ParticleType::HASHIGO,  ""     },
     };
 }
 
@@ -26,19 +27,23 @@ ParticleManager::ParticleManager()
 : mFileName( ){
 }
 
-ParticleManager::~ParticleManager(){
+ParticleManager::~ParticleManager()
+{
     //パーティクルプールの開放
-    std::for_each( mPool.begin(), mPool.end(),[]( SingleParticle* particle ){
+    std::for_each( mPool.begin(), mPool.end(),[]( SingleParticle* particle )
+	{
         CC_SAFE_RELEASE( particle );
     } );
     mPool.clear();
 }
 
-ParticleManager* ParticleManager::createPool( const ParticleType type, const size_t& instanceNum ){
+ParticleManager* ParticleManager::createPool( const ParticleType type, const size_t& instanceNum )
+{
     
     ParticleManager* inst = new ParticleManager();
     
-    if ( inst && inst->init( type, instanceNum ) ){
+    if ( inst && inst->init( type, instanceNum ) )
+	{
         inst->autorelease();
         return inst;
     }
@@ -47,13 +52,16 @@ ParticleManager* ParticleManager::createPool( const ParticleType type, const siz
     return nullptr;
 }
 
-bool ParticleManager::init( const ParticleType type, const size_t& instanceNum ){
+bool ParticleManager::init( const ParticleType type, const size_t& instanceNum )
+{
     
-    for ( int i = 0; i < instanceNum; i++ ){
+    for ( int i = 0; i < instanceNum; i++ )
+	{
         //パーティクルを作成してVectorに格納しておく
         SingleParticle* particle = SingleParticle::create( "Plist/Particle/" + ParticleToPath.at( type ) + ".plist" );
         mFileName= type;
-        particle->onFinishListener = [ = ]( SingleParticle* sender) {
+        particle->onFinishListener = [ = ]( SingleParticle* sender)
+		{
             //参照カウンタ１で戻す
             this->push( sender );
         };
@@ -66,15 +74,18 @@ bool ParticleManager::init( const ParticleType type, const size_t& instanceNum )
     return true;
 }
 
-void ParticleManager::push( SingleParticle* particle ){
+void ParticleManager::push( SingleParticle* particle )
+{
 
     mPool.push_back( particle );
 }
 
-void ParticleManager::newParticle(){
+void ParticleManager::newParticle()
+{
 
     SingleParticle* particle = SingleParticle::create( "Plist/Particle/" + ParticleToPath.at( mFileName ) + ".plist" );
-    particle->onFinishListener = [ = ]( SingleParticle* sender) {
+    particle->onFinishListener = [ = ]( SingleParticle* sender)
+	{
         this->push( sender );
     };
     particle->retain();
@@ -83,10 +94,13 @@ void ParticleManager::newParticle(){
     push( particle );
 }
 
-void ParticleManager::playParicle( Node* node, const Vec2& pos ){
+void ParticleManager::playParicle( Node* node, const Vec2& pos )
+{
 
     //プールの中身が空だったら新しくパーティクルを作成して再生する
-    if ( mPool.empty() ){
+    if ( mPool.empty() )
+	{
+		newParticle();
     }
     //プールの中身があった場合プールから借りてパーティクルを再生する
     auto particle = mPool.back();

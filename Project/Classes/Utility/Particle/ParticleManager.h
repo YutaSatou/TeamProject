@@ -12,7 +12,8 @@
 #include <vector>
 #include "ParticleType.h"
 
-namespace cocos2d {
+namespace cocos2d
+{
  
     class Node;
     class Vec2;
@@ -20,7 +21,8 @@ namespace cocos2d {
 
 class SingleParticle;
 
-class ParticleManager : public cocos2d::Node{
+class ParticleManager : public cocos2d::Node
+{
 
 protected:
     
