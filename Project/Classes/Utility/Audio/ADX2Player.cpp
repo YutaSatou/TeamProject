@@ -10,15 +10,18 @@
 #include "ADX2CueSheet.h"
 
 //コンストラクタ
-ADX2Player::ADX2Player() : mCueSheet( nullptr )
+ADX2Player::ADX2Player()
+: mCueSheet( nullptr )
 , mPlayerHandle( nullptr )
 , mVoicePoolHandle( nullptr )
-, mHcaMxVoicePoolHandle( nullptr ){
+, mHcaMxVoicePoolHandle( nullptr )
+{
     
 }
 
 // デストラクタ
-ADX2Player::~ADX2Player(){
+ADX2Player::~ADX2Player()
+{
     
     releaseHandle();
     
@@ -26,7 +29,8 @@ ADX2Player::~ADX2Player(){
 }
 
 // 初期化
-bool ADX2Player::init( const std::string& acb, const std::string& awb ){
+bool ADX2Player::init( const std::string& acb, const std::string& awb )
+{
     
     mCueSheet = ADX2CueSheet::create( acb, awb );
     CC_SAFE_RETAIN( mCueSheet );
@@ -56,7 +60,8 @@ bool ADX2Player::init( const std::string& acb, const std::string& awb ){
 }
 
 // 初期化
-bool ADX2Player::init( const std::string& acb ){
+bool ADX2Player::init( const std::string& acb )
+{
     
     mCueSheet = ADX2CueSheet::create( acb, "" );
     CC_SAFE_RETAIN( mCueSheet );
@@ -86,54 +91,52 @@ bool ADX2Player::init( const std::string& acb ){
 }
 
 //音の再生
-CriAtomExPlaybackId ADX2Player::play( CriAtomExCueId cueID ){
+CriAtomExPlaybackId ADX2Player::play( CriAtomExCueId cueID )
+{
 	
     criAtomExPlayer_SetCueId( mPlayerHandle, mCueSheet->getAcbHandle(), cueID );
     auto playbackID = criAtomExPlayer_Start( mPlayerHandle );
     return playbackID;
 }
 
-//音の再生
-CriAtomExPlaybackId ADX2Player::play( CriAtomExCueId cueID, float volume ){
-	
-	criAtomExPlayer_SetCueId( mPlayerHandle, mCueSheet->getAcbHandle(), cueID );
-	criAtomExPlayer_SetVolume( mPlayerHandle, volume );
-	auto playbackID = criAtomExPlayer_Start( mPlayerHandle );
-	return playbackID;
-}
-
 //音の停止
-void ADX2Player::stop( CriAtomExPlaybackId playbackID ){
+void ADX2Player::stop( CriAtomExPlaybackId playbackID )
+{
     
     criAtomExPlayback_Stop( playbackID );
 }
 
 //プレーヤの停止
-void ADX2Player::stopPlayer(){
+void ADX2Player::stopPlayer()
+{
     
     criAtomExPlayer_Stop( mPlayerHandle );
 }
 
 //再生してからの経過時間の取得
-CriSint64 ADX2Player::getTime( CriAtomExPlaybackId playbackID ) const{
+CriSint64 ADX2Player::getTime( CriAtomExPlaybackId playbackID ) const
+{
     
     return criAtomExPlayback_GetTime( playbackID );
 }
 
 // キューの数の取得
-CriSint32 ADX2Player::getNumCues() const{
+CriSint32 ADX2Player::getNumCues() const
+{
     
     return criAtomExAcb_GetNumCues( mCueSheet->getAcbHandle() );
 }
 
 // キューの名前の取得
-std::string ADX2Player::getCueName( CriAtomExCueId cueID ) const{
+std::string ADX2Player::getCueName( CriAtomExCueId cueID ) const
+{
     
     return criAtomExAcb_GetCueNameById( mCueSheet->getAcbHandle(), cueID );
 }
 
 //ハンドルの解放
-void ADX2Player::releaseHandle(){
+void ADX2Player::releaseHandle()
+{
     
     stopPlayer();
     

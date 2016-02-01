@@ -16,9 +16,8 @@
 
 class ADX2CueSheet;
 
-enum class SoundType;
-
-class ADX2Player : public Singleton< ADX2Player >{
+class ADX2Player : public Singleton< ADX2Player >
+{
     
 protected:
     
@@ -42,14 +41,6 @@ public:
      *	@return	CriAtomExPlaybackId	プレイバックID
      */
     CriAtomExPlaybackId play( CriAtomExCueId cueID );
-    
-    /**
-     *	@brief	音の再生
-     *	@param	cueID				キューID
-      *	@param	volume				音量
-     *	@return	CriAtomExPlaybackId	プレイバックID
-     */
-    CriAtomExPlaybackId play( CriAtomExCueId cueID, float volume );
 	
     /**
      *	@brief	音の停止
@@ -93,4 +84,4 @@ private:
     CriAtomExVoicePoolHn	mHcaMxVoicePoolHandle;
 };
 
-#endif /* defined(__TeamProject__ADX2Player__) */
+#endif

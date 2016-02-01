@@ -12,12 +12,15 @@
 using namespace cocos2d;
 
 //コンストラクタ
-ADX2Manager::ADX2Manager() : mDbasID( 0 ){
+ADX2Manager::ADX2Manager()
+: mDbasID( 0 )
+{
     
 }
 
 //デストラクタ
-ADX2Manager::~ADX2Manager(){
+ADX2Manager::~ADX2Manager()
+{
     
     //ACFの登録解除
     criAtomEx_UnregisterAcf();
@@ -46,7 +49,8 @@ ADX2Manager::~ADX2Manager(){
 }
 
 //初期化
-bool ADX2Manager::init( const std::string& acf ){
+bool ADX2Manager::init( const std::string& acf )
+{
     
     // エラー検知用ラムダ式を用意する。
     auto errorCallback = []( const CriChar8* errID, CriUint32 p1, CriUint32 p2, CriUint32* parray )
@@ -81,7 +85,8 @@ bool ADX2Manager::init( const std::string& acf ){
     
 }
 
-void ADX2Manager::PlattformSetting(){
+void ADX2Manager::PlattformSetting()
+{
 	
 	// コンフィグをデフォルト値で初期化する。
 	CriFsConfig fsConfig;
@@ -140,14 +145,16 @@ void ADX2Manager::PlattformSetting(){
 }
 
 //更新
-void ADX2Manager::update(){
+void ADX2Manager::update()
+{
     
     //Atomライブラリの更新
     criAtomEx_ExecuteMain();
 }
 
 //アプリがバックグランドになった時のコールバック関数
-void ADX2Manager::pauseApp(){
+void ADX2Manager::pauseApp()
+{
     
     //各プラットフォームのサウンド停止処理
 #if ( CC_TARGET_PLATFORM == CC_PLATFORM_IOS )
@@ -161,7 +168,8 @@ void ADX2Manager::pauseApp(){
 }
 
 //アプリがバックグラウンドから復帰時のコールバック関数
-void ADX2Manager::resumeApp(){
+void ADX2Manager::resumeApp()
+{
     
     //各プラットフォームのサウンド復帰処理
 #if ( CC_TARGET_PLATFORM == CC_PLATFORM_IOS )
