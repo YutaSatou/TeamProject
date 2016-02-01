@@ -7,7 +7,7 @@
 //
 
 #include "StageNumber.h"
-#include "../../Utility/DataIO/DataIO.h"
+#include "../../Utility/DataIO/SaveData.h"
 
 using namespace cocos2d;
 
@@ -20,26 +20,13 @@ namespace
 
 void StageNumber::saveStageNumber( int stageNumber ){
 
-	DataIO::saveInt( STAGE_KEY.c_str(), stageNumber );
+	SaveData::saveInt( STAGE_KEY.c_str(), stageNumber );
 }
 
 int StageNumber::loadStageNumber(){
     
-    int loadInt = DataIO::loadInt( STAGE_KEY.c_str() );
+    int loadInt = SaveData::loadInt( STAGE_KEY.c_str() );
     
     return loadInt;
-}
-
-std::string StageNumber::loadPlistName() const
-{
-	StageNumber stageNumber;
-	std::string root = "Plist/StageClearTarget/";
-	std::string path = FileUtils::getInstance()->fullPathForFilename( root + PLISTKEY.c_str() + StringUtils::toString( stageNumber.loadStageNumber() ) + EXTENSION.c_str() );
-	ValueMap player = FileUtils::getInstance()->getValueMapFromFile( path.c_str() );
-	
-	std::string plistName = player["Name"].asString();
-	
-	return plistName;
-
 }
 

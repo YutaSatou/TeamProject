@@ -11,19 +11,18 @@
 
 #include "cocos2d.h"
 
-class ClearColor
+class TargetColor
 {
 	
 protected:
 	
 public:
 	
-	ClearColor() = default;
+	TargetColor() = default;
 	
-	~ClearColor() = default;
+	~TargetColor() = default;
 	
 	cocos2d::Color3B ColorTargetRead();
-	
 	
 };
 

@@ -11,7 +11,8 @@
 
 #include "cocos2d.h"
 
-class StageNumber{
+class StageNumber
+{
     
 protected:
     
@@ -24,8 +25,6 @@ public:
     static void saveStageNumber( int stageNumber );
     
     static int loadStageNumber();
-	
-	std::string loadPlistName() const;
 };
 
 #endif
