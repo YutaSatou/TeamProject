@@ -1,4 +1,4 @@
-#include "Slime.h"
+#include "Mud.h"
 #include "../../LiquidFun/LiquidFunUserAPI.h"
 #include "../Data/ObjectData.h"
 #include "../Common/LiquidFunBodyDeleter.h"
@@ -8,7 +8,7 @@
 using namespace cocos2d;
 
 // コンストラクタ
-Slime::Slime()
+Mud::Mud()
 	: mBody( nullptr )
 	, mObjectData( nullptr )
 {
@@ -16,9 +16,9 @@ Slime::Slime()
 }
 
 // 初期化
-bool Slime::init( ObjectDataPtr objectData, const std::string& nodeName )
+bool Mud::init( ObjectDataPtr objectData, const std::string& nodeName )
 {
-	if ( !Sprite::initWithFile( objectData->textureName, { 0.0f, 0.0f, 70.0f, 70.0f } ) )
+	if ( !Sprite::initWithFile( objectData->textureName, { 0.0f, 0.0f, 80.0f, 80.0f } ) )
 	{
 		return false;
 	}
@@ -45,9 +45,9 @@ bool Slime::init( ObjectDataPtr objectData, const std::string& nodeName )
 }
 
 // インスタンスの生成
-Slime* Slime::create( ObjectDataPtr objectData, const std::string& nodeName )
+Mud* Mud::create( ObjectDataPtr objectData, const std::string& nodeName )
 {
-	Slime* inst { new Slime() };
+	Mud* inst { new Mud() };
 	
 	if ( inst && inst->init( objectData, nodeName ) )
 	{
@@ -60,35 +60,23 @@ Slime* Slime::create( ObjectDataPtr objectData, const std::string& nodeName )
 }
 
 // アニメーションの初期化
-void Slime::initAnimation()
+void Mud::initAnimation()
 {
-	// テクスチャの名前から拡張子を削除する。
-	std::string textureName = mObjectData->textureName;
-	textureName.erase( textureName.find_last_of( "." ) );
-	
-	// フェイスアニメーション用のスプライトを生成する。
-	Sprite* face { Sprite::create() };
-	face->setAnchorPoint( Vec2::ANCHOR_BOTTOM_LEFT );
-	addChild( face );
-	
 	// アニメーションを登録する。
 	SpriteAnimationData animationData;
-	animationData.addAnimation( textureName + ".png",		"Slime_Body", getContentSize(), 60 );
-	animationData.addAnimation( textureName + "_Face.png",	"Slime_Face", getContentSize(), 60 );
+	animationData.addAnimation( mObjectData->textureName, "Mud", getContentSize(), 30 );
 	
 	// アニメーションを再生する。
 	SpriteAnimator animator { this, animationData };
-	animator.play( "Slime_Body", 2.0f );
-	animator.changeTarget( face );
-	animator.play( "Slime_Face", 2.0f );
+	animator.play( "Mud", 2.0f );
 }
 
 // 物理構造の初期化
-void Slime::initPhysics()
+void Mud::initPhysics()
 {
 	// ボディの大きさを定義する。
 	const Size	drawSize	{ getContentSize() * getScale() };
-	const float	radius		{ ( drawSize.width / 2.0f ) - 5.0f };
+	const float	radius		{ ( drawSize.width / 2.0f ) - 8.0f };
 	
 	// ボディの生成に必要な設定記述子を生成する。
 	LiquidFunBodyDescCreator	bodyDescCreator;
@@ -103,18 +91,18 @@ void Slime::initPhysics()
 	
 	// 接触コールバックを設定する。
 	ContactCallback::Ptr callback { std::make_shared< ContactCallback >() };
-	callback->onContactLiquidBegin = CC_CALLBACK_3( Slime::onContactLiquidBegin, this );
+	callback->onContactLiquidBegin = CC_CALLBACK_3( Mud::onContactLiquidBegin, this );
 	
 	// カテゴリの設定、衝突するカテゴリの設定、接触するカテゴリの設定、コールバックの有効化を行う。
 	ContactSettlor contactSettlor { mBody };
-	contactSettlor.setupCategory( Contact::Category::SLIME );
+	contactSettlor.setupCategory( Contact::Category::MUD );
 	contactSettlor.setupCollisionCategory();
 	contactSettlor.setupContactCategory( callback, { Contact::Category::LIQUID } );
 	contactSettlor.enableContactCallback( getName(), callback );
 }
 
 // 液体と接触した時に呼ばれるコールバック関数
-void Slime::onContactLiquidBegin( Node* contactNode, LiquidFunParticle* particle, int index )
+void Mud::onContactLiquidBegin( Node* contactNode, LiquidFunParticle* particle, int index )
 {
 	// ボディの衝突判定と接触コールバックを無効にする。
 	mBody->SetActive( false );

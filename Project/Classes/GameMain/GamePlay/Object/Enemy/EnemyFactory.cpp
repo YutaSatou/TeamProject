@@ -3,6 +3,7 @@
 #include "../Data/ObjectData.h"
 #include "Slime.h"
 #include "Cloud.h"
+#include "Mud.h"
 
 // コンストラクタ
 EnemyFactory::EnemyFactory()
@@ -13,12 +14,18 @@ EnemyFactory::EnemyFactory()
 // 生成する製品の追加
 void EnemyFactory::addProductList()
 {
-	addCreateFunction( "Enemy_Slime_1",	[]( ObjectDataPtr objectData, const std::string& nodeName )
+	addCreateFunction( "Enemy_Slime_1",		[]( ObjectDataPtr objectData, const std::string& nodeName )
 					   { return Slime::create( objectData, nodeName ); } );
 	
-	addCreateFunction( "Enemy_Slime_2",	[]( ObjectDataPtr objectData, const std::string& nodeName )
+	addCreateFunction( "Enemy_Slime_2",		[]( ObjectDataPtr objectData, const std::string& nodeName )
 					   { return Slime::create( objectData, nodeName ); } );
 	
-	addCreateFunction( "Enemy_Cloud",	[]( ObjectDataPtr objectData, const std::string& nodeName )
+	addCreateFunction( "Enemy_Cloud",		[]( ObjectDataPtr objectData, const std::string& nodeName )
 					   { return Cloud::create( objectData, nodeName ); } );
+	
+	addCreateFunction( "Enemy_Mud_Left",	[]( ObjectDataPtr objectData, const std::string& nodeName )
+					   { return Mud::create( objectData, nodeName ); } );
+	
+	addCreateFunction( "Enemy_Mud_Right",	[]( ObjectDataPtr objectData, const std::string& nodeName )
+					   { return Mud::create( objectData, nodeName ); } );
 }
