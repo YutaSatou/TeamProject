@@ -7,6 +7,8 @@
 #include "StageSelectScrollView.h"
 #include "UIPageView.h"
 
+#include "../../Utility/Particle/ParticleManager.h"
+
 using namespace cocos2d;
 
 namespace
@@ -29,18 +31,11 @@ bool GameStageSelectLayer::init()
     drawBackGraund();
     
     //ページビューの追加
-    StageSelectPage* page = StageSelectPage::create( 1 );
-    /*Size screen_size = Director::getInstance()->getWinSize();
-    UIPageView* page = UIPageView::creae( screen_size );
-    page->setContentSize( screen_size );
-    for (int i=0; i < 3; ++i){
-        auto pageLayer = Layer::create();
-        page->insertPage( pageLayer );
-    }*/
-    //StageSelectButton* button = StageSelectButton::create();
+	//StageSelectButton* button = StageSelectButton::create();
+    StageSelectPage* page = StageSelectPage::create( 3 );
 
+	//page->addChild( button );
     addChild( page );
-
     
     scheduleUpdate();
     

@@ -22,7 +22,7 @@ public:
     
     ~StageColorInfo() = default;
 	
-	static void initColor( cocos2d::Color3B color3b );
+	static void initColor();
     
     static void saveColor( cocos2d::Color3B color3b );
     

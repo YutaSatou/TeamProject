@@ -13,6 +13,7 @@
 #include "../../Utility/Assistant/Scene/SceneCreator.h"
 #include "../GamePlay/GamePlayLayer.h"
 #include "../../Utility/DataIO/StageNumber.h"
+#include "../../Utility/DataIO/StageColorInfo.h"
 
 using namespace cocos2d;
 using namespace ui;
@@ -38,7 +39,10 @@ bool StageSelectButton::init()
         Vec2( 1590, 832 ), Vec2( 1790, 832 ), Vec2( 1990, 832 ),
         Vec2( 1590, 602 ), Vec2( 1790, 602 ), Vec2( 1990, 602 ),
     };
-    
+	
+	StageNumber stageNum;
+	StageColorInfo stageColor;
+	
     for ( int i = 0; i < 27; ++i )
     {
         Button* button = Button::create( "Texture/GameStageSelect/Stage_Numberbox_Notclear.png" );
@@ -56,7 +60,9 @@ bool StageSelectButton::init()
             }
             if ( type == Widget::TouchEventType::ENDED ){
                 ADX2Player::getInstance().play( 6 );
-                //StageNumber::saveStageNumber( i + 1 );
+				stageNum.saveStageNumber( i + 1 );
+				Color3B c = Color3B::WHITE;
+				stageColor.saveColor( c );
                 Scene* scene		{ SceneCreator::createScene( GamePlayLayer::create() ) };
                 Scene* nextScene	{ TransitionRotoZoom::create( 0.8f, scene ) };
                 SceneChanger::switchScene( nextScene );
