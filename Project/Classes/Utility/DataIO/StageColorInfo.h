@@ -11,17 +11,20 @@
 
 #include "cocos2d.h"
 
-class StageColors{
+class StageColorInfo
+{
     
 protected:
     
 public:
     
-    StageColors() = default;
+    StageColorInfo() = default;
     
-    ~StageColors() = default;
+    ~StageColorInfo() = default;
+	
+	static void initColor();
     
-    static void saveColor( int colorR, int colorG, int colorB );
+    static void saveColor( cocos2d::Color3B color3b );
     
 	int loadColorR( int stageNum );
     
@@ -32,6 +35,8 @@ public:
 	std::string loadCreateStageNumber() const;
 	
 private:
+	
+	std::string readColorDataPlist() const;
     
 };
 

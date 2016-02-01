@@ -19,7 +19,8 @@
 #include "platform/android/jni/JniHelper.h"
 #endif
 
-class ADX2Manager : public Singleton< ADX2Manager >{
+class ADX2Manager : public Singleton< ADX2Manager >
+{
     
 public:
     

@@ -12,7 +12,8 @@
 #include "cocos2d.h"
 #include "cri_adx2le.h"
 
-class ADX2CueSheet : public cocos2d::Ref{
+class ADX2CueSheet : public cocos2d::Ref
+{
     
 protected:
     
@@ -41,4 +42,4 @@ private:
     CriAtomExAcbHn mAcbHandle;
 };
 
-#endif /* defined(__TeamProject__ADX2CueSheet__) */
+#endif

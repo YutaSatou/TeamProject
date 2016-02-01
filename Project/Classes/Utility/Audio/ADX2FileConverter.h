@@ -11,7 +11,8 @@
 
 #include <string>
 
-class ADX2FlieConverter{
+class ADX2FlieConverter
+{
     
 protected:
     
@@ -27,4 +28,4 @@ public:
     static std::string convertFilePath( const std::string& filePath );
 };
 
-#endif /* defined(__TeamProject__ADX2FileConverter__) */
+#endif

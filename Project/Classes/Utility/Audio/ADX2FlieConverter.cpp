@@ -12,7 +12,8 @@
 using namespace cocos2d;
 
 //ファイルパスの変換
-std::string ADX2FlieConverter::convertFilePath(const std::string& filePath){
+std::string ADX2FlieConverter::convertFilePath(const std::string& filePath)
+{
 	
 #if ( CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC )
 	
