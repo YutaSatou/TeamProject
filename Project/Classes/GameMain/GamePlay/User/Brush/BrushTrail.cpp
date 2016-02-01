@@ -72,8 +72,9 @@ void BrushTrail::writeMove( Touch* touch )
 	
 	if ( distance > DISTANCE_MIN )
 	{
-		// 線形状のフィクスチャ設定記述子を追加し、軌跡を描画する。
+		// フィクスチャ設定記述子を追加し、軌跡を描画する。
 		mBrushBody.pushSegment( mTrailOffset, delta + mTrailOffset, LINE_WIDTH );
+		mBrushBody.pushConnection( mTrailOffset, LINE_WIDTH );
 		drawTrail( mPreviousTouchPoint, touchPoint );
 		
 		// 各座標を更新する。
@@ -100,6 +101,7 @@ bool BrushTrail::writeEnd( Touch* touch, Node* parentNode )
 	drawer->setPosition( touchStartPoint );
 	
 	// ボディを装着して、親ノードに追加する。
+	mBrushBody.pushConnection( mTrailOffset, LINE_WIDTH );
 	mBrushBody.attachBody( drawer );
 	parentNode->addChild( drawer );
 	

@@ -43,6 +43,13 @@ public:
 	void pushSegment( const cocos2d::Vec2& start, const cocos2d::Vec2& end, float lineWidth );
 	
 	/**
+	 *	@brief	線と線を結ぶフィクスチャ設定記述子の追加
+	 *	@param	position	追加する座標
+	 *	@param	lineWidth	線の幅
+	 */
+	void pushConnection( const cocos2d::Vec2& position, float lineWidth );
+	
+	/**
 	 *	@brief	コンテナの解放
 	 */
 	void clear();
@@ -69,11 +76,11 @@ private:
 	
 private:
 	
-	using SegmentContainer				= std::vector< LiquidFunFixtureDesc >;
+	using FixtureDescContainer			= std::vector< LiquidFunFixtureDesc >;
 	using LiquidFunBodyDescCreatorPtr	= std::shared_ptr< LiquidFunBodyDescCreator >;
 	
-	SegmentContainer			mSegmentContainer;	//=> 線形状のフィクスチャ設定記述子のコンテナ
-	LiquidFunBodyDescCreatorPtr	mBodyDescCreator;	//=> ボディ設定記述子生成者
+	FixtureDescContainer		mFixtureDescContainer;	//=> フィクスチャ設定記述子のコンテナ
+	LiquidFunBodyDescCreatorPtr	mBodyDescCreator;		//=> ボディ設定記述子生成者
 };
 
 #endif

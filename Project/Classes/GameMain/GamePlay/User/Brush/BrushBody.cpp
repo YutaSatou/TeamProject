@@ -7,7 +7,7 @@ using namespace cocos2d;
 
 // コンストラクタ
 BrushBody::BrushBody()
-	: mSegmentContainer()
+	: mFixtureDescContainer()
 	, mBodyDescCreator( std::make_shared< LiquidFunBodyDescCreator >() )
 {
 	
@@ -22,24 +22,27 @@ BrushBody::~BrushBody()
 // 線形状のフィクスチャ設定記述子の追加
 void BrushBody::pushSegment( const Vec2& start, const Vec2& end, float lineWidth )
 {
-	// マテリアル( 密度, 反発係数, 摩擦係数 )を用意する。
-	LiquidFunMaterial material { 0.0f, 0.0f, 1.0f };
-	
-	// 線形状のフィクスチャ設定記述子を生成し、格納する。
-	LiquidFunFixtureDesc segment { mBodyDescCreator->createSegment( start, end, lineWidth, material ) };
-	mSegmentContainer.push_back( segment );
+	LiquidFunFixtureDesc segment { mBodyDescCreator->createSegment( start, end, lineWidth, { 0.0f, 0.0f, 1.0f } ) };
+	mFixtureDescContainer.push_back( segment );
+}
+
+// 線と線を結ぶフィクスチャ設定記述子の追加
+void BrushBody::pushConnection( const Vec2& position, float lineWidth )
+{
+	LiquidFunFixtureDesc circle { mBodyDescCreator->createCircle( lineWidth / 2.0f, { 0.0f, 0.0f, 1.0f }, position ) };
+	mFixtureDescContainer.push_back( circle );
 }
 
 // コンテナの解放
 void BrushBody::clear()
 {
-	mSegmentContainer.clear();
+	mFixtureDescContainer.clear();
 }
 
 // コンテナが空か否か
 bool BrushBody::isEmpty() const
 {
-	return mSegmentContainer.empty();
+	return mFixtureDescContainer.empty();
 }
 
 // ボディの装着
@@ -59,7 +62,7 @@ void BrushBody::attachBody( Node* registerNode )
 // コンテナの巡回
 void BrushBody::each( std::function< void( LiquidFunFixtureDesc& ) > func )
 {
-	std::for_each( mSegmentContainer.begin(), mSegmentContainer.end(), [ & ]( LiquidFunFixtureDesc& desc )
+	std::for_each( mFixtureDescContainer.begin(), mFixtureDescContainer.end(), [ & ]( LiquidFunFixtureDesc& desc )
 	{
 		func( desc );
 	} );
