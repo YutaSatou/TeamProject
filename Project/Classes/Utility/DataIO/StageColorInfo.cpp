@@ -19,7 +19,7 @@ namespace
 	const std::string EXTENSION = ".plist";
 }
 
-void StageColorInfo::initColor( Color3B color3b )
+void StageColorInfo::initColor()
 {
 	std::string path = FileUtils::getInstance()->getWritablePath();
 	StageNumber stageNumber;

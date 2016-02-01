@@ -8,9 +8,9 @@
 
 #include "Score.h"
 #include "ui/CocosGUI.h"
-#include "../../Utility/DataIO/StageColors.h"
+#include "../../Utility/DataIO/StageColorInfo.h"
 #include "../../Utility/DataIO/StageNumber.h"
-#include "../../Utility/DataIO/ClearColor.h"
+#include "../../Utility/DataIO/TargetColor.h"
 
 using namespace cocos2d;
 using namespace ui;
@@ -47,7 +47,7 @@ Score* Score::create(){
 void Score::score(){
     
 	StageNumber stageNumber;
-	StageColors stageColor;
+	StageColorInfo stageColor;
 	//ゲームメインでプレイヤーが作った色
 	int stageNum = stageNumber.loadStageNumber();
 	int playerR = stageColor.loadColorR( stageNum );
@@ -60,7 +60,7 @@ void Score::score(){
 	//int lineLength = 1;
 	
 	//選んだステージの目標の色
-	ClearColor clearColor;
+	TargetColor clearColor;
 	Color3B color = clearColor.ColorTargetRead();
 	int stageR = color.r;
 	int stageG = color.g;

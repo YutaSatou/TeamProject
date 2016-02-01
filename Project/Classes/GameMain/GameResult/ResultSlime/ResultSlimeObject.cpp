@@ -8,7 +8,7 @@
 
 #include "ResultSlimeObject.h"
 #include "../../../Utility/DataIO/StageNumber.h"
-#include "../../../Utility/DataIO/StageColors.h"
+#include "../../../Utility/DataIO/StageColorInfo.h"
 
 using namespace cocos2d;
 
@@ -83,7 +83,7 @@ void ResultSlimeObject::initParticle()
 {
 	//メインで作った色を取得
 	StageNumber stageNumber;
-	StageColors stageColor;
+	StageColorInfo stageColor;
 	int stageNum = stageNumber.loadStageNumber();
 	int colorR = stageColor.loadColorR( stageNum );
 	int colorG = stageColor.loadColorG( stageNum );

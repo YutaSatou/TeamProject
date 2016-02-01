@@ -55,7 +55,7 @@ bool GameResultLayer::init()
 	
 	scheduleUpdate();
 	
-	LiquidFunWorldManager::getInstance().setGravity( { 0.0f, -9.8f } );
+	LiquidFunWorldManager::getInstance().setGravity( { 0.0f, -16.8f } );
 	
 	
 	return true;

@@ -11,7 +11,7 @@
 #include "Evaluation.h"
 #include "EvaluationTag.h"
 #include "../../Utility/DataIO/StageNumber.h"
-#include "../../Utility/DataIO/StageColors.h"
+#include "../../Utility/DataIO/StageColorInfo.h"
 #include "../../Utility/Audio/ADX2Player.h"
 
 using namespace cocos2d;
@@ -55,7 +55,7 @@ void ResultEvaluation::playAnimation(){
 	
     Sequence* animation = nullptr;
 	StageNumber stageNumber;
-	StageColors stageColor;
+	StageColorInfo stageColor;
 	int stageNum = stageNumber.loadStageNumber();
 	int ColorR = stageColor.loadColorR( stageNum );
     int ColorG = stageColor.loadColorG( stageNum );
