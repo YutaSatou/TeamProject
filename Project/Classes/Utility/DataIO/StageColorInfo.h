@@ -22,17 +22,17 @@ public:
     
     ~StageColorInfo() = default;
 	
+	std::string loadCreateStageNumber() const;
+	
 	static void initColor();
     
-    static void saveColor( cocos2d::Color3B color3b );
+    static void saveColor( cocos2d::Color3B color3b, bool isClear );
     
 	int loadColorR( int stageNum );
     
 	int loadColorG( int stageNum );
     
     int loadColorB( int stageNum );
-	
-	std::string loadCreateStageNumber() const;
 	
 private:
 	

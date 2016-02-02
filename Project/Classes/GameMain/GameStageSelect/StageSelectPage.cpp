@@ -18,6 +18,7 @@
 
 #include "../GameResult/GameResultLayer.h"
 #include "../../Utility/DataIO/StageColorInfo.h"
+#include "StageSelectButtonColor/ButtonColor.h"
 
 using namespace cocos2d;
 using namespace ui;
@@ -58,12 +59,23 @@ bool StageSelectPage::init( const int pageNum ){
     for (int j = 0; j < 11; ++j){
         Button* image = Button::create( "Texture/GameStageSelect/Stage_Numberbox_Notclear.png" );
         image->setTitleText( StringUtils::toString( j + 1 ) );
-        image->setTitleFontName( "Font/RiiPopkkR.otf" );
+        /*image->setTitleFontName( "Font/RiiPopkkR.otf" );
         image->setTitleFontSize( 68 );
-		image->setTitleColor( Color3B::BLACK );
+		image->setTitleColor( Color3B::BLACK );*/
         image->setZoomScale( 0.1f );
-        image->setPosition( poses[j] );
-        
+        image->setPosition( poses[ j ] );
+		
+		Sprite* color = Sprite::create( "Texture/GameStageSelect/Stage_Numberbox_Clear_ColorBox.png" );
+		ButtonColor bc;
+		color->setColor( bc.buttonColor( j + 1 ) );
+		color->setOpacity( 125 );
+		color->setPosition( poses[ j ] );
+		
+		Label* text = Label::createWithTTF( StringUtils::toString( j + 1 ), "Font/RiiPopkkR.otf", 64 );
+		text->setPosition( poses[ j ] );
+		text->setColor( Color3B::BLACK );
+		text->enableOutline( Color4B( 0,0,255,255 ), 3 );
+			
         image->addTouchEventListener( [ = ]( Ref* sender, Widget::TouchEventType type ){
             
             if ( type == Widget::TouchEventType::BEGAN ){
@@ -78,6 +90,8 @@ bool StageSelectPage::init( const int pageNum ){
             }
         });
         mPage->addChild( image );
+		mPage->addChild( color );
+		mPage->addChild( text );
     }
     
     ImageView* sliderBack = PageCursor::baseTex( "Texture/GameStageSelect/Select_Box_Stageline.png", Vec2( 358, 163 ) );
