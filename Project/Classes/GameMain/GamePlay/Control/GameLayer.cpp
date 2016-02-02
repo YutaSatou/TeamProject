@@ -67,6 +67,8 @@ void GameLayer::gameStart()
 // ゲーム終了
 void GameLayer::gameEnd()
 {
+	getEventDispatcher()->removeAllEventListeners();
+	
 	auto callback = [ this ]( bool isSucceed, const std::string& filePath )
 	{
 		if ( isSucceed )
