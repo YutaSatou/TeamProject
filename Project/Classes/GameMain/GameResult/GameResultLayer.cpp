@@ -55,6 +55,8 @@ bool GameResultLayer::init()
 	
 	scheduleUpdate();
 	
+	mGamePlayGravity = LiquidFunWorldManager::getInstance().getGravity();
+	
 	LiquidFunWorldManager::getInstance().setGravity( { 0.0f, -16.8f } );
 	
 	
@@ -103,6 +105,7 @@ void GameResultLayer::touchListener(){
     //タッチ終了
     listener->onTouchEnded = [ = ](Touch* touch, Event* event){
         //mResultManager->touchAction();
+		LiquidFunWorldManager::getInstance().setGravity( mGamePlayGravity );
 		Scene* scene		{ SceneCreator::createScene( GameStageSelectLayer::create() ) };
 		Scene* nextScene	{ TransitionRotoZoom::create( 0.8f, scene ) };
 		SceneChanger::switchScene( nextScene );
