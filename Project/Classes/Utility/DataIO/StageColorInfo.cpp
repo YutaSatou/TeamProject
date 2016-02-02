@@ -19,6 +19,15 @@ namespace
 	const std::string EXTENSION = ".plist";
 }
 
+std::string StageColorInfo::readColorDataPlist() const
+{
+	std::string path = FileUtils::getInstance()->getWritablePath();
+	StageNumber stageNumber;
+	std::string fullPath = path + "Stage" + StringUtils::toString( stageNumber.loadStageNumber() ) + "ColorData.plist";
+	
+	return fullPath;
+}
+
 void StageColorInfo::initColor()
 {
 	std::string path = FileUtils::getInstance()->getWritablePath();
@@ -26,12 +35,24 @@ void StageColorInfo::initColor()
 	std::string file = path + "Stage" + StringUtils::toString( stageNumber.loadStageNumber() ) + "ColorData.plist";
 	ValueMap data;
 	data["name"] = ROOL + STAGE_CREATE_DIRECTORY + StringUtils::toString( stageNumber.loadStageNumber() ) + EXTENSION;
+	ValueMap player = FileUtils::getInstance()->getValueMapFromFile( file.c_str() );
+	if ( !player["Clear"].isNull() )
+	{
+		std::string path = FileUtils::getInstance()->getWritablePath();
+		StageNumber stageNumber;
+		std::string fullPath = path + "Stage" + StringUtils::toString( stageNumber.loadStageNumber() ) + "ColorData.plist";
+		data["ColorR"] = player["ColorR"];
+		data["ColorG"] = player["ColorG"];
+		data["ColorB"] = player["ColorB"];
+		data["Clear"] = player["Clear"];
+		CCLOG( "ISIS" );
+	}
 	if ( FileUtils::getInstance()->writeToFile( data, file ) )
 	{
 	}
 }
 
-void StageColorInfo::saveColor( Color3B color3b )
+void StageColorInfo::saveColor( Color3B color3b, bool isClear )
 {
     std::string path = FileUtils::getInstance()->getWritablePath();
 	StageNumber stageNumber;
@@ -41,18 +62,11 @@ void StageColorInfo::saveColor( Color3B color3b )
     data["ColorR"] = (int)color3b.r;
     data["ColorG"] = (int)color3b.g;
     data["ColorB"] = (int)color3b.b;
+	data["Clear"] = isClear;
     if ( FileUtils::getInstance()->writeToFile( data, file ) )
     {
+		//CCLOG( "%s", file.c_str() );
     }
-}
-
-std::string StageColorInfo::readColorDataPlist() const
-{
-	std::string path = FileUtils::getInstance()->getWritablePath();
-	StageNumber stageNumber;
-	std::string fullPath = path + "Stage" + StringUtils::toString( stageNumber.loadStageNumber() ) + "ColorData.plist";
-	
-	return fullPath;
 }
 
 int StageColorInfo::loadColorR( int stageNum )

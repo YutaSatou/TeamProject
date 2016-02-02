@@ -30,6 +30,10 @@ private:
     void touchListener();
     
     ResultManager* mResultManager;
+	
+private:
+	
+	cocos2d::Vec2 mGamePlayGravity;
 };
 
 #endif

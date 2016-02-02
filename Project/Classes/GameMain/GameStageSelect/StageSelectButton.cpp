@@ -61,8 +61,7 @@ bool StageSelectButton::init()
             if ( type == Widget::TouchEventType::ENDED ){
                 ADX2Player::getInstance().play( 6 );
 				stageNum.saveStageNumber( i + 1 );
-				Color3B c = Color3B::WHITE;
-				stageColor.saveColor( c );
+				stageColor.initColor();
                 Scene* scene		{ SceneCreator::createScene( GamePlayLayer::create() ) };
                 Scene* nextScene	{ TransitionRotoZoom::create( 0.8f, scene ) };
                 SceneChanger::switchScene( nextScene );
