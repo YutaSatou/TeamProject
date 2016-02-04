@@ -107,7 +107,4 @@ void LiquidFunDebugDrawer::onDraw()
 	
 	// 保存しておいたモデルビュを読み込む。
 	director->loadMatrix( MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, prevModelView );
-	
-	// GLのエラーログを表示する。
-	CHECK_GL_ERROR_DEBUG();
 }

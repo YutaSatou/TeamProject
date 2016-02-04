@@ -20,7 +20,7 @@ bool BridgeScene::init( NextSceneCreateFunc func )
 	
 	mNextSceneCreateFunc = func;
 	
-	scheduleOnce( CC_SCHEDULE_SELECTOR( BridgeScene::next ), 0.1f );
+	scheduleOnce( CC_SCHEDULE_SELECTOR( BridgeScene::next ), 0.3f );
 	
 	return true;
 }
