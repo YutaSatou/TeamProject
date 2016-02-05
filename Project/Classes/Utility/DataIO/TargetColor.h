@@ -22,7 +22,7 @@ public:
 	
 	~TargetColor() = default;
 	
-	cocos2d::Color3B ColorTargetRead();
+	cocos2d::Color3B readColorTarget() const;
 	
 };
 

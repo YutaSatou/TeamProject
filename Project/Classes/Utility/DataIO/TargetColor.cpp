@@ -18,7 +18,7 @@ namespace
 	const std::string EXTENSION = "ColorTargetData.plist";
 }
 
-Color3B TargetColor::ColorTargetRead()
+Color3B TargetColor::readColorTarget() const
 {
 	StageNumber stageNumber;
 	std::string path = FileUtils::getInstance()->fullPathForFilename( PLISTROOT + STAGE_KEY + StringUtils::toString( stageNumber.loadStageNumber() ) + EXTENSION );

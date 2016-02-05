@@ -52,6 +52,11 @@ private:
 	 *	@param	plistFilePath	プロパティリストファイルのパス
 	 */
 	void createBody( cocos2d::Node* registerNode, const std::string& plistFilePath );
+	
+	/**
+	 *	@brief	旗の描画
+	 */
+	void drawFlag();
 };
 
 #endif

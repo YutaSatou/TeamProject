@@ -61,7 +61,7 @@ void Score::score(){
 	
 	//選んだステージの目標の色
 	TargetColor clearColor;
-	Color3B color = clearColor.ColorTargetRead();
+	Color3B color = clearColor.readColorTarget();
 	int stageR = color.r;
 	int stageG = color.g;
 	int stageB = color.b;

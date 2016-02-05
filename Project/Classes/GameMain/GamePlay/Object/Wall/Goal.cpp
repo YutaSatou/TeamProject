@@ -2,6 +2,7 @@
 #include "../../LiquidFun/LiquidFunUserAPI.h"
 #include "../Common/LiquidFunBodyDeleter.h"
 #include "Utility/FileIO/PlistReader.h"
+#include "Utility/DataIO/TargetColor.h"
 
 using namespace cocos2d;
 
@@ -13,12 +14,19 @@ bool Goal::init( const Vec2& position )
 		return false;
 	}
 	
+	TargetColor t;
+	
 	// 各パラメータを設定する。
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
+	setColor( t.readColorTarget() );
+	setOpacity( 220 );
 	setPosition( position );
 	
 	// 物理構造の初期化を行う。
 	initPhysics();
+	
+	// 旗を描画する。
+	drawFlag();
 	
 	return true;
 }
@@ -78,4 +86,12 @@ void Goal::createBody( Node* registerNode, const std::string& plistFilePath )
 		// ノードが削除されるタイミングで、ボディも削除されるように設定する。
 		registerNode->addChild( LiquidFunBodyDeleter::create( body ) );
 	}
+}
+
+// 旗の描画
+void Goal::drawFlag()
+{
+	Sprite* flag { Sprite::create( "Texture/GamePlay/Goal_Flag.png" ) };
+	flag->setPosition( getPosition() );
+	addChild( flag );
 }
