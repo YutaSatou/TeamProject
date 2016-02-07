@@ -59,6 +59,11 @@ private:
 	 */
 	void initPhysics( const cocos2d::Vec2& start, const cocos2d::Vec2& end );
 	
+	/**
+	 *	@brief	接触コールバックの設定
+	 */
+	void setupContactCallback();
+	
 private:
 	
 	LiquidFunBody* mBody;	//=> ボディ
