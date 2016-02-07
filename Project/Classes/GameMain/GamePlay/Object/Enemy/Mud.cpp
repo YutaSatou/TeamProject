@@ -38,8 +38,9 @@ bool Mud::init( ObjectDataPtr objectData, const std::string& nodeName )
 	// アニメーションの初期化を行う。
 	initAnimation();
 	
-	// 物理構造の初期化を行う。
+	// 物理構造の初期化、接触コールバックの設定を行う。
 	initPhysics();
+	setupContactCallback();
 	
 	return true;
 }
@@ -88,7 +89,11 @@ void Mud::initPhysics()
 	
 	// ノードが削除されるタイミングで、ボディも削除されるように設定する。
 	addChild( LiquidFunBodyDeleter::create( mBody ) );
-	
+}
+
+// 接触コールバックの設定
+void Mud::setupContactCallback()
+{
 	// 接触コールバックを設定する。
 	ContactCallback::Ptr callback { std::make_shared< ContactCallback >() };
 	callback->onContactLiquidBegin = CC_CALLBACK_3( Mud::onContactLiquidBegin, this );
