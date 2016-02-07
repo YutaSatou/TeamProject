@@ -3,6 +3,7 @@
 #include "Object/Contact/ContactListener.h"
 #include "Control/GameLayer.h"
 #include "User/UI/UILayer.h"
+#include "Utility/DataIO/StageColorInfo.h"
 
 using namespace cocos2d;
 
@@ -17,9 +18,12 @@ bool GamePlayLayer::init()
 	scheduleUpdate();
 	addBackground();
 	
-	/* addChild( LiquidFunDebugDrawer::create() ); */
+	// クラス名、関数名、早めに変更してね。
+	StageColorInfo		stageColorInfo;
+	const std::string&	stageFileName { stageColorInfo.loadCreateStageNumber() };
+	
 	addChild( ContactListener::create() );
-	addChild( GameLayer::create( "Plist/StageData/DebugData.plist" ) );
+	addChild( GameLayer::create( stageFileName ) );
 	addChild( UILayer::create() );
 	
 	return true;
