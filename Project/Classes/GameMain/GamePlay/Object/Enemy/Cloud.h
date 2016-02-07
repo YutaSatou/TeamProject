@@ -56,6 +56,11 @@ private:
 	void initPhysics();
 	
 	/**
+	 *	@brief	接触コールバックの設定
+	 */
+	void setupContactCallback();
+	
+	/**
 	 *	@brief	液体と接触した時に呼ばれるコールバック関数
 	 *	@param	contactNode	接触したノード
 	 *	@param	particle	接触したパーティクル
