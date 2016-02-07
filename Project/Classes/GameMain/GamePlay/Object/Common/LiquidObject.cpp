@@ -8,6 +8,7 @@ using namespace cocos2d;
 LiquidObject::LiquidObject()
 	: mParticle( nullptr )
 	, mParticleGroup( nullptr )
+	, mParticleSpriteContainer()
 {
 	
 }
@@ -94,8 +95,18 @@ void LiquidObject::registerTexture( const std::string& textureName )
 		// ユーザデータにスプライトを登録する。
 		( *userData ) = particle;
 		
-		// 自身の子ノードとして追加する。
+		// コンテナに追加して、自身の子ノードとして追加する。
+		mParticleSpriteContainer.push_back( particle );
 		addChild( particle );
+	} );
+}
+
+// テクスチャの登録解除
+void LiquidObject::unregisterTexture()
+{
+	std::for_each( mParticleSpriteContainer.begin(), mParticleSpriteContainer.end(), []( Sprite* particleSprite )
+	{
+		particleSprite->runAction( RemoveSelf::create() );
 	} );
 }
 

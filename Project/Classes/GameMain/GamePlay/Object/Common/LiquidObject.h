@@ -17,6 +17,10 @@ protected:
 	using UserDataPointer	= void*;
 	using EachBufferFunc	= std::function< void( UserDataPointer*, LiquidFunParticleColor*, LiquidFunVec2* ) >;
 	
+private:
+	
+	using ParticleSpriteContainer = std::vector< cocos2d::Sprite* >;
+	
 protected:
 	
 	/**
@@ -92,6 +96,11 @@ protected:
 	void registerTexture( const std::string& textureName );
 	
 	/**
+	 *	@brief	テクスチャの登録解除
+	 */
+	void unregisterTexture();
+	
+	/**
 	 *	@brief	接触コールバックの設定
 	 */
 	void setupContactCallback();
@@ -104,8 +113,12 @@ protected:
 	
 protected:
 	
-	LiquidFunParticle*		mParticle;				//=> パーティクル
-	LiquidFunParticleGroup*	mParticleGroup;			//=> パーティクルグループ
+	LiquidFunParticle*		mParticle;		//=> パーティクル
+	LiquidFunParticleGroup*	mParticleGroup;	//=> パーティクルグループ
+	
+private:
+	
+	ParticleSpriteContainer mParticleSpriteContainer;	//=> パーティクルスプライトコンテナ
 };
 
 #endif
