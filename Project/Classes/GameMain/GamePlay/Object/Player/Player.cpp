@@ -43,7 +43,7 @@ bool Player::init( ObjectDataPtr objectData )
 	
 	// パーティクルの初期化、接触コールバックの設定を行う。
 	initParticle();
-	registerTexture( mObjectData->textureName );
+	disableLiquidBehavior();
 	setupContactCallback();
 	
 	// アクション制御者の初期化を行う。
@@ -89,6 +89,13 @@ void Player::syncColor()
 	} );
 }
 
+// 座標情報の同期
+void Player::syncPosition()
+{
+	unregisterTexture();
+	initParticle();
+}
+
 // パーティクルの初期化
 void Player::initParticle()
 {
@@ -106,8 +113,8 @@ void Player::initParticle()
 	mParticle		= LiquidFunParticleSettlor::attachParticle( particleDesc );
 	mParticleGroup	= LiquidFunParticleSettlor::attachParticleGroup( mParticle, groupDesc );
 	
-	// 液体挙動を無効化する。
-	disableLiquidBehavior();
+	// テクスチャを登録する。
+	registerTexture( mObjectData->textureName );
 }
 
 // 剛体と接触した時に呼ばれるコールバック関数

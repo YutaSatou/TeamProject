@@ -53,6 +53,12 @@ public:
 	 */
 	void syncColor();
 	
+	/**
+	 *	@brief	座標情報の同期
+	 *			厳密に言えば液体の再生成なので注意。
+	 */
+	void syncPosition();
+	
 private:
 	
 	/**
