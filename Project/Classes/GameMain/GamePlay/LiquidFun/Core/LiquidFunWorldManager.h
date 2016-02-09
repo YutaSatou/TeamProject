@@ -94,7 +94,7 @@ private:
 private:
 	
 	friend class Singleton< LiquidFunWorldManager >;
-	friend class LiquidFunDebugDrawer;
+	friend class LiquidFunDebugDrawer;	// Debug用だから特別。
 	
 	using LiquidFunWorldPtr		= std::shared_ptr< LiquidFunWorld >;
 	using LiquidFunSchedulerPtr	= std::shared_ptr< LiquidFunScheduler >;

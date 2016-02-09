@@ -38,7 +38,7 @@ bool LiquidFunDebugDrawer::init()
 }
 
 // 描画
-void LiquidFunDebugDrawer::draw( Renderer* renderer, const Mat4& transform, uint32_t flags )
+void LiquidFunDebugDrawer::draw( Renderer* renderer, const Mat4& transform, std::uint32_t flags )
 {
 	Layer::draw( renderer, transform, flags );
 	GL::enableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION );
@@ -81,7 +81,7 @@ void LiquidFunDebugDrawer::initDebugDrawFlags()
 	// デバッグ描画用レンダラを登録する。
 	LiquidFunWorldManager::getInstance().mWorld->SetDebugDraw( mDebugRenderer );
 	
-	uint32_t flags { 0 };
+	std::uint32_t flags { 0 };
 	flags += LiquidFunDraw::e_shapeBit;
 	flags += LiquidFunDraw::e_jointBit;
 	flags += LiquidFunDraw::e_pairBit;

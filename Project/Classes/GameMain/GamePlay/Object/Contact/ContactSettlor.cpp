@@ -47,9 +47,9 @@ void ContactSettlor::disableContactCallback( const std::string& nodeName )
 }
 
 // OR演算
-uint16_t ContactSettlor::orCalculate( const OtherCategory& otherCategory )
+std::uint16_t ContactSettlor::orCalculate( const OtherCategory& otherCategory )
 {
-	uint16_t bitmask { 0 };
+	std::uint16_t bitmask { 0 };
 	
 	for ( auto& bit : otherCategory )
 	{

@@ -20,7 +20,7 @@ public:
 	 *	@brief	コンストラクタ
 	 *	@param	callbackContainer	コールバックコンテナ
 	 */
-	ContactSender( ContactEventManager::CallbackContainer& callbackContainer );
+	explicit ContactSender( ContactEventManager::CallbackContainer& callbackContainer );
 	
 	/**
 	 *	@brief	デストラクタ

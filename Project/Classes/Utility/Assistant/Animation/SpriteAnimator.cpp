@@ -9,7 +9,7 @@ namespace
 }
 
 // コンストラクタ
-SpriteAnimator::SpriteAnimator( cocos2d::Sprite* targetSprite, const SpriteAnimationData& animationData )
+SpriteAnimator::SpriteAnimator( Sprite* targetSprite, const SpriteAnimationData& animationData )
 	: mTargetSprtite( targetSprite )
 	, mAnimationData( animationData )
 {
@@ -26,7 +26,7 @@ void SpriteAnimator::play( const std::string& animationName, float frameSwitchSp
 	
 	if ( isLoop )
 	{
-		ActionInterval* repeatAction { RepeatForever::create( animate ) };
+		RepeatForever* repeatAction { RepeatForever::create( animate ) };
 		repeatAction->setTag( ACTION_TAG_UNIQUE );
 		mTargetSprtite->runAction( repeatAction );
 		return;

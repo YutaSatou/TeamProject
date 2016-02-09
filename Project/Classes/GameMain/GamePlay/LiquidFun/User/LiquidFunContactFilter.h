@@ -10,9 +10,9 @@
 /*------------------------------------------------------------*/
 struct LiquidFunContactFilter
 {
-	uint16_t	categoryBitmask;	//=> カテゴリビットマスク
-	uint16_t	collisionBitmask;	//=> 衝突するオブジェクトのビットマスク
-	short		groupIndex;			//=> グループインデックス
+	std::uint16_t	categoryBitmask;	//=> カテゴリビットマスク
+	std::uint16_t	collisionBitmask;	//=> 衝突するオブジェクトのビットマスク
+	short			groupIndex;			//=> グループインデックス
 	
 	/**
 	 *	@brief	コンストラクタ
@@ -28,7 +28,7 @@ struct LiquidFunContactFilter
 	 *	@param	_collisionBitmask	衝突するオブジェクトのビットマスク
 	 *	@param	_groupIndex			グループインデックス
 	 */
-	LiquidFunContactFilter( uint16_t _categoryBitmask, uint16_t _collisionBitmask, short _groupIndex )
+	LiquidFunContactFilter( std::uint16_t _categoryBitmask, std::uint16_t _collisionBitmask, short _groupIndex )
 		: categoryBitmask( _categoryBitmask )
 		, collisionBitmask( _collisionBitmask )
 		, groupIndex( _groupIndex ) { }

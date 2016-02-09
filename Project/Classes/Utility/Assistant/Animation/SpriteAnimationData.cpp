@@ -11,7 +11,7 @@ SpriteAnimationData::SpriteAnimationData()
 }
 
 // アニメーションの追加
-void SpriteAnimationData::addAnimation( const std::string& fileName, const std::string& animationName, const cocos2d::Size& frameSize, int frameCount )
+void SpriteAnimationData::addAnimation( const std::string& fileName, const std::string& animationName, const Size& frameSize, int frameCount )
 {
 	Animation*		animation			{ Animation::create() };
 	SpriteFrame*	frame				{ SpriteFrame::create( fileName, Rect::ZERO ) };

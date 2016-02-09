@@ -36,8 +36,8 @@ protected:
 	/**
 	 *	@brief	代入演算子
 	 */
-	Singleton& operator = ( const Singleton& )	= delete;
-	Singleton& operator = ( Singleton&& )		= delete;
+	Singleton& operator=( const Singleton& )	= delete;
+	Singleton& operator=( Singleton&& )			= delete;
 };
 
 #endif

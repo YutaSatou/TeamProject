@@ -14,14 +14,14 @@ struct EnumHash
 {
 	/**
 	 *	@brief	関数オブジェクト
-	 *	@param	t		enum classの値
+	 *	@param	t		値
 	 *	@return	size_t	要素数
 	 */
 	template< typename T >
-	std::size_t operator () ( T x ) const
+	std::size_t operator()( T x ) const
 	{
 		// enum型以外の場合はエラーを発生させる。
-		static_assert( std::is_enum< T >::value, "enum型以外は使用できません。" );
+		static_assert( std::is_enum< T >::value, "enum class型以外は使用できません。" );
 		using BaseType = typename std::underlying_type< T >::type;
 		
 		return static_cast< BaseType >( x );

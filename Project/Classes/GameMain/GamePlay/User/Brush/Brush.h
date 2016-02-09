@@ -20,7 +20,7 @@ protected:
 	 *	@brief	コンストラクタ
 	 *	@param	mediator	ゲーム制御仲介者
 	 */
-	Brush( GameControlMediator& mediator );
+	explicit Brush( GameControlMediator& mediator );
 	
 	/**
 	 *	@brief	デストラクタ

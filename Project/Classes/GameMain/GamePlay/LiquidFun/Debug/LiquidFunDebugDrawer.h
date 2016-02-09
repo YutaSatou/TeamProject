@@ -37,7 +37,7 @@ protected:
 	 *	@param	transform	トランスフォーム
 	 *	@param	flags		ビットフラグ
 	 */
-	virtual void draw( cocos2d::Renderer* renderer, const cocos2d::Mat4& transform, uint32_t flags ) override;
+	virtual void draw( cocos2d::Renderer* renderer, const cocos2d::Mat4& transform, std::uint32_t flags ) override;
 	
 public:
 	

@@ -26,7 +26,7 @@ namespace
 		return { valueMap.at( "Density" ).asFloat(), valueMap.at( "Restitution" ).asFloat(), valueMap.at( "Friction" ).asFloat() };
 	}
 	
-	uint8_t readAlpha( const ValueMap& valueMap )
+	std::uint8_t readAlpha( const ValueMap& valueMap )
 	{
 		return { valueMap.at( "Alpha" ).asByte() };
 	}

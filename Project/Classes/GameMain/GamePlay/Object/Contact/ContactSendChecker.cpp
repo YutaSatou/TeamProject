@@ -26,7 +26,7 @@ bool ContactSendChecker::isFind( const std::string& nodeName ) const
 }
 
 // ビットが立っているか否か
-bool ContactSendChecker::isBitStand( uint16_t bitA, uint16_t bitB ) const
+bool ContactSendChecker::isBitStand( std::uint16_t bitA, std::uint16_t bitB ) const
 {
 	return ( ( bitA & bitB ) != 0 );
 }

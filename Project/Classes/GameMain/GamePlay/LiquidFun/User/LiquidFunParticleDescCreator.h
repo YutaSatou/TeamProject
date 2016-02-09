@@ -2,6 +2,7 @@
 #define _LIQUID_FUN_PARTICLE_DESC_CREATOR_H_
 
 #include "../Core/LiquidFunBox2D.h"
+#include <cstdint>
 
 namespace cocos2d
 {
@@ -45,7 +46,7 @@ public:
 	 *	@param	alpha						パーティクルグループのα値
 	 *	@return	LiquidFunParticleGroupDesc	パーティクルグループ設定記述子
 	 */
-	LiquidFunParticleGroupDesc createParticleGroupDesc( const cocos2d::Color3B& color, const cocos2d::Vec2& position, uint16_t particleType, float groupSize, uint8_t alpha = 255 );
+	LiquidFunParticleGroupDesc createParticleGroupDesc( const cocos2d::Color3B& color, const cocos2d::Vec2& position, std::uint16_t particleType, float groupSize, std::uint8_t alpha = 255 );
 };
 
 #endif

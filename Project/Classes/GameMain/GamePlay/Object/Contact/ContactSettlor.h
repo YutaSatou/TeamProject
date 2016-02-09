@@ -21,7 +21,7 @@ public:
 	 *	@brief	コンストラクタ
 	 *	@param	targetBody	設定するボディ
 	 */
-	ContactSettlor( LiquidFunBody* targetBody );
+	explicit ContactSettlor( LiquidFunBody* targetBody );
 	
 	/**
 	 *	@brief	デストラクタ
@@ -67,7 +67,7 @@ private:
 	 *	@param	otherCategory	OR演算を行うカテゴリベクタ
 	 *	@return	uint16_t		ビットマスク
 	 */
-	uint16_t orCalculate( const OtherCategory& otherCategory );
+	std::uint16_t orCalculate( const OtherCategory& otherCategory );
 	
 private:
 	

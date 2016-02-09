@@ -18,7 +18,7 @@ public:
 	 *	@brief	コンストラクタ
 	 *	@param	world	ワールド
 	 */
-	LiquidFunScheduler( std::shared_ptr< LiquidFunWorld > world );
+	explicit LiquidFunScheduler( std::shared_ptr< LiquidFunWorld > world );
 	
 	/**
 	 *	@brief	デストラクタ

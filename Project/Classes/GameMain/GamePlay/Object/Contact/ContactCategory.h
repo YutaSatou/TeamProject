@@ -9,7 +9,7 @@ namespace Contact
 	/**
 	 *	@brief	接触判定用カテゴリ
 	 */
-	enum class Category : uint16_t
+	enum class Category : std::uint16_t
 	{
 		NONE			= 0x0000,
 		WALL			= 1 << 0,
@@ -28,9 +28,9 @@ namespace Contact
 	 *	@param	category	変換するカテゴリ
 	 *	@return	uint16_t	変換された値
 	 */
-	static uint16_t toUShort( const Category& category )
+	static std::uint16_t toUShort( const Category& category )
 	{
-		return static_cast< uint16_t >( category );
+		return static_cast< std::uint16_t >( category );
 	}
 	
 	/**
@@ -38,7 +38,7 @@ namespace Contact
 	 *	@param	category	変換するカテゴリ
 	 *	@return	Category	変換された値
 	 */
-	static Contact::Category toEnum( uint16_t category )
+	static Contact::Category toEnum( std::uint16_t category )
 	{
 		return static_cast< Contact::Category >( category );
 	}

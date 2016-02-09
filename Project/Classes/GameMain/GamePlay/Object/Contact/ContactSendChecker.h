@@ -13,7 +13,7 @@ class ContactSendChecker
 	
 public:
 	
-	using CategoryPair	= std::pair< uint16_t, uint16_t >;
+	using CategoryPair	= std::pair< std::uint16_t, std::uint16_t >;
 	using NodeNamePair	= std::pair< std::string, std::string >;
 	
 public:
@@ -52,7 +52,7 @@ private:
 	 *	@param	bitB	ビットB
 	 *	@return	bool	ビットが立っているか否か
 	 */
-	bool isBitStand( uint16_t bitA, uint16_t bitB ) const;
+	bool isBitStand( std::uint16_t bitA, std::uint16_t bitB ) const;
 	
 private:
 	

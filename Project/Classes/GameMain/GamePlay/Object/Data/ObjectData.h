@@ -19,7 +19,7 @@ struct ObjectData
 	cocos2d::Color3B	textureColor;	//=> テクスチャの色
 	cocos2d::Vec2		position;		//=> 座標
 	LiquidFunMaterial	material;		//=> マテリアル
-	uint8_t				alpha;			//=> α値
+	std::uint8_t		alpha;			//=> α値
 	
 	/**
 	 *	@brief	コンストラクタ
@@ -50,7 +50,7 @@ struct ObjectData
 		const cocos2d::Color3B&		_textureColor,
 		const cocos2d::Vec2&		_position,
 		const LiquidFunMaterial&	_material,
-		const uint8_t				_alpha
+		const std::uint8_t			_alpha
 	)
 		: blendColor( ColorCMY::convertToCMY( _textureColor ) )
 		, backupColor()

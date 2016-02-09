@@ -21,7 +21,7 @@ struct ContactCallback
 	ContactRigidFunc	onContactRigidEnd;		//=> 剛体と接触し終わった時に呼ばれるコールバック関数
 	ContactLiquidFunc	onContactLiquidBegin;	//=> 液体と接触した時に呼ばれるコールバック関数
 	ContactLiquidFunc	onContactLiquidEnd;		//=> 液体と接触し終わった時に呼ばれるコールバック関数
-	uint16_t			contactBitmask;			//=> 接触するオブジェクトのビットマスク
+	std::uint16_t		contactBitmask;			//=> 接触するオブジェクトのビットマスク
 	
 	/**
 	 *	@brief	コンストラクタ
