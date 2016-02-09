@@ -1,11 +1,7 @@
 #include "PlayerActionController.h"
 #include "../../Data/ObjectData.h"
 #include "Player.h"
-#include "PlayerNoneAction.h"
-#include "PlayerGoalAction.h"
-#include "PlayerEatAction.h"
-#include "PlayerWetAction.h"
-#include "PlayerMudAction.h"
+#include "PlayerActions.h"
 
 using namespace cocos2d;
 
@@ -55,6 +51,7 @@ void PlayerActionController::init( Player* owner, ObjectDataPtr objectData )
 	add( ActionTag::SLIME,		std::make_shared< PlayerEatAction >( *this, owner, objectData )		);
 	add( ActionTag::CLOUD,		std::make_shared< PlayerWetAction >( *this, owner, objectData )		);
 	add( ActionTag::MUD,		std::make_shared< PlayerMudAction >( *this, owner, objectData )		);
+	add( ActionTag::CANNON,		std::make_shared< PlayerShootAction >( *this, owner, objectData )	);
 }
 
 // 更新
