@@ -28,8 +28,8 @@ void EnemyFactory::addProductList()
 					   { return Mud::create( objectData, nodeName ); } );
 	
 	addCreateFunction( "Enemy_Cannon_Left",		[]( ObjectDataPtr objectData, const std::string& nodeName )
-					   { return Cannon::create( objectData, nodeName, { -30.0f, 15.0f } ); } );
+					   { return Cannon::create( objectData, nodeName, { -35.0f, 15.0f } ); } );
 	
 	addCreateFunction( "Enemy_Cannon_Right",	[]( ObjectDataPtr objectData, const std::string& nodeName )
-					   { return Cannon::create( objectData, nodeName, {  30.0f, 15.0f } ); } );
+					   { return Cannon::create( objectData, nodeName, {  35.0f, 15.0f } ); } );
 }

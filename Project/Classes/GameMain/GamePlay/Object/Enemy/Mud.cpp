@@ -3,6 +3,7 @@
 #include "../Data/ObjectData.h"
 #include "../Common/LiquidFunBodyDeleter.h"
 #include "../Contact/ContactSettlor.h"
+#include "EnemyDeadAction.h"
 #include "Utility/Assistant/Animation/SpriteAnimator.h"
 
 using namespace cocos2d;
@@ -114,8 +115,6 @@ void Mud::onContactLiquidBegin( Node* contactNode, LiquidFunParticle* particle, 
 	ContactSettlor contactSettlor { mBody };
 	contactSettlor.disableContactCallback( getName() );
 	
-	// オブジェクト削除のアクションを実行する。
-	ActionInterval*	deadAction		{ Spawn::create( ScaleTo::create( 0.5f, 0.0f ), Blink::create( 0.5f, 7 ), nullptr ) };
-	ActionInterval*	removeAction	{ Sequence::create( deadAction, RemoveSelf::create(), nullptr ) };
-	runAction( removeAction );
+	// 死亡時のアクションを実行する。
+	runAction( EnemyDeadAction::create( 0.5f, 6 ) );
 }

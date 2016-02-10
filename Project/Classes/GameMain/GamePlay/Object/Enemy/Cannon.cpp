@@ -108,12 +108,14 @@ void Cannon::onContactLiquidBegin( Node* contactNode, LiquidFunParticle* particl
 	ContactSettlor contactSettlor { mBody };
 	contactSettlor.disableContactCallback( getName() );
 	
+	// アニメーションを再生する。
 	playAnimation();
 }
 
 // アニメーションの再生
 void Cannon::playAnimation()
 {
+	// アニメーションに使用する定数を定義する。
 	static const int	ANIMATION_FRAME_COUNT			{ 30 };
 	static const float	ANIMATION_FRAME_SWITCH_SPEED	{ 2.0f };
 	static const float	ANIMATION_END_SEC				{ ANIMATION_FRAME_COUNT * ANIMATION_FRAME_SWITCH_SPEED / 60.0f };
@@ -126,10 +128,12 @@ void Cannon::playAnimation()
 	SpriteAnimator animator { this, animationData };
 	animator.play( "Cannon", ANIMATION_FRAME_SWITCH_SPEED, false );
 	
-	ActionInterval*	delayAction			{ DelayTime::create( ANIMATION_END_SEC ) };
-	ActionInterval*	enemyDeadAction		{ EnemyDeadAction::create( 0.5f, 7 ) };
-	CallFunc*		onShoot				{ CallFunc::create( [ this ]() { mShootListener( mShootPower ); } ) };
-	ActionInterval*	shootAction			{ Sequence::create( delayAction, onShoot, enemyDeadAction, nullptr ) };
+	// 発射のアクションを生成する。
+	DelayTime*			delayAction			{ DelayTime::create( ANIMATION_END_SEC ) };
+	CallFunc*			onShoot				{ CallFunc::create( [ this ]() { mShootListener( mShootPower ); } ) };
+	ActionInterval*		enemyDeadAction		{ EnemyDeadAction::create( 1.0f, 6 ) };
+	Sequence*			shootAction			{ Sequence::create( delayAction, onShoot, enemyDeadAction, nullptr ) };
 	
+	// アクションを実行する。
 	runAction( shootAction );
 }

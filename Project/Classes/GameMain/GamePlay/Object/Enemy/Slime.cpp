@@ -3,6 +3,7 @@
 #include "../Data/ObjectData.h"
 #include "../Common/LiquidFunBodyDeleter.h"
 #include "../Contact/ContactSettlor.h"
+#include "EnemyDeadAction.h"
 #include "Utility/Assistant/Animation/SpriteAnimator.h"
 
 using namespace cocos2d;
@@ -64,7 +65,7 @@ Slime* Slime::create( ObjectDataPtr objectData, const std::string& nodeName )
 void Slime::initAnimation()
 {
 	// テクスチャの名前から拡張子を削除する。
-	std::string textureName = mObjectData->textureName;
+	std::string textureName { mObjectData->textureName };
 	textureName.erase( textureName.find_last_of( "." ) );
 	
 	// フェイスアニメーション用のスプライトを生成する。
@@ -126,8 +127,6 @@ void Slime::onContactLiquidBegin( Node* contactNode, LiquidFunParticle* particle
 	ContactSettlor contactSettlor { mBody };
 	contactSettlor.disableContactCallback( getName() );
 	
-	// オブジェクト削除のアクションを実行する。
-	ActionInterval*	deadAction		{ Spawn::create( ScaleTo::create( 0.5f, 0.0f ), Blink::create( 0.5f, 7 ), nullptr ) };
-	ActionInterval*	removeAction	{ Sequence::create( deadAction, RemoveSelf::create(), nullptr ) };
-	runAction( removeAction );
+	// 死亡時のアクションを実行する。
+	runAction( EnemyDeadAction::create( 0.5f, 6 ) );
 }

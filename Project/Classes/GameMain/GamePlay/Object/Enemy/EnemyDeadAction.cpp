@@ -3,12 +3,13 @@
 
 using namespace cocos2d;
 
+// インスタンスの生成
 ActionInterval* EnemyDeadAction::create( float deadTime, int blinkCount )
 {
-	ActionInterval*	scaleAction		{ ScaleTo::create( deadTime, 0.0f ) };
-	ActionInterval*	blinkAction		{ Blink::create( deadTime, blinkCount ) };
-	ActionInterval* deadAction		{ Spawn::create( scaleAction, blinkAction, nullptr ) };
-	ActionInterval*	removeAction	{ Sequence::create( deadAction, RemoveSelf::create(), nullptr ) };
+	ScaleTo*	scaleAction		{ ScaleTo::create( deadTime, 0.0f ) };
+	Blink*		blinkAction		{ Blink::create( deadTime, blinkCount ) };
+	Spawn*		deadAction		{ Spawn::create( scaleAction, blinkAction, nullptr ) };
+	RemoveSelf*	removeAction	{ RemoveSelf::create() };
 	
-	return removeAction;
+	return Sequence::create( deadAction, removeAction, nullptr );
 }
