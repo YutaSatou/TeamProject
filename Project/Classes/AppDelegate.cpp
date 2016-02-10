@@ -37,19 +37,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	ADX2Manager::getInstance().init( "Audio/HungrySlimeSounds.acf" );
 	ADX2Player::getInstance().init( "Audio/HungrySlimeSheet.acb" );
 	
-// iOS Simulator.
-#ifdef DEBUG_HOSHI
 	SceneChanger::switchScene( GameTitleLayer::create() );
-#elif DEBUG_TOSHIKAWA
-	SceneChanger::switchScene( GamePlayLayer::create() );
-#elif DEBUG_SATOU
-	SceneChanger::switchScene( GameTitleLayer::create() );
-#endif
-	
-// Android.
-#if ( CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID )
-	SceneChanger::switchScene( GameTitleLayer::create() );
-#endif
 	
 	return true;
 }
