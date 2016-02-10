@@ -18,7 +18,7 @@ PlayerShootAction::PlayerShootAction( PlayerActionMediator& mediator, Player* ow
 void PlayerShootAction::execute( Node* contactNode, LiquidFunFixture* fixture )
 {
 	// やりたくないけど。
-	Cannon* cannon { static_cast< Cannon* >( contactNode ) };
+	Cannon* cannon { dynamic_cast< Cannon* >( contactNode ) };
 	
 	if ( !cannon )
 	{

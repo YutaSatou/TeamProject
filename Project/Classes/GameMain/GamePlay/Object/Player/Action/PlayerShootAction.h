@@ -3,6 +3,11 @@
 
 #include "PlayerActionBase.h"
 
+namespace cocos2d
+{
+	class Vec2;
+}
+
 /*------------------------------------------------------------*/
 //	@class		：	PlayerShootAction
 //	@brief		：	大砲から発射された時のアクション

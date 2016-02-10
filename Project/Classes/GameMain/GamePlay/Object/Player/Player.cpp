@@ -6,7 +6,7 @@ using namespace cocos2d;
 
 namespace
 {
-	const uint16_t PARTICLE_TYPE
+	const std::uint16_t PARTICLE_TYPE
 	{
 		LiquidFunParticleType::b2_springParticle | LiquidFunParticleType::b2_barrierParticle
 	};
@@ -82,8 +82,8 @@ void Player::syncColor()
 {
 	eachBuffer( [ this ]( UserDataPointer* userData, LiquidFunParticleColor* color, LiquidFunVec2* position )
 	{
-		const Color3B&	c	{ mObjectData->textureColor };
-		const uint8_t	a	{ mObjectData->alpha };
+		const Color3B&		c	{ mObjectData->textureColor };
+		const std::uint8_t	a	{ mObjectData->alpha };
 		
 		( *color ) = { c.r, c.g, c.b, a };
 	} );
