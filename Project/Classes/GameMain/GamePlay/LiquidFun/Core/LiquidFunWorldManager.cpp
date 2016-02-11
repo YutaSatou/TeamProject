@@ -30,6 +30,12 @@ void LiquidFunWorldManager::registerContactListener( LiquidFunBaseContactListene
 	mWorld->SetContactListener( contactListener );
 }
 
+// レイキャストコールバックの登録
+void LiquidFunWorldManager::registerRayCastCallback( LiquidFunBaseRayCastCallback* callback, const Vec2& start, const Vec2& end )
+{
+	mWorld->RayCast( callback, LiquidFunHelper::toMeter( start ), LiquidFunHelper::toMeter( end ) );
+}
+
 // ボディの追加
 LiquidFunBody* LiquidFunWorldManager::addBody( const LiquidFunBodyDesc* bodyDesc )
 {

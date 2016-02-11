@@ -34,6 +34,14 @@ public:
 	void registerContactListener( LiquidFunBaseContactListener* contactListener );
 	
 	/**
+	 *	@brief	レイキャストコールバックの登録
+	 *	@param	callback	レイキャストコールバック
+	 *	@param	start		レイの開始地点
+	 *	@param	end			レイの終了地点
+	 */
+	void registerRayCastCallback( LiquidFunBaseRayCastCallback* callback, const cocos2d::Vec2& start, const cocos2d::Vec2& end );
+	
+	/**
 	 *	@brief	ボディの追加
 	 *	@param	bodyDesc		ボディ設定記述子
 	 *	@return	LiquidFunBody	ボディのインスタンス( ワールドに登録済 )
