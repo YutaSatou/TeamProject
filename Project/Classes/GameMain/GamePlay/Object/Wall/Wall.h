@@ -60,9 +60,9 @@ private:
 	void initPhysics( const cocos2d::Vec2& start, const cocos2d::Vec2& end );
 	
 	/**
-	 *	@brief	接触コールバックの設定
+	 *	@brief	接触カテゴリの設定
 	 */
-	void setupContactCallback();
+	void setupContactCategory();
 	
 private:
 	

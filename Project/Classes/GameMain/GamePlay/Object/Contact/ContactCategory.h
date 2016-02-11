@@ -12,10 +12,10 @@ namespace Contact
 	enum class Category : std::uint16_t
 	{
 		NONE			= 0x0000,
-		WALL			= 1 << 0,
-		WALL_EVENT		= 1 << 1,
-		LIQUID			= 1 << 2,
-		PLAYER			= 1 << 3,
+		DEFAULT			= 1 << 0,
+		LIQUID			= 1 << 1,
+		WALL			= 1 << 2,
+		WALL_EVENT		= 1 << 3,
 		SLIME			= 1 << 4,
 		CLOUD			= 1 << 5,
 		MUD				= 1 << 6,

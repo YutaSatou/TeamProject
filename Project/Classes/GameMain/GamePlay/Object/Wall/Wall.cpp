@@ -25,9 +25,9 @@ bool Wall::init( const Vec2& start, const Vec2& end )
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setPosition( Vec2::ZERO );
 	
-	// 物理構造の初期化、接触コールバックの設定を行う。
+	// 物理構造の初期化、接触カテゴリの設定を行う。
 	initPhysics( start, end );
-	setupContactCallback();
+	setupContactCategory();
 	
 	return true;
 }
@@ -87,8 +87,8 @@ void Wall::initPhysics( const Vec2& start, const Vec2& end )
 	addChild( LiquidFunBodyDeleter::create( mBody ) );
 }
 
-// 接触コールバックの設定
-void Wall::setupContactCallback()
+// 接触カテゴリの設定
+void Wall::setupContactCategory()
 {
 	// カテゴリの設定、衝突するカテゴリの設定を行う。
 	ContactSettlor contactSettlor { mBody };
