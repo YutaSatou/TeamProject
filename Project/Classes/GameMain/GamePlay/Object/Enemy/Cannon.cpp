@@ -131,7 +131,7 @@ void Cannon::playAnimation()
 	// 発射のアクションを生成する。
 	DelayTime*			delayAction			{ DelayTime::create( ANIMATION_END_SEC ) };
 	CallFunc*			onShoot				{ CallFunc::create( [ this ]() { mShootListener( mShootPower ); } ) };
-	ActionInterval*		enemyDeadAction		{ EnemyDeadAction::create( 1.0f, 6 ) };
+	ActionInterval*		enemyDeadAction		{ EnemyDeadAction::create( 1.5f, 6 ) };
 	Sequence*			shootAction			{ Sequence::create( delayAction, onShoot, enemyDeadAction, nullptr ) };
 	
 	// アクションを実行する。
