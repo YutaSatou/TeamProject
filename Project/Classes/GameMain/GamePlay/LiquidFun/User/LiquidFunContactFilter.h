@@ -20,7 +20,10 @@ struct LiquidFunContactFilter
 	LiquidFunContactFilter()
 		: categoryBitmask( 0x0001 )
 		, collisionBitmask( 0xFFFF )
-		, groupIndex( 0x0000 ) { }
+		, groupIndex( 0x0000 )
+	{
+		
+	}
 	
 	/**
 	 *	@brief	コンストラクタ
@@ -31,7 +34,10 @@ struct LiquidFunContactFilter
 	LiquidFunContactFilter( std::uint16_t _categoryBitmask, std::uint16_t _collisionBitmask, short _groupIndex )
 		: categoryBitmask( _categoryBitmask )
 		, collisionBitmask( _collisionBitmask )
-		, groupIndex( _groupIndex ) { }
+		, groupIndex( _groupIndex )
+	{
+		
+	}
 };
 
 #endif

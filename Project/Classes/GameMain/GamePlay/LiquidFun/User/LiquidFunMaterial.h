@@ -18,7 +18,10 @@ struct LiquidFunMaterial
 	LiquidFunMaterial()
 		: density( 0.0f )
 		, restitution( 0.0f )
-		, friction( 0.0f ) { }
+		, friction( 0.0f )
+	{
+		
+	}
 	
 	/**
 	 *	@brief	コンストラクタ
@@ -29,7 +32,10 @@ struct LiquidFunMaterial
 	LiquidFunMaterial( float _density, float _restitution, float _friction )
 		: density( _density )
 		, restitution( _restitution )
-		, friction( _friction ) { }
+		, friction( _friction )
+	{
+		
+	}
 };
 
 #endif
