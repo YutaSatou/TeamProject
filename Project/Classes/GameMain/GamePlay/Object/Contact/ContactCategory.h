@@ -1,8 +1,8 @@
 #ifndef _CONTACT_CATEGORY_H_
 #define _CONTACT_CATEGORY_H_
 
-#include <climits>
 #include <cstdint>
+#include <climits>
 
 namespace Contact
 {
@@ -20,7 +20,7 @@ namespace Contact
 		CLOUD			= 1 << 5,
 		MUD				= 1 << 6,
 		CANNON			= 1 << 7,
-		ALL_CATEGORY	= USHRT_MAX,
+		ALL_CATEGORY	= std::numeric_limits< std::uint16_t >::max(),
 	};
 	
 	/**
