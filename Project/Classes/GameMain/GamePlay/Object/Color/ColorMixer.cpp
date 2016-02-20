@@ -6,7 +6,7 @@ using namespace cocos2d;
 
 namespace
 {
-	const float COLOR_MAX { 255.0f };	//=> 色の最大値
+	const double COLOR_MAX { 1.0 };	//=> 色の最大値
 }
 
 // コンストラクタ
@@ -17,30 +17,30 @@ ColorMixer::ColorMixer()
 }
 
 // 色の合成
-ColorCMY ColorMixer::blend( Node* blendBaseNode, Node* blendNode, float blendRate ) const
+ColorRYB ColorMixer::blend( Node* blendBaseNode, Node* blendNode ) const
 {
-	const ColorCMY&	dst	{ mColorHelper->getBlendColor( blendBaseNode, blendNode ) };
-	const ColorCMY&	src	{ mColorHelper->getBlendColor( blendNode, blendBaseNode ) };
+	const ColorRYB&	dst	{ mColorHelper->getBlendColor( blendBaseNode, blendNode ) };
+	const ColorRYB&	src	{ mColorHelper->getBlendColor( blendNode, blendBaseNode ) };
 	
 	if ( dst == src )
 	{
 		return dst;
 	}
 	
-	return colorBlend( src, dst, blendRate );
+	if ( dst == ColorRYB::WHITE )
+	{
+		return src;
+	}
+	
+	return colorBlend( src, dst );
 }
 
 // 色の合成
-ColorCMY ColorMixer::colorBlend( const ColorCMY& src, const ColorCMY& dst, float blendRate ) const
+ColorRYB ColorMixer::colorBlend( const ColorRYB& src, const ColorRYB& dst ) const
 {
-	float	c	{ std::min( dst.c * 1.0f + src.c * blendRate, COLOR_MAX ) };
-	float	m	{ std::min( dst.m * 1.0f + src.m * blendRate, COLOR_MAX ) };
-	float	y	{ std::min( dst.y * 1.0f + src.y * blendRate, COLOR_MAX ) };
+	double	r	{ std::min( dst.r + src.r, COLOR_MAX ) };
+	double	y	{ std::min( dst.y + src.y, COLOR_MAX ) };
+	double	b	{ std::min( dst.b + src.b, COLOR_MAX ) };
 	
-	// std::roundと書きたいが、std::to_stringと同じで、NDKが対応してない？
-	c	= round( c );
-	m	= round( m );
-	y	= round( y );
-	
-	return ColorCMY( c, m, y );
+	return { r, y, b };
 }

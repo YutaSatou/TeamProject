@@ -4,11 +4,11 @@
 using namespace cocos2d;
 
 // 合成色の取得
-ColorCMY ColorHelper::getBlendColor( Node* node, Node* contactNode ) const
+ColorRYB ColorHelper::getBlendColor( Node* node, Node* contactNode ) const
 {
 	// ユーザデータから合成色を抽出する。
-	ColorCMY* blendColor		{ extractBlendColor( node ) };
-	ColorCMY* contactBlendColor	{ extractBlendColor( contactNode ) };
+	ColorRYB* blendColor		{ extractBlendColor( node ) };
+	ColorRYB* contactBlendColor	{ extractBlendColor( contactNode ) };
 	
 	if ( !blendColor )
 	{
@@ -24,7 +24,7 @@ ColorCMY ColorHelper::getBlendColor( Node* node, Node* contactNode ) const
 }
 
 // 合成色の抽出
-ColorCMY* ColorHelper::extractBlendColor( Node* node ) const
+ColorRYB* ColorHelper::extractBlendColor( Node* node ) const
 {
-	return static_cast< ColorCMY* >( node->getUserData() );
+	return static_cast< ColorRYB* >( node->getUserData() );
 }

@@ -1,6 +1,8 @@
 #ifndef _COLOR_RYB_H_
 #define _COLOR_RYB_H_
 
+#include "base/ccTypes.h"
+
 /*------------------------------------------------------------*/
 //	@class		：	ColorRYB
 //	@brief		：	色の三原色（絵の具）
@@ -34,6 +36,13 @@ public:
 	 *	@brief	デストラクタ
 	 */
 	~ColorRYB() = default;
+	
+	/**
+	 *	@brief	光の三原色への変換
+	 *	@param	color	色の三原色
+	 *	@return	Color3B	光の三原色
+	 */
+	static cocos2d::Color3B convertToRGB( const ColorRYB& color );
 	
 	/**
 	 *	@brief	等価演算子

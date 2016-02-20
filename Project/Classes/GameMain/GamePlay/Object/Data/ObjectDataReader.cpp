@@ -11,9 +11,9 @@ namespace
 		return valueMap.at( "TextureName" ).asString();
 	}
 	
-	Color3B readColor( const ValueMap& valueMap )
+	ColorRYB readColor( const ValueMap& valueMap )
 	{
-		return { valueMap.at( "ColorR" ).asByte(), valueMap.at( "ColorG" ).asByte(), valueMap.at( "ColorB" ).asByte() };
+		return { valueMap.at( "ColorR" ).asDouble(), valueMap.at( "ColorY" ).asDouble(), valueMap.at( "ColorB" ).asDouble() };
 	}
 	
 	Vec2 readPosition( const ValueMap& valueMap )
@@ -42,14 +42,14 @@ ObjectDataReader::ObjectDataContainer ObjectDataReader::read( const std::string&
 	
 	for ( auto& valueMap : valueMapContainer )
 	{
-		ObjectDataPtr data
-		{
-			std::make_shared< ObjectData >( readTextureName( valueMap ),
-										    readColor( valueMap ),
-										    readPosition( valueMap ),
-										    readMaterial( valueMap ),
-										    readAlpha( valueMap ) )
-		};
+		ObjectDataPtr data { std::make_shared< ObjectData >() };
+		
+		data->blendColor	= readColor( valueMap );
+		data->textureName	= readTextureName( valueMap );
+		data->textureColor	= ColorRYB::convertToRGB( data->blendColor );
+		data->position		= readPosition( valueMap );
+		data->material		= readMaterial( valueMap );
+		data->alpha			= readAlpha( valueMap );
 		
 		container.push_back( data );
 	}

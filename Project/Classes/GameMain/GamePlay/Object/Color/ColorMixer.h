@@ -1,7 +1,7 @@
 #ifndef _COLOR_MIXER_H_
 #define _COLOR_MIXER_H_
 
-#include "ColorCMY.h"
+#include "ColorRYB.h"
 #include <memory>
 
 namespace cocos2d
@@ -35,10 +35,9 @@ public:
 	 *	@brief	色の合成
 	 *	@param	blendBaseNode	合成元の色を持つノード
 	 *	@param	blendNode		合成する色を持つノード
-	 *	@param	blendRate		合成する割合
-	 *	@return	ColorCMY		合成した色
+	 *	@return	ColorRYB		合成した色
 	 */
-	ColorCMY blend( cocos2d::Node* blendBaseNode, cocos2d::Node* blendNode, float blendRate = 0.5 ) const;
+	ColorRYB blend( cocos2d::Node* blendBaseNode, cocos2d::Node* blendNode ) const;
 	
 private:
 	
@@ -46,10 +45,9 @@ private:
 	 *	@brief	色の合成
 	 *	@param	src			合成する色( 前面 )
 	 *	@param	dst			合成する色( 背面 )
-	 *	@param	blendRate	合成する割合
-	 *	@return	ColorCMY	合成した色
+	 *	@return	ColorRYB	合成した色
 	 */
-	ColorCMY colorBlend( const ColorCMY& src, const ColorCMY& dst, float blendRate ) const;
+	ColorRYB colorBlend( const ColorRYB& src, const ColorRYB& dst ) const;
 	
 private:
 	

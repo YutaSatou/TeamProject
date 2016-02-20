@@ -21,7 +21,7 @@ void PlayerWetAction::execute( Node* contactNode, LiquidFunFixture* fixture )
 	
 	// バックアップから色情報を復元し、同期する。
 	mObjectData->blendColor		= mObjectData->backupColor.pop();
-	mObjectData->textureColor	= ColorCMY::convertToRGB( mObjectData->blendColor );
+	mObjectData->textureColor	= ColorRYB::convertToRGB( mObjectData->blendColor );
 	mOwner->syncColor();
 	
 	// 色の復元が終了したので、空のアクションに変更する。

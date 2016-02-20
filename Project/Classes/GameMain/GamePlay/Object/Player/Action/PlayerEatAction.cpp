@@ -22,12 +22,12 @@ void PlayerEatAction::execute( Node* contactNode, LiquidFunFixture* fixture )
 	ADX2Player::getInstance().play( CRI_HUNGRYSLIMESHEET_SE_PLAYER_EAT );
 	
 	// プレイヤの色と衝突したノードの色を合成する。
-	const ColorCMY& color { mColorMixer->blend( mOwner, contactNode ) };
+	const ColorRYB& color { mColorMixer->blend( mOwner, contactNode ) };
 	
 	// 色情報を更新し、同期する。
 	mObjectData->backupColor.push( mObjectData->blendColor );
 	mObjectData->blendColor		= color;
-	mObjectData->textureColor	= ColorCMY::convertToRGB( color );
+	mObjectData->textureColor	= ColorRYB::convertToRGB( color );
 	mOwner->syncColor();
 	
 	// 色の合成が終了したので、空のアクションに変更する。

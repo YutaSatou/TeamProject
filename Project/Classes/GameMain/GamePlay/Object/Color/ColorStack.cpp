@@ -1,20 +1,20 @@
 #include "ColorStack.h"
 
 // 末尾への追加
-void ColorStack::push( const ColorCMY& color )
+void ColorStack::push( const ColorRYB& color )
 {
-	mStack.emplace( color.c, color.m, color.y );
+	mStack.emplace( color.r, color.y, color.b );
 }
 
 // 末尾の取得
-ColorCMY ColorStack::pop( bool isDelete )
+ColorRYB ColorStack::pop( bool isDelete )
 {
 	if ( mStack.empty() )
 	{
-		return ColorCMY::WHITE;
+		return ColorRYB::WHITE;
 	}
 	
-	ColorCMY c { mStack.top() };
+	ColorRYB c { mStack.top() };
 	
 	if ( isDelete )
 	{

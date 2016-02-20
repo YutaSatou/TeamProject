@@ -20,12 +20,12 @@ void PlayerMudAction::execute( Node* contactNode, LiquidFunFixture* fixture )
 	ADX2Player::getInstance().play( CRI_HUNGRYSLIMESHEET_SE_GIMMICK_MUD );
 	
 	// 泥の色を定義する。
-	const ColorCMY mudColor { 141, 204, 214 };
+	const ColorRYB mudColor { 0.647, 0.164, 0.164 };
 	
 	// 泥の色を適応して、同期する。
 	mObjectData->backupColor.push( mObjectData->blendColor );
 	mObjectData->blendColor		= mudColor;
-	mObjectData->textureColor	= ColorCMY::convertToRGB( mudColor );
+	mObjectData->textureColor	= ColorRYB::convertToRGB( mudColor );
 	mOwner->syncColor();
 	
 	// 色の合成が終了したので、空のアクションに変更する。

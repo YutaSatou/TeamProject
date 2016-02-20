@@ -1,4 +1,5 @@
 #include "ColorRYB.h"
+#include "ColorConverter.h"
 
 const ColorRYB ColorRYB::WHITE(		0.00, 0.00, 0.00 );
 const ColorRYB ColorRYB::RED(		1.00, 0.00, 0.00 );
@@ -8,6 +9,8 @@ const ColorRYB ColorRYB::ORANGE(	1.00, 1.00, 0.00 );
 const ColorRYB ColorRYB::GREEN(		0.00, 1.00, 1.00 );
 const ColorRYB ColorRYB::PURPLE(	1.00, 0.00, 1.00 );
 const ColorRYB ColorRYB::BLACK(		1.00, 1.00, 1.00 );
+
+using namespace cocos2d;
 
 // コンストラクタ
 ColorRYB::ColorRYB()
@@ -34,6 +37,14 @@ ColorRYB::ColorRYB( const ColorRYB& copy )
 	, b( copy.b )
 {
 	
+}
+
+// 光の三原色への変換
+Color3B ColorRYB::convertToRGB( const ColorRYB& color )
+{
+	static ColorConverter colorConverter;
+	
+	return colorConverter.rybToRGB( color );
 }
 
 // 等価演算子

@@ -1,5 +1,6 @@
 #include "ColorConverter.h"
 #include "ColorRYB.h"
+#include <limits>
 
 using namespace cocos2d;
 
@@ -29,26 +30,19 @@ Color3B ColorConverter::rybToRGB( const ColorRYB& colorRYB ) const
 // カラーキューブの初期化
 void ColorConverter::initColorCube()
 {
-	/*
-	 *	キューブの頂点に三原色とその補色、
-	 *	三原色を混ぜあわせた色とその補色を格納する。
-	 *	X軸 = 赤, Y軸 = 黄, Z軸 = 青
-	 */
-	
-	mColorCube[ 0 ] = std::make_tuple( 1.000, 1.000, 1.000 );
-	mColorCube[ 1 ] = std::make_tuple( 1.000, 1.000, 0.000 );
-	mColorCube[ 2 ] = std::make_tuple( 1.000, 0.000, 0.000 );
-	mColorCube[ 3 ] = std::make_tuple( 1.000, 0.500, 0.000 );
-	mColorCube[ 4 ] = std::make_tuple( 0.008, 0.278, 0.996 );
-	mColorCube[ 5 ] = std::make_tuple( 0.000, 0.660, 0.200 );
-	mColorCube[ 6 ] = std::make_tuple( 0.500, 0.000, 0.500 );
-	mColorCube[ 7 ] = std::make_tuple( 0.000, 0.000, 0.000 );
+	mColorCube[ 0 ]	= std::make_tuple( 1.000, 1.000, 1.000 );
+	mColorCube[ 1 ]	= std::make_tuple( 1.000, 1.000, 0.000 );
+	mColorCube[ 2 ]	= std::make_tuple( 1.000, 0.000, 0.000 );
+	mColorCube[ 3 ]	= std::make_tuple( 1.000, 0.500, 0.000 );
+	mColorCube[ 4 ]	= std::make_tuple( 0.008, 0.278, 0.996 );
+	mColorCube[ 5 ]	= std::make_tuple( 0.000, 0.660, 0.200 );
+	mColorCube[ 6 ]	= std::make_tuple( 0.500, 0.000, 0.500 );
+	mColorCube[ 7 ]	= std::make_tuple( 0.000, 0.000, 0.000 );
 }
 
 // 色の取得
 double ColorConverter::getColor( const ColorRYB& color, const ColorSelectFunc& func ) const
 {
-	// 値A, Bと補間係数tを使用した非線形補間関数。
 	static const auto cubicInt = []( double t, double valueA, double valueB )
 	{
 		double weight { t * t * ( 3.0 - 2.0 * t ) };
