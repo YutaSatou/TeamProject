@@ -2,7 +2,7 @@
 #define _CONTACT_CATEGORY_H_
 
 #include <cstdint>
-#include <climits>
+#include <limits>
 
 namespace Contact
 {
