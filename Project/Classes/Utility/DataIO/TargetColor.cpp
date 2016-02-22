@@ -13,7 +13,7 @@ using namespace cocos2d;
 
 namespace
 {	
-	const std::string PLISTROOT = "Plist/StageClearTarget/";
+	const std::string PLISTROOT = "Plist/ResultData/";
 	const std::string STAGE_KEY = "ResultData_";
 	const std::string EXTENSION = ".plist";
 }
