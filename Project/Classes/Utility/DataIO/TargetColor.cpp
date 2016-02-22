@@ -14,8 +14,8 @@ using namespace cocos2d;
 namespace
 {	
 	const std::string PLISTROOT = "Plist/StageClearTarget/";
-	const std::string STAGE_KEY = "Stage";
-	const std::string EXTENSION = "ColorTargetData.plist";
+	const std::string STAGE_KEY = "ResultData_";
+	const std::string EXTENSION = ".plist";
 }
 
 Color3B TargetColor::readColorTarget() const

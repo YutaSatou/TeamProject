@@ -8,7 +8,7 @@
 
 #include "ResultSlimeObject.h"
 #include "../../../Utility/DataIO/StageNumber.h"
-#include "../../../Utility/DataIO/StageColorInfo.h"
+#include "../../../Utility/DataIO/ResultData.h"
 
 using namespace cocos2d;
 
@@ -83,11 +83,11 @@ void ResultSlimeObject::initParticle()
 {
 	//メインで作った色を取得
 	StageNumber stageNumber;
-	StageColorInfo stageColor;
+	ResultData stageColor;
 	int stageNum = stageNumber.loadStageNumber();
-	int colorR = stageColor.loadColorR( stageNum );
-	int colorG = stageColor.loadColorG( stageNum );
-	int colorB = stageColor.loadColorB( stageNum );
+	int colorR = stageColor.readColorR( stageNum );
+	int colorG = stageColor.readColorG( stageNum );
+	int colorB = stageColor.readColorB( stageNum );
     // パーティクルの生成に必要な設定記述子を生成する。
     LiquidFunParticleDescCreator	creator;
     LiquidFunParticleDesc			particleDesc	{ creator.createParticleDesc( 10.0f ) };
