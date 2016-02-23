@@ -50,7 +50,7 @@ public:
 	
 	using ReportFixtureFunc = std::function< bool( LiquidFunFixture* ) >;
 	
-	ReportFixtureFunc onReportFixture;	//=>	フィクスチャを検知した時に呼ばれるコールバック関数
+	ReportFixtureFunc onReportFixture;	//=> フィクスチャを検知した時に呼ばれるコールバック関数
 };
 
 #endif

@@ -7,7 +7,7 @@ using namespace cocos2d;
 
 // コンストラクタ
 LiquidFunAABBQueryCallback::LiquidFunAABBQueryCallback()
-	: onReportFixture( []( LiquidFunFixture* ) { return false; } )
+	: onReportFixture( []( LiquidFunFixture* ) { return true; } )
 {
 	
 }
@@ -20,7 +20,7 @@ void LiquidFunAABBQueryCallback::update( const Vec2& searchPosition, const Size&
 	
 	LiquidFunAABB aabb;
 	aabb.lowerBound	= LiquidFunHelper::toMeter( lower );
-	aabb.upperBound = LiquidFunHelper::toMeter( upper );
+	aabb.upperBound	= LiquidFunHelper::toMeter( upper );
 	
 	// 自身を登録する。
 	LiquidFunWorldManager::getInstance().registerAABBQuery( this, aabb );
