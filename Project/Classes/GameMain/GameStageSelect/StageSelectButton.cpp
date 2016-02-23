@@ -13,7 +13,7 @@
 #include "../../Utility/Assistant/Scene/SceneCreator.h"
 #include "../GamePlay/GamePlayLayer.h"
 #include "../../Utility/DataIO/StageNumber.h"
-#include "../../Utility/DataIO/StageColorInfo.h"
+#include "../../Utility/DataIO/ResultData.h"
 
 using namespace cocos2d;
 using namespace ui;
@@ -41,7 +41,7 @@ bool StageSelectButton::init()
     };
 	
 	StageNumber stageNum;
-	StageColorInfo stageColor;
+	ResultData resultData;
 	
     for ( int i = 0; i < 27; ++i )
     {
@@ -61,7 +61,7 @@ bool StageSelectButton::init()
             if ( type == Widget::TouchEventType::ENDED ){
                 ADX2Player::getInstance().play( 6 );
 				stageNum.saveStageNumber( i + 1 );
-				stageColor.initColor();
+				resultData.initColor();
                 Scene* scene		{ SceneCreator::createScene( GamePlayLayer::create() ) };
                 Scene* nextScene	{ TransitionRotoZoom::create( 0.8f, scene ) };
                 SceneChanger::switchScene( nextScene );

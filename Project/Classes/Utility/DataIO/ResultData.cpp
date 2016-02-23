@@ -6,7 +6,7 @@
 //
 //
 
-#include "StageColorInfo.h"
+#include "ResultData.h"
 #include "StageNumber.h"
 
 using namespace cocos2d;
@@ -19,7 +19,7 @@ namespace
 	const std::string EXTENSION = ".plist";
 }
 
-std::string StageColorInfo::readColorDataPlist() const
+std::string ResultData::readColorDataPlist() const
 {
 	std::string path = FileUtils::getInstance()->getWritablePath();
 	StageNumber stageNumber;
@@ -28,7 +28,7 @@ std::string StageColorInfo::readColorDataPlist() const
 	return fullPath;
 }
 
-void StageColorInfo::initColor()
+void ResultData::initColor()
 {
 	std::string path = FileUtils::getInstance()->getWritablePath();
 	StageNumber stageNumber;
@@ -52,7 +52,7 @@ void StageColorInfo::initColor()
 	}
 }
 
-void StageColorInfo::saveColor( Color3B color3b, bool isClear )
+void ResultData::saveColor( Color3B color3b, bool isClear )
 {
     std::string path = FileUtils::getInstance()->getWritablePath();
 	StageNumber stageNumber;
@@ -69,7 +69,7 @@ void StageColorInfo::saveColor( Color3B color3b, bool isClear )
     }
 }
 
-int StageColorInfo::loadColorR( int stageNum )
+int ResultData::readColorR( int stageNum )
 {
 	std::string fullPath = readColorDataPlist();
     ValueMap player = FileUtils::getInstance()->getValueMapFromFile( fullPath.c_str() );
@@ -79,7 +79,7 @@ int StageColorInfo::loadColorR( int stageNum )
     return colorR;
 }
 
-int StageColorInfo::loadColorG( int stageNum )
+int ResultData::readColorG( int stageNum )
 {
 	std::string fullPath = readColorDataPlist();
     ValueMap player = FileUtils::getInstance()->getValueMapFromFile( fullPath.c_str() );
@@ -89,7 +89,7 @@ int StageColorInfo::loadColorG( int stageNum )
     return colorG;
 }
 
-int StageColorInfo::loadColorB( int stageNum )
+int ResultData::readColorB( int stageNum )
 {
 	std::string fullPath = readColorDataPlist();
     ValueMap player = FileUtils::getInstance()->getValueMapFromFile( fullPath.c_str() );
@@ -97,14 +97,4 @@ int StageColorInfo::loadColorB( int stageNum )
     int colorB = player["ColorB"].asInt();
     
     return colorB;
-}
-
-std::string StageColorInfo::loadCreateStageNumber() const
-{
-	std::string fullPath = readColorDataPlist();
-	ValueMap player = FileUtils::getInstance()->getValueMapFromFile( fullPath.c_str() );
-	
-	std::string stageNum = player["name"].asString();
-	
-	return stageNum;
 }

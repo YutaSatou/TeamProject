@@ -8,7 +8,7 @@
 
 #include "Score.h"
 #include "ui/CocosGUI.h"
-#include "../../Utility/DataIO/StageColorInfo.h"
+#include "../../Utility/DataIO/ResultData.h"
 #include "../../Utility/DataIO/StageNumber.h"
 #include "../../Utility/DataIO/TargetColor.h"
 
@@ -47,12 +47,12 @@ Score* Score::create(){
 void Score::score(){
     
 	StageNumber stageNumber;
-	StageColorInfo stageColor;
+	ResultData resultData;
 	//ゲームメインでプレイヤーが作った色
 	int stageNum = stageNumber.loadStageNumber();
-	int playerR = stageColor.loadColorR( stageNum );
-	int playerG = stageColor.loadColorG( stageNum );
-	int playerB = stageColor.loadColorB( stageNum );
+	int playerR = resultData.readColorR( stageNum );
+	int playerG = resultData.readColorG( stageNum );
+	int playerB = resultData.readColorB( stageNum );
 	
 	//CCLOG( "Player : %i, %i, %i", playerR, playerG, playerB );
 	

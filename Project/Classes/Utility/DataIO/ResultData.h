@@ -6,33 +6,31 @@
 //
 //
 
-#ifndef StageColors_h
-#define StageColors_h
+#ifndef RESULTDATA_H_
+#define RESULTDATA_H_
 
 #include "cocos2d.h"
 
-class StageColorInfo
+class ResultData
 {
     
 protected:
     
 public:
     
-    StageColorInfo() = default;
+    ResultData() = default;
     
-    ~StageColorInfo() = default;
-	
-	std::string loadCreateStageNumber() const;
+    ~ResultData() = default;
 	
 	static void initColor();
     
     static void saveColor( cocos2d::Color3B color3b, bool isClear );
     
-	int loadColorR( int stageNum );
+	int readColorR( int stageNum );
     
-	int loadColorG( int stageNum );
+	int readColorG( int stageNum );
     
-    int loadColorB( int stageNum );
+    int readColorB( int stageNum );
 	
 private:
 	

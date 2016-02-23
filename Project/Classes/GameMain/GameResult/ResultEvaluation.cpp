@@ -11,7 +11,7 @@
 #include "Evaluation.h"
 #include "EvaluationTag.h"
 #include "../../Utility/DataIO/StageNumber.h"
-#include "../../Utility/DataIO/StageColorInfo.h"
+#include "../../Utility/DataIO/ResultData.h"
 #include "../../Utility/Audio/ADX2Player.h"
 
 using namespace cocos2d;
@@ -55,11 +55,11 @@ void ResultEvaluation::playAnimation(){
 	
     Sequence* animation = nullptr;
 	StageNumber stageNumber;
-	StageColorInfo stageColor;
+	ResultData resultData;
 	int stageNum = stageNumber.loadStageNumber();
-	int ColorR = stageColor.loadColorR( stageNum );
-    int ColorG = stageColor.loadColorG( stageNum );
-    int ColorB = stageColor.loadColorB( stageNum );
+	int ColorR = resultData.readColorR( stageNum );
+    int ColorG = resultData.readColorG( stageNum );
+    int ColorB = resultData.readColorB( stageNum );
     
     if ( e->getTag() == EvaluationTag::BAD ){
         

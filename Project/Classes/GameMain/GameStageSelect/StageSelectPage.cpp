@@ -17,7 +17,7 @@
 #include "../../Utility/DataIO/StageNumber.h"
 
 #include "../GameResult/GameResultLayer.h"
-#include "../../Utility/DataIO/StageColorInfo.h"
+#include "../../Utility/DataIO/ResultData.h"
 #include "StageSelectButtonColor/ButtonColor.h"
 
 using namespace cocos2d;
@@ -39,7 +39,7 @@ bool StageSelectPage::init( const int pageNum ){
     }
 	
 	StageNumber stage;
-	StageColorInfo stageColor;
+	ResultData resultData;
     
     Vec2 poses[] = {
         
@@ -83,7 +83,7 @@ bool StageSelectPage::init( const int pageNum ){
             if ( type == Widget::TouchEventType::ENDED ){
                 ADX2Player::getInstance().play( 2 );
                 stage.saveStageNumber( j + 1 );
-				stageColor.initColor();
+				resultData.initColor();
                 Scene* scene		{ SceneCreator::createScene( GamePlayLayer::create() ) };
                 Scene* nextScene	{ TransitionRotoZoom::create( 0.8f, scene ) };
                 SceneChanger::switchScene( nextScene );
