@@ -3,6 +3,7 @@
 
 #include "User/LiquidFunMaterial.h"
 #include "User/LiquidFunContactFilter.h"
+#include "User/LiquidFunAABBQueryCallback.h"
 #include "User/LiquidFunContactListener.h"
 #include "User/LiquidFunFilteringSettlor.h"
 #include "User/LiquidFunBodyDescCreator.h"
