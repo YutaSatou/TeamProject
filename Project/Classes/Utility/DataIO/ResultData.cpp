@@ -45,7 +45,6 @@ void ResultData::initColor()
 		data["ColorG"] = player["ColorG"];
 		data["ColorB"] = player["ColorB"];
 		data["Clear"] = player["Clear"];
-		CCLOG( "ISIS" );
 	}
 	if ( FileUtils::getInstance()->writeToFile( data, file ) )
 	{

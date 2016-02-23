@@ -65,7 +65,6 @@ void StageSelectScrollView::scrollbar( const std::string& barTexture ){
         CCLOG( "%f", rectButton1.getMaxX() );
         if ( rectButton1.containsPoint( point ) )
         {
-            CCLOG( "aaaaaa" );
             return true;
         }else{
             return false;
