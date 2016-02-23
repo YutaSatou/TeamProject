@@ -18,7 +18,7 @@ class	b2PolygonShape;
 class	b2ChainShape;
 class	b2Contact;
 class	b2ContactListener;
-class	b2RayCastCallback;
+class	b2QueryCallback;
 struct	b2BodyDef;
 struct	b2JointDef;
 struct	b2ParticleBodyContact;
@@ -27,6 +27,7 @@ struct	b2ParticleSystemDef;
 struct	b2FixtureDef;
 struct	b2Filter;
 struct	b2Manifold;
+struct	b2AABB;
 
 using LiquidFunVec2					= b2Vec2;
 using LiquidFunVec3					= b2Vec3;
@@ -45,7 +46,7 @@ using LiquidFunPolygonShape			= b2PolygonShape;
 using LiquidFunChainShape			= b2ChainShape;
 using LiquidFunContact				= b2Contact;
 using LiquidFunBaseContactListener	= b2ContactListener;
-using LiquidFunBaseRayCastCallback	= b2RayCastCallback;
+using LiquidFunQueryCallback		= b2QueryCallback;
 using LiquidFunBodyDesc				= b2BodyDef;
 using LiquidFunJointDesc			= b2JointDef;
 using LiquidFunParticleBodyContact	= b2ParticleBodyContact;
@@ -54,5 +55,6 @@ using LiquidFunParticleDesc			= b2ParticleSystemDef;
 using LiquidFunFixtureDesc			= b2FixtureDef;
 using LiquidFunFilter				= b2Filter;
 using LiquidFunManifold				= b2Manifold;
+using LiquidFunAABB					= b2AABB;
 
 #endif

@@ -34,12 +34,11 @@ public:
 	void registerContactListener( LiquidFunBaseContactListener* contactListener );
 	
 	/**
-	 *	@brief	レイキャストコールバックの登録
-	 *	@param	callback	レイキャストコールバック
-	 *	@param	start		レイの開始地点
-	 *	@param	end			レイの終了地点
+	 *	@brief	AABBクエリの登録
+	 *	@param	callback	コールバック
+	 *	@param	aabb		検索する範囲
 	 */
-	void registerRayCastCallback( LiquidFunBaseRayCastCallback* callback, const cocos2d::Vec2& start, const cocos2d::Vec2& end );
+	void registerAABBQuery( LiquidFunQueryCallback* callback, const LiquidFunAABB& aabb );
 	
 	/**
 	 *	@brief	ボディの追加
