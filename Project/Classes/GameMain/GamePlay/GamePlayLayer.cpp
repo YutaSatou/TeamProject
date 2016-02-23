@@ -3,7 +3,7 @@
 #include "Object/Contact/ContactListener.h"
 #include "Control/GameLayer.h"
 #include "User/UI/UILayer.h"
-#include "Utility/DataIO/StageColorInfo.h"
+#include "Utility/DataIO/StageNumber.h"
 
 using namespace cocos2d;
 
@@ -18,9 +18,8 @@ bool GamePlayLayer::init()
 	scheduleUpdate();
 	addBackground();
 	
-	// クラス名、関数名、早めに変更してね。
-	StageColorInfo		stageColorInfo;
-	const std::string&	stageFileName { stageColorInfo.loadCreateStageNumber() };
+	StageNumber			stageNumber;
+	const std::string&	stageFileName { stageNumber.readStagePlistName() };
 	
 	addChild( ContactListener::create() );
 	addChild( GameLayer::create( stageFileName ) );
