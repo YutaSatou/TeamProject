@@ -56,7 +56,7 @@ bool StageSelectPage::init( const int pageNum ){
         Vec2( 1590, 602 ), Vec2( 1790, 602 ), Vec2( 1990, 602 ),
     };
 	
-    for (int j = 0; j < 11; ++j){
+    for (int j = 0; j < 9; ++j){
         Button* image = Button::create( "Texture/GameStageSelect/Stage_Numberbox_Notclear.png" );
         image->setTitleText( StringUtils::toString( j + 1 ) );
         /*image->setTitleFontName( "Font/RiiPopkkR.otf" );

@@ -2,6 +2,7 @@
 #include "cocos2d.h"
 #include "../../LiquidFun/LiquidFunUserAPI.h"
 #include "../../Object/Common/LiquidFunBodyDeleter.h"
+#include "../../Object/Contact/ContactSettlor.h"
 
 using namespace cocos2d;
 
@@ -54,6 +55,11 @@ void BrushBody::attachBody( Node* registerNode )
 	
 	// コンテナを巡回して、フィクスチャの生成と装着を行う。
 	each( [ &emptyBody ]( LiquidFunFixtureDesc& desc ) { LiquidFunBodySettlor::attachFixture( emptyBody, desc ); } );
+	
+	ContactSettlor c { emptyBody };
+	
+	c.setupCategory( Contact::Category::BRUSH );
+	c.setupCollisionCategory( { Contact::Category::LIQUID } );
 	
 	// ノードが削除されるタイミングで、ボディも削除されるように設定する。
 	registerNode->addChild( LiquidFunBodyDeleter::create( emptyBody ) );

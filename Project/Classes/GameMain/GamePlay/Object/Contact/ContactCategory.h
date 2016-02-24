@@ -20,6 +20,7 @@ namespace Contact
 		CLOUD			= 1 << 5,
 		MUD				= 1 << 6,
 		CANNON			= 1 << 7,
+		BRUSH			= 1 << 8,
 		ALL_CATEGORY	= std::numeric_limits< std::uint16_t >::max(),
 	};
 	
