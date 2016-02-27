@@ -31,7 +31,7 @@ bool WallManager::init( GameControlMediator& mediator )
 	addChild( down );
 	addChild( left );
 	addChild( right );
-	addChild( Goal::create( { 360.0f, 120.0f } ) );
+	addChild( Goal::create( { 360.0f, 100.0f } ) );
 	
 	return true;
 }

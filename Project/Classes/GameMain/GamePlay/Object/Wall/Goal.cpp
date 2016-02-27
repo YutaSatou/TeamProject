@@ -19,7 +19,7 @@ bool Goal::init( const Vec2& position )
 	// 各パラメータを設定する。
 	setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 	setColor( t.readColorTarget() );
-	setOpacity( 180 );
+	setOpacity( 190 );
 	setPosition( position );
 	
 	// 物理構造の初期化を行う。
