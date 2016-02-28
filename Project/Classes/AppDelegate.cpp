@@ -26,7 +26,10 @@ bool AppDelegate::applicationDidFinishLaunching()
 		director->setOpenGLView( glView );
 	}
 	
+#if COCOS2D_DEBUG
 	director->setDisplayStats( true );
+#endif
+	
 	director->setAnimationInterval( 1.0f / 60.0f );
 	
 	glView->setDesignResolutionSize( 720.0f, 1280.0f, ResolutionPolicy::SHOW_ALL );
