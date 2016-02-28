@@ -1,4 +1,5 @@
 #include "CreditLayer.h"
+#include "GameMain/GameStageSelect/GameStageSelectLayer.h"
 #include "Utility/Assistant/Scene/SceneCreator.h"
 #include "Utility/Assistant/Scene/SceneChanger.h"
 #include "Utility/Audio/ADX2Player.h"
@@ -47,7 +48,7 @@ void CreditLayer::initTouchListener()
 	listener->onTouchEnded = []( Touch* touch, Event* event )
 	{
 		ADX2Player::getInstance().play( CRI_HUNGRYSLIMESHEET_SE_BUTTON_TAP );
-		Scene* scene		{ SceneCreator::createScene( CreditLayer::create() ) };
+		Scene* scene		{ SceneCreator::createScene( GameStageSelectLayer::create() ) };
 		Scene* nextScene	{ TransitionRotoZoom::create( 0.8f, scene ) };
 		SceneChanger::switchScene( nextScene );
 	};
