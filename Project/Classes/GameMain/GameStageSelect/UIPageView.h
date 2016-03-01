@@ -45,6 +45,8 @@ public:
     inline void addTurnedEventListner( turnedEventFunc tef ){ _tef = tef; }
     
     cocos2d::Layer* getPageAt( int pageNumber );
+	cocos2d::Vec2 setPage( int pageNumber );
+	int getPageNumber() const;
     
     void move( cocos2d::Vec2 offset );
     
@@ -57,7 +59,7 @@ private:
     float width;
     float hight;
     
-    int currentPageNumber;
+	int currentPageNumber;
     
     cocos2d::Vec2 currentPosition;
     cocos2d::Vec2 mPosition;

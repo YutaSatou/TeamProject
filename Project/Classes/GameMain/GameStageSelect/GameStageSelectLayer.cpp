@@ -32,13 +32,13 @@ bool GameStageSelectLayer::init()
     
     //ページビューの追加
 	//StageSelectButton* button = StageSelectButton::create();
-    StageSelectPage* page = StageSelectPage::create( 3 );
+    StageSelectPage* page = StageSelectPage::create( 2 );
 
 	//page->addChild( button );
     addChild( page );
     
-    scheduleUpdate();
-    
+	scheduleUpdate();
+	
     return true;
 }
 

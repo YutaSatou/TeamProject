@@ -34,10 +34,11 @@ private:
 private:
     
     UIPageView* mPage;
+	int pageCount;
     cocos2d::MenuItemImage* slider;
-    cocos2d::Vec2 mlocal;
-    cocos2d::Vec2 mScreenPos;
-    cocos2d::Vec2 mPos;
+    //cocos2d::Vec2 mlocal;
+    //cocos2d::Vec2 mScreenPos;
+    //cocos2d::Vec2 mPos;
 
 };
 

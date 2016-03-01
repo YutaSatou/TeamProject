@@ -76,11 +76,33 @@ void UIPageView::insertPage( cocos2d::Layer* page ){
     totalLength = Vec2( pageCount * width, hight );
 }
 
-Layer* UIPageView::getPageAt( int pageNumber ){
+Layer* UIPageView::getPageAt( int pageNumber )
+{
     return pages.at( pageNumber );
 }
 
-void UIPageView::update( float deltaTime ){
+Vec2 UIPageView::setPage( int pageNumber )
+{
+	Vec2 poses [] =
+	{
+		{ 0.0, 0.0 }, { -720, 0.0 }, { -1440, 0.0 }
+	};
+	
+	for ( int i = 0; i < pageNumber; ++i )
+	{
+		currentPageNumber = i + 1;
+	}
+	
+	return poses[ pageNumber ];
+}
+
+int UIPageView::getPageNumber() const
+{
+	return currentPageNumber;
+}
+
+void UIPageView::update( float deltaTime )
+{
 }
 
 void UIPageView::move( Vec2 offset ){
@@ -111,14 +133,15 @@ void UIPageView::automoverig(){
     
 }
 
-bool UIPageView::onTouchBegan( Touch* touch, Event* event ){
-    
+bool UIPageView::onTouchBegan( Touch* touch, Event* event )
+{
     currentPosition = getPosition();
     mPosition = getPosition();
     return true;
 }
 
-void UIPageView::onTouchMoved( Touch* touch, Event* event ){
+void UIPageView::onTouchMoved( Touch* touch, Event* event )
+{
     if (onTouchListener){
         onTouchListener(this);
     }
@@ -136,8 +159,7 @@ void UIPageView::onTouchMoved( Touch* touch, Event* event ){
     }
     
     setPosition( Vec2( ( currentPosition + offset ).x, getPositionY() ) );
-    
-    //CCLOG( "動き : %f", offset.x );
+	
     if ( offset.x >= 0 ){
         currentScrollDirection = ScrollDirection::LEFT;
     }

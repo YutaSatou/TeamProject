@@ -19,6 +19,7 @@
 #include "../GameResult/GameResultLayer.h"
 #include "../../Utility/DataIO/ResultData.h"
 #include "StageSelectButtonColor/ButtonColor.h"
+#include "../../Utility/DataIO/SaveData.h"
 
 using namespace cocos2d;
 using namespace ui;
@@ -56,7 +57,7 @@ bool StageSelectPage::init( const int pageNum ){
         Vec2( 1590, 602 ), Vec2( 1790, 602 ), Vec2( 1990, 602 ),
     };
 	
-    for (int j = 0; j < 9; ++j){
+    for (int j = 0; j < 18; ++j){
         Button* image = Button::create( "Texture/GameStageSelect/Stage_Numberbox_Notclear.png" );
         image->setTitleText( StringUtils::toString( j + 1 ) );
         /*image->setTitleFontName( "Font/RiiPopkkR.otf" );
@@ -81,6 +82,7 @@ bool StageSelectPage::init( const int pageNum ){
             if ( type == Widget::TouchEventType::BEGAN ){
             }
             if ( type == Widget::TouchEventType::ENDED ){
+				SaveData::saveInt( "SelectPage",  mPage->getPageNumber() );
                 ADX2Player::getInstance().play( 2 );
                 stage.saveStageNumber( j + 1 );
 				resultData.initColor();
@@ -98,7 +100,7 @@ bool StageSelectPage::init( const int pageNum ){
     slider = PageCursor::sliderTex( "Texture/GameStageSelect/Select_Box.png", Vec2( 161, 163 ) );
     slider->setTag( 1 );
     
-    auto listener = EventListenerTouchOneByOne::create();
+    /*auto listener = EventListenerTouchOneByOne::create();
     listener->setSwallowTouches( true );
     // ラムダを使用して関数内にonTouchBeganとonTouchEndedを実装する。
     listener->onTouchBegan = [ this ](Touch* touch, Event* event){
@@ -157,15 +159,28 @@ bool StageSelectPage::init( const int pageNum ){
     };
     // listener1, PlayButton1をイベント登録する。
     auto director = Director::getInstance();
-    director->getEventDispatcher()->addEventListenerWithSceneGraphPriority( listener, slider );
+    director->getEventDispatcher()->addEventListenerWithSceneGraphPriority( listener, slider );*/
     
     addChild( mPage );
-    
+		
     mPage->addTurnedEventListner( CC_CALLBACK_3( StageSelectPage::pageTurnedEvent, this  ));
     addChild( sliderBack );
     addChild( slider );
     
     scheduleUpdate();
+	
+	pageCount = SaveData::loadInt( "SelectPage" );
+	
+	mPage->setPosition( mPage->setPage( pageCount ) );
+	
+	if ( mPage->getPageNumber() == 1 )
+	{
+		slider->setPosition( { 358, 163 } );
+	}
+	if ( mPage->getPageNumber() == 2 )
+	{
+		slider->setPosition( { 556, 163 } );
+	}
     
     return true;
 }
@@ -184,7 +199,7 @@ StageSelectPage* StageSelectPage::create( const int pageNum ){
 }
 
 void StageSelectPage::pageTurnedEvent( UIPageView* pageview, bool isTurned, int turnnedPageNumber ){
-    
+	
     switch ( turnnedPageNumber ) {
         case 0:{
             MoveTo* move1 = MoveTo::create( 0.1f, Vec2( 161, slider->getPositionY() ) );
