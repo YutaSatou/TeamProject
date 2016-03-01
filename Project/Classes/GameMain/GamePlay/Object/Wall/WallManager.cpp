@@ -14,7 +14,7 @@ bool WallManager::init( GameControlMediator& mediator )
 	}
 	
 	// 画面サイズを取得する。
-	const Vec2&	screenMin	{ 0.0f, -200.0f };
+	const Vec2&	screenMin	{ 0.0f, -150.0f };
 	const Vec2&	screenMax	{ Director::getInstance()->getWinSize() };
 	
 	// 上, 下, 左, 右の壁を生成する。
@@ -31,7 +31,7 @@ bool WallManager::init( GameControlMediator& mediator )
 	addChild( down );
 	addChild( left );
 	addChild( right );
-	addChild( Goal::create( { 360.0f, 120.0f } ) );
+	addChild( Goal::create( { 360.0f, 100.0f } ) );
 	
 	return true;
 }

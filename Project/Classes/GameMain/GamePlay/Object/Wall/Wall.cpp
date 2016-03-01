@@ -93,5 +93,5 @@ void Wall::setupContactCategory()
 	// カテゴリの設定、衝突するカテゴリの設定を行う。
 	ContactSettlor contactSettlor { mBody };
 	contactSettlor.setupCategory( Contact::Category::WALL );
-	contactSettlor.setupCollisionCategory();
+	contactSettlor.setupCollisionCategory( { Contact::Category::LIQUID } );
 }
