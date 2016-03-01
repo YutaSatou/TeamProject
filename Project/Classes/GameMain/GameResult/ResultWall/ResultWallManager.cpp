@@ -47,9 +47,9 @@ bool ResultWallManager::init()
 	addChild( left );
 	addChild( right );
 	
-	ResultWall* leftDown { ResultWall::create( { 0, 830 }, { 330, 500 } ) };
+	ResultWall* leftDown { ResultWall::create( { 0, 830 }, { 345, 485 } ) };
 	addChild( leftDown );
-	ResultWall* rightDown { ResultWall::create( { 720, 830 }, { 390, 500 } ) };
+	ResultWall* rightDown { ResultWall::create( { 720, 830 }, { 375, 485 } ) };
 	addChild( rightDown );
 	
 	//ばらばらになったスライムを入れる箱を用意する
